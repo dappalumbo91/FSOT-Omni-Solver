@@ -1,0 +1,38 @@
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+Note: No compatibility mode selected!
+
+
+Circuit: * fsot analog solver phase 1 — vertical slice: core law x3 folds, m_h/m_w, omega_b h^2, alpha_s, 1/alpha_em (values from locked/design_values.tsv)
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 50.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+ Reference value :  0.00000e+00
+No. of Data Rows : 1
+v(vsq) = 1.823289e+00
+v(vsc) = 1.848100e+00
+v(vsm) = -1.00453e+00
+v(vfq) = 1.071495e+00
+v(vfc) = 1.098539e+00
+v(vfm) = 9.999213e-01
+v(vmhw) = 2.975526e+00
+v(vabs) = 1.004388e+00
+v(v1s) = 3.037152e+00
+v(vomb) = 3.815602e+00
+v(vas) = 1.258229e+00
+v(vainv) = 4.419477e+00
+v(uq) = -4.48459e-02
+v(uc) = -3.97660e-02
+v(um) = -3.73402e-06
+v(vr) = 2.500000e+00
+i(vidq) = 2.000010e-06
+i(vi25q) = 9.999947e-06
+i(vidc) = 2.399940e-06
+i(vi25c) = 9.999947e-06
+i(vidm) = 9.998604e-06
+i(vi25m) = 9.999947e-06
+ngspice-44.2 done
+SOLVER: plain

@@ -1,0 +1,58 @@
+name	ideal	E24_a	E24_b	E24_c	realised	rel_err	unit	meaning
+R_inv	10000	8200	1800	0	10000	0.000e+00	ohm	-VR inverter, both arms (ratio 1 exactly: -VR = -2.5 V)
+R_str_5	11251.7134	5600	5600	51	11251	6.341e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=5
+R_str_6	19721.3424	10000	9100	620	19720	6.807e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=6
+R_str_7	16893.5751	13000	3900	0	16900	3.803e-04	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=7
+R_str_8	14775.9643	9100	5600	75	14775	6.526e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=8
+R_str_9	13130.5908	13000	130	0	13130	4.500e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=9
+R_str_10	11815.2163	11000	820	0	11820	4.049e-04	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=10
+R_str_11	10739.5493	6200	4300	240	10740	4.196e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=11
+R_str_12	9843.50224	5100	4700	43	9843	5.102e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=12
+R_str_13	9085.53086	4700	4300	82	9082	3.886e-04	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=13
+R_str_14	8435.99063	8200	240	0	8440	4.753e-04	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=14
+R_str_15	7873.15935	7500	330	43	7873	2.024e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=15
+R_str_16	7380.75556	3600	3600	180	7380	1.024e-04	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=16
+R_str_17	6946.33506	6800	110	36	6946	4.824e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=17
+R_str_18	6560.22307	6200	360	0	6560	3.400e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=18
+R_str_19	6214.78423	6200	15	0	6215	3.472e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=19
+R_str_20	5903.91207	3900	2000	3.9	5903.9	2.044e-06	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=20
+R_str_21	5622.66443	5600	22	0	5622	1.182e-04	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=21
+R_str_22	5366.99863	4700	620	47	5367	2.549e-07	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=22
+R_str_23	5133.57564	5100	33	0	5133	1.121e-04	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=23
+R_str_24	4919.6134	4300	620	0	4920	7.858e-05	ohm	threshold string segment: tap at VR*g_k/20, g_k = 19 log5((k+1/2)/5), k=24
+R_str_top	12385.0031	12000	390	0	12390	4.035e-04	ohm	threshold string top segment to VR
+R_gunit	10000	8200	1800	0	10000	0.000e+00	ohm	generation selector: VR*g/20 from g*R_gunit over (20-g)*R_gunit
+R_step	6249875	6.2e+06	51000	0	6251000	1.800e-04	ohm	one D_eff unit = 0.4 uA from VR, minus nominal CD4053 Ron (SPDT current steering: sum node or ground)
+R_base	1250000	820000	430000	0	1250000	0.000e+00	ohm	D_eff floor 5 units = 2 uA from VR
+R_25	250000	130000	120000	0	250000	0.000e+00	ohm	D = 25 reference current 10 uA (LOGR1 Q1)
+R_I0	250000	130000	120000	0	250000	0.000e+00	ohm	antilog Q3 collector current I0 = 10 uA (one FSOT unit)
+R_x	8612.9636	4300	4300	13	8613	4.226e-06	ohm	V_T*u -> P_new*u*I0 : R_x = V_T/(P_new I0)
+R_half	20	10	10	0	20	0.000e+00	ohm	1/2 divider (both arms): exponent -u/2 for D^{-1/2}
+R_Tf	100000	82000	18000	0	100000	0.000e+00	ohm	f(D) TIA: 1 V per unit f
+R_Sf	10000	8200	1800	0	10000	0.000e+00	ohm	S summer feedback
+R_Sx_obs	10897.5758	6200	4700	0	10900	2.225e-04	ohm	S summer, specimen fold: weight KS*c_obs, c_obs = K*A*O/5
+R_Sx_med	5420.13598	2400	2200	820	5420	2.509e-05	ohm	S summer, medium fold: weight KS*|c_med|, c_med = K*A/5
+R_S0	29754.1996	27000	2700	51	29751	1.075e-04	ohm	S summer constant K from -VR (T2 = 1 term)
+R_finv	10000	8200	1800	0	10000	0.000e+00	ohm	f inverter for specimen (observed) folds, both arms
+R_mg	10000	8200	1800	0	10000	0.000e+00	ohm	m_H/m_W non-inverting gain, ground leg
+R_mf	6321.20559	6200	120	0	6320	1.907e-04	ohm	m_H/m_W gain 1+psi_con: R_mf = psi_con*R_mg
+R_fw	10000	8200	1800	0	10000	0.000e+00	ohm	full-wave rectifier unit (R)
+R_fw2	20000	10000	10000	0	20000	0.000e+00	ohm	full-wave rectifier 2R
+R_c_in	10000	8200	1800	0	10000	0.000e+00	ohm	1-S amp input (weight 20)
+R_c_f	200000	100000	100000	0	200000	0.000e+00	ohm	1-S amp feedback
+R_c_ref	12500	8200	4300	0	12500	0.000e+00	ohm	1-S amp constant from -VR: weight 20*KS/VR = 16
+R_om_a	200000	100000	100000	0	200000	0.000e+00	ohm	|S|*KS -> |S|*I0 into LOGR5 Q1
+R_om_ref	250000	130000	120000	0	250000	0.000e+00	ohm	LOGR5 Q2 reference I0 (S = 1)
+R_om_b	4000000	2e+06	2e+06	0	4000000	0.000e+00	ohm	40(1-S) V -> (1-S)*I0 into antilog Q1
+R_om_T	10000000	8.2e+06	1.8e+06	0	10000000	0.000e+00	ohm	Omega_b h^2 TIA: 100 V per unit
+R_as_pi	777272.457	750000	27000	0	777000	3.505e-04	ohm	antilog Q1 current I0/pi (pi as a resistor ratio); Q1 collector held at its base (+V_T): V_CB = 0
+R_vt_bot	20	10	10	0	20	0.000e+00	ohm	V_T divider bottom (exponent 1 neper from VR)
+R_vt_top	1913.11979	1000	910	3	1913	6.262e-05	ohm	V_T divider top: ratio V_T/VR
+R_as_T	1000000	820000	180000	0	1000000	0.000e+00	ohm	alpha_s TIA: 10 V per unit
+R_a3phi	2655068.64	2.4e+06	180000	75000	2655000	2.585e-05	ohm	3*phi*IU into e^3 antilog Q1 (collector held at base, -3V_T)
+R_a2	6443986.94	5.6e+06	820000	24000	6444000	2.026e-06	ohm	2*IU into e^3 antilog Q1 (collector held at base, -3V_T)
+R_3vt_bot	50	30	20	0	50	0.000e+00	ohm	3 V_T divider bottom (exponent 3 nepers from -VR)
+R_3vt_top	1560.93316	910	560	91	1561	4.282e-05	ohm	3 V_T divider top: ratio 3V_T/VR
+R_au	12370675.4	6.8e+06	5.1e+06	470000	12370000	5.459e-05	ohm	IU into e^{-1} antilog Q1 (collector held at base, +V_T)
+R_inj	12500000	8.2e+06	4.3e+06	0	12500000	0.000e+00	ohm	the -1 term: IU injected into the 1/alpha TIA node
+R_ainv_T	200000	100000	100000	0	200000	0.000e+00	ohm	1/alpha TIA: 0.04 V per unit

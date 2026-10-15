@@ -1,0 +1,802 @@
+* FSOT analog solver Phase 1 — vertical slice: core law x3 folds, m_H/m_W, Omega_b h^2, alpha_s, 1/alpha_em (values from locked/design_values.tsv)
+.include ../models/vendor/ti_sloj070/TL082.301
+.model D1N4148 D(Is=2.52n Rs=0.568 N=1.752 Cjo=4p M=0.4 tt=20n BV=100)
+* variant e24_tl082 seed 0 temp 27 opt idealop
+.model SWM_q5 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q5n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q6 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q6n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q7 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q7n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q8 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q8n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q9 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q9n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q10 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q10n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q11 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q11n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q12 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q12n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q13 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q13n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q14 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q14n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q15 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q15n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q16 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q16n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q17 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q17n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q18 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q18n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q19 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q19n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q20 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q20n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q21 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q21n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q22 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q22n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q23 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q23n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q24 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_q24n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model QM_1q NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_2q NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_3q NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_4q NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model SWM_c5 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c5n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c6 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c6n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c7 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c7n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c8 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c8n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c9 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c9n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c10 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c10n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c11 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c11n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c12 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c12n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c13 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c13n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c14 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c14n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c15 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c15n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c16 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c16n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c17 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c17n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c18 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c18n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c19 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c19n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c20 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c20n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c21 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c21n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c22 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c22n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c23 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c23n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c24 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_c24n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model QM_1c NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_2c NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_3c NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_4c NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model SWM_m5 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m5n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m6 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m6n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m7 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m7n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m8 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m8n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m9 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m9n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m10 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m10n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m11 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m11n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m12 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m12n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m13 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m13n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m14 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m14n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m15 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m15n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m16 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m16n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m17 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m17n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m18 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m18n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m19 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m19n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m20 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m20n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m21 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m21n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m22 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m22n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m23 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m23n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m24 SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model SWM_m24n SW(VT=0 VH=0.2 RON=125 ROFF=1e12)
+.model QM_1m NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_2m NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_3m NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_4m NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_5 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_6 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_7 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_8 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_9 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_10 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_11 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_12 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_13 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model QM_14 NPN(IS=6.734e-15 XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+VCC vcc 0 9
+VEE vee 0 -9
+VREF vr 0 DC 2.5
+VOS_inv inv_p 0 DC 0
+E_inv vrn 0 inv_p ninv 1e6
+Rinv1_0 vr inv1_m0 8200
+Rinv1_1 inv1_m0 ninv 1800
+Rinv2_0 ninv inv2_m0 8200
+Rinv2_1 inv2_m0 vrn 1800
+Rstr5_0 0 str5_m0 5600
+Rstr5_1 str5_m0 str5_m1 5600
+Rstr5_2 str5_m1 th5 51
+Rstr6_0 th5 str6_m0 10000
+Rstr6_1 str6_m0 str6_m1 9100
+Rstr6_2 str6_m1 th6 620
+Rstr7_0 th6 str7_m0 13000
+Rstr7_1 str7_m0 th7 3900
+Rstr8_0 th7 str8_m0 9100
+Rstr8_1 str8_m0 str8_m1 5600
+Rstr8_2 str8_m1 th8 75
+Rstr9_0 th8 str9_m0 13000
+Rstr9_1 str9_m0 th9 130
+Rstr10_0 th9 str10_m0 11000
+Rstr10_1 str10_m0 th10 820
+Rstr11_0 th10 str11_m0 6200
+Rstr11_1 str11_m0 str11_m1 4300
+Rstr11_2 str11_m1 th11 240
+Rstr12_0 th11 str12_m0 5100
+Rstr12_1 str12_m0 str12_m1 4700
+Rstr12_2 str12_m1 th12 43
+Rstr13_0 th12 str13_m0 4700
+Rstr13_1 str13_m0 str13_m1 4300
+Rstr13_2 str13_m1 th13 82
+Rstr14_0 th13 str14_m0 8200
+Rstr14_1 str14_m0 th14 240
+Rstr15_0 th14 str15_m0 7500
+Rstr15_1 str15_m0 str15_m1 330
+Rstr15_2 str15_m1 th15 43
+Rstr16_0 th15 str16_m0 3600
+Rstr16_1 str16_m0 str16_m1 3600
+Rstr16_2 str16_m1 th16 180
+Rstr17_0 th16 str17_m0 6800
+Rstr17_1 str17_m0 str17_m1 110
+Rstr17_2 str17_m1 th17 36
+Rstr18_0 th17 str18_m0 6200
+Rstr18_1 str18_m0 th18 360
+Rstr19_0 th18 str19_m0 6200
+Rstr19_1 str19_m0 th19 15
+Rstr20_0 th19 str20_m0 3900
+Rstr20_1 str20_m0 str20_m1 2000
+Rstr20_2 str20_m1 th20 3.9
+Rstr21_0 th20 str21_m0 5600
+Rstr21_1 str21_m0 th21 22
+Rstr22_0 th21 str22_m0 4700
+Rstr22_1 str22_m0 str22_m1 620
+Rstr22_2 str22_m1 th22 47
+Rstr23_0 th22 str23_m0 5100
+Rstr23_1 str23_m0 th23 33
+Rstr24_0 th23 str24_m0 4300
+Rstr24_1 str24_m0 th24 620
+Rstrtop_0 th24 strtop_m0 12000
+Rstrtop_1 strtop_m0 vr 390
+Rg0_0 0 g0_m0 8200
+Rg0_1 g0_m0 tg1 1800
+Rg1_0 tg1 g1_m0 8200
+Rg1_1 g1_m0 tg2 1800
+Rg2_0 tg2 g2_m0 8200
+Rg2_1 g2_m0 tg3 1800
+Rg3_0 tg3 g3_m0 8200
+Rg3_1 g3_m0 tg4 1800
+Rg4_0 tg4 g4_m0 8200
+Rg4_1 g4_m0 tg5 1800
+Rg5_0 tg5 g5_m0 8200
+Rg5_1 g5_m0 tg6 1800
+Rg6_0 tg6 g6_m0 8200
+Rg6_1 g6_m0 tg7 1800
+Rg7_0 tg7 g7_m0 8200
+Rg7_1 g7_m0 tg8 1800
+Rg8_0 tg8 g8_m0 8200
+Rg8_1 g8_m0 tg9 1800
+Rg9_0 tg9 g9_m0 8200
+Rg9_1 g9_m0 tg10 1800
+Rg10_0 tg10 g10_m0 8200
+Rg10_1 g10_m0 tg11 1800
+Rg11_0 tg11 g11_m0 8200
+Rg11_1 g11_m0 tg12 1800
+Rg12_0 tg12 g12_m0 8200
+Rg12_1 g12_m0 tg13 1800
+Rg13_0 tg13 g13_m0 8200
+Rg13_1 g13_m0 tg14 1800
+Rg14_0 tg14 g14_m0 8200
+Rg14_1 g14_m0 tg15 1800
+Rg15_0 tg15 g15_m0 8200
+Rg15_1 g15_m0 tg16 1800
+Rg16_0 tg16 g16_m0 8200
+Rg16_1 g16_m0 tg17 1800
+Rg17_0 tg17 g17_m0 8200
+Rg17_1 g17_m0 tg18 1800
+Rg18_0 tg18 g18_m0 8200
+Rg18_1 g18_m0 tg19 1800
+Rg19_0 tg19 g19_m0 8200
+Rg19_1 g19_m0 vr 1800
+B_cmpq5 ctq5 0 V = 6.8*tanh(2e4*(V(tg1)-V(th5)+(0)))
+Rstq5_0 vr stq5_m0 6.2e+06
+Rstq5_1 stq5_m0 skq5 51000
+S_q5 skq5 c2inq ctq5 0 SWM_q5
+S_q5n skq5 0 0 ctq5 SWM_q5n
+B_cmpq6 ctq6 0 V = 6.8*tanh(2e4*(V(tg1)-V(th6)+(0)))
+Rstq6_0 vr stq6_m0 6.2e+06
+Rstq6_1 stq6_m0 skq6 51000
+S_q6 skq6 c2inq ctq6 0 SWM_q6
+S_q6n skq6 0 0 ctq6 SWM_q6n
+B_cmpq7 ctq7 0 V = 6.8*tanh(2e4*(V(tg1)-V(th7)+(0)))
+Rstq7_0 vr stq7_m0 6.2e+06
+Rstq7_1 stq7_m0 skq7 51000
+S_q7 skq7 c2inq ctq7 0 SWM_q7
+S_q7n skq7 0 0 ctq7 SWM_q7n
+B_cmpq8 ctq8 0 V = 6.8*tanh(2e4*(V(tg1)-V(th8)+(0)))
+Rstq8_0 vr stq8_m0 6.2e+06
+Rstq8_1 stq8_m0 skq8 51000
+S_q8 skq8 c2inq ctq8 0 SWM_q8
+S_q8n skq8 0 0 ctq8 SWM_q8n
+B_cmpq9 ctq9 0 V = 6.8*tanh(2e4*(V(tg1)-V(th9)+(0)))
+Rstq9_0 vr stq9_m0 6.2e+06
+Rstq9_1 stq9_m0 skq9 51000
+S_q9 skq9 c2inq ctq9 0 SWM_q9
+S_q9n skq9 0 0 ctq9 SWM_q9n
+B_cmpq10 ctq10 0 V = 6.8*tanh(2e4*(V(tg1)-V(th10)+(0)))
+Rstq10_0 vr stq10_m0 6.2e+06
+Rstq10_1 stq10_m0 skq10 51000
+S_q10 skq10 c2inq ctq10 0 SWM_q10
+S_q10n skq10 0 0 ctq10 SWM_q10n
+B_cmpq11 ctq11 0 V = 6.8*tanh(2e4*(V(tg1)-V(th11)+(0)))
+Rstq11_0 vr stq11_m0 6.2e+06
+Rstq11_1 stq11_m0 skq11 51000
+S_q11 skq11 c2inq ctq11 0 SWM_q11
+S_q11n skq11 0 0 ctq11 SWM_q11n
+B_cmpq12 ctq12 0 V = 6.8*tanh(2e4*(V(tg1)-V(th12)+(0)))
+Rstq12_0 vr stq12_m0 6.2e+06
+Rstq12_1 stq12_m0 skq12 51000
+S_q12 skq12 c2inq ctq12 0 SWM_q12
+S_q12n skq12 0 0 ctq12 SWM_q12n
+B_cmpq13 ctq13 0 V = 6.8*tanh(2e4*(V(tg1)-V(th13)+(0)))
+Rstq13_0 vr stq13_m0 6.2e+06
+Rstq13_1 stq13_m0 skq13 51000
+S_q13 skq13 c2inq ctq13 0 SWM_q13
+S_q13n skq13 0 0 ctq13 SWM_q13n
+B_cmpq14 ctq14 0 V = 6.8*tanh(2e4*(V(tg1)-V(th14)+(0)))
+Rstq14_0 vr stq14_m0 6.2e+06
+Rstq14_1 stq14_m0 skq14 51000
+S_q14 skq14 c2inq ctq14 0 SWM_q14
+S_q14n skq14 0 0 ctq14 SWM_q14n
+B_cmpq15 ctq15 0 V = 6.8*tanh(2e4*(V(tg1)-V(th15)+(0)))
+Rstq15_0 vr stq15_m0 6.2e+06
+Rstq15_1 stq15_m0 skq15 51000
+S_q15 skq15 c2inq ctq15 0 SWM_q15
+S_q15n skq15 0 0 ctq15 SWM_q15n
+B_cmpq16 ctq16 0 V = 6.8*tanh(2e4*(V(tg1)-V(th16)+(0)))
+Rstq16_0 vr stq16_m0 6.2e+06
+Rstq16_1 stq16_m0 skq16 51000
+S_q16 skq16 c2inq ctq16 0 SWM_q16
+S_q16n skq16 0 0 ctq16 SWM_q16n
+B_cmpq17 ctq17 0 V = 6.8*tanh(2e4*(V(tg1)-V(th17)+(0)))
+Rstq17_0 vr stq17_m0 6.2e+06
+Rstq17_1 stq17_m0 skq17 51000
+S_q17 skq17 c2inq ctq17 0 SWM_q17
+S_q17n skq17 0 0 ctq17 SWM_q17n
+B_cmpq18 ctq18 0 V = 6.8*tanh(2e4*(V(tg1)-V(th18)+(0)))
+Rstq18_0 vr stq18_m0 6.2e+06
+Rstq18_1 stq18_m0 skq18 51000
+S_q18 skq18 c2inq ctq18 0 SWM_q18
+S_q18n skq18 0 0 ctq18 SWM_q18n
+B_cmpq19 ctq19 0 V = 6.8*tanh(2e4*(V(tg1)-V(th19)+(0)))
+Rstq19_0 vr stq19_m0 6.2e+06
+Rstq19_1 stq19_m0 skq19 51000
+S_q19 skq19 c2inq ctq19 0 SWM_q19
+S_q19n skq19 0 0 ctq19 SWM_q19n
+B_cmpq20 ctq20 0 V = 6.8*tanh(2e4*(V(tg1)-V(th20)+(0)))
+Rstq20_0 vr stq20_m0 6.2e+06
+Rstq20_1 stq20_m0 skq20 51000
+S_q20 skq20 c2inq ctq20 0 SWM_q20
+S_q20n skq20 0 0 ctq20 SWM_q20n
+B_cmpq21 ctq21 0 V = 6.8*tanh(2e4*(V(tg1)-V(th21)+(0)))
+Rstq21_0 vr stq21_m0 6.2e+06
+Rstq21_1 stq21_m0 skq21 51000
+S_q21 skq21 c2inq ctq21 0 SWM_q21
+S_q21n skq21 0 0 ctq21 SWM_q21n
+B_cmpq22 ctq22 0 V = 6.8*tanh(2e4*(V(tg1)-V(th22)+(0)))
+Rstq22_0 vr stq22_m0 6.2e+06
+Rstq22_1 stq22_m0 skq22 51000
+S_q22 skq22 c2inq ctq22 0 SWM_q22
+S_q22n skq22 0 0 ctq22 SWM_q22n
+B_cmpq23 ctq23 0 V = 6.8*tanh(2e4*(V(tg1)-V(th23)+(0)))
+Rstq23_0 vr stq23_m0 6.2e+06
+Rstq23_1 stq23_m0 skq23 51000
+S_q23 skq23 c2inq ctq23 0 SWM_q23
+S_q23n skq23 0 0 ctq23 SWM_q23n
+B_cmpq24 ctq24 0 V = 6.8*tanh(2e4*(V(tg1)-V(th24)+(0)))
+Rstq24_0 vr stq24_m0 6.2e+06
+Rstq24_1 stq24_m0 skq24 51000
+S_q24 skq24 c2inq ctq24 0 SWM_q24
+S_q24n skq24 0 0 ctq24 SWM_q24n
+Rbaseq_0 vr baseq_m0 820000
+Rbaseq_1 baseq_m0 c2inq 430000
+VIDq c2inq c2q DC 0
+VI25q vr i25q DC 0
+R25q_0 i25q 25q_m0 130000
+R25q_1 25q_m0 c1q 120000
+Q_1q c1q 0 eq QM_1q
+VOS_Aq Aq_p 0 DC 0
+E_Aq eq 0 Aq_p c1q 1e6
+Q_2q c2q uq eq QM_2q
+VOS_Bq Bq_p c2q DC 0
+E_Bq uq 0 Bq_p 0 1e6
+CAq eq c1q 1n
+CBq c2q 0 1n
+RI0q_0 vr I0q_m0 130000
+RI0q_1 I0q_m0 d1q 120000
+Rxq_0 d1q xq_m0 4300
+Rxq_1 xq_m0 xq_m1 4300
+Rxq_2 xq_m1 uq 13
+Rh1q_0 uq h1q_m0 10
+Rh1q_1 h1q_m0 b1q 10
+Rh2q_0 b1q h2q_m0 10
+Rh2q_1 h2q_m0 0 10
+Q_3q d1q b1q eaq QM_3q
+Q_4q d2q 0 eaq QM_4q
+VOS_Cq Cq_p 0 DC 0
+E_Cq eaq 0 Cq_p d1q 1e6
+CCq eaq d1q 1n
+VOS_Tq Tq_p 0 DC 0
+E_Tq vfq 0 Tq_p d2q 1e6
+RTfq_0 vfq Tfq_m0 82000
+RTfq_1 Tfq_m0 d2q 18000
+CTq vfq d2q 100p
+B_cmpc5 ctc5 0 V = 6.8*tanh(2e4*(V(tg3)-V(th5)+(0)))
+Rstc5_0 vr stc5_m0 6.2e+06
+Rstc5_1 stc5_m0 skc5 51000
+S_c5 skc5 c2inc ctc5 0 SWM_c5
+S_c5n skc5 0 0 ctc5 SWM_c5n
+B_cmpc6 ctc6 0 V = 6.8*tanh(2e4*(V(tg3)-V(th6)+(0)))
+Rstc6_0 vr stc6_m0 6.2e+06
+Rstc6_1 stc6_m0 skc6 51000
+S_c6 skc6 c2inc ctc6 0 SWM_c6
+S_c6n skc6 0 0 ctc6 SWM_c6n
+B_cmpc7 ctc7 0 V = 6.8*tanh(2e4*(V(tg3)-V(th7)+(0)))
+Rstc7_0 vr stc7_m0 6.2e+06
+Rstc7_1 stc7_m0 skc7 51000
+S_c7 skc7 c2inc ctc7 0 SWM_c7
+S_c7n skc7 0 0 ctc7 SWM_c7n
+B_cmpc8 ctc8 0 V = 6.8*tanh(2e4*(V(tg3)-V(th8)+(0)))
+Rstc8_0 vr stc8_m0 6.2e+06
+Rstc8_1 stc8_m0 skc8 51000
+S_c8 skc8 c2inc ctc8 0 SWM_c8
+S_c8n skc8 0 0 ctc8 SWM_c8n
+B_cmpc9 ctc9 0 V = 6.8*tanh(2e4*(V(tg3)-V(th9)+(0)))
+Rstc9_0 vr stc9_m0 6.2e+06
+Rstc9_1 stc9_m0 skc9 51000
+S_c9 skc9 c2inc ctc9 0 SWM_c9
+S_c9n skc9 0 0 ctc9 SWM_c9n
+B_cmpc10 ctc10 0 V = 6.8*tanh(2e4*(V(tg3)-V(th10)+(0)))
+Rstc10_0 vr stc10_m0 6.2e+06
+Rstc10_1 stc10_m0 skc10 51000
+S_c10 skc10 c2inc ctc10 0 SWM_c10
+S_c10n skc10 0 0 ctc10 SWM_c10n
+B_cmpc11 ctc11 0 V = 6.8*tanh(2e4*(V(tg3)-V(th11)+(0)))
+Rstc11_0 vr stc11_m0 6.2e+06
+Rstc11_1 stc11_m0 skc11 51000
+S_c11 skc11 c2inc ctc11 0 SWM_c11
+S_c11n skc11 0 0 ctc11 SWM_c11n
+B_cmpc12 ctc12 0 V = 6.8*tanh(2e4*(V(tg3)-V(th12)+(0)))
+Rstc12_0 vr stc12_m0 6.2e+06
+Rstc12_1 stc12_m0 skc12 51000
+S_c12 skc12 c2inc ctc12 0 SWM_c12
+S_c12n skc12 0 0 ctc12 SWM_c12n
+B_cmpc13 ctc13 0 V = 6.8*tanh(2e4*(V(tg3)-V(th13)+(0)))
+Rstc13_0 vr stc13_m0 6.2e+06
+Rstc13_1 stc13_m0 skc13 51000
+S_c13 skc13 c2inc ctc13 0 SWM_c13
+S_c13n skc13 0 0 ctc13 SWM_c13n
+B_cmpc14 ctc14 0 V = 6.8*tanh(2e4*(V(tg3)-V(th14)+(0)))
+Rstc14_0 vr stc14_m0 6.2e+06
+Rstc14_1 stc14_m0 skc14 51000
+S_c14 skc14 c2inc ctc14 0 SWM_c14
+S_c14n skc14 0 0 ctc14 SWM_c14n
+B_cmpc15 ctc15 0 V = 6.8*tanh(2e4*(V(tg3)-V(th15)+(0)))
+Rstc15_0 vr stc15_m0 6.2e+06
+Rstc15_1 stc15_m0 skc15 51000
+S_c15 skc15 c2inc ctc15 0 SWM_c15
+S_c15n skc15 0 0 ctc15 SWM_c15n
+B_cmpc16 ctc16 0 V = 6.8*tanh(2e4*(V(tg3)-V(th16)+(0)))
+Rstc16_0 vr stc16_m0 6.2e+06
+Rstc16_1 stc16_m0 skc16 51000
+S_c16 skc16 c2inc ctc16 0 SWM_c16
+S_c16n skc16 0 0 ctc16 SWM_c16n
+B_cmpc17 ctc17 0 V = 6.8*tanh(2e4*(V(tg3)-V(th17)+(0)))
+Rstc17_0 vr stc17_m0 6.2e+06
+Rstc17_1 stc17_m0 skc17 51000
+S_c17 skc17 c2inc ctc17 0 SWM_c17
+S_c17n skc17 0 0 ctc17 SWM_c17n
+B_cmpc18 ctc18 0 V = 6.8*tanh(2e4*(V(tg3)-V(th18)+(0)))
+Rstc18_0 vr stc18_m0 6.2e+06
+Rstc18_1 stc18_m0 skc18 51000
+S_c18 skc18 c2inc ctc18 0 SWM_c18
+S_c18n skc18 0 0 ctc18 SWM_c18n
+B_cmpc19 ctc19 0 V = 6.8*tanh(2e4*(V(tg3)-V(th19)+(0)))
+Rstc19_0 vr stc19_m0 6.2e+06
+Rstc19_1 stc19_m0 skc19 51000
+S_c19 skc19 c2inc ctc19 0 SWM_c19
+S_c19n skc19 0 0 ctc19 SWM_c19n
+B_cmpc20 ctc20 0 V = 6.8*tanh(2e4*(V(tg3)-V(th20)+(0)))
+Rstc20_0 vr stc20_m0 6.2e+06
+Rstc20_1 stc20_m0 skc20 51000
+S_c20 skc20 c2inc ctc20 0 SWM_c20
+S_c20n skc20 0 0 ctc20 SWM_c20n
+B_cmpc21 ctc21 0 V = 6.8*tanh(2e4*(V(tg3)-V(th21)+(0)))
+Rstc21_0 vr stc21_m0 6.2e+06
+Rstc21_1 stc21_m0 skc21 51000
+S_c21 skc21 c2inc ctc21 0 SWM_c21
+S_c21n skc21 0 0 ctc21 SWM_c21n
+B_cmpc22 ctc22 0 V = 6.8*tanh(2e4*(V(tg3)-V(th22)+(0)))
+Rstc22_0 vr stc22_m0 6.2e+06
+Rstc22_1 stc22_m0 skc22 51000
+S_c22 skc22 c2inc ctc22 0 SWM_c22
+S_c22n skc22 0 0 ctc22 SWM_c22n
+B_cmpc23 ctc23 0 V = 6.8*tanh(2e4*(V(tg3)-V(th23)+(0)))
+Rstc23_0 vr stc23_m0 6.2e+06
+Rstc23_1 stc23_m0 skc23 51000
+S_c23 skc23 c2inc ctc23 0 SWM_c23
+S_c23n skc23 0 0 ctc23 SWM_c23n
+B_cmpc24 ctc24 0 V = 6.8*tanh(2e4*(V(tg3)-V(th24)+(0)))
+Rstc24_0 vr stc24_m0 6.2e+06
+Rstc24_1 stc24_m0 skc24 51000
+S_c24 skc24 c2inc ctc24 0 SWM_c24
+S_c24n skc24 0 0 ctc24 SWM_c24n
+Rbasec_0 vr basec_m0 820000
+Rbasec_1 basec_m0 c2inc 430000
+VIDc c2inc c2c DC 0
+VI25c vr i25c DC 0
+R25c_0 i25c 25c_m0 130000
+R25c_1 25c_m0 c1c 120000
+Q_1c c1c 0 ec QM_1c
+VOS_Ac Ac_p 0 DC 0
+E_Ac ec 0 Ac_p c1c 1e6
+Q_2c c2c uc ec QM_2c
+VOS_Bc Bc_p c2c DC 0
+E_Bc uc 0 Bc_p 0 1e6
+CAc ec c1c 1n
+CBc c2c 0 1n
+RI0c_0 vr I0c_m0 130000
+RI0c_1 I0c_m0 d1c 120000
+Rxc_0 d1c xc_m0 4300
+Rxc_1 xc_m0 xc_m1 4300
+Rxc_2 xc_m1 uc 13
+Rh1c_0 uc h1c_m0 10
+Rh1c_1 h1c_m0 b1c 10
+Rh2c_0 b1c h2c_m0 10
+Rh2c_1 h2c_m0 0 10
+Q_3c d1c b1c eac QM_3c
+Q_4c d2c 0 eac QM_4c
+VOS_Cc Cc_p 0 DC 0
+E_Cc eac 0 Cc_p d1c 1e6
+CCc eac d1c 1n
+VOS_Tc Tc_p 0 DC 0
+E_Tc vfc 0 Tc_p d2c 1e6
+RTfc_0 vfc Tfc_m0 82000
+RTfc_1 Tfc_m0 d2c 18000
+CTc vfc d2c 100p
+B_cmpm5 ctm5 0 V = 6.8*tanh(2e4*(V(tg19)-V(th5)+(0)))
+Rstm5_0 vr stm5_m0 6.2e+06
+Rstm5_1 stm5_m0 skm5 51000
+S_m5 skm5 c2inm ctm5 0 SWM_m5
+S_m5n skm5 0 0 ctm5 SWM_m5n
+B_cmpm6 ctm6 0 V = 6.8*tanh(2e4*(V(tg19)-V(th6)+(0)))
+Rstm6_0 vr stm6_m0 6.2e+06
+Rstm6_1 stm6_m0 skm6 51000
+S_m6 skm6 c2inm ctm6 0 SWM_m6
+S_m6n skm6 0 0 ctm6 SWM_m6n
+B_cmpm7 ctm7 0 V = 6.8*tanh(2e4*(V(tg19)-V(th7)+(0)))
+Rstm7_0 vr stm7_m0 6.2e+06
+Rstm7_1 stm7_m0 skm7 51000
+S_m7 skm7 c2inm ctm7 0 SWM_m7
+S_m7n skm7 0 0 ctm7 SWM_m7n
+B_cmpm8 ctm8 0 V = 6.8*tanh(2e4*(V(tg19)-V(th8)+(0)))
+Rstm8_0 vr stm8_m0 6.2e+06
+Rstm8_1 stm8_m0 skm8 51000
+S_m8 skm8 c2inm ctm8 0 SWM_m8
+S_m8n skm8 0 0 ctm8 SWM_m8n
+B_cmpm9 ctm9 0 V = 6.8*tanh(2e4*(V(tg19)-V(th9)+(0)))
+Rstm9_0 vr stm9_m0 6.2e+06
+Rstm9_1 stm9_m0 skm9 51000
+S_m9 skm9 c2inm ctm9 0 SWM_m9
+S_m9n skm9 0 0 ctm9 SWM_m9n
+B_cmpm10 ctm10 0 V = 6.8*tanh(2e4*(V(tg19)-V(th10)+(0)))
+Rstm10_0 vr stm10_m0 6.2e+06
+Rstm10_1 stm10_m0 skm10 51000
+S_m10 skm10 c2inm ctm10 0 SWM_m10
+S_m10n skm10 0 0 ctm10 SWM_m10n
+B_cmpm11 ctm11 0 V = 6.8*tanh(2e4*(V(tg19)-V(th11)+(0)))
+Rstm11_0 vr stm11_m0 6.2e+06
+Rstm11_1 stm11_m0 skm11 51000
+S_m11 skm11 c2inm ctm11 0 SWM_m11
+S_m11n skm11 0 0 ctm11 SWM_m11n
+B_cmpm12 ctm12 0 V = 6.8*tanh(2e4*(V(tg19)-V(th12)+(0)))
+Rstm12_0 vr stm12_m0 6.2e+06
+Rstm12_1 stm12_m0 skm12 51000
+S_m12 skm12 c2inm ctm12 0 SWM_m12
+S_m12n skm12 0 0 ctm12 SWM_m12n
+B_cmpm13 ctm13 0 V = 6.8*tanh(2e4*(V(tg19)-V(th13)+(0)))
+Rstm13_0 vr stm13_m0 6.2e+06
+Rstm13_1 stm13_m0 skm13 51000
+S_m13 skm13 c2inm ctm13 0 SWM_m13
+S_m13n skm13 0 0 ctm13 SWM_m13n
+B_cmpm14 ctm14 0 V = 6.8*tanh(2e4*(V(tg19)-V(th14)+(0)))
+Rstm14_0 vr stm14_m0 6.2e+06
+Rstm14_1 stm14_m0 skm14 51000
+S_m14 skm14 c2inm ctm14 0 SWM_m14
+S_m14n skm14 0 0 ctm14 SWM_m14n
+B_cmpm15 ctm15 0 V = 6.8*tanh(2e4*(V(tg19)-V(th15)+(0)))
+Rstm15_0 vr stm15_m0 6.2e+06
+Rstm15_1 stm15_m0 skm15 51000
+S_m15 skm15 c2inm ctm15 0 SWM_m15
+S_m15n skm15 0 0 ctm15 SWM_m15n
+B_cmpm16 ctm16 0 V = 6.8*tanh(2e4*(V(tg19)-V(th16)+(0)))
+Rstm16_0 vr stm16_m0 6.2e+06
+Rstm16_1 stm16_m0 skm16 51000
+S_m16 skm16 c2inm ctm16 0 SWM_m16
+S_m16n skm16 0 0 ctm16 SWM_m16n
+B_cmpm17 ctm17 0 V = 6.8*tanh(2e4*(V(tg19)-V(th17)+(0)))
+Rstm17_0 vr stm17_m0 6.2e+06
+Rstm17_1 stm17_m0 skm17 51000
+S_m17 skm17 c2inm ctm17 0 SWM_m17
+S_m17n skm17 0 0 ctm17 SWM_m17n
+B_cmpm18 ctm18 0 V = 6.8*tanh(2e4*(V(tg19)-V(th18)+(0)))
+Rstm18_0 vr stm18_m0 6.2e+06
+Rstm18_1 stm18_m0 skm18 51000
+S_m18 skm18 c2inm ctm18 0 SWM_m18
+S_m18n skm18 0 0 ctm18 SWM_m18n
+B_cmpm19 ctm19 0 V = 6.8*tanh(2e4*(V(tg19)-V(th19)+(0)))
+Rstm19_0 vr stm19_m0 6.2e+06
+Rstm19_1 stm19_m0 skm19 51000
+S_m19 skm19 c2inm ctm19 0 SWM_m19
+S_m19n skm19 0 0 ctm19 SWM_m19n
+B_cmpm20 ctm20 0 V = 6.8*tanh(2e4*(V(tg19)-V(th20)+(0)))
+Rstm20_0 vr stm20_m0 6.2e+06
+Rstm20_1 stm20_m0 skm20 51000
+S_m20 skm20 c2inm ctm20 0 SWM_m20
+S_m20n skm20 0 0 ctm20 SWM_m20n
+B_cmpm21 ctm21 0 V = 6.8*tanh(2e4*(V(tg19)-V(th21)+(0)))
+Rstm21_0 vr stm21_m0 6.2e+06
+Rstm21_1 stm21_m0 skm21 51000
+S_m21 skm21 c2inm ctm21 0 SWM_m21
+S_m21n skm21 0 0 ctm21 SWM_m21n
+B_cmpm22 ctm22 0 V = 6.8*tanh(2e4*(V(tg19)-V(th22)+(0)))
+Rstm22_0 vr stm22_m0 6.2e+06
+Rstm22_1 stm22_m0 skm22 51000
+S_m22 skm22 c2inm ctm22 0 SWM_m22
+S_m22n skm22 0 0 ctm22 SWM_m22n
+B_cmpm23 ctm23 0 V = 6.8*tanh(2e4*(V(tg19)-V(th23)+(0)))
+Rstm23_0 vr stm23_m0 6.2e+06
+Rstm23_1 stm23_m0 skm23 51000
+S_m23 skm23 c2inm ctm23 0 SWM_m23
+S_m23n skm23 0 0 ctm23 SWM_m23n
+B_cmpm24 ctm24 0 V = 6.8*tanh(2e4*(V(tg19)-V(th24)+(0)))
+Rstm24_0 vr stm24_m0 6.2e+06
+Rstm24_1 stm24_m0 skm24 51000
+S_m24 skm24 c2inm ctm24 0 SWM_m24
+S_m24n skm24 0 0 ctm24 SWM_m24n
+Rbasem_0 vr basem_m0 820000
+Rbasem_1 basem_m0 c2inm 430000
+VIDm c2inm c2m DC 0
+VI25m vr i25m DC 0
+R25m_0 i25m 25m_m0 130000
+R25m_1 25m_m0 c1m 120000
+Q_1m c1m 0 em QM_1m
+VOS_Am Am_p 0 DC 0
+E_Am em 0 Am_p c1m 1e6
+Q_2m c2m um em QM_2m
+VOS_Bm Bm_p c2m DC 0
+E_Bm um 0 Bm_p 0 1e6
+CAm em c1m 1n
+CBm c2m 0 1n
+RI0m_0 vr I0m_m0 130000
+RI0m_1 I0m_m0 d1m 120000
+Rxm_0 d1m xm_m0 4300
+Rxm_1 xm_m0 xm_m1 4300
+Rxm_2 xm_m1 um 13
+Rh1m_0 um h1m_m0 10
+Rh1m_1 h1m_m0 b1m 10
+Rh2m_0 b1m h2m_m0 10
+Rh2m_1 h2m_m0 0 10
+Q_3m d1m b1m eam QM_3m
+Q_4m d2m 0 eam QM_4m
+VOS_Cm Cm_p 0 DC 0
+E_Cm eam 0 Cm_p d1m 1e6
+CCm eam d1m 1n
+VOS_Tm Tm_p 0 DC 0
+E_Tm vfm 0 Tm_p d2m 1e6
+RTfm_0 vfm Tfm_m0 82000
+RTfm_1 Tfm_m0 d2m 18000
+CTm vfm d2m 100p
+VOS_FIq FIq_p 0 DC 0
+E_FIq vfnq 0 FIq_p nfiq 1e6
+Rfi1q_0 vfq fi1q_m0 8200
+Rfi1q_1 fi1q_m0 nfiq 1800
+Rfi2q_0 nfiq fi2q_m0 8200
+Rfi2q_1 fi2q_m0 vfnq 1800
+VOS_Svsq Svsq_p 0 DC 0
+E_Svsq vsq 0 Svsq_p nsvsq 1e6
+RSxvsq_0 vfnq Sxvsq_m0 6200
+RSxvsq_1 Sxvsq_m0 nsvsq 4700
+RS0vsq_0 vrn S0vsq_m0 27000
+RS0vsq_1 S0vsq_m0 S0vsq_m1 2700
+RS0vsq_2 S0vsq_m1 nsvsq 51
+RSfvsq_0 vsq Sfvsq_m0 8200
+RSfvsq_1 Sfvsq_m0 nsvsq 1800
+VOS_FIc FIc_p 0 DC 0
+E_FIc vfnc 0 FIc_p nfic 1e6
+Rfi1c_0 vfc fi1c_m0 8200
+Rfi1c_1 fi1c_m0 nfic 1800
+Rfi2c_0 nfic fi2c_m0 8200
+Rfi2c_1 fi2c_m0 vfnc 1800
+VOS_Svsc Svsc_p 0 DC 0
+E_Svsc vsc 0 Svsc_p nsvsc 1e6
+RSxvsc_0 vfnc Sxvsc_m0 6200
+RSxvsc_1 Sxvsc_m0 nsvsc 4700
+RS0vsc_0 vrn S0vsc_m0 27000
+RS0vsc_1 S0vsc_m0 S0vsc_m1 2700
+RS0vsc_2 S0vsc_m1 nsvsc 51
+RSfvsc_0 vsc Sfvsc_m0 8200
+RSfvsc_1 Sfvsc_m0 nsvsc 1800
+VOS_Svsm Svsm_p 0 DC 0
+E_Svsm vsm 0 Svsm_p nsvsm 1e6
+RSxvsm_0 vfm Sxvsm_m0 2400
+RSxvsm_1 Sxvsm_m0 Sxvsm_m1 2200
+RSxvsm_2 Sxvsm_m1 nsvsm 820
+RS0vsm_0 vrn S0vsm_m0 27000
+RS0vsm_1 S0vsm_m0 S0vsm_m1 2700
+RS0vsm_2 S0vsm_m1 nsvsm 51
+RSfvsm_0 vsm Sfvsm_m0 8200
+RSfvsm_1 Sfvsm_m0 nsvsm 1800
+VOS_M M_p vsq DC 0
+E_M vmhw 0 M_p nm 1e6
+Rmg_0 nm mg_m0 8200
+Rmg_1 mg_m0 0 1800
+Rmf_0 vmhw mf_m0 6200
+Rmf_1 mf_m0 nm 120
+VOS_FW1 FW1_p 0 DC 0
+E_FW1 o1fw 0 FW1_p n1fw 1e6
+Rfwi_0 vsm fwi_m0 8200
+Rfwi_1 fwi_m0 n1fw 1800
+Rfwf_0 n1fw fwf_m0 8200
+Rfwf_1 fwf_m0 hfw 1800
+DFW1 hfw o1fw D1N4148
+DFW2 o1fw n1fw D1N4148
+VOS_FW2 FW2_p 0 DC 0
+E_FW2 vabs 0 FW2_p n2fw 1e6
+Rfwx_0 vsm fwx_m0 10000
+Rfwx_1 fwx_m0 n2fw 10000
+Rfwh_0 hfw fwh_m0 8200
+Rfwh_1 fwh_m0 n2fw 1800
+Rfwo_0 vabs fwo_m0 10000
+Rfwo_1 fwo_m0 n2fw 10000
+VOS_C1S C1S_p 0 DC 0
+E_C1S v1s 0 C1S_p nc 1e6
+Rcin_0 vsc cin_m0 8200
+Rcin_1 cin_m0 nc 1800
+Rcref_0 vrn cref_m0 8200
+Rcref_1 cref_m0 nc 4300
+Rcf_0 v1s cf_m0 100000
+Rcf_1 cf_m0 nc 100000
+Roma_0 vabs oma_m0 100000
+Roma_1 oma_m0 o1n 100000
+Q_5 o1n 0 oe QM_5
+VOS_OA OA_p 0 DC 0
+E_OA oe 0 OA_p o1n 1e6
+Romr_0 vr omr_m0 130000
+Romr_1 omr_m0 o2n 120000
+Q_6 o2n ol oe QM_6
+VOS_OB OB_p o2n DC 0
+E_OB ol 0 OB_p 0 1e6
+COA oe o1n 1n
+COB o2n 0 1n
+Romb_0 v1s omb_m0 2e+06
+Romb_1 omb_m0 o3n 2e+06
+Q_7 o3n ol oe2 QM_7
+Q_8 o4n 0 oe2 QM_8
+VOS_OC OC_p 0 DC 0
+E_OC oe2 0 OC_p o3n 1e6
+COC oe2 o3n 1n
+VOS_OD OD_p 0 DC 0
+E_OD vomb 0 OD_p o4n 1e6
+RomT_0 vomb omT_m0 8.2e+06
+RomT_1 omT_m0 o4n 1.8e+06
+COD vomb o4n 100p
+Raspi_0 vr aspi_m0 750000
+Raspi_1 aspi_m0 a1n 27000
+Rasvt_0 vr asvt_m0 1000
+Rasvt_1 asvt_m0 asvt_m1 910
+Rasvt_2 asvt_m1 ab 3
+Rasvb_0 ab asvb_m0 10
+Rasvb_1 asvb_m0 0 10
+Q_9 a1n ab ae QM_9
+Q_10 a2n 0 ae QM_10
+VOS_AA AA_p ab DC 0
+E_AA ae 0 AA_p a1n 1e6
+CAA ae a1n 1n
+VOS_AT AT_p 0 DC 0
+E_AT vas 0 AT_p a2n 1e6
+RasT_0 vas asT_m0 820000
+RasT_1 asT_m0 a2n 180000
+CAT vas a2n 100p
+Ra3p_0 vr a3p_m0 2.4e+06
+Ra3p_1 a3p_m0 a3p_m1 180000
+Ra3p_2 a3p_m1 e1n 75000
+Ra2_0 vr a2_m0 5.6e+06
+Ra2_1 a2_m0 a2_m1 820000
+Ra2_2 a2_m1 e1n 24000
+R3vt_0 vrn 3vt_m0 910
+R3vt_1 3vt_m0 3vt_m1 560
+R3vt_2 3vt_m1 eb 91
+R3vb_0 eb 3vb_m0 30
+R3vb_1 3vb_m0 0 20
+Q_11 e1n eb ee QM_11
+Q_12 t1n 0 ee QM_12
+VOS_EA EA_p eb DC 0
+E_EA ee 0 EA_p e1n 1e6
+CEA ee e1n 1n
+Rau1_0 vr au1_m0 6.8e+06
+Rau1_1 au1_m0 au1_m1 5.1e+06
+Rau1_2 au1_m1 f1n 470000
+Rfvt_0 vr fvt_m0 1000
+Rfvt_1 fvt_m0 fvt_m1 910
+Rfvt_2 fvt_m1 fb 3
+Rfvb_0 fb fvb_m0 10
+Rfvb_1 fvb_m0 0 10
+Q_13 f1n fb fe QM_13
+Q_14 t1n 0 fe QM_14
+VOS_FA FA_p fb DC 0
+E_FA fe 0 FA_p f1n 1e6
+CFA fe f1n 1n
+Rau2_0 vr au2_m0 8.2e+06
+Rau2_1 au2_m0 t1n 4.3e+06
+VOS_IT IT_p 0 DC 0
+E_IT vainv 0 IT_p t1n 1e6
+RaiT_0 vainv aiT_m0 100000
+RaiT_1 aiT_m0 t1n 100000
+CIT vainv t1n 100p
+.options temp=27 tnom=27 reltol=1e-6 abstol=1e-13 vntol=1e-8 gmin=1e-15 itl1=500
+.control
+op
+print v(vsq) v(vsc) v(vsm) v(vfq) v(vfc) v(vfm) v(vmhw) v(vabs) v(v1s) v(vomb) v(vas) v(vainv) v(uq) v(uc) v(um) v(vr)
+print i(vidq) i(vi25q) i(vidc) i(vi25c) i(vidm) i(vi25m)
+quit
+.endc
+.end

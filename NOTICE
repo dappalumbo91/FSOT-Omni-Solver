@@ -1,0 +1,10 @@
+FSOT Omni-Solver (analog circuit realisation of the FSOT 2.1 scalar law and its derived outputs)
+Copyright 2026 Damian Arthur Palumbo
+
+Licensed under the Apache License, Version 2.0.
+FSOT authority: FSOT-2.1-Cpp commit 3466e8d4211d786fa7a430de1ee75131fb3b2e97 (engine pin AEB2AD),
+fetched at build time, not vendored. Hub math: FSOT-2.1-Lean. A green hub does not certify this circuit;
+this tree re-derives and re-simulates its own values.
+
+Third-party files are NOT committed; see THIRD_PARTY.md for sources, download steps and SHA-256.
+falstad/lzstring_uri.py is a port of lz-string 1.4.x (pieroxy, MIT) as used by CircuitJS ?ctz= links.

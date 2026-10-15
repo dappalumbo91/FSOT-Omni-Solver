@@ -1,0 +1,34 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * fsot analog solver phase 1 — vertical slice: core law x3 folds, m_h/m_w, omega_b h^2, alpha_s, 1/alpha_em (values from locked/design_values.tsv)
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+No. of Data Rows : 1
+v(vsq) = 1.899771e+00
+v(vsc) = 1.910040e+00
+v(vsm) = -1.00486e+00
+v(vfq) = 1.154824e+00
+v(vfc) = 1.166017e+00
+v(vfm) = 1.000081e+00
+v(vmhw) = 3.100422e+00
+v(vabs) = 1.004830e+00
+v(v1s) = 1.799053e+00
+v(vomb) = 2.259460e+00
+v(vas) = 1.171437e+00
+v(vainv) = 5.478281e+00
+v(uq) = -4.16467e-02
+v(uc) = -3.69299e-02
+v(um) = -3.72035e-06
+v(vr) = 2.500000e+00
+i(vidq) = 2.000000e-06
+i(vi25q) = 9.999998e-06
+i(vidc) = 2.399928e-06
+i(vi25c) = 9.999998e-06
+i(vidm) = 9.998560e-06
+i(vi25m) = 9.999998e-06
+ngspice-44.2 done

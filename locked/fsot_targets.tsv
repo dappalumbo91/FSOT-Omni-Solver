@@ -1,0 +1,22 @@
+# FSOT targets from FSOT-2.1-Cpp@3466e8d engine (long double). Source rows: closed_forms.gen.inc
+name	value	source
+K	4.201087636498879e-01	engine.hpp:137
+P_new	3.003022766703715e-01	engine.hpp:135
+psi_con	6.321205588285577e-01	engine.hpp:118
+A_med	-1.097913399629555e+01	engine.hpp:206-208 (look=1,hits=0)
+O_obs	-4.973708005433813e-01	engine.hpp:210
+c_med	-9.224860818260358e-01	K*A/5
+c_obs	4.588176410079425e-01	K*A*O/5
+T3_rel_max	1.328888601186835e-17	engine.hpp:214-219, max over 35 folds
+S_quant	9.501974701670142e-01	engine.hpp:147 (QM, D=5, observed)
+S_chem	9.552893400916405e-01	engine.hpp:148 (Chemistry, D=6, observed)
+S_cosm	-5.023773181761478e-01	engine.hpp:146 (Cosmology, D=25, medium)
+f_D5	1.155336367086090e+00	f(D)
+f_D6	1.166434174732371e+00	f(D)
+f_D25	1.000000000000000e+00	f(D)
+alpha_s(M_Z)	1.170996630486383e-01	closed_forms.gen.inc:7-8
+1/alpha_em	1.370361975595727e+02	closed_forms.gen.inc:70-71
+Omega_b_h2	2.246162141864744e-02	closed_forms.gen.inc:15-16
+m_H/m_W	1.550836826006469e+00	closed_forms.gen.inc:121-122
+V_T0	2.586492578632875e-02	kB*300.15/q (SI 2019)
+reduction_maxdev	9.378348791999613e-18	|K + c f(D) - engine S|, 33 look=1 folds

@@ -1,0 +1,49 @@
+name: FSOT Omni-Solver CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lock-and-crosscheck:
+    name: LOCK hashes + C++20 re-derivation + Python cross-check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: sudo apt-get update && sudo apt-get install -y python3-mpmath
+      - name: Fetch FSOT-2.1-Cpp at the authority commit (3466e8d, engine pin AEB2AD)
+        run: |
+          git clone -q https://github.com/dappalumbo91/FSOT-2.1-Cpp.git third_party/FSOT-2.1-Cpp
+          git -C third_party/FSOT-2.1-Cpp checkout -q 3466e8d4211d786fa7a430de1ee75131fb3b2e97
+      - name: Build C++20 tools
+        run: |
+          F="-std=c++20 -O2 -ffp-contract=off"
+          g++ $F -Ithird_party/FSOT-2.1-Cpp/include -o cpp/derive cpp/derive.cpp
+          g++ $F -o cpp/netgen cpp/netgen.cpp
+          g++ $F -o cpp/score cpp/score.cpp
+      - name: Verify LOCK (sha256 + every hash recorded in LOCK.md + byte-identical re-derivation)
+        run: tools/verify_lock.sh
+      - name: Python (mpmath, 50 digits) cross-check of the locked C++ targets
+        run: |
+          python3 tools/crosscheck_mpmath.py | tee /tmp/xc.txt
+          python3 -c "import re,sys; d=[abs(float(l.split()[-1])) for l in open('/tmp/xc.txt') if re.match(r'^[A-Za-z_/()0-9]+\t',l) and not l.startswith('quantity')]; print('max rel diff',max(d)); sys.exit(max(d)>1e-14)"
+      - name: Falstad links = lz-string of committed circuits, regenerated from locked values
+        run: |
+          python3 tools/check_falstad_urls.py
+          python3 falstad/gen_falstad_core.py
+          git diff --exit-code -- falstad/*.txt falstad/*.url
+
+  ngspice:
+    name: ngspice nominal slice (TL082 vendor model, fetched + sha256-checked) vs committed results
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: sudo apt-get update && sudo apt-get install -y ngspice python3-mpmath unzip
+      - name: Reproduce (one script; MC excluded, see ./reproduce.sh --mc)
+        run: ./reproduce.sh

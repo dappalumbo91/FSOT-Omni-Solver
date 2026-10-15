@@ -1,0 +1,12 @@
+# converged TL082 mcA draws (SOLVER nodeset/plain) vs the same draw solved with 1e6-gain op-amps; rel diff = (TL082-idealop)/FSOT
+quantity	N_pairs	mean_rel_diff	max_abs_rel_diff
+S_quant	33	-0.000183	0.000199
+S_chem	33	-0.000168	0.000194
+S_cosm	33	-0.000304	0.000348
+f_D5	33	-0.000298	0.000328
+f_D6	33	-0.000269	0.00031
+f_D25	33	-0.000148	0.00017
+m_H/m_W	33	-0.00021	0.00023
+Omega_b_h2	33	-0.0011	0.118
+alpha_s(M_Z)	33	1.76e-05	1.96e-05
+1/alpha_em	33	-8.36e-05	9.09e-05

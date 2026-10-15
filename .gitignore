@@ -1,0 +1,24 @@
+# vendor models are fetched by spice/fetch_models.sh (not committed: vendor terms are not a redistribution grant)
+spice/models/vendor/
+third_party/
+# build outputs
+cpp/derive
+cpp/netgen
+cpp/score
+cpp/derive2
+cpp/netgen2
+cpp/score2
+cpp/*.o
+build/
+# bulky Monte Carlo logs / netlists (regenerate with ./reproduce.sh --mc)
+spice/out/slice_mc*
+spice/out/*_mc*_s*
+spice/netlists/slice_mc*
+spice/netlists/fg_*
+spice/out/*.ns
+phase2/spice/out/mc_*
+phase2/spice/netlists/mc_*
+results/regen_*
+__pycache__/
+*.pyc
+.DS_Store
