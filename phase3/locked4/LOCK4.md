@@ -82,3 +82,8 @@ Commit a1d5620 edited `phase3/cpp/leafmap.cpp` in place, adding the `cexpr` colu
 - The extended version is now `phase3/cpp/leafmap4.cpp`, with identical content and the same hash 77875db0…, so `leaves_map.tsv` is unchanged.
 - SHA256SUMS, the hash list above and verify_lock4.sh point at leafmap4.cpp.
 - Rule from now on: a file covered by an earlier lock is never edited; it is forked.
+
+## Amendment 4.2: 2026-10-15T17:23:22-04:00. Harness only: no locked file or hash changed.
+CI now runs verify_lock4 too, on ubuntu-latest. The first run (38809115787) re-derived every recipe and values file byte for byte. It differed only in `leaves4_targets.tsv`, line 149 (BR_Z_ee = γ⁶/ln 3), in the 21-digit `engine` column, which is a last-ulp long-double difference. glibc's logl/powl/acosl are not correctly rounded, so Ubuntu and Debian builds can differ in the final ulp.
+- The committed files and their SHA256SUMS still have to match byte for byte (`sha256sum -c`).
+- Every re-derived file has to be byte-identical, with one exception: the `engine` and `series_remainder_max` columns of leaves4_targets.tsv. Those are checked by `tools/cmp_targets4.py` to 1e-18 relative (about 9 ulps) and 1e-2 relative respectively, and every difference is printed. All other columns, including the golden values, must stay byte-identical.

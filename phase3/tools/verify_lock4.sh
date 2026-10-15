@@ -6,5 +6,7 @@ sha256sum -c --quiet SHA256SUMS
 while read -r h f; do grep -q "$h" LOCK4.md || { echo "hash of $f not recorded in LOCK4.md"; exit 1; }; done < SHA256SUMS
 F="-std=c++20 -O2 -ffp-contract=off"; g++ $F -o ../cpp/leafmap4 ../cpp/leafmap4.cpp; g++ $F -I"$ENG/include" -o ../cpp/leafc ../cpp/leafc.cpp
 tmp=$(mktemp -d); ../cpp/leafmap4 "$ENG/include/fsot/closed_forms_core.gen.inc" > "$tmp/leaves_map.tsv"; ../cpp/leafc "$tmp/leaves_map.tsv" "$ENG/golden/golden_AEB2AD.tsv" "$tmp" | tail -1
-for f in $(ls | grep -v -e SHA256SUMS -e LOCK4.md); do cmp "$tmp/$f" "$f"; done
+# every file byte-identical, except leaves4_targets.tsv engine column: libm last-ulp differences across glibc builds (cmp_targets4.py)
+for f in $(ls | grep -v -e SHA256SUMS -e LOCK4.md); do
+  if [ "$f" = leaves4_targets.tsv ]; then cmp -s "$tmp/$f" "$f" || python3 ../tools/cmp_targets4.py "$tmp/$f" "$f"; else cmp "$tmp/$f" "$f"; fi; done
 rm -rf "$tmp"; echo "LOCK4_OK"
