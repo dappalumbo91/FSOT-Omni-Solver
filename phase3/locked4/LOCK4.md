@@ -96,3 +96,11 @@ The batch of 165 runs (11 netlists × {ideal 0/27/50 °C, mcC s1–8, mcB s1–4
 - `../cpp/blocksolve4.cpp` `aa5a4b008aba297ba7e8c2c0bb7e96c9698ccfebdc419a878cbb29b811e8fe3c`
 - `../tools/run_bs4.sh` `ecb0284ff1359a8e724b8ea3c67d185ef6e672c0401f9720ad9731b13d347283`
 - **(b) Topology, not addressed by this amendment.** Three blocks failed with "no plain/gmin-stepped solution" or an antilog/TIA block (e_zt20x, e_zt209x, e_zt243x), plus the log of a sign-flipped difference (rzl215xr_0, Chain_consistency_%). These are real circuit domain failures under MC. They are reported, not hidden, and any topology fix will be a separate amendment recorded before simulation.
+
+## Amendment 4.4: 2026-10-15T17:40:55-04:00. Solver: an ideal-seeded 4th attempt. Recorded BEFORE the reruns.
+The blocksolve4 rerun (Amendment 4.3) cleared 3 of the 22 MC failures: 2_X mcC s1, 2_T mcC s5, 2a_T mcB s1. Four others are base/log LOGR blocks: GEN mcC s3 (rzb194), 2a_P mcC s1 and mcB s1 (rzb73), T1 mcB s2 (rzl83), 2a_T mcB s3 (rzl60). In all three standard attempts, ngspice's own op (gmin stepping, then source stepping, then the pseudo-transient op) diverged to NaN from the zero start. The block is three devices. It has a unique physical solution near the ideal one, which the analytic V_BE confirms.
+- **Fix:** `FSOT_BS_SEED`. If the three standard attempts fail, a 4th attempt starts Newton (`.nodeset` only) from the converged ideal solution of the same netlist key and temperature. `run_bs4.sh` saves that ideal solution as `phase2/spice/out/bs4_seed_<key>_t<T>.ns`.
+- **What does not change:** the result must still pass the unchanged verify (plain Newton reproduces it; re-anchor per 4.3). The seed is never copied into the solution, and no tolerance changed.
+- The hashes below supersede the 4.3 entries for these two files; 4.3's hashes stay in the record above:
+- `../cpp/blocksolve4.cpp` `2791afb405d2f87b4774850b095598057db368af0ec6444e7c7b90304e9988bd`
+- `../tools/run_bs4.sh` `e5d390050d57b87be46ef74e3974537e9e9239f4b9fc455309b1aece8b8b8dee`

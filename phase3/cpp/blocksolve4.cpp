@@ -1,4 +1,4 @@
-// blocksolve4.cpp — FSOT Omni-Solver Phase 3b fork of phase2/cpp/blocksolve.cpp (LOCK2 Amendment 14, unchanged). Only change: RE-ANCHOR in verify (see below).
+// blocksolve4.cpp — FSOT Omni-Solver Phase 3b fork of phase2/cpp/blocksolve.cpp (LOCK2 Amendment 14, unchanged). Changes: RE-ANCHOR in verify (Amendment 4.3); SEED 4th attempt (Amendment 4.4).
 // blocksolve.cpp — exact block-sequential DC solve of a netgen2 netlist in ngspice (solver harness; no value or topology change).
 // Every ideal op-amp / comparator output (E or B source to ground) and every grounded supply is a stiff node: its voltage depends
 // only on that driver's inputs, never on the load it feeds. Tearing the netlist at those nodes therefore changes nothing in the
@@ -88,6 +88,11 @@ int main(int argc, char** argv) {
     for (int w : dep[v]) { if (idx[w] < 0) { sc(w); low[v] = std::min(low[v], low[w]); } else if (on[w]) low[v] = std::min(low[v], idx[w]); }
     if (low[v] == idx[v]) { sccs.emplace_back(); int w; do { w = st.back(); st.pop_back(); on[w] = false; comp[w] = nc; sccs.back().push_back(w); } while (w != v); ++nc; } };
   for (int v = 0; v < NB; ++v) if (idx[v] < 0) sc(v);
+  // Amendment 4.4 SEED: FSOT_BS_SEED=<solution.ns of the SAME netlist key and temperature, ideal parts>. Used only as the initial
+  // guess (.nodeset) of a 4th attempt after the three standard attempts fail; the result must still pass the unchanged verify
+  // (plain Newton reproduces it, re-anchor allowed). A Monte Carlo operating point lies near the ideal one; the seed only places
+  // Newton in its basin, it is never copied into the solution.
+  std::map<std::string, std::string> seed; if (const char* e = std::getenv("FSOT_BS_SEED")) { std::ifstream sf(e); std::string a, eq, v; while (sf >> a >> eq >> v) if (a.find('#') == std::string::npos) seed[a] = v; }
   std::string tran; if (const char* e = std::getenv("FSOT_BS_TRAN")) tran = e;  // "tstep tstop": block-sequential transient (uic)
   std::map<std::string, std::vector<double>> wav; std::vector<double> tgrid;
   std::map<std::string, std::string> sol; int maxsz = 0, merged = 0, retried = 0; std::string fail;
@@ -105,14 +110,15 @@ int main(int argc, char** argv) {
         o << "VFIX_" << x << " " << x << " 0 PWL("; const auto& w = wav.at(x); char b[64];
         for (size_t j = 0; j < w.size(); ++j) { std::snprintf(b, sizeof b, "%s%.9e %.15e", j ? (j % 4 ? " " : "\n+ ") : "", tgrid[j], w[j]); o << b; } o << ")\n"; }
       for (int i : ei) o << els[i].line << "\n";
-      for (auto& n : own) if (nodeset.count(n)) o << ".nodeset v(" << n << ")=" << nodeset[n] << "\n";
+      if (att == 3) { for (auto& n : own) if (seed.count(n)) o << ".nodeset v(" << n << ")=" << seed[n] << "\n"; }   // SEED attempt (Amendment 4.4)
+      else for (auto& n : own) if (nodeset.count(n)) o << ".nodeset v(" << n << ")=" << nodeset[n] << "\n";
       std::string op = options; if (att == 1) op += " gmin=1e-12"; if (att == 2) { op = std::regex_replace(op, std::regex("reltol=[^ ]+"), "reltol=1e-5"); op += " gmin=1e-12 klu"; }
       if (att != 2) { auto p = op.find(' '); op.insert(p, " sparse"); }
       if (tran.empty()) o << op << "\n.control\nset numdgt=15\nop\nprint all\nquit\n.endc\n.end\n";
       else { std::istringstream ts(tran); std::string a, b; ts >> a >> b;
         o << op << " interp\n.control\nset wr_singlescale\nset wr_vecnames\noption numdgt=15\ntran " << a << " " << b << " 0 " << a << " uic\nwrdata " << fn << ".dat all\nquit\n.endc\n.end\n"; } };
     bool ok = false;
-    for (int att = 0; att < 3 && !ok; ++att) {
+    for (int att = 0; att < (seed.empty() ? 3 : 4) && !ok; ++att) {
       std::string fn = wd + "/b" + std::to_string(k) + ".cir", lg = wd + "/b" + std::to_string(k) + ".log"; write(fn, att);
       std::system(("timeout 600 ngspice -b " + fn + " > " + lg + " 2>&1").c_str());
       std::ifstream r(lg); std::map<std::string, std::string> got; std::string q; bool nan = false;
