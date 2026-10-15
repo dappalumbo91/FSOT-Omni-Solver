@@ -2,7 +2,7 @@
 //  (a) base-engine tiny taps: a power-series antilog tap (cy_k, sw_k, sv_k, st_k) or the T3 tap whose locked nominal term (from
 //      folds35_targets: x^{2k}/n_k resp. |T3|, in units of I_U = 5 uA) is below 1e-4 is built without the 2N7000 output cascode
 //      (CALU: Q4 collector straight into the virtual-ground node). The decision per fold is the "taps" mode table, locked before simulation.
-//  (b) each tap's output current passes a 0 V sense source VSN_<tap> (printed as i(vsn_<tap>)) so the analog value is read against the engine;
+//  (b) each tap's Q4 emitter and base pass 0 V sense sources VSE_/VSB_<tap> (I_c = i(vse) - i(vsb)) so the analog value is read against the engine;
 //  (c) mode leafc5 (FSOT_P5_LOCKED, design5_/recipe5_) with the FWR (precision full-wave rectifier, own part names) primitive.
 // netgen2.cpp — ngspice netlists of the Phase-2 full-core-law channel from the LOCKED values (../locked/).
 // Usage: netgen2 <mode> <variant> <seed> <out.cir> [tempC] [analysis] [fold]
@@ -148,13 +148,15 @@ void gstring(const std::string& p) { for (int i = 0; i < 20; ++i) Rp("g" + std::
 struct Fold; static double TAPX = 0; static std::vector<std::string> TAPS;   // netgen4: term argument of the current powers() call; tap log
 static bool SENSE = true;
 double fact(int n) { double r = 1; for (int i = 2; i <= n; ++i) r *= i; return r; }
-// netgen4 (a): antilog with or without the output cascode; every output through a 0 V sense source VSN_<p><i>
+// netgen4 (a): antilog with or without the output cascode. (b) Q4 emitter and base each pass a 0 V sense source (VSE_<tap>, VSB_<tap>) inside the
+// tap's own block (a sense source on the collector would tie the downstream virtual-ground node into this block); I_c = i(vse) - i(vsb).
 void CALX(const std::string& p, const std::string& vx, const std::vector<std::string>& outs, double term) {
   const bool unc = term < 1e-4; char b[160]; std::snprintf(b, sizeof b, "%s\t%.6e\t%s", p.c_str(), term, unc ? "uncascoded" : "cascoded"); TAPS.push_back(b);
-  std::vector<std::string> so; for (size_t i = 0; i < outs.size(); ++i) { std::string sn = "sn" + p + (i ? "b" : ""); N << "VSN_" << p << (i ? "b" : "") << " " << sn << " " << outs[i] << " DC 0\n"; so.push_back(sn); }
-  if (!unc) { CAL(p, vx, so); return; }
   Q(p + "3", p + "d", "0", p + "ea"); OA(p + "C", "0", p + "d", p + "ea"); N << "CC" << p << " " << p << "ea " << p << "d 1n\n";
-  for (size_t i = 0; i < so.size(); ++i) Q(p + (i ? "b" : "") + "4", so[i], vx, p + "ea");
+  for (size_t i = 0; i < outs.size(); ++i) { std::string s = p + (i ? "b" : "");
+    N << "VSE_" << s << " se" << s << " " << p << "ea DC 0\nVSB_" << s << " " << vx << " sb" << s << " DC 0\n";
+    if (unc) Q(s + "4", outs[i], "sb" + s, "se" + s);
+    else { Q(s + "4", s + "k4", "sb" + s, "se" + s); MOS(s + "4", outs[i], s + "g4", s + "k4"); OA(s + "E", vx, s + "k4", s + "g4"); } }
 }
 // powers of a log input: k-th antilog Iout = I_U x^{2k} / n_k sunk at odd -> sink node, even -> TIA copy node
 void powers(const std::string& p, const std::string& x, const std::string& nlog, int kmax, const std::string& ckey, const std::string& sink, const std::string& tia) {
@@ -419,7 +421,7 @@ int main(int argc, char** argv) {
       << "noise v(" << pr[0] << ") VREF dec 20 0.1 10k 1\nsetplot noise4\nprint onoise_total\nsetplot noise3\nprint onoise_spectrum[60]\n";
   } else {
     o << "op\nprint"; for (auto& x : pr) if (x[0] != '@') o << " v(" << x << ")"; o << "\n";
-    { std::string ip; for (auto& x : pr) if (x[0] == '@') ip += " i(vsn_" + x.substr(1) + ")"; if (!ip.empty()) o << "print" << ip << "\n"; }
+    { std::string ip; for (auto& x : pr) if (x[0] == '@') ip += " i(vse_" + x.substr(1) + ") i(vsb_" + x.substr(1) + ")"; if (!ip.empty()) o << "print" << ip << "\n"; }
     if (mode == "fold") o << "print i(vidx)\n";
   }
   o << "quit\n.endc\n.end\n";

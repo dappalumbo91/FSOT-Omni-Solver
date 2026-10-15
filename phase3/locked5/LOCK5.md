@@ -74,3 +74,11 @@ tools/run_bs5.sh (leafc5 keys and fold:<name>), tools/score5.sh, tools/summ5.py,
     7fb1d7b1659b89ccf5bd5049278541d9ae763cf435ebda606905731283699f93  ../tools/run_bs5.sh
     87a5ee3bf17e4aebf9031f1f939baa385f5dedd7a8d6d9bc5132a34298b47c83  ../tools/verify_lock5.sh
     57235b4c402ae9e5bd2e1deeba2cca9adaea3fb9de31a8383048f6442d5fe2cd  ../tools/score5.sh
+
+## Amendment 5.1 (netgen4 tap sense sources; harness only, no component value changes)
+The first ideal T1 run with 57f6e14 failed at the block holding VSN_sw2c: a 0 V source on the tap collector ties the downstream virtual-ground node
+(the LOGR summing junction, solved in a later block) into the tap's block, where it is undetermined (verify: V(snsw2c) 1.5e-5 vs 0).
+netgen4 now senses each tap at Q4's emitter and base instead (VSE_<tap>, VSB_<tap>, both inside the tap's own block); I_c = i(vse) - i(vsb).
+Topology and component values are otherwise unchanged; taps5.tsv is unchanged. One diagnostic ideal T1 run was made with the amended netgen4 before
+this hash was recorded (it converged); the batch below reruns it.
+netgen4.cpp: 238d8d31bab024a513758b93dc7928bd1694ed9804919825cb740d3933a6302b -> 63a7842984a9b3fc6cc1fa53d4225a1784309679952540aa875a54b1f1553b2b
