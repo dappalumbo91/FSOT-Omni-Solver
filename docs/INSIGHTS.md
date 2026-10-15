@@ -144,3 +144,46 @@ These come from `spice/sens.sh` (16 seeds per row). One draw class is active at 
 - **Domain limit.** One mcB draw (seed 2) put 1−S_chem at 0.013, against a nominal 0.0447. That drives the Ω_b h² LOGR input positive enough to reverse-bias the reference cascode (n > 0).
   - This is the same domain exit as Phase-2 mcB seed 39, not a solver failure.
   - mcB tier 1 converged 5/6; mcC 8/8; ideal 0/27/50 °C 3/3.
+
+## 13. Phase 3b: the constant generator, tiers 2a and 2, MC convergence, and the remaining loops
+
+**What converges.**
+- Ideal: all 11 compiled netlists at 0, 27 and 50 °C (33/33).
+- Monte Carlo at 27 °C: 115/132 (mcC 79/88, mcB 36/44), using the blocksolve4 fork (Amendments 4.3 re-anchor and 4.4 ideal seed; verify tolerances unchanged).
+- The two solver amendments cleared 5 of the 22 original failures: 2_X mcC1, 2_T mcC5 and 2a_T mcB1 by re-anchor, and 2a_P mcC1 and mcB1 by the seed.
+
+**The remaining failures are real circuit limits, not solver artefacts.**
+1. **Cascode headroom.** In every LOGR and CAL, the 2N7000 cascode drain sits on a 0 V virtual ground. Its source (the BJT collector) is servoed to the BJT base voltage. The base sits at the log-domain baseline, about −V_T ln 2 = −17.9 mV for Ir = Ix/2. So the cascode works only while the base is below 0 V: a margin of 0.69 neper on the low side of a LOGR input, or the high side of an antilog output.
+   - When an upstream error pushes a LOGR input below ~50 % of nominal, the cascode reverses and the block has no DC solution. Verified: T1 mcB s2, zL83, input 0.53 V vs 1.78 V ideal.
+   - The same happens when an antilog output exceeds ~2× nominal. Verified: GEN mcB s3, BETA readout, base +0.112 V.
+   - **Proposed fix, a topology change (needs a leafc fork and a new lock).** Deepen the baseline: Ir = Ix/e³ in LOGRs and a larger CAL input current, so a base stays negative over ±3 nepers. The other option, offsetting the collector clamp below the base, costs a systematic Early error of V_off/V_AF ≈ 1.4e-3 at 0.1 V.
+2. **A difference below component resolution: Chain_consistency_%** = |(m_τ/m_μ)(m_μ/m_e) − 9πφ¹⁰| / (9πφ¹⁰) · 100 = 0.00667 %.
+   - The two products differ by 6.7e-5 relative. That is below the E24 realisation error (up to 4e-4), so even the ideal circuit is off by 29 % on this leaf.
+   - It is below the mcC 0.02 % resistor tolerance as well, so under MC the sign of the difference is random. The fabs() is compiled for a fixed sign, so the LOGR then sees a negative current and fails (12/12 MC runs).
+   - **FSOT pressure point.** This row is FSOT's own internal consistency check, and it sits at the 1e-4 level. No analog circuit built from separate products can resolve it.
+   - A precision full-wave rectifier would make it converge, but the output would still be noise. The honest analog verdict is "consistent to better than ~2e-4".
+
+**The most sensitive leaves (MC σ) and why.** Each is an analog amplification of an upstream error by a structural factor of the FSOT form, |∂ln f/∂ln x|:
+- **BETA = exp(−(π^π + e − 1)):** a 36.5-neper exponent amplifies the π^π error 36.5×. mcC σ 13 %, mcB worst −95 %. It dominates the GEN errors. FSOT pressure point: the core constant BETA (2.6e-17) is exponentially sensitive to π^π.
+- **η_baryon = POOF¹¹ / (πγ):** an 11th power amplifies POOF's error 11× (σ 6.9 %).
+- **Cancelling sums**, where the result is much smaller than its terms:
+  - γ₁ Stieltjes = G² + cos e: terms about 12× the result (σ 4.9 %).
+  - γ₂ = π⁻² − γ⁴: 11× (σ 4.1 %).
+  - θ* = P_base·φ − γ²: ~33× (σ 3.8 %).
+  - Hashing bound: σ 4.0 %.
+  - Ω_b h² and Ω_DM h²: (1 − S_chem) and similar (σ 4.4 %).
+  - |V_cb| = S_q/C_eff − S_q (σ 2.5 %).
+  - FSOT pressure point: these closed forms are near-cancellations of order-1 constants.
+- **|V_cb| is a case where the math could be adapted without changing FSOT.** As S_q·(1/C_eff − 1) it does not cancel. The compiler follows the engine expression literally. Factoring it would be an algebraic identity, not a rule change, but it is a design decision and needs approval.
+- **Threshold rows (floor):** N_Drives = Binding_Window = ⌊π²⌋ = 9 has a margin of 1.3 %. One of four mcB samples (1 % unmatched BJT I_S) flipped it to 10, an 11 % error. N_Columns = ⌊e³⌋ = 20 has the smallest margin (0.43 %) but did not flip, because e³ is built with fewer independent parts. Both are FSOT rows that sit near an integer threshold: an analog realisation needs better than 0.4 % matching, or matched pairs (mcC never flipped).
+- **mcB vs mcC:** mcB has unmatched BJTs, with I_S spread about ±1 %, i.e. 0.26 mV per LOGR. Through weights like ln φ × 13 in ALPHA, that gives 10 % constant errors. mcC, with matched pairs and 0.02 % resistors, keeps the constants at 0.05–0.7 % σ (BETA excepted). Matched transistor pairs are the single most important real-part choice.
+
+**The constant generator's effect on tier 1.** The ideal errors change by ≤ 6e-5 (|V_cb| +2.75e-4), so the S-channel error dominates. The MC σ grows on cancelling forms (|V_cb| 12×, T_CMB 3.6×), because the generator's constant errors now enter where a single locked resistor ratio used to stand.
+
+**Remaining stability loops** (`phase3/results/stepresp_remaining_loops.tsv`, `phase2/spice/stepresp.sh`). The 1 mV step is injected at the servo output, and the transient starts from the .ic-pinned operating point.
+- **Measurable loops:** the Cosmology tiny-tap cascodes cy2 (3.3 nA) and cy3 (13.6 pA) are linear. Overshoot is 8.3e-4 and 1.9e-4, so ζ ≈ 0.91–0.94 and the phase margin is about 74–75°: stable.
+- **Railed taps** (a3, sw3, sv4, st5 in every fold; cy2 and cy3 in Atomic Physics):
+  - **What happens:** in the static ideal solution the servo output sits at −3e5 to −1e6 V. That is a non-physical value for an unclamped ideal op-amp; a real one would rail at −8.9 V. The 2N7000 VDMOS model has no subthreshold conduction, so it cannot carry these tap currents: 1e-22 A (a3), 0.1–3 pA (sw3, sv4, st5, cy2 Atomic) and 5e-16 A (cy3 Atomic).
+  - **Stability:** these loops are not oscillating, but neither are they in linear operation.
+  - **The tap currents are effectively dropped in the Phase 2 netlist.** Relative to µA sums that is ≤ 3e-6, below the block accuracy. Damian's rule is not to drop tiny terms, though, so this is a disclosed gap.
+  - **Fix:** Phase 3b's CALU (uncascoded antilog, for terms below 1e-4 of the sum) already avoids it for the leaves. The base engine needs the same change in a forked netgen, because netgen2 is LOCK2-covered.
