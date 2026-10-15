@@ -20,7 +20,7 @@ static std::map<std::string, PartV> P;
 static std::map<std::string, double> C;  // summer constants (nepers)
 struct Var { bool e24 = true, ideal_op = false, vendor_cmp = true; double tolR = 0, tc = 0, vos = 0, vbe = 0, vref = 0, beta = 0, vaf = 0, ron_lo = 125, ron_hi = 125; };
 static Var V; static std::mt19937_64 rng; static std::ostringstream N, M;
-static bool TRAN = false; static int STOP = 99;  // STOP: debug-only partial build (env FSOT_P2_STOP); never used for results
+static bool TRAN = false, OPDYN = false, OPNOISE = false; static int STOP = 99;  // STOP: debug-only partial build (env FSOT_P2_STOP); never used for results
 double U(double lo, double hi) { return std::uniform_real_distribution<double>(lo, hi)(rng); }
 double G(double s, double clip) { if (s == 0) return 0; double x; do { x = std::normal_distribution<double>(0, s)(rng); } while (std::fabs(x) > clip); return x; }
 
@@ -43,8 +43,17 @@ void Rp(const std::string& nm, const std::string& n1, const std::string& n2, con
 }
 void OA(const std::string& nm, const std::string& pl, const std::string& mi, const std::string& out) {
   const double vos = G(V.vos, 5 * V.vos);
-  N << "VOS_" << nm << " " << nm << "_p " << pl << " DC " << vos << "\n";
-  if (V.ideal_op) N << "E_" << nm << " " << out << " 0 " << nm << "_p " << mi << " 1e6\n";
+  // Amendment 12 (noise runs, env FSOT_P2_OPNOISE=1): OPA187 input voltage noise 20 nV/rtHz as the thermal noise of a 24.15 k
+  // resistor in series with the non-inverting input (no DC current flows in it: ideal input). Current noise is not modelled.
+  if (OPNOISE) N << "VOS_" << nm << " " << nm << "_p " << nm << "_q DC " << vos << "\nRN_" << nm << " " << nm << "_q " << pl << " 24.15k\n";
+  else N << "VOS_" << nm << " " << nm << "_p " << pl << " DC " << vos << "\n";
+  // ideal op-amp: gain 1e6. Amendment 7 (start-up runs, env FSOT_P2_OPDYN=1): OPA187 large-signal behaviour as a Gm-C stage:
+  // gm = 1 S into R = 1 Meg (DC gain 1e6) || C = 0.2894 uF (GBW 0.55 MHz), current limited to 58 mA (slew 0.2 V/us), and the
+  // integrator clamped at the +-8.9 V swing (no wind-up); unity buffer to the output. DC inside the rails: identical to gain 1e6.
+  if (V.ideal_op && OPDYN) N << "B_" << nm << "_g 0 " << nm << "_f I = max(-0.058, min(0.058, V(" << nm << "_p)-V(" << mi << ")))\nR_" << nm << "_o " << nm << "_f 0 1Meg\nC_" << nm << "_o " << nm << "_f 0 0.2894u\n"
+                             << "B_" << nm << "_c " << nm << "_f 0 I = 100*(max(V(" << nm << "_f)-8.9,0)+min(V(" << nm << "_f)+8.9,0))\n"
+                             << "E_" << nm << " " << out << " 0 " << nm << "_f 0 1\n";
+  else if (V.ideal_op) N << "E_" << nm << " " << out << " 0 " << nm << "_p " << mi << " 1e6\n";
   else N << "X_" << nm << " " << nm << "_p " << mi << " vcc vee " << out << " OPAx187\n";
 }
 void CMP(const std::string& nm, const std::string& pl, const std::string& mi, const std::string& out) {
@@ -69,9 +78,14 @@ void SPDT(const std::string& nm, const std::string& com, const std::string& a, c
 // cascoded log-ratio: Ix summed into node <p>c1 (transdiode Q1), Ir into <p>c2 (cascoded Q2); out n = V_T ln(Ir/Ix)
 void LOGR(const std::string& p, const std::string& n) {
   Q(p + "1", p + "c1", "0", p + "e"); OA(p + "A", "0", p + "c1", p + "e");
-  Q(p + "2", p + "k", n, p + "e"); MOS(p, p + "c2", p + "g", p + "k"); OA(p + "D", n, p + "k", p + "g");
+  Q(p + "2", p + "k", n, p + "e"); MOS(p, p + "c2", p + "g", p + "k");
+  // Amendment 9 (stability): the cascode servo D is an integrator (100 k from k, 1 nF from g to its inverting input; ~1.6 kHz),
+  // well below the k-node pole of the low-current 2N7000 (g_m/C_k ~ 16-160 kHz). No DC current flows in the 100 k.
+  OA(p + "D", n, p + "kd", p + "g"); N << "RD" << p << " " << p << "k " << p << "kd 100k\nCD" << p << " " << p << "g " << p << "kd 100p\n";  // Amendment 11: 100 pF
   OA(p + "B", p + "c2", "0", n);
-  N << "CA" << p << " " << p << "e " << p << "c1 1n\nCB" << p << " " << p << "c2 0 1n\n";
+  // Amendment 8 (stability): the c2 integrating capacitor gets a series zero resistor, 100 nF + 1 k (was 1 nF alone, phase margin
+  // -75...-158 deg with an OPA187-class 0.55 MHz op-amp). DC is unchanged (capacitor open).
+  N << "CA" << p << " " << p << "e " << p << "c1 1n\nCB" << p << " " << p << "c2 " << p << "cz 10u\nRZ" << p << " " << p << "cz 0 330\n";  // Amendment 10: 10 uF + 330 R
 }
 // cascoded antilog: Iin into <p>d (transdiode Q3); Q4 base vx; Iout = Iin exp(vx/V_T) sunk from each node in outs
 void CAL(const std::string& p, const std::string& vx, const std::vector<std::string>& outs) {
@@ -97,7 +111,7 @@ void FW(const std::string& p, const std::string& in, const std::string& out) {  
 void refs() {
   const double vref = 2.5 * (1 + U(-V.vref, V.vref + 1e-15));
   if (TRAN) N << "VCC vcc 0 PWL(0 0 1m 9)\nVEE vee 0 PWL(0 0 1m -9)\nVREF vr 0 PWL(0 0 1m 0 3m " << vref << ")\n";
-  else N << "VCC vcc 0 9\nVEE vee 0 -9\nVREF vr 0 DC " << vref << "\n";
+  else N << "VCC vcc 0 9\nVEE vee 0 -9\nVREF vr 0 DC " << vref << (OPNOISE ? " AC 1" : "") << "\n";
   OA("inv", "0", "ninv", "vrn"); Rp("inv1", "vr", "ninv", "R_inv"); Rp("inv2", "ninv", "vrn", "R_inv");
   // PTAT neper reference
   Rp("ptAh", "vr", "ptAc1", "R_ptA_hi"); Rp("ptAl", "vr", "ptAc2", "R_ptA_lo"); LOGR("ptA", "nptA");
@@ -229,6 +243,8 @@ int main(int argc, char** argv) {
   std::string an = argc > 6 ? argv[6] : "op", fname = argc > 7 ? argv[7] : "Chemistry";
   if (const char* e = std::getenv("FSOT_P2_LOCKED")) LK = e;
   if (const char* e = std::getenv("FSOT_P2_STOP")) STOP = std::atoi(e);
+  if (const char* e = std::getenv("FSOT_P2_OPDYN")) OPDYN = std::string(e) == "1";
+  if (const char* e = std::getenv("FSOT_P2_OPNOISE")) OPNOISE = std::string(e) == "1";
   rng.seed(seed * 7919 + 101); load(); TRAN = (an == "tran");
   if (var == "ideal_ideal") { V.e24 = false; V.ideal_op = true; V.vendor_cmp = false; }
   else if (var == "ideal_opa") { V.e24 = false; }
@@ -236,6 +252,13 @@ int main(int argc, char** argv) {
   else if (var == "e24_ideal") { V.ideal_op = true; V.vendor_cmp = false; }
   else if (var == "mcB") { V.ideal_op = true; V.vendor_cmp = false; V.tolR = 0.001; V.tc = 25e-6; V.vos = 10e-6; V.vbe = 1e-4; V.vref = 0.001; V.beta = 0.3; V.vaf = 0.2; V.ron_lo = 75; V.ron_hi = 175; }
   else if (var == "mcC") { V.ideal_op = true; V.vendor_cmp = false; V.tolR = 0.0002; V.tc = 5e-6; V.vos = 2e-6; V.vbe = 1e-5; V.vref = 0.0005; V.beta = 0.3; V.vaf = 0.2; V.ron_lo = 75; V.ron_hi = 175; }
+  else if (var == "mcX") {  // sensitivity runs: E24 + ideal op-amps + only the draws named in FSOT_P2_TOL (e.g. "tolR=0.001,vos=1e-5")
+    V.ideal_op = true; V.vendor_cmp = false;
+    if (const char* e = std::getenv("FSOT_P2_TOL")) { std::string t = e; std::istringstream ss(t); std::string kv;
+      while (std::getline(ss, kv, ',')) { auto q = kv.find('='); std::string k = kv.substr(0, q); double x = std::stod(kv.substr(q + 1));
+        if (k == "tolR") V.tolR = x; else if (k == "tc") V.tc = x; else if (k == "vos") V.vos = x; else if (k == "vbe") V.vbe = x; else if (k == "vref") V.vref = x;
+        else if (k == "beta") V.beta = x; else if (k == "vaf") V.vaf = x; else if (k == "ron") { V.ron_lo = 125 - x; V.ron_hi = 125 + x; }
+        else { std::fprintf(stderr, "bad FSOT_P2_TOL key %s\n", k.c_str()); return 1; } } } }
   else { std::fprintf(stderr, "bad variant\n"); return 1; }
   if (an == "dump") { V.ideal_op = true; V.vendor_cmp = false; }
   std::vector<std::string> pr;
@@ -293,7 +316,8 @@ int main(int argc, char** argv) {
     o << "tran 20u 30m 0 20u\nlet n = length(time) - 1\nlet k = n - 250\n";
     for (auto& x : pr) o << "let fin_" << x << " = v(" << x << ")[n]\nlet rip_" << x << " = vecmax(v(" << x << ")[k,n]) - vecmin(v(" << x << ")[k,n])\nprint fin_" << x << " rip_" << x << "\n";
   } else if (an == "noise") {
-    o << "noise v(" << pr[0] << ") VREF dec 10 0.1 10k 1\nsetplot noise2\nprint onoise_total\n";
+    o << "noise v(" << pr[0] << ") VREF dec 20 0.1 10 1\nsetplot noise2\nprint onoise_total\nsetplot noise1\nprint onoise_spectrum[0]\n"
+      << "noise v(" << pr[0] << ") VREF dec 20 0.1 10k 1\nsetplot noise4\nprint onoise_total\nsetplot noise3\nprint onoise_spectrum[60]\n";
   } else {
     o << "op\nprint"; for (auto& x : pr) o << " v(" << x << ")"; o << "\n";
     if (mode == "fold") o << "print i(vidx)\n";

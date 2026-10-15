@@ -125,3 +125,61 @@ netgen2.cpp c55d37e9a8024d1e… → `1125298e866e4a806772ee013f31d61ea135ce3e382
 **Withdrawn alternative, not used.** A pseudo-transient continuation (an E24-nominal state with the draw ramped in over 1 ms) failed at the first time point even with a zero draw. It was removed.
 
 blocksolve.cpp → `5373a4950343b4f4e3e43f7fa16bf2853b811efed2f3873f58e2c5ca91aca312`
+
+### Amendment 7: 2026-10-15T16:22:42-04:00. Harness only (dynamic ideal op-amp for start-up, loop-gain and noise runs); recorded before those simulations.
+
+With `FSOT_P2_OPDYN=1`, netgen2 writes each ideal op-amp as an OPA187-class large-signal stage instead of the DC gain-1e6 E source:
+- a transconductance gm = 1 S, limited to ±58 mA, into R = 1 MΩ ∥ C = 0.2894 µF. That gives DC gain 1e6, a GBW of 0.55 MHz and a slew rate of 0.2 V/µs (the OPA187 datasheet values).
+- an integrator node clamped at ±8.9 V (the OPA187 swing), so there is no wind-up;
+- a unity buffer to the output.
+
+Inside the rails the DC solution is identical: S(Chemistry) is 1.910885427 in both. The default output (no env) is byte-identical to the Amendment 2 netlists apart from the Amendment 8 lines below. Two earlier forms were tried and rejected. One was E→RC→output clamp: its pole capacitor wound up to ±1e5 V. The other was a clamp before the pole: its slew was 30 V/s.
+
+blocksolve.cpp (same amendment) gained:
+- a transient mode (`FSOT_BS_TRAN`): each block runs `tran … uic`, and the stiff nodes it reads are PWL copies of the upstream waveforms. This is exact for the same reason as the DC tearing.
+- controlled current sources are kept in the block of the nodes they read;
+- every DC block solution is verified by a plain Newton re-solve from it. This rejects ngspice's pseudo-transient fallback when it ends on a non-solution, which happened for the latched LOGR state.
+- `spice/loopgain.sh` (voltage injection at each op-amp output).
+
+### Amendment 8: 2026-10-15T16:22:42-04:00. Topology (compensation only), recorded before simulation. No FSOT-derived value moved; no DC value changed.
+
+**Finding (Amendment 7 loop gains, Chemistry fold).** All 308 op-amp loops were measured. Every LOGR reference-side loop (op-amp B: c2 → base of Q2 → cascode → c2) is unstable, with phase margin between −75° and −158° at 80–170 kHz. Two poles sit together at crossover: the op-amp integrator and C_B·R_r. Every other loop has 59–96°. In the transient, the PTAT and every log block oscillate rail to rail.
+
+**Change.** In every LOGR, C_B (c2 to ground) goes from 1 nF to 100 nF in series with R_Z = 1 kΩ, so the loop has a zero at 1.6 kHz. The crossover becomes GBW·g_m2·R_Z: about 83 kHz at 4 µA and about 8 kHz at 0.4 µA. Parts: a 100 nF X7R and a 1 kΩ 1 % resistor per LOGR (accuracy-neutral at DC).
+
+netgen2.cpp c55d37e9a8024d1e… → `2cf2ffb3a7d3b85eef70878d14f9c70d155f7c1d32cce717f504340e4eece668`
+blocksolve.cpp (Amendment 7) → `b7fc4b6127645a43caacbc7b93dd53283cc551f3b359edcacf25f8e3ab5b1102`
+
+**Amendment 8 outcome (2026-10-15T16:23:11-04:00).** Insufficient. The B loops improved from −158…−75° to +2…+26° but still ring, because the cascode servo D crosses over at the same frequency (about 130 kHz, phase margin about 10°), right on the k-node pole of the 2N7000 running at µA.
+
+### Amendment 9: 2026-10-15T16:23:11-04:00. Topology (compensation only), recorded before simulation. No FSOT-derived value moved; no DC value changed.
+
+In every LOGR:
+1. The cascode servo D becomes an integrator: R_D = 100 kΩ from k to its inverting input, C_D = 1 nF from the gate to that input. Crossover is about 1.6 kHz, well below the k-node pole (g_m/C_k, 16–160 kHz). No DC current flows in R_D with an ideal input. With an OPA187, I_B·R_D ≈ 10 µV of cascode offset, which only enters through the Early effect.
+2. The B integrating network becomes C_B = 1 µF in series with R_Z = 330 Ω. The zero is at 480 Hz; crossover GBW·g_m2·R_Z is about 27 kHz at 4 µA and about 2.7 kHz at 0.4 µA, below the cascode's common-gate pole.
+
+Parts per LOGR: 1 µF X7R, 330 Ω, 100 kΩ, 1 nF C0G.
+
+netgen2.cpp 2cf2ffb3a7d3b85e… → `548d9aa42b8e5042e44849933dfd58a724e8a76ff1b124fd54388dff41308583`
+
+**Amendment 9 outcome (2026-10-15T16:23:33-04:00).** 153 of 154 measurable loops have a phase margin of at least 68°. The exception is LOGR_y, whose reference current is only 0.15 µA (R_yr = 16.7 MΩ): it crosses over at 690 Hz, close to the 480 Hz zero, with a margin of 5.5°.
+
+### Amendment 10: 2026-10-15T16:23:33-04:00. Compensation only, recorded before simulation. No FSOT-derived value moved; no DC value changed.
+C_B goes from 1 µF to 10 µF (X5R/X7R), with R_Z = 330 Ω unchanged. The zero moves to 48 Hz, a decade below the lowest-current crossover (about 1 kHz).
+
+netgen2.cpp 548d9aa42b8e5042… → `94ba01a08edfe7a47b8e9c343b9ce06a63a9b8493a446dee99f7f328194bab1e`
+
+**Amendment 10 outcome (2026-10-15T16:24:11-04:00).** The minimum phase margin is 37.9°, still at LOGR_y (604 Hz), which now interacts with the 1.6 kHz cascode integrator. As an *exploratory, unlocked* check, the loop-gain run was repeated with C_D = 10 nF (min 52.6°) and C_D = 100 pF (min 57.6°). This is disclosed here because it was done before the value was fixed.
+
+### Amendment 11: 2026-10-15T16:24:11-04:00. Compensation only. No FSOT-derived value moved; no DC value changed.
+C_D goes from 1 nF to 100 pF (C0G). The cascode integrator then sits at about 16 kHz, above the LOGR_y crossover. All the other Amendment 9/10 values are kept.
+
+netgen2.cpp 94ba01a08edfe7a4… → `5f9ed1d6512416489ff109df33b96f32c129ca7809b17635f37351cb0bc54c9c`
+
+### Amendment 12: 2026-10-15T16:33:16-04:00. Harness only (noise and sensitivity runs); no value, part or topology changed.
+- `FSOT_P2_OPNOISE=1` models the OPA187 input voltage noise (20 nV/√Hz) as the thermal noise of a 24.15 kΩ resistor in series with each non-inverting input. No DC current flows in it. Current noise is not modelled. In this mode VREF also carries AC 1 as the noise input reference.
+- `spice/swfix.sh` resolves every switch to its own RON/ROFF at the operating point before `.noise`. ngspice's SW noise reports both poles of an SPDT as open, putting the 1e12 Ω thermal noise on the common node: 5 mV of spurious output noise.
+- variant `mcX` with `FSOT_P2_TOL` drives one draw class at a time, for `spice/sens.sh` (per-part error coefficients).
+- The start-up / loop-gain / noise numbers in docs/INSIGHTS.md §11 were produced after Amendments 7–12.
+
+netgen2.cpp 5f9ed1d651241648… → `43149f14c07425b14048e4edd814c6c62ef4d7d3283f9c910f33d0c5d5d46fdc`; blocksolve.cpp b7fc4b6127645a43… → `b7fc4b6127645a43caacbc7b93dd53283cc551f3b359edcacf25f8e3ab5b1102`

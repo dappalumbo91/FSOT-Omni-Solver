@@ -1,0 +1,9 @@
+draw	magnitude	unit	sd_rel_S_Atomic	sd_rel_S_Fluid	sd_rel_Omega_b_h2	sd_rel_1_minus_Schem	coef_S_Atomic_per_unit	coef_Omega_per_unit
+tolR	0.001	fraction(uniform)	4.626e-03	8.468e-03	9.281e-02	1.019e-01	4.63	92.8
+tc	25e-6	per_K(uniform,at_27C=0)	0.000e+00	0.000e+00	0.000e+00	0.000e+00	0	0
+vos	10e-6	V(sigma)	2.200e-03	7.155e-03	5.259e-02	5.541e-02	220	5.26e+03
+vbe	1e-4	V(sigma)	1.153e-02	2.173e-02	3.133e-01	3.369e-01	115	3.13e+03
+vref	0.001	fraction(uniform)	6.612e-04	6.600e-04	6.522e-04	6.529e-04	0.661	0.652
+beta	0.3	fraction(uniform)	1.069e-05	1.466e-05	2.006e-04	2.262e-04	3.56e-05	0.000669
+vaf	0.2	fraction(uniform)	9.014e-08	0.000e+00	1.820e-06	1.871e-06	4.51e-07	9.1e-06
+ron	50	ohm(uniform)	0.000e+00	2.500e-07	2.500e-07	0.000e+00	0	5e-09

@@ -76,3 +76,52 @@ All numbers come from `phase2/results/` (ngspice-44.2). The targets are the C++2
 - The fix is **exact tearing** at stiff nodes: ideal op-amp, comparator and supply outputs (`cpp/blocksolve.cpp`). The Ω_b h² netlist splits into 218 blocks, a fold into 108; the largest block has about 113 elements. A fold solves in about 1 s, and 35 folds take 5 s on 8 cores. Agreement with the full netlist is 4.5e-10 in S.
 - Pitfall found on the way: copying interface voltages with ngspice's default 6 digits gives a 4e-5 error in S, because a 1 µV error in an exponent is 1e-6/V_T = 4e-5 after the antilog. Interfaces must carry at least 12 digits (`set numdgt=15`).
 - The T3 hypothesis, tested: the T3 antilog output (a3), and the highest series taps (cy2, cy3, sv4, sw3, st5), are physically **cut off**. Their design currents (about 1e-17 … 1e-22 A) are below any junction leakage, so their cascode op-amps drive the 2N7000 gates to about −1e6 V (ideal sources) or to the rail. They were *not* the cause of the non-convergence: block solves converge with them in place and are gmin-independent. They do mean that T3 exists in this circuit only as its log-domain voltage v_x3. As a current it is about 0.01 electron/s. That is the FSOT pressure point: a term 1e-17 below the sum cannot be an additive physical signal, only a logarithmic one.
+
+## 10. Per-part error coefficients (input to the worst-to-best datasheet plan)
+These come from `spice/sens.sh` (16 seeds per row). One draw class is active at a time, on the E24 design with ideal op-amps, at 27 °C. The table gives the sd of the relative error of each output; results/sensitivities.tsv has the raw numbers.
+
+| draw (class-B magnitude) | S(Atomic) | S(Fluid) | 1 − S_chem | Ω_b h² | coefficient, S(Atomic) | coefficient, Ω_b h² |
+|---|---|---|---|---|---|---|
+| resistor tolerance ±0.1 % (uniform) | 4.6e-3 | 8.5e-3 | 1.0e-1 | 9.3e-2 | 4.6 per unit tol | 93 per unit tol |
+| op-amp Vos σ = 10 µV | 2.2e-3 | 7.2e-3 | 5.5e-2 | 5.3e-2 | 2.2e-4 per µV | 5.3e-3 per µV |
+| transistor ΔV_BE (IS mismatch) σ = 100 µV | 1.2e-2 | 2.2e-2 | 3.4e-1 | 3.1e-1 | 1.2e-4 per µV | 3.1e-3 per µV |
+| VREF ±0.1 % | 6.6e-4 | 6.6e-4 | 6.5e-4 | 6.5e-4 | 0.66 per unit | 0.65 per unit |
+| β ±30 % | 1.1e-5 | 1.5e-5 | 2.3e-4 | 2.0e-4 | 3.6e-5 per unit | 6.7e-4 per unit |
+| V_A ±20 % | 9e-8 | <1e-8 | 1.9e-6 | 1.8e-6 | negligible (cascodes work) | |
+| CD4053 R_on 75–175 Ω | <3e-7 | | | | negligible | |
+| resistor TC ±25 ppm/K at 27 °C | 0 by construction (zero at t_nom); see §6 for drift | | | | | |
+
+- **The ranking is ΔV_BE ≫ resistor ratio > Vos ≫ VREF ≫ β, V_A, R_on.** Transistor matching, not resistors, is the first lever. Even σ = 100 µV (a good matched pair) costs 1.2e-2 on S and 0.31 on Ω_b h². This is why class C (σ = 10 µV, monolithic pairs) is the first viable class.
+- Ω_b h² carries about 20× the S coefficients, from the 1 − S amplification (§2).
+- VREF enters S almost one for one (0.66), and 1/α not at all at first order (ratio design).
+
+## 11. Base engine: stability, start-up, noise, temperature, e³ ceiling
+- **Loop stability.** `spice/loopgain.sh` measures every op-amp loop with an OPA187-class dynamic model (Amendment 7): 154 loops per fold.
+  - As locked before Amendment 8, every LOGR reference-side loop (B) was unstable, with phase margin −75 to −158°. Two integrators coincide (the op-amp, and C_B with R_r), and the µA cascode adds a pole.
+  - Fixes (Amendments 8–11, compensation only, DC untouched): C_B = 10 µF + 330 Ω zero, and an integrating cascode servo (100 k / 100 pF).
+  - After the fixes, the minimum phase margin is **57.6°** (LOGR_y, which has the lowest reference current, 0.15 µA). There are no loops under 45° in Chemistry, Atomic, Cosmology or Fluid. The rest are 68–99°.
+  - Not measurable: the cut-off T3 output (a3) and the cut-off series-tap cascodes (sw3, sv4, st5, and cy2/cy3 in Atomic). These loops are open by physics (§9). The a1/g cascodes in Atomic/Cosmology need the AC operating point fixed (they are 92° in Chemistry).
+- **Start-up.** A block-sequential transient (exact tearing in time): supplies ramp over 0–1 ms, VREF over 1–3 ms, and the run lasts 400 ms. No latch-up. All outputs settle to within 1e-5: vnep at 21 ms, the log blocks at 20–70 ms, S at 93 ms, T1 at 139 ms. Final S matches the DC value to 1.8e-6, and the residual is still converging. Before compensation, the PTAT and log blocks oscillated rail to rail.
+- **Noise** (OPA187 e_n = 20 nV/√Hz plus all resistor, BJT and MOSFET noise; switches resolved, Amendment 12):
+
+  | output | 0.1–10 Hz rms | relative | 0.1 Hz–10 kHz rms | relative |
+  |---|---|---|---|---|
+  | S(Chemistry) | 63 µV | 3.3e-5 | 9.6 mV | 5.0e-3 |
+  | S(Cosmology) | 76 µV | 7.5e-5 | 9.5 mV | 9.4e-3 |
+
+  The largest contributors are op-amp voltage noise in the LOGR B loops (PTAT B, y, w, a5) and in the st1 summer. The wideband figure says S must be read through a ≤10 Hz filter or averaged; within 0.1–10 Hz noise sits two decades below the ideal-circuit error.
+- **Temperature, all 35 folds converge at every point** (block solve; before, they failed below 8 °C). Ideal components:
+
+  | T (°C) | S rel mean | S rel range | D | Ω_b h² rel | 1/α rel |
+  |---|---|---|---|---|---|
+  | 0 | +2.3e-5 | −3.9e-4…+2.2e-4 | 35/35 | −3.6e-3 | +1.94e-4 |
+  | 27 | −2.4e-6 | −4.0e-4…+1.9e-4 | 35/35 | −2.9e-3 | +1.85e-4 |
+  | 50 | −1.4e-4 | −4.9e-4…+3.7e-5 | 35/35 | +5.2e-4 | +1.79e-4 |
+  | oven core, ambient 0 / 27 / 50 °C (58.91 / 59.59 / 60.16 °C) | −2.92 / −3.08 / −3.22e-4 | | 35/35 | +4.3 / +4.7 / +5.0e-3 | +1.770 / +1.769 / +1.768e-4 |
+
+  - Without the oven, mean S moves 1.6e-4 over 0–50 °C. With the oven it moves 3e-5 over the same ambient range.
+  - The temperature-tracking angle bus (priority 3 in the earlier list) was not built. It is deprioritised with real-part accuracy.
+- **e³ trimmed ceiling.**
+  - With ideal components, 1/α is +1.85e-4 high at 27 °C. Each e¹ stage reads high by 2.6–3.8e-5 (ve1 0.4349417 V against 0.4349250 V exact; ve2 against ve1·e/4), from transistor ISE/Early residuals. The rest comes through the e⁻¹ and −1 terms.
+  - A one-resistor trim at 27 °C (on R_e3c or R_aiT) removes the static part. What remains is the temperature drift of the same residual: 1/α moves −9.3e-6 / +5.8e-6 over 0 / 50 °C, and 2e-7 across the oven's 58.9–60.2 °C.
+  - So the trimmed e³ ceiling is about 1e-5 without the oven and about 2e-7 with it, before part tolerances. Per §10, ΔV_BE and Vos then set the floor (VREF cancels in 1/α).

@@ -11,6 +11,7 @@
 #include <cctype>
 #include <cstdio>
 #include <cstdlib>
+#include <cmath>
 #include <fstream>
 #include <functional>
 #include <map>
@@ -47,7 +48,7 @@ int main(int argc, char** argv) {
     else if (c == 'q' || c == 'm' || c == 'j') e.term = {t[1], t[2], t[3]};
     else if (c == 'v') { if (t[2] == "0") { e.global = true; e.drv = t[1]; } else e.term = {t[1], t[2]}; }
     else if (c == 'e') { e.drv = t[1]; e.sense = {t[3], t[4]}; }
-    else if (c == 'b') { e.drv = t[1]; static const std::regex r(R"(v\(([^),]+)(?:,([^)]+))?\))"); for (std::sregex_iterator it(L.begin(), L.end(), r), en; it != en; ++it) { e.sense.push_back((*it)[1]); if ((*it)[2].matched) e.sense.push_back((*it)[2]); } }
+    else if (c == 'b') { if (L.find(" i =") != std::string::npos || L.find(" i=") != std::string::npos) e.term = {t[1], t[2]}; else e.drv = t[1]; static const std::regex r(R"(v\(([^),]+)(?:,([^)]+))?\))"); for (std::sregex_iterator it(L.begin(), L.end(), r), en; it != en; ++it) { e.sense.push_back((*it)[1]); if ((*it)[2].matched) e.sense.push_back((*it)[2]); } }
     else if (c == 's') { e.term = {t[1], t[2]}; e.sense = {t[3], t[4]}; }
     else if (c == 'x') { e.drv = t[5]; e.sense = {t[1], t[2], t[3], t[4]}; }
     else { std::fprintf(stderr, "blocksolve: unsupported element %s\n", t[0].c_str()); return 1; }
@@ -55,7 +56,8 @@ int main(int argc, char** argv) {
   std::set<std::string> bnd = {"0"}; std::map<std::string, int> drvOf, glob;
   for (int i = 0; i < (int)els.size(); ++i) if (!els[i].drv.empty()) { bnd.insert(els[i].drv); (els[i].global ? glob : drvOf)[els[i].drv] = i; }
   auto nb = [&](const std::string& n) { return !bnd.count(n); };
-  for (auto& e : els) { std::string first; for (auto& n : e.term) if (nb(n)) { if (first.empty()) first = n; else Un(first, n); F(n); } }
+  for (auto& e : els) { std::string first; for (auto& n : e.term) if (nb(n)) { if (first.empty()) first = n; else Un(first, n); F(n); }
+    if (!first.empty() && e.drv.empty()) for (auto& n : e.sense) if (nb(n)) Un(first, n); }  // controlled current sources: same block as what they read
   std::vector<std::string> key(els.size());
   for (int i = 0; i < (int)els.size(); ++i) { auto& e = els[i]; if (e.global) continue;
     if (!e.drv.empty()) { std::string first; for (auto& n : e.sense) if (nb(n)) { if (first.empty()) first = n; else Un(first, n); }
@@ -81,6 +83,8 @@ int main(int argc, char** argv) {
     for (int w : dep[v]) { if (idx[w] < 0) { sc(w); low[v] = std::min(low[v], low[w]); } else if (on[w]) low[v] = std::min(low[v], idx[w]); }
     if (low[v] == idx[v]) { sccs.emplace_back(); int w; do { w = st.back(); st.pop_back(); on[w] = false; comp[w] = nc; sccs.back().push_back(w); } while (w != v); ++nc; } };
   for (int v = 0; v < NB; ++v) if (idx[v] < 0) sc(v);
+  std::string tran; if (const char* e = std::getenv("FSOT_BS_TRAN")) tran = e;  // "tstep tstop": block-sequential transient (uic)
+  std::map<std::string, std::vector<double>> wav; std::vector<double> tgrid;
   std::map<std::string, std::string> sol; int maxsz = 0, merged = 0, retried = 0; std::string fail;
   for (int k = 0; k < nc && fail.empty(); ++k) {
     std::vector<int> ei; for (int b : sccs[k]) ei.insert(ei.end(), mem[b].begin(), mem[b].end()); std::sort(ei.begin(), ei.end());
@@ -92,12 +96,16 @@ int main(int argc, char** argv) {
     auto write = [&](const std::string& fn, int att) { std::ofstream o(fn); o << "* block " << k << "\n";
       for (auto& m : models) o << m << "\n";
       for (auto& g : gl) o << els[glob[g]].line << "\n";
-      for (auto& x : ext) o << "VFIX_" << x << " " << x << " 0 DC " << sol.at(x) << "\n";
+      for (auto& x : ext) { if (tran.empty()) { o << "VFIX_" << x << " " << x << " 0 DC " << sol.at(x) << "\n"; continue; }
+        o << "VFIX_" << x << " " << x << " 0 PWL("; const auto& w = wav.at(x); char b[64];
+        for (size_t j = 0; j < w.size(); ++j) { std::snprintf(b, sizeof b, "%s%.9e %.15e", j ? (j % 4 ? " " : "\n+ ") : "", tgrid[j], w[j]); o << b; } o << ")\n"; }
       for (int i : ei) o << els[i].line << "\n";
       for (auto& n : own) if (nodeset.count(n)) o << ".nodeset v(" << n << ")=" << nodeset[n] << "\n";
       std::string op = options; if (att == 1) op += " gmin=1e-12"; if (att == 2) { op = std::regex_replace(op, std::regex("reltol=[^ ]+"), "reltol=1e-5"); op += " gmin=1e-12 klu"; }
       if (att != 2) { auto p = op.find(' '); op.insert(p, " sparse"); }
-      o << op << "\n.control\nset numdgt=15\nop\nprint all\nquit\n.endc\n.end\n"; };
+      if (tran.empty()) o << op << "\n.control\nset numdgt=15\nop\nprint all\nquit\n.endc\n.end\n";
+      else { std::istringstream ts(tran); std::string a, b; ts >> a >> b;
+        o << op << " interp\n.control\nset wr_singlescale\nset wr_vecnames\noption numdgt=15\ntran " << a << " " << b << " 0 " << a << " uic\nwrdata " << fn << ".dat all\nquit\n.endc\n.end\n"; } };
     bool ok = false;
     for (int att = 0; att < 3 && !ok; ++att) {
       std::string fn = wd + "/b" + std::to_string(k) + ".cir", lg = wd + "/b" + std::to_string(k) + ".log"; write(fn, att);
@@ -105,7 +113,26 @@ int main(int argc, char** argv) {
       std::ifstream r(lg); std::map<std::string, std::string> got; std::string q; bool nan = false;
       static const std::regex rv(R"(^(?:v\()?([a-z0-9_.#]+)\)? += (\S+)\s*$)");
       while (std::getline(r, q)) { std::smatch m; if (std::regex_match(q, m, rv)) { got[m[1]] = m[2]; if (m[2].str().find("nan") != std::string::npos) nan = true; } }
+      if (!tran.empty()) { got.clear(); std::ifstream d(fn + ".dat"); std::string h; std::vector<std::string> nm; std::vector<std::vector<double>> col;
+        if (std::getline(d, h)) { std::istringstream hs(h); std::string x; while (hs >> x) { x = lc(x); std::smatch m; if (std::regex_match(x, m, std::regex(R"(v\(([^)]+)\))"))) x = m[1]; nm.push_back(x); } col.resize(nm.size());
+          while (std::getline(d, h)) { std::istringstream ls(h); for (size_t j = 0; j < nm.size(); ++j) { double v; if (!(ls >> v)) break; col[j].push_back(v); if (v != v) nan = true; } } }
+        if (!nm.empty() && !col[0].empty()) { if (tgrid.empty()) tgrid = col[0]; if (col[0].size() != tgrid.size()) nan = true;
+          for (size_t j = 1; j < nm.size(); ++j) { got[nm[j]] = std::to_string(col[j].back()); if (!ext.count(nm[j])) wav[nm[j]] = col[j]; } } }
       bool all = true; for (auto& n : own) if (!got.count(n)) all = false;
+      if (all && !nan && tran.empty()) {  // verify: plain Newton from the reported point, no stepping, no pseudo-transient
+        std::ifstream src(fn); std::ofstream v(fn + ".v.cir"); std::string q2;
+        while (std::getline(src, q2)) { std::string L2 = lc(q2); if (L2.rfind(".nodeset", 0) == 0) continue;
+          if (L2.rfind(".options", 0) == 0) { for (auto& n : own) if (got.count(n)) v << ".nodeset v(" << n << ")=" << got[n] << "\n";
+            q2 = std::regex_replace(q2, std::regex("(gminsteps|srcsteps|itl1)=[^ ]+"), ""); q2 += " gminsteps=0 srcsteps=0 itl1=200 noopac"; v << q2 << "\n"; continue; }
+          v << q2 << "\n"; }
+        v.close(); std::system(("timeout 600 ngspice -b " + fn + ".v.cir > " + lg + ".v 2>&1").c_str());
+        std::ifstream r2(lg + ".v"); std::map<std::string, std::string> g2; bool bad = false;
+        while (std::getline(r2, q)) { std::smatch m; if (std::regex_match(q, m, rv)) g2[m[1]] = m[2]; if (q.find("could not be simulated") != std::string::npos) bad = true; }
+        if (bad && std::getenv("FSOT_BS_DEBUG")) std::fprintf(stderr, "block %d att %d: stepping/ptran in verify\n", k, att);
+        for (auto& n : own) { if (!g2.count(n)) { bad = true; if (std::getenv("FSOT_BS_DEBUG")) std::fprintf(stderr, "block %d: %s missing\n", k, n.c_str()); break; }
+          const double a = std::atof(got[n].c_str()), b = std::atof(g2[n].c_str());
+          if (std::fabs(a - b) > 1e-5 * std::fabs(a) + 1e-7) { bad = true; if (std::getenv("FSOT_BS_DEBUG")) std::fprintf(stderr, "block %d: %s %g vs %g\n", k, n.c_str(), a, b); break; } }
+        if (bad) all = false; }
       if (all && !nan) { ok = true; for (auto& [a, v] : got) if (!ext.count(a)) sol[a] = v; if (att) ++retried; }
     }
     if (!ok) fail = "block " + std::to_string(k) + " (" + std::to_string(ei.size()) + " elements, first " + els[ei[0]].name + ")";
@@ -113,6 +140,11 @@ int main(int argc, char** argv) {
   std::ofstream o(outlog);
   if (fail.empty()) for (auto& p : prints) { std::istringstream s(p); std::string v; while (s >> v) { std::string n = v; std::smatch m;
       if (std::regex_match(v, m, std::regex(R"(v\(([^)]+)\))"))) n = m[1]; else if (std::regex_match(v, m, std::regex(R"(i\(([^)]+)\))"))) n = m[1].str() + "#branch";
+      if (!tran.empty() && (v.rfind("fin_", 0) == 0 || v.rfind("rip_", 0) == 0)) { std::string nn = v.substr(4); if (!wav.count(nn)) continue; const auto& w = wav[nn];
+        const double fin = w.back(); if (v[0] == 'f') { char b[64]; std::snprintf(b, sizeof b, "%.15e", fin); o << v << " = " << b << "\n"; continue; }
+        size_t k0 = w.size() > 251 ? w.size() - 251 : 0; double mx = -1e300, mn = 1e300; for (size_t j = k0; j < w.size(); ++j) { mx = std::max(mx, w[j]); mn = std::min(mn, w[j]); }
+        size_t js = w.size(); while (js > 0 && std::fabs(w[js - 1] - fin) <= 1e-5 * std::fabs(fin) + 1e-7) --js;
+        o << v << " = " << (mx - mn) << "\nsettle_" << nn << " = " << (js < w.size() ? tgrid[js] : tgrid.back()) << "\n"; continue; }
       if (sol.count(n)) o << v << " = " << sol[n] << "\n"; } }
   { std::ofstream a(wd + "/solution.ns"); for (auto& [n, v] : sol) a << n << " = " << v << "\n"; }
   o << "SOLVER: " << (fail.empty() ? "blocks" : "FAILED blocks at " + fail) << " (" << nc << " blocks, " << merged << " merged loops, largest " << maxsz << " elements, " << retried << " retried)\n";
