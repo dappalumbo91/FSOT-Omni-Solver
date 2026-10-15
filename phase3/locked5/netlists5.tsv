@@ -1,0 +1,12 @@
+netlist	leaves	parts	opamps	log	antilog	summers	linear_sums	series_terms	comparators	base_refs	R_strings	cancelling_sums	fullwave	antilog_uncascoded
+2_M	44	1411	183	22	75	98	15	42	0	4	108	2	0	20
+2_P	49	1902	262	24	127	150	64	42	0	4	163	9	0	20
+2_T	5	841	99	18	37	64	16	50	0	4	58	5	0	24
+2_X	14	819	100	18	36	51	18	21	0	4	67	3	0	11
+2a_M	66	583	102	4	49	49	0	0	0	4	49	0	0	0
+2a_P	80	1875	281	16	152	152	71	0	0	4	175	16	0	0
+2a_Q	9	398	80	2	6	6	3	0	59	2	48	1	0	0
+2a_T	12	835	99	8	37	62	16	49	0	4	53	5	0	25
+2a_X	44	1594	216	33	105	109	42	0	0	4	136	18	1	0
+GEN	20	1088	129	22	52	75	16	42	0	4	84	2	0	20
+T1	14	812	110	22	40	54	21	21	0	4	77	3	0	11

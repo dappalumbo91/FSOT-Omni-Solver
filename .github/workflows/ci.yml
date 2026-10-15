@@ -66,3 +66,5 @@ jobs:
         run: phase3/tools/reproduce3.sh "$PWD/third_party/FSOT-2.1-Cpp"
       - name: Verify LOCK4 (compiled leaves, byte-identical re-derivation)
         run: cd phase3/tools && ./verify_lock4.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK5 (byte-identical re-derivation)
+        run: cd phase3/tools && ./verify_lock5.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
