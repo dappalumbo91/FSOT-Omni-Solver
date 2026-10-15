@@ -68,3 +68,5 @@ jobs:
         run: cd phase3/tools && ./verify_lock4.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
       - name: Verify LOCK5 (byte-identical re-derivation)
         run: cd phase3/tools && ./verify_lock5.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK6 (byte-identical re-derivation)
+        run: cd phase3/tools && ./verify_lock6.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"

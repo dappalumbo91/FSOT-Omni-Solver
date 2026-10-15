@@ -1,0 +1,14 @@
+name	ideal	E24_a	E24_b	E24_c	E24_rel	unit	meaning
+R_lcT	4017107.38464	3.6e+06	390000	27000	2.673e-05	ohm	log-carry TIA feedback and divide-back input: 1 V per I_U e^-3
+C_int	1e-09	-	-	-	-	F	charge-integrator capacitor (C0G), bench only
+T_int	1	-	-	-	-	s	charge-integration time, bench only
+R_lcn_9	11111.1111111	11000	110	0	1.000e-04	ohm	log-carry: 9 nepers from V_NEP (R_SUM 10/n)
+R_lcn_11	9090.90909091	4700	4300	91	1.000e-05	ohm	log-carry: 11 nepers from V_NEP (R_SUM 10/n)
+R_lcn_8	12500	8200	4300	0	0.000e+00	ohm	log-carry: 8 nepers from V_NEP (R_SUM 10/n)
+R_lcn_14	7142.85714286	4700	2400	43	2.000e-05	ohm	log-carry: 14 nepers from V_NEP (R_SUM 10/n)
+R_lcn_35	2857.14285714	2400	430	27	5.000e-05	ohm	log-carry: 35 nepers from V_NEP (R_SUM 10/n)
+R_lcn_19	5263.15789474	4700	560	3	3.000e-05	ohm	log-carry: 19 nepers from V_NEP (R_SUM 10/n)
+R_lcn_7	14285.7142857	9100	5100	82	2.600e-04	ohm	log-carry: 7 nepers from V_NEP (R_SUM 10/n)
+R_lcn_13	7692.30769231	7500	110	82	4.000e-05	ohm	log-carry: 13 nepers from V_NEP (R_SUM 10/n)
+R_lcn_12	8333.33333333	8200	130	0	4.000e-04	ohm	log-carry: 12 nepers from V_NEP (R_SUM 10/n)
+R_lcn_36	2777.77777778	2700	75	2.7	2.800e-05	ohm	log-carry: 36 nepers from V_NEP (R_SUM 10/n)
