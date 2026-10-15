@@ -1,0 +1,303 @@
+// netgen2.cpp — ngspice netlists of the Phase-2 full-core-law channel from the LOCKED values (../locked/).
+// Usage: netgen2 <mode> <variant> <seed> <out.cir> [tempC] [analysis] [fold]
+//   mode:     fold (one full-core-law channel, fold selected by its inputs) | omb (Chemistry + Cosmology channels,
+//             current-mode 1 - S_chem, Omega_b h^2) | consts (PTAT, alpha_s, 1/alpha via three e^1 stages) | ptat
+//   variant:  ideal_ideal | ideal_opa | e24_opa | mcB | mcC  (mc*: E24 + tolerance draws, ideal op-amp + Vos draw)
+//   analysis: op | tran | dump | noise | ac_<block>
+#include <cctype>
+#include <cmath>
+#include <cstdlib>
+#include <cstdio>
+#include <fstream>
+#include <map>
+#include <random>
+#include <sstream>
+#include <string>
+#include <vector>
+
+struct PartV { double ideal, a, b, c; };
+static std::map<std::string, PartV> P;
+static std::map<std::string, double> C;  // summer constants (nepers)
+struct Var { bool e24 = true, ideal_op = false, vendor_cmp = true; double tolR = 0, tc = 0, vos = 0, vbe = 0, vref = 0, beta = 0, vaf = 0, ron_lo = 125, ron_hi = 125; };
+static Var V; static std::mt19937_64 rng; static std::ostringstream N, M;
+static bool TRAN = false; static int STOP = 99;  // STOP: debug-only partial build (env FSOT_P2_STOP); never used for results
+double U(double lo, double hi) { return std::uniform_real_distribution<double>(lo, hi)(rng); }
+double G(double s, double clip) { if (s == 0) return 0; double x; do { x = std::normal_distribution<double>(0, s)(rng); } while (std::fabs(x) > clip); return x; }
+
+static std::string LK = "../locked";
+void load() {
+  std::ifstream f(LK + "/design2_values.tsv"); std::string line; std::getline(f, line);
+  while (std::getline(f, line)) { std::istringstream s(line); std::string n, id, a, b, c; std::getline(s, n, '\t'); std::getline(s, id, '\t'); std::getline(s, a, '\t'); std::getline(s, b, '\t'); std::getline(s, c, '\t');
+    P[n] = {std::stod(id), std::stod(a), std::stod(b), std::stod(c)}; }
+  std::ifstream c(LK + "/design2_consts.tsv"); std::getline(c, line);
+  while (std::getline(c, line)) { std::istringstream s(line); std::string n, v; std::getline(s, n, '\t'); std::getline(s, v, '\t'); C[n] = std::stod(v); }
+}
+void Rp(const std::string& nm, const std::string& n1, const std::string& n2, const std::string& part) {
+  const PartV& p = P.at(part);
+  auto tcs = [&]() { std::ostringstream t; if (V.tc > 0) t << " tc1=" << U(-V.tc, V.tc); return t.str(); };
+  if (!V.e24) { N << "R" << nm << " " << n1 << " " << n2 << " " << p.ideal * (1 + (V.tolR > 0 ? U(-V.tolR, V.tolR) : 0)) << tcs() << "\n"; return; }
+  std::vector<double> pcs; for (double x : {p.a, p.b, p.c}) if (x > 0) pcs.push_back(x);
+  std::string prev = n1;
+  for (size_t i = 0; i < pcs.size(); ++i) { std::string nx = (i + 1 == pcs.size()) ? n2 : (nm + "_m" + std::to_string(i));
+    N << "R" << nm << "_" << i << " " << prev << " " << nx << " " << pcs[i] * (1 + (V.tolR > 0 ? U(-V.tolR, V.tolR) : 0)) << tcs() << "\n"; prev = nx; }
+}
+void OA(const std::string& nm, const std::string& pl, const std::string& mi, const std::string& out) {
+  const double vos = G(V.vos, 5 * V.vos);
+  N << "VOS_" << nm << " " << nm << "_p " << pl << " DC " << vos << "\n";
+  if (V.ideal_op) N << "E_" << nm << " " << out << " 0 " << nm << "_p " << mi << " 1e6\n";
+  else N << "X_" << nm << " " << nm << "_p " << mi << " vcc vee " << out << " OPAx187\n";
+}
+void CMP(const std::string& nm, const std::string& pl, const std::string& mi, const std::string& out) {
+  const double vos = G(V.vos, 5 * V.vos);
+  if (V.vendor_cmp) { N << "VOS_" << nm << " " << nm << "_p " << pl << " DC " << vos << "\nX_" << nm << " " << nm << "_p " << mi << " vcc vee " << out << " LM139\n"; Rp("pu" + nm, "vcc", out, "R_pullup"); }
+  else N << "B_" << nm << " " << out << " 0 V = 6.8*tanh(2e4*(V(" << pl << ")-V(" << mi << ")+(" << vos << ")))\n";
+}
+void Q(const std::string& nm, const std::string& c, const std::string& b, const std::string& e) {
+  const double dv = G(V.vbe, 5 * V.vbe); const double IS = 6.734e-15 * std::exp(-dv / 0.025865);
+  const double bf = 416.4 * (1 + (V.beta > 0 ? U(-V.beta, V.beta) : 0)), vaf = 74.03 * (1 + (V.vaf > 0 ? U(-V.vaf, V.vaf) : 0));
+  M << ".model QM_" << nm << " NPN(IS=" << IS << " XTI=3 EG=1.11 VAF=" << vaf << " BF=" << bf << " NE=1.259 ISE=6.734f IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75 FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)\n";
+  N << "Q_" << nm << " " << c << " " << b << " " << e << " QM_" << nm << "\n";
+}
+void MOS(const std::string& nm, const std::string& d, const std::string& g, const std::string& s) { N << "M_" << nm << " " << d << " " << g << " " << s << " M2N7000\n"; }
+// SPDT (CD4053 pole): com <-> a when ctl > 0, com <-> b otherwise
+void SPDT(const std::string& nm, const std::string& com, const std::string& a, const std::string& b, const std::string& ctl) {
+  const double r1 = U(V.ron_lo, V.ron_hi + 1e-9), r2 = U(V.ron_lo, V.ron_hi + 1e-9);
+  M << ".model SWa_" << nm << " SW(VT=0 VH=0.2 RON=" << r1 << " ROFF=1e12)\n.model SWb_" << nm << " SW(VT=0 VH=0.2 RON=" << r2 << " ROFF=1e12)\n";
+  N << "Sa_" << nm << " " << com << " " << a << " " << ctl << " 0 SWa_" << nm << "\n";
+  N << "Sb_" << nm << " " << com << " " << b << " 0 " << ctl << " SWb_" << nm << "\n";
+}
+// cascoded log-ratio: Ix summed into node <p>c1 (transdiode Q1), Ir into <p>c2 (cascoded Q2); out n = V_T ln(Ir/Ix)
+void LOGR(const std::string& p, const std::string& n) {
+  Q(p + "1", p + "c1", "0", p + "e"); OA(p + "A", "0", p + "c1", p + "e");
+  Q(p + "2", p + "k", n, p + "e"); MOS(p, p + "c2", p + "g", p + "k"); OA(p + "D", n, p + "k", p + "g");
+  OA(p + "B", p + "c2", "0", n);
+  N << "CA" << p << " " << p << "e " << p << "c1 1n\nCB" << p << " " << p << "c2 0 1n\n";
+}
+// cascoded antilog: Iin into <p>d (transdiode Q3); Q4 base vx; Iout = Iin exp(vx/V_T) sunk from each node in outs
+void CAL(const std::string& p, const std::string& vx, const std::vector<std::string>& outs) {
+  Q(p + "3", p + "d", "0", p + "ea"); OA(p + "C", "0", p + "d", p + "ea"); N << "CC" << p << " " << p << "ea " << p << "d 1n\n";
+  for (size_t i = 0; i < outs.size(); ++i) { std::string s = p + (i ? "b" : "");
+    Q(s + "4", s + "k4", vx, p + "ea"); MOS(s + "4", outs[i], s + "g4", s + "k4"); OA(s + "E", vx, s + "k4", s + "g4"); }
+}
+void TIA(const std::string& p, const std::string& node, const std::string& out, const std::string& part) {
+  OA("T" + p, "0", node, out); Rp("T" + p, out, node, part); N << "CT" << p << " " << out << " " << node << " 100p\n";
+}
+void BUF(const std::string& p, const std::string& in, const std::string& out) { OA("U" + p, in, out, out); }
+// summer: inverting, feedback R_sum; inputs (node, part); a constant (nepers) from the PTAT bus with the locked sign
+void SUM(const std::string& p, const std::string& out, const std::vector<std::pair<std::string, std::string>>& in, const std::string& ckey = "", const std::string& cpart = "") {
+  OA("S" + p, "0", "s" + p, out); Rp("Sf" + p, out, "s" + p, "R_sum"); N << "CS" << p << " " << out << " s" << p << " 100p\n";
+  int i = 0; for (auto& [nd, part] : in) Rp("S" + p + "_" + std::to_string(i++), nd, "s" + p, part);
+  if (!ckey.empty()) Rp("S" + p + "_c", C.at(ckey) < 0 ? "vnep" : "vnepn", "s" + p, cpart);
+}
+void FW(const std::string& p, const std::string& in, const std::string& out) {  // precision full-wave |in|
+  OA("F1" + p, "0", "f1" + p, "fo" + p); Rp("fwi" + p, in, "f1" + p, "R_fw"); Rp("fwf" + p, "f1" + p, "fh" + p, "R_fw");
+  N << "DF1" << p << " fh" << p << " fo" << p << " D1N4148\nDF2" << p << " fo" << p << " f1" << p << " D1N4148\n";
+  OA("F2" + p, "0", "f2" + p, out); Rp("fwx" + p, in, "f2" + p, "R_fw2"); Rp("fwh" + p, "fh" + p, "f2" + p, "R_fw"); Rp("fwo" + p, out, "f2" + p, "R_fw2");
+}
+void refs() {
+  const double vref = 2.5 * (1 + U(-V.vref, V.vref + 1e-15));
+  if (TRAN) N << "VCC vcc 0 PWL(0 0 1m 9)\nVEE vee 0 PWL(0 0 1m -9)\nVREF vr 0 PWL(0 0 1m 0 3m " << vref << ")\n";
+  else N << "VCC vcc 0 9\nVEE vee 0 -9\nVREF vr 0 DC " << vref << "\n";
+  OA("inv", "0", "ninv", "vrn"); Rp("inv1", "vr", "ninv", "R_inv"); Rp("inv2", "ninv", "vrn", "R_inv");
+  // PTAT neper reference
+  Rp("ptAh", "vr", "ptAc1", "R_ptA_hi"); Rp("ptAl", "vr", "ptAc2", "R_ptA_lo"); LOGR("ptA", "nptA");
+  Rp("ptBh", "vr", "ptBc1", "R_ptB_hi"); Rp("ptBl", "vr", "ptBc2", "R_ptB_lo"); LOGR("ptB", "nptB");
+  OA("ptAi", "0", "nptAi", "nptAn"); Rp("ptAi1", "nptA", "nptAi", "R_inv"); Rp("ptAi2", "nptAi", "nptAn", "R_inv");
+  OA("ptg", "0", "nptg", "vnep"); Rp("ptgf", "nptg", "vnep", "R_sum"); Rp("ptgB", "nptB", "nptg", "R_ptg_B"); Rp("ptgA", "nptAn", "nptg", "R_ptg_A");
+  OA("ninv", "0", "nninv", "vnepn"); Rp("ni1", "vnep", "nninv", "R_inv"); Rp("ni2", "nninv", "vnepn", "R_inv");
+}
+// fold ladder (Phase-1 thresholds), comparators on g, two steering copies: c2Db (LOGR_Db) and cTD (chaos TIA)
+void ladder(const std::string& p, const std::string& gnode, const std::vector<std::string>& dst) {
+  Rp("str5" + p, "0", "th5" + p, "R_str_5");
+  for (int k = 6; k <= 24; ++k) Rp("str" + std::to_string(k) + p, "th" + std::to_string(k - 1) + p, "th" + std::to_string(k) + p, "R_str_" + std::to_string(k));
+  Rp("strtop" + p, "th24" + p, "vr", "R_str_top");
+  for (int k = 5; k <= 24; ++k) { std::string ks = std::to_string(k);
+    CMP("cmp" + p + ks, gnode, "th" + ks + p, "ct" + p + ks);
+    for (size_t j = 0; j < dst.size(); ++j) { std::string sj = p + ks + "_" + std::to_string(j);
+      Rp("st" + sj, "vr", "sk" + sj, "R_step"); SPDT("l" + sj, "sk" + sj, dst[j], "0", "ct" + p + ks); } }
+  for (size_t j = 0; j < dst.size(); ++j) Rp("base" + p + std::to_string(j), "vr", dst[j], "R_base");
+}
+void gstring(const std::string& p) { for (int i = 0; i < 20; ++i) Rp("g" + std::to_string(i) + p, i == 0 ? "0" : "tg" + std::to_string(i) + p, i == 19 ? "vr" : "tg" + std::to_string(i + 1) + p, "R_gunit"); }
+// powers of a log input: k-th antilog Iout = I_U x^{2k} / n_k sunk at odd -> sink node, even -> TIA copy node
+void powers(const std::string& p, const std::string& x, const std::string& nlog, int kmax, const std::string& ckey, const std::string& sink, const std::string& tia) {
+  for (int k = 1; k <= kmax; ++k) { std::string ks = std::to_string(k), q = p + ks + x;
+    SUM(q, "vx" + q, {{nlog, "R_" + p + ks + "_n"}}, ckey + ks, "R_" + p + ks + "_c");
+    Rp("pin" + q, "vr", q + "d", "R_pin"); CAL(q, "vx" + q, {k % 2 ? sink : tia}); }
+}
+struct Fold { std::string name; int g, D, look /*0:1 1:atomic 2:hep*/, hits; bool obs; };
+// one full-core-law channel (prefix x): writes vS<x>; optional 1-S node (n1s<x>) copies
+void channel(const std::string& x, const Fold& f, bool oneminus) {
+  auto ctl = [&](const std::string& nm, bool on) { N << "VCTL" << nm << x << " " << nm << x << " 0 DC " << (on ? 5 : -5) << "\n"; };
+  ctl("cl1", f.look == 0); ctl("cat", f.look == 1); ctl("ch", f.hits > 0); ctl("cob", f.obs);
+  gstring(x);
+  // look selector: angle bus (VR) and neper bus (-V_NEP)
+  Rp("lkla" + x, "0", "la" + x, "R_lkl_a"); Rp("lklh" + x, "la" + x, "lh" + x, "R_lkl_h"); Rp("lkl1" + x, "lh" + x, "l1" + x, "R_lkl_1"); Rp("lklt" + x, "l1" + x, "vr", "R_lkl_t");
+  SPDT("ls1" + x, "ds1" + x, "l1" + x, "ds2" + x, "cl1" + x); SPDT("ls2" + x, "ds2" + x, "la" + x, "lh" + x, "cat" + x); BUF("dpl" + x, "ds1" + x, "dpl" + x);
+  Rp("lkna" + x, "0", "na" + x, "R_lkn_a"); Rp("lknh" + x, "na" + x, "nh" + x, "R_lkn_h"); Rp("lkn1" + x, "nh" + x, "vnepn", "R_lkn_1");
+  SPDT("ns1" + x, "es1" + x, "vnepn", "es2" + x, "cl1" + x); SPDT("ns2" + x, "es2" + x, "na" + x, "nh" + x, "cat" + x); BUF("dpn" + x, "es1" + x, "dpn" + x);
+  Rp("dtb" + x, "0", "dtt" + x, "R_dt_b"); Rp("dtt" + x, "dtt" + x, "vr", "R_dt_t"); BUF("dtl" + x, "dtt" + x, "dtl" + x);
+  if (STOP == 0) return;
+  // N, P
+  Rp("N" + x, "vr", "lN" + x + "c1", "R_N"); Rp("Nr" + x, "vr", "lN" + x + "c2", "R_Nr"); LOGR("lN" + x, "nN" + x);
+  Rp("P" + x, "vr", "lP" + x + "c1", "R_P"); Rp("Pr" + x, "vr", "lP" + x + "c2", "R_Pr"); LOGR("lP" + x, "nP" + x);
+  if (STOP == 1) return;
+  // D: ladder copies -> LOGR_Db cascoded side (via 0 V sense source) and the chaos TIA
+  ladder(x, f.g == 0 ? "0" : "tg" + std::to_string(f.g) + x, {"dsen" + x, "cTD" + x});
+  N << "VID" << x << " dsen" << x << " lDb" << x << "c2 DC 0\n";
+  Rp("Dbr" + x, "vr", "lDb" + x + "c1", "R_Dbr"); LOGR("lDb" + x, "nDb" + x);
+  TIA("D" + x, "cTD" + x, "vD" + x, "R_TD");
+  if (STOP == 2) return;
+  // a2 = cos x = -cos y
+  SUM("y" + x, "vmy" + x, {{"dpl" + x, "R_y_dp"}, {"vrn", "R_y_c"}}); FW("y" + x, "vmy" + x, "vay" + x);
+  Rp("ang_y" + x, "vay" + x, "ly" + x + "c1", "R_ang"); Rp("yr" + x, "vr", "ly" + x + "c2", "R_yr"); LOGR("ly" + x, "ny" + x);
+  powers("cy", x, "ny" + x, 3, "cy", "lcos" + x + "c1", "cp" + x); TIA("cp" + x, "cp" + x, "vcp" + x, "R_pT");
+  Rp("cpc" + x, "vcp" + x, "lcos" + x + "c1", "R_pT"); Rp("cosU" + x, "vr", "lcos" + x + "c1", "R_U"); Rp("cosr" + x, "vr", "lcos" + x + "c2", "R_cosr"); LOGR("lcos" + x, "ncos" + x);
+  if (STOP == 3) return;
+  // observer (quirkMod): exp(C_F P_var) cos(dpsi + P_var), cos(dpsi+P_var) = -sin w
+  SUM("w" + x, "vmw" + x, {{"dpl" + x, "R_w_dp"}, {"vrn", "R_w_c"}}); CMP("wcmp" + x, "0", "vmw" + x, "cwp" + x); FW("w" + x, "vmw" + x, "vaw" + x);
+  Rp("ang_w" + x, "vaw" + x, "lw" + x + "c1", "R_ang"); Rp("wr" + x, "vr", "lw" + x + "c2", "R_wr"); LOGR("lw" + x, "nw" + x);
+  powers("sw", x, "nw" + x, 3, "sw", "lsp" + x + "c1", "spt" + x); TIA("spt" + x, "spt" + x, "vspt" + x, "R_pT");
+  Rp("spc" + x, "vspt" + x, "lsp" + x + "c1", "R_pT"); Rp("spU" + x, "vr", "lsp" + x + "c1", "R_U"); Rp("spr" + x, "vr", "lsp" + x + "c2", "R_spr"); LOGR("lsp" + x, "nsp" + x);
+  SPDT("go1" + x, "go1" + x, "nw" + x, "0", "cob" + x); BUF("nwg" + x, "go1" + x, "nwg" + x);
+  SPDT("go2" + x, "go2" + x, "nsp" + x, "0", "cob" + x); BUF("nspg" + x, "go2" + x, "nspg" + x);
+  SPDT("go3" + x, "go3" + x, C.at("T1obs") < 0 ? "vnep" : "vnepn", "0", "cob" + x); BUF("vqg" + x, "go3" + x, "vqg" + x);
+  if (STOP == 4) return;
+  // h/N and alpha buses
+  Rp("hNin" + x, "vnep", "hN" + x + "d", "R_hN_in"); CAL("hN" + x, "nN" + x, {"thN" + x}); TIA("hN" + x, "thN" + x, "v1N" + x, "R_hN_T");
+  SPDT("hs" + x, "hs" + x, "v1N" + x, "0", "ch" + x); BUF("vhs" + x, "hs" + x, "vhs" + x);
+  Rp("alt" + x, "vhs" + x, "vahN" + x, "R_al_t"); Rp("alb" + x, "vahN" + x, "0", "R_al_b");
+  Rp("alnt" + x, "vnepn", "valn" + x, "R_al_t"); Rp("alnb" + x, "valn" + x, "0", "R_al_b");
+  if (STOP == 5) return;
+  // a4 = 1 + C_eff growth
+  SUM("G" + x, "vxg" + x, {{"valn" + x, "R_G_al"}, {"vahN" + x, "R_G_ahN"}}, "G", "R_G_c");
+  Rp("gin" + x, "vr", "g" + x + "d", "R_g_in"); CAL("g" + x, "vxg" + x, {"ngr" + x}); TIA("g4" + x, "ngr" + x, "vg" + x, "R_pT");
+  Rp("gc" + x, "vg" + x, "la4" + x + "c1", "R_pT"); Rp("a4U" + x, "vr", "la4" + x + "c1", "R_U"); Rp("a4r" + x, "vr", "la4" + x + "c2", "R_a4r"); LOGR("la4" + x, "na4" + x);
+  if (STOP == 6) return;
+  // a5 = 1 + P_new ln(D/25), PTAT-referenced
+  Rp("a5p" + x, "vnep", "la5" + x + "c1", "R_pt"); Rp("a5x" + x, "nDb" + x, "la5" + x + "c1", "R_x"); Rp("a5c" + x, "vnep", "la5" + x + "c1", "R_x12");
+  Rp("a5r" + x, "vnep", "la5" + x + "c2", "R_a5r"); LOGR("la5" + x, "na5" + x);
+  if (STOP == 7) return;
+  // T1 summer -> antilog -> |T1| TIA -> sign chain -> S node
+  SUM("T1" + x, "vx1" + x, {{"nN" + x, "R_T1_N"}, {"nP" + x, "R_T1_P"}, {"nDb" + x, "R_T1_Db"}, {"ncos" + x, "R_T1_cos"}, {"na4" + x, "R_T1_a4"}, {"na5" + x, "R_T1_a5"},
+    {"nwg" + x, "R_T1_w"}, {"nspg" + x, "R_T1_sp"}, {"vnepn", "R_T1_rho"}, {"dpn" + x, "R_T1_dp"}, {"vahN" + x, "R_T1_ahN"}, {"vqg" + x, "R_T1_co"}}, "T1", "R_T1_c");
+  Rp("T1in" + x, "vr", "a1" + x + "d", "R_T1in"); CAL("a1" + x, "vx1" + x, {"tT1" + x}); TIA("T1" + x, "tT1" + x, "vt1" + x, "R_T1T");
+  OA("t1i" + x, "0", "nt1i" + x, "vt1n" + x); Rp("t1i1" + x, "vt1" + x, "nt1i" + x, "R_inv"); Rp("t1i2" + x, "nt1i" + x, "vt1n" + x, "R_inv");
+  SPDT("pa" + x, "pa" + x, "vt1n" + x, "vt1" + x, "cwp" + x); SPDT("pb" + x, "pb" + x, "pa" + x, "vt1" + x, "cob" + x); BUF("t1s" + x, "pb" + x, "vt1s" + x);
+  OA("SS" + x, "0", "nS" + x, "vS" + x); Rp("SF" + x, "vS" + x, "nS" + x, "R_SF"); N << "CSS" << x << " vS" << x << " nS" << x << " 100p\n";
+  Rp("s1" + x, "vt1s" + x, "nS" + x, "R_s1");
+  N << "VTB" << x << " vtb" << x << " 0 DC 0\n"; Rp("tb" + x, "vtb" + x, "nS" + x, "R_tb");
+  if (STOP == 8) return;
+  // T2 = scale*amplitude + trend_bias
+  Rp("sc" + x, "vr", "lsc" + x + "c1", "R_sc"); Rp("scr" + x, "vr", "lsc" + x + "c2", "R_scr"); LOGR("lsc" + x, "nsc" + x);
+  Rp("am" + x, "vr", "lam" + x + "c1", "R_am"); Rp("amr" + x, "vr", "lam" + x + "c2", "R_amr"); LOGR("lam" + x, "nam" + x);
+  SUM("T2" + x, "vx2" + x, {{"nsc" + x, "R_T2_sc"}, {"nam" + x, "R_T2_am"}}, "T2", "R_T2_c");
+  std::vector<std::string> o2 = {"nS" + x}; if (oneminus) o2.push_back("n1s" + x);
+  Rp("T2in" + x, "vr", "a2" + x + "d", "R_T2in"); CAL("a2" + x, "vx2" + x, o2);
+  if (STOP == 9) return;
+  // T3 = beta cos(dpsi) NP/sqrt(D) (1 + chaos(D-25)/25) valve * acoustic * phase  (log channel)
+  SUM("v" + x, "vv" + x, {{"dpl" + x, "R_v_dp"}, {"vrn", "R_v_c"}});
+  Rp("ang_v" + x, "vv" + x, "lv" + x + "c1", "R_ang"); Rp("vr" + x, "vr", "lv" + x + "c2", "R_vr"); LOGR("lv" + x, "nv" + x);
+  powers("sv", x, "nv" + x, 4, "sv", "lvp" + x + "c1", "vpt" + x); TIA("vpt" + x, "vpt" + x, "vvpt" + x, "R_pT");
+  Rp("vpc" + x, "vvpt" + x, "lvp" + x + "c1", "R_pT"); Rp("vpU" + x, "vr", "lvp" + x + "c1", "R_U"); Rp("vpr" + x, "vr", "lvp" + x + "c2", "R_vpr"); LOGR("lvp" + x, "nvp" + x);
+  Rp("ang_t" + x, "dtl" + x, "lt" + x + "c1", "R_ang"); Rp("tr" + x, "vr", "lt" + x + "c2", "R_tr"); LOGR("lt" + x, "nt" + x);
+  powers("st", x, "nt" + x, 5, "st", "ltp" + x + "c1", "tpt" + x); TIA("tpt" + x, "tpt" + x, "vtpt" + x, "R_pT");
+  Rp("tpc" + x, "vtpt" + x, "ltp" + x + "c1", "R_pT"); Rp("tpU" + x, "vr", "ltp" + x + "c1", "R_U"); Rp("tpr" + x, "vr", "ltp" + x + "c2", "R_tpr"); LOGR("ltp" + x, "ntp" + x);
+  SUM("s2" + x, "vxs2" + x, {{"nt" + x, "R_s2_n"}, {"ntp" + x, "R_s2_n"}}, "sin2", "R_s2_c");
+  Rp("s2in" + x, "vr", "s2" + x + "d", "R_pin"); CAL("s2" + x, "vxs2" + x, {"lac" + x + "c1"});
+  Rp("ac0" + x, "vr", "lac" + x + "c1", "R_ac0"); Rp("acr" + x, "vr", "lac" + x + "c2", "R_acr"); LOGR("lac" + x, "nac" + x);
+  Rp("ch0" + x, "vr", "lch" + x + "c1", "R_ch0"); Rp("chD" + x, "vD" + x, "lch" + x + "c1", "R_chD"); Rp("chr" + x, "vr", "lch" + x + "c2", "R_chr"); LOGR("lch" + x, "nch" + x);
+  Rp("v2" + x, "vr", "lv2" + x + "c1", "R_v2"); Rp("v2r" + x, "vr", "lv2" + x + "c2", "R_v2r"); LOGR("lv2" + x, "nv2" + x);
+  Rp("ph" + x, "vr", "lph" + x + "c1", "R_ph"); Rp("phr" + x, "vr", "lph" + x + "c2", "R_phr"); LOGR("lph" + x, "nph" + x);
+  SUM("T3" + x, "vx3" + x, {{"nv" + x, "R_T3_v"}, {"nvp" + x, "R_T3_vp"}, {"nN" + x, "R_T3_N"}, {"nP" + x, "R_T3_P"}, {"nDb" + x, "R_T3_Db"}, {"nch" + x, "R_T3_ch"},
+    {"nv2" + x, "R_T3_v2"}, {"nac" + x, "R_T3_ac"}, {"nph" + x, "R_T3_ph"}}, "T3", "R_T3_c");
+  std::vector<std::string> o3 = {"nS" + x}; if (oneminus) o3.push_back("n1s" + x);
+  Rp("T3in" + x, "vr", "a3" + x + "d", "R_T3in"); CAL("a3" + x, "vx3" + x, o3);
+  if (oneminus) {  // 1 - S = K (1/K - T1 - T2 - T3) as one current node
+    OA("1S" + x, "0", "n1s" + x, "v1s" + x); Rp("1sF" + x, "v1s" + x, "n1s" + x, "R_1sF"); N << "C1S" << x << " v1s" << x << " n1s" << x << " 100p\n";
+    Rp("1s0" + x, "vr", "n1s" + x, "R_1s0"); Rp("1s1" + x, "vt1s" + x, "n1s" + x, "R_s1"); Rp("1stb" + x, "vtb" + x, "n1s" + x, "R_tb");
+  }
+}
+std::vector<Fold> folds() {
+  std::vector<Fold> v; std::ifstream f(LK + "/folds35_targets.tsv"); std::string line; std::getline(f, line);
+  while (std::getline(f, line)) { std::istringstream s(line); std::string n, g, D, look, h, ob; std::getline(s, n, '\t'); std::getline(s, g, '\t'); std::getline(s, D, '\t'); std::getline(s, look, '\t'); std::getline(s, h, '\t'); std::getline(s, ob, '\t');
+    const double lk = std::stod(look); v.push_back({n, std::stoi(g), std::stoi(D), lk == 1.0 ? 0 : (lk < 0.9 ? 1 : 2), std::stoi(h), ob == "1"}); }
+  return v;
+}
+int main(int argc, char** argv) {
+  if (argc < 5) { std::fprintf(stderr, "usage: netgen2 mode variant seed out.cir [temp] [analysis] [fold]\n"); return 1; }
+  std::string mode = argv[1], var = argv[2], out = argv[4]; unsigned long seed = std::stoul(argv[3]); double temp = argc > 5 ? std::stod(argv[5]) : 27;
+  std::string an = argc > 6 ? argv[6] : "op", fname = argc > 7 ? argv[7] : "Chemistry";
+  if (const char* e = std::getenv("FSOT_P2_LOCKED")) LK = e;
+  if (const char* e = std::getenv("FSOT_P2_STOP")) STOP = std::atoi(e);
+  rng.seed(seed * 7919 + 101); load(); TRAN = (an == "tran");
+  if (var == "ideal_ideal") { V.e24 = false; V.ideal_op = true; V.vendor_cmp = false; }
+  else if (var == "ideal_opa") { V.e24 = false; }
+  else if (var == "e24_opa") { }
+  else if (var == "e24_ideal") { V.ideal_op = true; V.vendor_cmp = false; }
+  else if (var == "mcB") { V.ideal_op = true; V.vendor_cmp = false; V.tolR = 0.001; V.tc = 25e-6; V.vos = 10e-6; V.vbe = 1e-4; V.vref = 0.001; V.beta = 0.3; V.vaf = 0.2; V.ron_lo = 75; V.ron_hi = 175; }
+  else if (var == "mcC") { V.ideal_op = true; V.vendor_cmp = false; V.tolR = 0.0002; V.tc = 5e-6; V.vos = 2e-6; V.vbe = 1e-5; V.vref = 0.0005; V.beta = 0.3; V.vaf = 0.2; V.ron_lo = 75; V.ron_hi = 175; }
+  else { std::fprintf(stderr, "bad variant\n"); return 1; }
+  if (an == "dump") { V.ideal_op = true; V.vendor_cmp = false; }
+  std::vector<std::string> pr;
+  const auto FL = folds();
+  auto findf = [&](const std::string& n) { for (auto& f : FL) if (f.name == n) return f; std::fprintf(stderr, "no fold %s\n", n.c_str()); std::exit(1); };
+  std::string what;
+  refs();
+  if (mode == "fold") {
+    Fold f = findf(fname); what = "full-core-law channel, fold " + f.name;
+    const char* cp = std::getenv("FSOT_P2_CHPREFIX");  // seed generation for multi-channel netlists only
+    channel(cp ? cp : "x", f, cp && std::string(cp) == "c");
+    pr = {"vSx", "vt1x", "vx1x", "vx2x", "vx3x", "vnep", "vr", "dplx", "dpnx", "vmyx", "vayx", "vmwx", "cwpx", "nNx", "nPx", "nDbx", "ncosx", "nyx", "nwx", "nspx", "na4x", "na5x", "nvx", "nvpx", "ntx", "ntpx", "nacx", "nchx", "nv2x", "nphx", "nscx", "namx", "vahNx", "vxgx", "vt1sx"};
+  } else if (mode == "omb") {
+    what = "Chemistry + Cosmology channels, current-mode 1 - S_chem, Omega_b h^2";
+    channel("c", findf("Chemistry"), true); channel("m", findf("Cosmology"), false);
+    FW("om", "vSm", "vabs"); OA("o1i", "0", "no1i", "v1sp"); Rp("o1i1", "v1sc", "no1i", "R_inv"); Rp("o1i2", "no1i", "v1sp", "R_inv");
+    Rp("oS", "vabs", "loSc1", "R_oS"); Rp("oSr", "vr", "loSc2", "R_oSr"); LOGR("loS", "noS");
+    Rp("o1", "v1sp", "lo1c1", "R_o1"); Rp("o1r", "vr", "lo1c2", "R_o1r"); LOGR("lo1", "no1");
+    SUM("Om", "vxom", {{"noS", "R_Om_n"}, {"no1", "R_Om_n"}}, "Om", "R_Om_c");
+    Rp("omin", "vr", "omd", "R_omin"); CAL("om", "vxom", {"tom"}); TIA("om", "tom", "vomb", "R_omT");
+    pr = {"vSc", "vSm", "v1sc", "vomb", "vabs", "vt1c", "vt1m", "vx3c", "vx3m", "vnep"};
+  } else if (mode == "consts") {
+    what = "PTAT reference, alpha_s = e^-1/pi, 1/alpha_em = e^3(3phi+2) - 1 + e^-1 with e^3 from three e^1 stages";
+    SUM("em1", "vxm1", {}, "em1", "R_em1_c");
+    Rp("asin", "vr", "asd", "R_as_in"); CAL("as", "vxm1", {"tas"}); TIA("as", "tas", "vas", "R_asT");
+    SUM("e1", "vxe1", {}, "e1", "R_e1_c");  // one shared (1 - ln4) exponent line per stage below (own summer each)
+    SUM("e2", "vxe2", {}, "e1", "R_e1_c"); SUM("e3", "vxe3", {}, "e1", "R_e1_c");
+    Rp("e1in", "vr", "ec1d", "R_e1in"); CAL("ec1", "vxe1", {"te1"}); TIA("e1", "te1", "ve1", "R_eT");
+    Rp("e2in", "ve1", "ec2d", "R_eT"); CAL("ec2", "vxe2", {"te2"}); TIA("e2", "te2", "ve2", "R_eT");
+    Rp("e3in", "ve2", "ec3d", "R_e3c"); CAL("ec3", "vxe3", {"tai"});
+    Rp("em1", "vr", "tai", "R_em1"); Rp("eiin", "vr", "eid", "R_eiin"); CAL("ei", "vxm1", {"tai"}); TIA("ai", "tai", "vainv", "R_aiT");
+    pr = {"vnep", "vnepn", "nptA", "nptB", "vas", "ve1", "ve2", "vainv", "vxe1", "vxm1", "vr"};
+  } else if (mode == "ptat") {
+    what = "PTAT neper reference only"; pr = {"vnep", "vnepn", "nptA", "nptB", "vr"};
+  } else { std::fprintf(stderr, "bad mode\n"); return 1; }
+  std::ofstream o(out);
+  o << "* FSOT Omni-Solver Phase 2 — " << what << " (values from phase2/locked/design2_values.tsv)\n";
+  o << "* variant " << var << " seed " << seed << " temp " << temp << " analysis " << an << "\n";
+  if (!V.ideal_op) o << ".include ../models/vendor/ti_sbomab6/OPAx187.LIB\n";
+  if (V.vendor_cmp) o << ".include ../models/vendor/ti_slcj002/LM139.5_1\n";
+  o << ".model D1N4148 D(Is=2.52n Rs=0.568 N=1.752 Cjo=4p M=0.4 tt=20n BV=100)\n";
+  o << ".model M2N7000 VDMOS(Rg=3 Vto=1.6 Rd=0 Rs=.75 Rb=3.5 Kp=.15 Cgdmax=67p Cgdmin=12p Cgs=50p Cjo=50p Is=5.6p Vds=60 Ron=1.8 Qg=1.8n)\n";
+  o << M.str() << N.str();
+  if (const char* ns = std::getenv("FSOT_P2_NODESET")) {  // solver aid only: initial guess from a converged solve
+    std::ifstream nf(ns); std::string l; std::string body = N.str(); for (auto& ch : body) ch = (char)std::tolower((unsigned char)ch);
+    while (std::getline(nf, l)) { auto eq = l.find(" = "); if (eq == std::string::npos) continue; std::string nd = l.substr(0, eq);
+      while (!nd.empty() && nd.back() == ' ') nd.pop_back();
+      if (nd.find('#') != std::string::npos || nd.find('(') != std::string::npos) continue;
+      if (body.find(" " + nd + " ") == std::string::npos && body.find(" " + nd + "\n") == std::string::npos) continue;
+      o << ".nodeset v(" << nd << ")=" << l.substr(eq + 3) << "\n"; }
+  }
+  o << ".options temp=" << temp << " tnom=27 reltol=1e-6 abstol=1e-14 vntol=1e-8 gmin=1e-15 itl1=5000 gminsteps=50 srcsteps=50\n.control\n";
+  if (an == "dump" || an == "opdump") o << "op\nprint all\n";
+  else if (an == "tran") {
+    o << "tran 20u 30m 0 20u\nlet n = length(time) - 1\nlet k = n - 250\n";
+    for (auto& x : pr) o << "let fin_" << x << " = v(" << x << ")[n]\nlet rip_" << x << " = vecmax(v(" << x << ")[k,n]) - vecmin(v(" << x << ")[k,n])\nprint fin_" << x << " rip_" << x << "\n";
+  } else if (an == "noise") {
+    o << "noise v(" << pr[0] << ") VREF dec 10 0.1 10k 1\nsetplot noise2\nprint onoise_total\n";
+  } else {
+    o << "op\nprint"; for (auto& x : pr) o << " v(" << x << ")"; o << "\n";
+    if (mode == "fold") o << "print i(vidx)\n";
+  }
+  o << "quit\n.endc\n.end\n";
+  return 0;
+}

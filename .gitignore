@@ -22,3 +22,11 @@ results/regen_*
 __pycache__/
 *.pyc
 .DS_Store
+# Phase 2: fetched vendor models, solver logs/netlists (regenerate with phase2/tools/reproduce2.sh)
+phase2/spice/models/vendor/
+phase2/spice/out/
+phase2/spice/netlists/
+phase2/cpp/audit
+phase2/cpp/derive2
+phase2/cpp/netgen2
+phase2/cpp/score2
