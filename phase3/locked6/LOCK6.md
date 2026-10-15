@@ -37,3 +37,13 @@ tools/run_bs6.sh (leafc5 keys, fold:<name>), tools/run_tb6.sh (bench), tools/ver
     1812f98a4c09b6dcb9575d30faa2980a578591484e1e6ad1430851875d51a7c9  ../tools/run_bs6.sh
     29bfec9e46cde76e79d78f1f6d0c14295c5cff35d31e528a48df19bf7f1dd024  ../tools/run_tb6.sh
     c6045c41ce4c111a27d3b6ddf5f449f2650ebc065036ec2c554fc0b63b893b78  ../tools/verify_lock6.sh
+
+## Amendment 6.1 (bench restructure; harness only, no engine or leaf component values change)
+The first bench transient (fold Cosmology, ideal op-amps; and once with the OPDYN op-amp model) aborted at the initial timepoint
+("timestep too small"; the bench's 1e6-gain op-amp loops are too stiff for a transient start). The bench (netgen5 tapbench) is therefore a DC
+operating point for readouts (a) direct uncascoded and (b) log-carry, and the charge integrator (c) is a separate transient, tools/integ6.sh:
+the bench's op-solved direct-stage current (the same device current an integrator collects) integrated on C_int = 1 nF || 100 G for T_int = 1 s
+from 0 V, then held with the input off for another T_int, with three op-amp input-bias cases at the integrating node: 0 (ideal), 100 pA
+(OPA187 typical, datasheet), 25 fA (LMC6001A-class maximum). Before this hash was recorded, the restructured bench and integ6.sh were run once
+for Cosmology at 27 C (diagnostic; the production batch reruns them; integ6.sh's sampling was corrected from array index to meas ... at=).
+netgen5.cpp: 88f5cf7d7957e855b75664c9e851f9e401df74a65fd1194d06636054023cffce -> df5a797e4cefb5e85a404f35c9feecbdf29130f8857195dc53e8fb36635bbf8f; integ6.sh: ead379b1011c103ae60aadcdd80e900e739df64cb6721f65885d11948aa04b29

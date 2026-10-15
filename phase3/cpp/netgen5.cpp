@@ -340,7 +340,7 @@ int main(int argc, char** argv) {
   } else if (mode == "tapbench") {   // LOCK6 bench (transient, plain ngspice): per tiny tap of fold fname, one stimulus base V_T ln t (constant
     // from the V_NEP bus, R = R_SUM 10/|ln t|), one input transdiode (I_U), and three readouts: (a) direct uncascoded Q4 into a TIA (R_pT) with
     // emitter/base sense; (b) the LOCK6 log-carry (scaled TIA v(vlc) and divided-back current into a TIA, sensed); (c) a charge integrator:
-    // uncascoded Q4 into an op-amp integrator, C_int || 100 G (C0G insulation, model assumption), from v = 0 at t = 0 for T_int.
+    // the integrator is a separate transient (tools/integ6.sh) driven by the op-solved direct-stage current (Amendment 6.1).
     Fold f = findf(fname); CURF = f.name; what = "tiny-tap bench, fold " + f.name; an = "tapbench";
     std::ifstream t((std::getenv("FSOT_P6_LOCKED") ? std::string(std::getenv("FSOT_P6_LOCKED")) : std::string("../../phase3/locked6")) + "/taps6.tsv"); std::string line; std::getline(t, line);
     while (std::getline(t, line)) { std::istringstream s(line); std::vector<std::string> c; std::string x; while (std::getline(s, x, '\t')) c.push_back(x);
@@ -351,7 +351,6 @@ int main(int argc, char** argv) {
       CALX(p, "vb" + b, {"ta" + b}, 0, b);
       TIA("ta" + b, "ta" + b, "vta" + b, "R_pT");
       N << "VSE_" << p << "u se" << p << "u " << p << "ea DC 0\nVSB_" << p << "u vb" << b << " sb" << p << "u DC 0\n"; Q(p + "u4", "tu" + b, "sb" + p + "u", "se" + p + "u"); TIA("tu" + b, "tu" + b, "vtu" + b, "R_pT");
-      Q(p + "i4", "ii" + b, "vb" + b, p + "ea"); OA("ii" + b, "0", "ii" + b, "vii" + b); N << "CI" << b << " vii" << b << " ii" << b << " " << P.at("C_int").ideal << "\nRLK" << b << " vii" << b << " ii" << b << " 100G\n";
       pr.push_back(b); }
   } else if (mode == "taps") {   // netgen4: the tiny-tap decision table of every fold (locked in phase3/locked5/taps5.tsv)
     std::ofstream o(out); o << "fold\ttap\tterm_in_I_U\tstage\n";
@@ -457,14 +456,12 @@ int main(int argc, char** argv) {
       if (body.find(" " + nd + " ") == std::string::npos && body.find(" " + nd + "\n") == std::string::npos) continue;
       o << ".nodeset v(" << nd << ")=" << l.substr(eq + 3) << "\n"; }
   }
-  if (an == "tapbench") { o << ".ic"; for (auto& b : pr) o << " v(vii" << b << ")=0"; o << "\n"; }
   o << ".options temp=" << temp << " tnom=27 reltol=1e-6 abstol=1e-14 vntol=1e-8 gmin=1e-15 itl1=5000 gminsteps=50 srcsteps=50\n.control\n";
   if (an == "tapbench") {
-    const double Ti = P.at("T_int").ideal;
-    o << "tran " << Ti / 2000 << " " << Ti << "\nlet n = length(time) - 1\n";
+    o << "op\n";
     for (auto& b : pr) { std::string p = "B" + b;
-      o << "let x_" << b << " = (i(vse_" << p << ") - i(vsb_" << p << "))[n]\nlet u_" << b << " = (i(vse_" << p << "u) - i(vsb_" << p << "u))[n]\nlet c_" << b << " = v(vlc" << p << ")[n]\nlet q_" << b << " = v(vii" << b << ")[n]\n"
-        << "let h_" << b << " = v(vii" << b << ")[n/2]\nprint x_" << b << " u_" << b << " c_" << b << " q_" << b << " h_" << b << "\n"; } }
+      o << "let x_" << b << " = i(vse_" << p << ") - i(vsb_" << p << ")\nlet u_" << b << " = i(vse_" << p << "u) - i(vsb_" << p << "u)\nlet c_" << b << " = v(vlc" << p << ")\n"
+        << "print x_" << b << " u_" << b << " c_" << b << "\n"; } }
   else if (an == "dump" || an == "opdump") o << "op\nprint all\n";
   else if (an == "tran") {
     o << "tran 20u 30m 0 20u\nlet n = length(time) - 1\nlet k = n - 250\n";
