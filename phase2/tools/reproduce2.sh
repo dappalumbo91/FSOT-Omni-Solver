@@ -4,7 +4,7 @@
 #  consts (alpha_s, 1/alpha) at 0/27/50 C, Omega_b h^2 -> score and check against the stated accuracy bars.
 set -euo pipefail; cd "$(dirname "$0")/.."; ENG=${1:?path to FSOT-2.1-Cpp at 3466e8d}
 F="-std=c++20 -O2 -ffp-contract=off"
-g++ $F -I"$ENG/include" -o cpp/derive2 cpp/derive2.cpp; g++ $F -o cpp/netgen2 cpp/netgen2.cpp; g++ $F -o cpp/score2 cpp/score2.cpp
+g++ $F -I"$ENG/include" -o cpp/derive2 cpp/derive2.cpp; g++ $F -o cpp/netgen2 cpp/netgen2.cpp; g++ $F -o cpp/score2 cpp/score2.cpp; g++ $F -o cpp/blocksolve cpp/blocksolve.cpp
 tools/verify_lock2.sh | tail -1
 cd spice; mkdir -p out netlists
 ./make_seed.sh ideal_ideal 27 Chemistry 1 >/dev/null; ./make_seed.sh ideal_ideal 27 Fluid_Dynamics 0 >/dev/null
@@ -17,4 +17,10 @@ for t in 0 27 50; do ../cpp/netgen2 consts ideal_ideal 0 netlists/consts_ii_t$t.
   r=$(../cpp/score2 consts $t out/consts_ii_t$t.log); echo "$r"; chk "1/alpha(${t}C)" "$(echo "$r" | cut -f7)" 3e-4; done
 ./run_omb.sh ideal_ideal 0 27; r=$(../cpp/score2 omb 27 out/omb_ideal_ideal_s0_t27.log); echo "$r"
 chk "Omega_b h^2" "$(echo "$r" | cut -f9)" 6.7e-3
+# block-sequential solver (LOCK Amendment 6): same answer as the full netlist, and Monte Carlo draws converge
+for f in Chemistry Atomic_Physics; do ./run_bs.sh fold ideal_ideal 0 27 $f
+  a=$(grep "^v(vsx)" out/fold_ideal_ideal_s0_t27_$f.log | awk '{print $3}'); b=$(grep "^v(vsx)" out/bs_fold_ideal_ideal_s0_t27_$f.log | awk '{print $3}')
+  chk "block vs full S($f)" "$(awk -v a=$a -v b=$b 'BEGIN{printf "%.3e", (b-a)/a}')" 1e-6; done
+for s in 1 2 3; do ./run_bs.sh omb mcC $s 27; ./run_bs.sh fold mcC $s 27 Atomic_Physics
+  for l in out/bs_omb_mcC_s${s}_t27.log out/bs_fold_mcC_s${s}_t27_Atomic_Physics.log; do grep -q "SOLVER: blocks" $l && echo "PASS converged $l" || { echo "FAIL $l"; fail=1; }; done; done
 [ $fail = 0 ] && echo REPRODUCE2_OK || { echo REPRODUCE2_FAIL; exit 1; }

@@ -99,3 +99,29 @@ The first oven simulation (vendor OPAx187 in the PI loop) never started: ngspice
 - a fix to the thermal capacitor initial condition (IC = 0 K across C_th, so the block starts at ambient; it had been written as the ambient value).
 
 `oven_values.tsv` is unchanged. ovennet.cpp 06d21bbe1b113740… → `ec641a3ce739c28dc3b24deb7de792ea9b9437649fd73864ff6b09139fc217d7`.
+
+### Amendment 5: 2026-10-15T15:57:42-04:00. Topology (circuit-side), recorded before simulation. No FSOT-derived value moved.
+
+**Hypothesis being tested:** the ngspice failures come from antilog outputs whose nominal current is too small for the cascode to control. These are the T3 output (about 1e-22 A) and the highest power-series taps (0.1–10 pA). Each such cascode op-amp loop is open (its output runs to the rail), and a 2N7000 leakage (Is = 5.6 pA) is larger than the signal.
+
+**Rule.** For a CAL output whose locked nominal current is below I_DIRECT = 100 pA, the cascode (2N7000 + op-amp) is removed and the Q4 collector goes straight to the output node, which is always a virtual ground. The nominal current is computed in netgen2 from locked data only:
+- for a series tap, I_U·x^{2k}/(2k+f)!, with x = y, w, v from folds35_targets.tsv and δθ = 1 rad;
+- the T3 output is always direct.
+
+**Accuracy cost.** Without the cascode, Q4 sees V_BC = v_x (−0.3 to −1 V), an Early error of |v_x|/VAF ≤ 1.3 % of a term that is itself ≤ 2e-5·I_U. That is at most 3e-7 of the unit, below every other budget line. For Chemistry, 7 of 42 cascodes are removed.
+
+netgen2.cpp c55d37e9a8024d1e… → `1125298e866e4a806772ee013f31d61ea135ce3e38293630d714803084e1ec24`. All locked TSVs are unchanged.
+
+**Amendment 5 outcome (2026-10-15T16:04:00-04:00): rejected and withdrawn.** With the low-current cascodes removed, the nominal fold no longer converges even from a plain start. Removing any one of them flips convergence either way (cy3, sw3, sv4: no; a3, sv3, st4, st5: yes). So the T3 / low-current cascodes are *not* the root cause. Convergence of these netlists is chaotic: plain Newton produces NaN by iteration 2 in every variant, and only gmin/source stepping sometimes lands. netgen2.cpp is restored byte-for-byte to the Amendment 2 version (`c55d37e9a8024d1e700ece49a1f0ccf361af2ad028ae942f24d4270c4b4a7980`).
+
+### Amendment 6: 2026-10-15T16:15:17-04:00. Harness only (solver); no value, part or topology changed.
+
+**What.** `cpp/blocksolve.cpp` (C++20) solves a netgen2 netlist block by block in ngspice. Every ideal op-amp output (E source to ground), every comparator output (B source) and every grounded supply is a *stiff node*: its voltage depends only on its own driver's inputs and not at all on what it feeds. Tearing the netlist at those nodes is therefore exact. A block is the set of elements joined galvanically between stiff nodes, plus the drivers they control. Blocks that read each other (strongly connected components) are merged. Blocks are solved in dependency order, and each one sees the stiff nodes it reads from other blocks as DC sources at their already-solved values, printed with 15 digits. Every block runs `.options sparse` (Sparse 1.3 instead of KLU), with a gmin 1e-12 and then a KLU / reltol 1e-5 fallback that is reported as "retried".
+
+**Why.** The 900–1000-node netlists failed in ngspice for one reason: KLU on the whole ill-conditioned matrix (pA transdiodes under gain-1e6 loops) produced NaN by Newton iteration 2. The per-block matrices (at most about 110 elements) solve directly. `run_bs.sh` is the driver, and `mc2.sh` now uses it.
+
+**Exactness check.** Particle_Physics fold, ideal: the block solution was used as the .nodeset of the full netlist (sparse). The full-netlist .op converged on the same point: S = 1.900685518 (block) and 1.900685518 (full), |ΔS|/S = 4.5e-10. With 6-digit interface printing the error was 4e-5, which is why 15 digits are used. The block result does not depend on gmin (1e-12 / 1e-15 / 1e-18 give the same S to 1e-9).
+
+**Withdrawn alternative, not used.** A pseudo-transient continuation (an E24-nominal state with the draw ramped in over 1 ms) failed at the first time point even with a zero draw. It was removed.
+
+blocksolve.cpp → `5373a4950343b4f4e3e43f7fa16bf2853b811efed2f3873f58e2c5ca91aca312`

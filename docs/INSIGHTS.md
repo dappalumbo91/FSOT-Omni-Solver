@@ -44,17 +44,24 @@ All numbers come from `phase2/results/` (ngspice-44.2). The targets are the C++2
   - Warm-up overshoot ≤ 1.5 K; settles within 0.1 K in 10–74 s.
 - Below about 8 °C *without* the oven, the ideal-op netlist has no ngspice solution (the temperature walk 27 → 8 °C converges, 7 °C fails). This is tied to the idle T3 outputs (section 4). The oven makes cold ambient irrelevant.
 
-## 7. Monte Carlo (class C = 0.02 %, 5 ppm/K, Vos 2 µV)
-- Only 17 of 160 fold runs converged in ngspice (Atomic 3/40, HEP 4/40, QM 4/40, Fluid 6/40). The 40 Ω_b h² runs converged 0/40.
-- In the converged runs:
-  - S spread is about 1e-3 (Fluid: sd 3.5e-3, worst 5.0e-3).
-  - The analog D before rounding is within ±0.006 of the integer, so D rounds correctly in 17/17.
-- Class B was not run: it has the same convergence failure and larger draws.
-- Convergence finding:
-  - The E24/MC netlists solve **only** from their own exact solution.
-  - Any perturbation, even a uniform 0.1 µV offset on every op-amp, defeats Newton, gmin stepping, source stepping and transient-op.
-  - So does a draw homotopy (scale 0 → 0.25 already fails), rail-limited ideal op-amps, and dropping the nodesets of railed nodes.
-  - The suspected cause is the unregulated T3 cascodes (section 4) together with 1e6-gain sources. This is open.
+## 7. Monte Carlo: every class converges (block-sequential solve, LOCK Amendment 6)
+40 seeds per class. Each seed is the Ω_b h² netlist (Chemistry + Cosmology channels) plus four folds. Converged: class C **200/200**, class B **199/200**.
+
+| quantity | class C (0.02 %, 5 ppm/K, Vos 2 µV): mean / sd / worst \|rel\| | class B (0.1 %, 25 ppm/K, Vos 10 µV): mean / sd / worst |
+|---|---|---|
+| S_chem | +3.7e-4 / 1.5e-3 / 4.5e-3 | (39 seeds) see mc_omb_mcB_t27.tsv |
+| S_cosm | +4.0e-4 / 3.7e-3 / 1.1e-2 | |
+| 1 − S_chem | −6.7e-3 / 3.3e-2 / 9.6e-2 | |
+| Ω_b h² (bar 6.7e-3) | −7.7e-3 / 3.1e-2 / 8.9e-2; pass 9/40 | pass 0/39 |
+| S(Atomic) | +3.7e-4 / 1.4e-3 / 4.2e-3 | +1.4e-3 / 1.3e-2 / 3.5e-2 |
+| S(HEP) | +3.7e-4 / 1.5e-3 / 4.5e-3 | +1.4e-3 / 1.4e-2 / 3.7e-2 |
+| S(QM) | +3.0e-4 / 1.5e-3 / 4.3e-3 | +1.4e-3 / 1.4e-2 / 3.6e-2 |
+| S(Fluid) | +1.5e-3 / 3.3e-3 / 8.9e-3 | +2.0e-3 / 3.0e-2 / 6.4e-2 |
+| ln T3 (Np, log domain) | sd 2.1e-2, worst 4.6e-2 | sd 0.19, worst 0.46 |
+| D (rounded) | exact 160/160 | exact 160/160 |
+
+- The one class-B failure (Ω_b h² seed 39) is the circuit leaving its domain, not the solver. That draw puts 1 − S_chem far enough off (×~8 sensitivity, section 2) that the Ω_b h² antilog exponent becomes v_x = +56.9 mV; nominal is −38.9 mV. With v_x > 0 the output cascode needs its source above its drain, which sits at a virtual ground. Across the 40 class-B draws v_x spans −47.7 … +56.9 mV.
+- Real-part accuracy is deprioritised; see section 10 for per-part error coefficients.
 
 ## 8. Vendor macro-models in ngspice
 - The TI OPAx187 (Green-Williams-Lis architecture) solves alone and in a two-inverter test. It fails as soon as one transdiode loop and one inverter share a netlist. The failure appears as a "singular matrix" at internal nodes; the clamp/limit B-sources and self-controlled VSWITCH ideal diodes are the suspects.
@@ -62,3 +69,10 @@ All numbers come from `phase2/results/` (ngspice-44.2). The targets are the C++2
 - What was done instead (`phase2/spice/vendor_extract.sh`): every vendor instance is solved alone at its operating point, and its measured V+ − V− and I_B are injected into the full netlist.
   - For the constants netlist both Vos and I_B converge: 1/α = 137.1081 at 27 °C (+5.2e-4, versus +4.8e-4 E24 without vendor errors).
   - For the fold and Ω_b h² netlists only I_B converges.
+
+## 9. Why ngspice failed, and why it now converges
+- The full netlists (about 930 nodes, pA transdiodes inside gain-1e6 loops) are badly conditioned. With ngspice's default KLU solver, plain Newton gave NaN by iteration 2 every time (first at the ladder + LOGR_Db + chaos-TIA stage). Gmin and source stepping landed only by luck, so convergence looked chaotic: removing one cascode flipped the outcome (Amendment 5, withdrawn).
+- Switching to `.options sparse` (Sparse 1.3, with better pivoting) alone made the nominal plain run converge where KLU gave NaN. MC draws still failed on the full matrix.
+- The fix is **exact tearing** at stiff nodes: ideal op-amp, comparator and supply outputs (`cpp/blocksolve.cpp`). The Ω_b h² netlist splits into 218 blocks, a fold into 108; the largest block has about 113 elements. A fold solves in about 1 s, and 35 folds take 5 s on 8 cores. Agreement with the full netlist is 4.5e-10 in S.
+- Pitfall found on the way: copying interface voltages with ngspice's default 6 digits gives a 4e-5 error in S, because a 1 µV error in an exponent is 1e-6/V_T = 4e-5 after the antilog. Interfaces must carry at least 12 digits (`set numdgt=15`).
+- The T3 hypothesis, tested: the T3 antilog output (a3), and the highest series taps (cy2, cy3, sv4, sw3, st5), are physically **cut off**. Their design currents (about 1e-17 … 1e-22 A) are below any junction leakage, so their cascode op-amps drive the 2N7000 gates to about −1e6 V (ideal sources) or to the rail. They were *not* the cause of the non-convergence: block solves converge with them in place and are gmin-independent. They do mean that T3 exists in this circuit only as its log-domain voltage v_x3. As a current it is about 0.01 electron/s. That is the FSOT pressure point: a term 1e-17 below the sum cannot be an additive physical signal, only a logarithmic one.
