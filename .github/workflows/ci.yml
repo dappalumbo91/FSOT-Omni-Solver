@@ -70,10 +70,8 @@ jobs:
         run: cd phase3/tools && ./verify_lock5.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
       - name: Verify LOCK6 (byte-identical re-derivation)
         run: cd phase3/tools && ./verify_lock6.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
-      - name: Verify LOCK7 (byte-identical re-derivation)
-        run: cd phase3/tools && ./verify_lock7.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
-      - name: Verify LOCK7 Amendment 7.1 (byte-identical re-derivation)
-        run: cd phase3/tools && ./verify_lock7b.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK7 + Amendments 7.1/7.2 (hash records; byte-identical re-derivation of base, taps, locked7c)
+        run: cd phase3/tools && ./verify_lock7c.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
 
   phase3-sim:
     name: Phase 3c/3d — LOCK5/LOCK6 compiled leaves, folds with carried tiny taps, tap bench (ideal, 27 C) + score/summary
