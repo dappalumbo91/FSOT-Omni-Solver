@@ -34,3 +34,6 @@ phase2/oven/run/
 phase2/oven/ovennet_bin
 cpp/blocksolve
 phase2/spice/out/bs_*
+phase3/cpp/derive3
+phase3/cpp/leafmap
+phase2/cpp/blocksolve

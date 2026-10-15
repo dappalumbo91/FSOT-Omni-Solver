@@ -32,6 +32,13 @@ void load() {
   std::ifstream c(LK + "/design2_consts.tsv"); std::getline(c, line);
   while (std::getline(c, line)) { std::istringstream s(line); std::string n, v; std::getline(s, n, '\t'); std::getline(s, v, '\t'); C[n] = std::stod(v); }
 }
+void load3(const std::string& d) {  // Phase 3 (leaf tier 1) locked values, same format
+  std::ifstream f(d + "/design3_values.tsv"); std::string line; std::getline(f, line);
+  while (std::getline(f, line)) { std::istringstream s(line); std::string n, id, a, b, c; std::getline(s, n, '\t'); std::getline(s, id, '\t'); std::getline(s, a, '\t'); std::getline(s, b, '\t'); std::getline(s, c, '\t');
+    P[n] = {std::stod(id), std::stod(a), std::stod(b), std::stod(c)}; }
+  std::ifstream c(d + "/design3_consts.tsv"); std::getline(c, line);
+  while (std::getline(c, line)) { std::istringstream s(line); std::string n, v; std::getline(s, n, '\t'); std::getline(s, v, '\t'); C[n] = std::stod(v); }
+}
 void Rp(const std::string& nm, const std::string& n1, const std::string& n2, const std::string& part) {
   const PartV& p = P.at(part);
   auto tcs = [&]() { std::ostringstream t; if (V.tc > 0) t << " tc1=" << U(-V.tc, V.tc); return t.str(); };
@@ -280,6 +287,29 @@ int main(int argc, char** argv) {
     SUM("Om", "vxom", {{"noS", "R_Om_n"}, {"no1", "R_Om_n"}}, "Om", "R_Om_c");
     Rp("omin", "vr", "omd", "R_omin"); CAL("om", "vxom", {"tom"}); TIA("om", "tom", "vomb", "R_omT");
     pr = {"vSc", "vSm", "v1sc", "vomb", "vabs", "vt1c", "vt1m", "vx3c", "vx3m", "vnep"};
+  } else if (mode == "leaf1") {  // Phase 3 leaf tier 1: the closed forms fed by S_cosm, S_quant, S_chem, solved by the circuit
+    std::string d3 = "../../phase3/locked"; if (const char* e = std::getenv("FSOT_P3_LOCKED")) d3 = e; load3(d3);
+    what = "leaf tier 1 (S_cosm, S_quant, S_chem channels + 14 closed forms)";
+    channel("c", findf("Chemistry"), true); channel("m", findf("Cosmology"), false); channel("q", findf("Quantum_Mechanics"), true);
+    FW("om", "vSm", "vabs"); OA("o1i", "0", "no1i", "v1sp"); Rp("o1i1", "v1sc", "no1i", "R_inv"); Rp("o1i2", "no1i", "v1sp", "R_inv");
+    Rp("oS", "vabs", "loSc1", "R_oS"); Rp("oSr", "vr", "loSc2", "R_oSr"); LOGR("loS", "noS");
+    Rp("o1", "v1sp", "lo1c1", "R_o1"); Rp("o1r", "vr", "lo1c2", "R_o1r"); LOGR("lo1", "no1");
+    SUM("Om", "vxom", {{"noS", "R_Om_n"}, {"no1", "R_Om_n"}}, "Om", "R_Om_c");
+    Rp("omin", "vr", "omd", "R_omin"); CAL("om", "vxom", {"tom"}); TIA("om", "tom", "vomb", "R_omT");
+    // |S_cosm| * S_quant (sigma_8): same topology as the Omega_b h^2 product
+    // (prefixes "zg..." chosen so no name collides case-insensitively with the channel's lP<x>, P<x>, ... elements)
+    Rp("zgS", "vabs", "lzgSc1", "R_pS"); Rp("zgSr", "vr", "lzgSc2", "R_pSr"); LOGR("lzgS", "nzgS");
+    Rp("zgQ", "vSq", "lzgQc1", "R_pq"); Rp("zgQr", "vr", "lzgQc2", "R_pqr"); LOGR("lzgQ", "nzgQ");
+    SUM("zg", "vxzg", {{"nzgS", "R_p_n"}, {"nzgQ", "R_p_n"}}, "P", "R_p_c");
+    Rp("zgin", "vr", "zgd", "R_pin"); CAL("zg", "vxzg", {"tzg"}); TIA("zg", "tzg", "vprod", "R_pT");
+    // linear leaves: one inverting summer each, V = G (b + k x)
+    std::ifstream lt(d3 + "/leaves3_targets.tsv"); std::string l; std::getline(lt, l);
+    pr = {"vSc", "vSm", "vSq", "v1sc", "v1sq", "vabs", "vprod", "vomb", "vnep"};
+    while (std::getline(lt, l)) { std::istringstream t(l); std::vector<std::string> c; std::string x; while (std::getline(t, x, '\t')) c.push_back(x);
+      if (c[0] == "Omb") continue; const std::string id = c[0], node = c[6], bus = c[9];
+      OA("YL" + id, "0", "sYL" + id, "vL" + id); Rp("YLf" + id, "vL" + id, "sYL" + id, "R_Lf"); N << "CYL" << id << " vL" << id << " sYL" << id << " 100p\n";
+      Rp("YLx" + id, node, "sYL" + id, "R_L" + id + "_x"); if (bus != "none") Rp("YLc" + id, bus, "sYL" + id, "R_L" + id + "_c");
+      pr.push_back("vL" + id); }
   } else if (mode == "consts") {
     what = "PTAT reference, alpha_s = e^-1/pi, 1/alpha_em = e^3(3phi+2) - 1 + e^-1 with e^3 from three e^1 stages";
     SUM("em1", "vxm1", {}, "em1", "R_em1_c");

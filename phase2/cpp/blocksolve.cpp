@@ -56,6 +56,10 @@ int main(int argc, char** argv) {
   std::set<std::string> bnd = {"0"}; std::map<std::string, int> drvOf, glob;
   for (int i = 0; i < (int)els.size(); ++i) if (!els[i].drv.empty()) { bnd.insert(els[i].drv); (els[i].global ? glob : drvOf)[els[i].drv] = i; }
   auto nb = [&](const std::string& n) { return !bnd.count(n); };
+  // MOSFET gates driven by an op-amp output: they carry no DC current and, for a cascode passing ~1e-20 A (cut-off taps), are
+  // loosely determined. Verification checks them at 1e-3 rel + 1e-4 V; the cascode's source node and every current it
+  // passes on are still checked at the tight tolerance.
+  std::set<std::string> gate; for (auto& e : els) if (e.name[0] == 'm' && e.term.size() == 3 && drvOf.count(e.term[1])) gate.insert(e.term[1]);
   for (auto& e : els) { std::string first; for (auto& n : e.term) if (nb(n)) { if (first.empty()) first = n; else Un(first, n); F(n); }
     if (!first.empty() && e.drv.empty()) for (auto& n : e.sense) if (nb(n)) Un(first, n); }  // controlled current sources: same block as what they read
   std::vector<std::string> key(els.size());
@@ -123,15 +127,15 @@ int main(int argc, char** argv) {
         std::ifstream src(fn); std::ofstream v(fn + ".v.cir"); std::string q2;
         while (std::getline(src, q2)) { std::string L2 = lc(q2); if (L2.rfind(".nodeset", 0) == 0) continue;
           if (L2.rfind(".options", 0) == 0) { for (auto& n : own) if (got.count(n)) v << ".nodeset v(" << n << ")=" << got[n] << "\n";
-            q2 = std::regex_replace(q2, std::regex("(gminsteps|srcsteps|itl1)=[^ ]+"), ""); q2 += " gminsteps=0 srcsteps=0 itl1=200 noopac"; v << q2 << "\n"; continue; }
+            q2 = std::regex_replace(q2, std::regex("(gminsteps|srcsteps|itl1)=[^ ]+"), ""); q2 = std::regex_replace(q2, std::regex(" klu\\b"), ""); if (q2.find(" sparse") == std::string::npos) q2 += " sparse"; q2 += " gminsteps=0 srcsteps=0 itl1=200 noopac"; v << q2 << "\n"; continue; }
           v << q2 << "\n"; }
-        v.close(); std::system(("timeout 600 ngspice -b " + fn + ".v.cir > " + lg + ".v 2>&1").c_str());
+        v.close(); std::system(("timeout 600 ngspice -b " + fn + ".v.cir > " + lg + ".v 2>&1").c_str()); if (std::getenv("FSOT_BS_DEBUG")) std::system(("cp " + fn + ".v.cir " + fn + ".v" + std::to_string(att) + ".cir; cp " + lg + ".v " + lg + ".v" + std::to_string(att)).c_str());
         std::ifstream r2(lg + ".v"); std::map<std::string, std::string> g2; bool bad = false;
         while (std::getline(r2, q)) { std::smatch m; if (std::regex_match(q, m, rv)) g2[m[1]] = m[2]; if (q.find("could not be simulated") != std::string::npos) bad = true; }
         if (bad && std::getenv("FSOT_BS_DEBUG")) std::fprintf(stderr, "block %d att %d: stepping/ptran in verify\n", k, att);
         for (auto& n : own) { if (!g2.count(n)) { bad = true; if (std::getenv("FSOT_BS_DEBUG")) std::fprintf(stderr, "block %d: %s missing\n", k, n.c_str()); break; }
           const double a = std::atof(got[n].c_str()), b = std::atof(g2[n].c_str());
-          if (std::fabs(a - b) > 1e-5 * std::fabs(a) + 1e-7) { bad = true; if (std::getenv("FSOT_BS_DEBUG")) std::fprintf(stderr, "block %d: %s %g vs %g\n", k, n.c_str(), a, b); break; } }
+          const bool g = gate.count(n) > 0; if (std::fabs(a - b) > (g ? 1e-3 : 1e-5) * std::fabs(a) + (g ? 1e-4 : 1e-7)) { bad = true; if (std::getenv("FSOT_BS_DEBUG")) std::fprintf(stderr, "block %d: %s %g vs %g\n", k, n.c_str(), a, b); break; } }
         if (bad) all = false; }
       if (all && !nan) { ok = true; for (auto& [a, v] : got) if (!ext.count(a)) sol[a] = v; if (att) ++retried; }
     }

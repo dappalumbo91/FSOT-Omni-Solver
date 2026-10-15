@@ -125,3 +125,22 @@ These come from `spice/sens.sh` (16 seeds per row). One draw class is active at 
   - With ideal components, 1/α is +1.85e-4 high at 27 °C. Each e¹ stage reads high by 2.6–3.8e-5 (ve1 0.4349417 V against 0.4349250 V exact; ve2 against ve1·e/4), from transistor ISE/Early residuals. The rest comes through the e⁻¹ and −1 terms.
   - A one-resistor trim at 27 °C (on R_e3c or R_aiT) removes the static part. What remains is the temperature drift of the same residual: 1/α moves −9.3e-6 / +5.8e-6 over 0 / 50 °C, and 2e-7 across the oven's 58.9–60.2 °C.
   - So the trimmed e³ ceiling is about 1e-5 without the oven and about 2e-7 with it, before part tolerances. Per §10, ΔV_BE and Vos then set the floor (VREF cancels in 1/α).
+
+## 12. Leaves, tier 1: the circuit solves the closed forms fed by S_cosm, S_quant, S_chem (Phase 3)
+- **Map.** The full map is in docs/LEAVES.md: 356 rows parsed from the engine's `closed_forms_core.gen.inc` by `phase3/cpp/leafmap`.
+  - 29 literal.
+  - 14 tier 1 (fed by S).
+  - 111 tier 2 (derived constants).
+  - 202 tier 2a (base constants only).
+- **Tier 1 is affine.** Every tier-1 form is `b + k·x` with x one circuit signal: |S_cosm|, S_quant, 1−S_chem, 1−S_quant, or |S_cosm|·S_quant.
+  - Each form is one inverting summer. The only extra block is σ_8's product, built with the Ω_b h² LOGR–SUM–CAL–TIA topology.
+  - Values were locked before simulating (phase3/locked/LOCK3.md, with a disclosure on when the hashes were recorded).
+- **Block accuracy.** The leaf blocks themselves are exact to ≤1.1e-5 (ideal op-amps). With E24 parts at mcC tolerances they are ≤7.4e-4.
+- **Error source.** The error versus golden is almost entirely the upstream S error.
+  - Forms in S directly read 1e-5…4e-4 (ideal).
+  - Forms in 1−S (Ω_DM h², |V_us|, Ising2D γ, Ω_b h²) amplify the S error by about 20×: −3.4e-3, −6.4e-4, −2.5e-4 and −3.0e-3 at 27 °C.
+  - mcC sd on those forms: 4.5e-2, 8.5e-3, 3.2e-3 and 4.4e-2.
+  - Pressure point: one shared fix (ΔVbe matching and the e³ stage trim, §10/§11) improves every 1−S leaf at once.
+- **Domain limit.** One mcB draw (seed 2) put 1−S_chem at 0.013, against a nominal 0.0447. That drives the Ω_b h² LOGR input positive enough to reverse-bias the reference cascode (n > 0).
+  - This is the same domain exit as Phase-2 mcB seed 39, not a solver failure.
+  - mcB tier 1 converged 5/6; mcC 8/8; ideal 0/27/50 °C 3/3.

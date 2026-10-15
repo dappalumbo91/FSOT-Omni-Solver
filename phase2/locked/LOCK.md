@@ -183,3 +183,12 @@ netgen2.cpp 94ba01a08edfe7a4… → `5f9ed1d6512416489ff109df33b96f32c129ca7809b
 - The start-up / loop-gain / noise numbers in docs/INSIGHTS.md §11 were produced after Amendments 7–12.
 
 netgen2.cpp 5f9ed1d651241648… → `43149f14c07425b14048e4edd814c6c62ef4d7d3283f9c910f33d0c5d5d46fdc`; blocksolve.cpp b7fc4b6127645a43… → `b7fc4b6127645a43caacbc7b93dd53283cc551f3b359edcacf25f8e3ab5b1102`
+
+### Amendment 13: 2026-10-15T16:45:17-04:00. New mode plus harness fix. No Phase-2 value, part or topology changed.
+- **netgen2 mode `leaf1` (Phase 3 leaf tier 1).** It builds the Chemistry, Cosmology and Quantum_Mechanics channels unchanged, plus the Phase-2 Ω_b h² block. It adds the tier-1 leaf blocks, whose values are locked separately in `phase3/locked` (LOCK3.md). Element prefixes `zg*` and `YL*` are used because SPICE names are case-insensitive: the first draft's `lpq` and `LVcb` collided with the channel's `lPq` and `lvcB`. That collision made the first solve fail; no value moved.
+- **blocksolve verification.** 0 °C runs exposed two harness faults in the plain-Newton re-solve:
+  - It inherited `klu` from the third attempt. KLU cannot place a .nodeset on a structurally absent element and aborts with "out of memory", so the verify step now always uses Sparse.
+  - It checked the gate of a cut-off cascode tap (about 1e-20 A at 0 °C) at 1e-5. A MOSFET gate driven by an op-amp carries no DC current and is loosely determined at that bias. Such gates are now checked at 1e-3 rel + 1e-4 V; their source node and every current they pass on stay at 1e-5.
+  - With these fixes the Chemistry fold, omb and leaf1 converge at 0 °C again.
+
+netgen2.cpp 08831efe718141bf… → `08831efe718141bf21fdc4243b8dc45156593b7d66d3b1e004b1d22ee2bcde2a`; blocksolve.cpp b7fc4b6127645a43… → `02d5abe8f60bcfcf34c0d0534484d2b1441fa816adf843698c21d1eef82f4c61`

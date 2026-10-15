@@ -1,0 +1,33 @@
+name	ideal	E24_a	E24_b	E24_c	E24_rel	unit	meaning
+R_Lf	100000	82000	18000	0	0.000e+00	ohm	leaf summer feedback
+R_LH0_x	31841.3720519	30000	1600	240	4.309e-05	ohm	H0: x input (absSc)
+R_LH0_c	25000	13000	12000	0	0.000e+00	ohm	H0: constant b from vrn
+R_LTCMB_x	941860.033865	470000	470000	1800	6.374e-05	ohm	T_CMB: x input (absSc)
+R_LTCMB_c	95491.5028125	47000	47000	1500	8.898e-05	ohm	T_CMB: constant b from vr
+R_Lns_x	2740277.52854	2.7e+06	39000	0	4.662e-04	ohm	n_s: x input (absSc)
+R_Lns_c	250000	130000	120000	0	0.000e+00	ohm	n_s: constant b from vrn
+R_LMWZ_x	174713.705366	110000	62000	2700	7.844e-05	ohm	M_W/M_Z: x input (Sq)
+R_LMWZ_c	1177325.04233	1.1e+06	75000	2200	1.062e-04	ohm	M_W/M_Z: constant b from vrn
+R_LOL_x	54365.6365692	51000	3300	62	6.689e-05	ohm	Omega_Lambda: x input (Sq)
+R_LOL_c	75034.9834535	75000	36	0	1.355e-05	ohm	Omega_Lambda: constant b from vr
+R_LODM_x	148311.50088	82000	62000	4300	7.755e-05	ohm	Omega_DM_h2: x input (oSc)
+R_Ls8_x	1000000	820000	180000	0	0.000e+00	ohm	sigma_8: x input (pSq)
+R_Ls8_c	755231.832395	750000	5100	0	1.746e-04	ohm	sigma_8: constant b from vr
+R_LVus_x	400000	200000	200000	0	0.000e+00	ohm	|V_us|: x input (oSq)
+R_LVus_c	139055.795036	130000	9100	0	3.179e-04	ohm	|V_us|: constant b from vrn
+R_LVcb_x	45335.0612995	27000	18000	330	1.116e-04	ohm	|V_cb|: x input (Sq)
+R_LIs2_x	1924847.30024	1.1e+06	820000	4700	7.653e-05	ohm	Ising2D_gamma: x input (oSq)
+R_LIs2_c	218392.131708	150000	68000	390	9.761e-06	ohm	Ising2D_gamma: constant b from vrn
+R_LmtW_x	66204.8365221	30000	30000	6200	7.305e-05	ohm	m_t/m_W: x input (absSc)
+R_LmtW_c	395494.176717	390000	5600	0	2.676e-04	ohm	m_t/m_W: constant b from vr
+R_LmHW_x	122539.967356	120000	2200	330	8.134e-05	ohm	m_H/m_W: x input (Sq)
+R_LC2_x	20000	10000	10000	0	0.000e+00	ohm	Twin_prime_C2: x input (absSc)
+R_LC2_c	158527.356236	150000	8200	330	1.668e-05	ohm	Twin_prime_C2: constant b from vr
+R_pS	400000	200000	200000	0	0.000e+00	ohm	|S_cosm| (2 V/unit) -> I_U per unit
+R_pSr	1388888.88889	1.3e+06	82000	6800	6.400e-05	ohm	LOGR_pS reference
+R_pq	400000	200000	200000	0	0.000e+00	ohm	S_quant (2 V/unit) -> I_U per unit
+R_pqr	833333.333333	820000	13000	0	4.000e-04	ohm	LOGR_pq reference
+R_p_n	10000	8200	1800	0	0.000e+00	ohm	product summer weight 1
+R_p_c	65253.8396324	56000	9100	150	5.884e-05	ohm	product summer constant
+R_pin	500000	300000	200000	0	0.000e+00	ohm	product antilog input I_U
+R_pT	2000000	1e+06	1e+06	0	0.000e+00	ohm	product TIA: 10 V per unit

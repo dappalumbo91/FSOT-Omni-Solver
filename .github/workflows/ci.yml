@@ -62,3 +62,5 @@ jobs:
           git -C third_party/FSOT-2.1-Cpp checkout -q 3466e8d4211d786fa7a430de1ee75131fb3b2e97
       - name: Reproduce Phase 2 nominal
         run: phase2/tools/reproduce2.sh "$PWD/third_party/FSOT-2.1-Cpp"
+      - name: Phase 3 leaf tier 1 (LOCK3 + leaf1 block solve at 27/0 C vs golden)
+        run: phase3/tools/reproduce3.sh "$PWD/third_party/FSOT-2.1-Cpp"
