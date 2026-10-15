@@ -129,4 +129,38 @@ The pinned engine has **no time dynamics**: compute_scalar is static. The hub `v
 | continuity, advection, NSE cartoon | – | not built (spatial lattice; stated as remaining) |
 
 ## Status after Phase 2
-See the end of this file (appended from `phase2/results/`).
+Status codes are defined in the rules at the top. "rel" is (circuit − engine)/engine with ideal op-amps and exact resistor values at 27 °C, unless a row says otherwise.
+
+| Item | Phase 1 | Missing before Phase 2 | Phase 2 status | Honest error / note |
+|---|---|---|---|---|
+| Seeds π, e, φ, γ, G | ratios | – | **R** | exact resistor ratios (E24 realisation errors are listed in design2_values.tsv) |
+| α, ψ_con, η_eff, Γ_c, Ω, θ_s, POOF | folded into one constant | as separate quantities | **B** (as neper-bus / angle-bus constants) | V_NEP within 7e-6 of 10kT/q; T1 rel +2.0…+2.8e-4 (IKF) |
+| β (T3 amplitude) | omitted | yes | **B\*** | ln β on the T3 log channel; ln T3 within 3–6e-4 Np; linear T3 ≈ 1e-22 A is not regulable |
+| C_eff, P_new, K, B_in, P_var | folded | B_in, P_var as separate inputs | **B** | – |
+| A_bleed, A_in, SUCTION, CHAOS | omitted | yes | **B\*** (T3 acoustic / valve / chaos blocks) | inside T3 (T3/S ≤ 3.2e-17) |
+| C_FACTOR (consciousness factor) | folded into O | yes | **B** | exponent C_F·P_var·V_NEP = 71.3 mV |
+| C_cosm, P_base | – | – | **R** | constant-generator inputs (CG only as resistor ratios; full CG is remaining work) |
+| a1 = NP/√D | D^{−1/2} only | N, P inputs | **B** | – |
+| a2 = cos((ψ+δψ)/η) | constant (look 1) | δψ dependence | **B** | series to y⁶ through cos x = −cos(x−π); truncation is the y⁸/8! term (in the locked derivation the factor rebuild matches the engine to 1e-15 with the exact cos; the circuit series truncation is part of the T1 residual) |
+| a3 exponent incl. −α h/N | constant | h/N | **B** | α·h/N ≈ 209 µV·h/N: offset-limited (class-B Vos 10 µV) |
+| growth | folded | yes | **B** | 48 µV at the junction: offset-limited |
+| a4, a5 | folded / P1 | a4 | **B** | – |
+| **quirkMod (observer)** | fixed ratio for δψ = 1 | **yes (first built)** | **B** | observed folds S rel +1.4…+1.9e-4; unobserved −2.7…−4.0e-4; sign comparator + CD4053 |
+| T2 = scale·amp + trend_bias | constant | scale, amp, tb inputs | **B** | – |
+| T3 valve / acoustic / phase | omitted | yes | **B\*** | see β |
+| K summer | P1 | – | **P1/B** | – |
+| 24 ScalarInput fields | 4 | 20 | **B** (all 24 are circuit inputs) | – |
+| D ladder (20 generations) | P1 | – | **B** (LM139 vendor model in e24_opa netlists; behavioural in the ideal netlists) | D exact 35/35 nominal; 17/17 converged MC runs |
+| fold_look (Atomic e/π, HEP 1−POOF/π) | not built | yes | **B** | **35/35 folds** (Phase 1 had 33/35) |
+| fold_hits (HEP) | not built | yes | **B** | HEP S rel +1.57e-4 |
+| MEDIUM_ORIFICES / observed | resistor select | gating | **B** | – |
+| Ω_b h² (closed form) | +0.89% (fail) | current-mode 1−S | **B** | ideal −2.95e-3 (pass, bar 6.7e-3); E24 −8.7e-3 (fail); E24 + OPA187 I_B −1.2e-2 (fail) |
+| α_s, 1/α (closed forms) | P1 | e³ as three e¹ stages | **B** | 1/α +1.85e-4 ideal (flat 0–50 °C); +5.2e-4 E24 + OPA187 |
+| PTAT reference + oven | single PTAT | 2-cell PTAT, oven | **B** | V_NEP ≤ 1e-5 at 0/27/50 °C; oven core 58.9–60.2 °C over ambient 0–50 °C |
+| the other 342 closed forms | – | – | **–** (formulas on CG/FCL voltages; not realised one by one) | remaining work |
+| floor rows, fsot_correct | – | – | not built | remaining work (proposal in §7) |
+| Mode parity, ternary/VM, host leaves | – | – | **–** | not analog quantities |
+| dynamics: scalar relaxation, viscous mode + observer source (hub) | – | yes | **not built** | remaining work (0-D leaky-integrator design in §8) |
+| continuity / advection / NSE cartoon | – | – | not built | needs a spatial lattice |
+
+Summary: every core-law factor and all 24 inputs are built, including the observer and all of T3. T3's linear current cannot be regulated, so T3 is resolved only in the log domain. The circuit gives 35/35 folds (Phase 1: 33/35). Not built: the full constant generator, the remaining 342 closed forms, fsot_correct, the floor rows and the hub dynamics.

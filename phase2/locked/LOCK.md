@@ -81,3 +81,21 @@ fb9c269ac71ed7e560f1c289659a87d9a10c4c621b9fa11227ae9965a7aea09c  ../cpp/score2.
 
 Check: with neither variable set, the regenerated `fold ideal_ideal Chemistry` and `consts ideal_ideal` netlists are byte-identical
 to the ones simulated under Amendment 1. netgen2.cpp hash 04e897b11b36cb52… → `c55d37e9a8024d1e700ece49a1f0ccf361af2ad028ae942f24d4270c4b4a7980`. All other hashes unchanged.
+
+### Amendment 3: 2026-10-15T15:21:17-04:00. New block (oven), locked before its first simulation. No existing value changed.
+
+Phase 2 item 1 asks for the PTAT reference *plus an oven*. The oven is not an FSOT quantity; its values are standard physics and engineering choices, derived in `oven/oven.cpp` (C++20) and listed with meanings in `oven_values.tsv`: 2N3904 sensor at ~20 µA, T_set = 60 °C nominal (58.87 °C from the E24 divider), OPA187 error amp (gain −100) + PI integrator (R_i 100 k, C_i 10 µF, R_p 1.8 M), TIP31 heater (R_e 22 Ω at 9 V), block θ_sa = 40 K/W, C_th = 3 J/K, sensor-to-core gradient θ_g = 1 K/W. The netlist generator `oven/ovennet.cpp` is locked with it.
+
+```
+45a920dfe347f3c837cba0ed0dd27a167da31ba3a1bb0262d1b812ce7a7986d3  oven_values.tsv
+e5df5c5f2b3e4ca1c556220bbc64f4371f46a8706d53ed139ecbe1c39f68a634  ../oven/oven.cpp
+06d21bbe1b113740e7a1d6501497f1f9a094182b17f7013412605804773fcf34  ../oven/ovennet.cpp
+```
+
+### Amendment 4: 2026-10-15T15:53:46-04:00. Harness only (oven netlist generator); no value changed.
+
+The first oven simulation (vendor OPAx187 in the PI loop) never started: ngspice found no operating point and the uic transient failed at t = 0 (the same Green-Williams-Lis convergence failure documented in docs/INSIGHTS.md). `ovennet.cpp` got:
+- an `ideal` op-amp option: gain 1e5, one pole (GBW 1.6 MHz), output limited to the OPA187 swing of ±8.9 V;
+- a fix to the thermal capacitor initial condition (IC = 0 K across C_th, so the block starts at ambient; it had been written as the ambient value).
+
+`oven_values.tsv` is unchanged. ovennet.cpp 06d21bbe1b113740… → `ec641a3ce739c28dc3b24deb7de792ea9b9437649fd73864ff6b09139fc217d7`.

@@ -13,7 +13,7 @@ An **analog circuit that computes Fluid Spacetime Omni-Theory (FSOT)**. The FSOT
 | **License** | [Apache License 2.0](LICENSE) |
 | **Author** | Damian Arthur Palumbo |
 
-**Status:** Phase 1 (vertical slice) is complete. Phase 2 is on branch `feat/phase2` and has an open draft PR. Phase 2 covers a completeness audit of every engine term (observer/quirk modifier, T2, T3, all 35 folds), temperature tracking, precision models, and the insight log.
+**Status:** Phase 1 (vertical slice) is complete. Phase 2 is on branch `feat/phase2` (draft PR #1, not merged); see "Phase 2" below. Phase 2 covers a completeness audit of every engine term (observer/quirk modifier, T2, T3, all 35 folds), temperature tracking, precision models, and the insight log.
 
 ## What this is trying to do
 
@@ -78,6 +78,29 @@ Ngspice uses the TL082 vendor model with E24 resistor strings. Monte Carlo: 200 
 | 1/α_em | 137.03620 | 136.9456 | 6.4e-2 / 6.5e-3 / 1.3e-3 | 1.5e-10 (CODATA) | **no** (analog ceiling ~1e-4) |
 
 The fold ladder made 0 mis-rounds in 6000 Monte Carlo decisions. All 33 look=1 domains on the physical generation string match the engine with a median error of 3.6e-4 and a worst of 8.3e-4. Full tables, the error budget and the analysis are in [docs/PHASE1.md](docs/PHASE1.md) and [results/](results/).
+
+## Phase 2 (branch `feat/phase2`, draft PR; not merged)
+
+Everything is pure analog. Values are derived in C++20 (`phase2/cpp/derive2.cpp` against FSOT-2.1-Cpp @3466e8d) and locked before simulation (`phase2/locked/LOCK.md`, which records Amendments 1–4).
+
+```bash
+phase2/tools/reproduce2.sh /path/to/FSOT-2.1-Cpp   # LOCK2 check, Chemistry/Atomic/HEP folds, 1/α at 0/27/50 °C, Ω_b h² (CI job "phase2")
+phase2/spice/fetch_models.sh                       # TI OPAx187 + LM139 (SHA-256 verified, not committed)
+```
+
+The table uses ideal op-amps and exact resistor values at 27 °C unless a row says otherwise.
+
+| Quantity | Circuit | Engine | rel |
+|---|---|---|---|
+| S, 35/35 folds | – | – | −4.0e-4 … +1.9e-4 |
+| D, 35/35 folds | exact | – | 0 |
+| V_NEP (10 kT/q), 0/27/50 °C | – | – | 1.0e-5 / 7.1e-6 / 5.3e-6 |
+| 1/α, 0/27/50 °C | 137.0628 / 137.0615 / 137.0607 | 137.0362 | +1.9e-4 / +1.85e-4 / +1.8e-4 |
+| Ω_b h² (bar 6.7e-3) | 0.022395 | 0.022462 | −2.95e-3, pass |
+| Ω_b h², E24 resistors | 0.022265 | – | −8.7e-3, fail |
+| Ω_b h², E24 + OPA187 I_B | 0.022189 | – | −1.2e-2, fail |
+
+The full results, the honest limits (vendor-model and MC convergence in ngspice, and bias-current sensitivity) and what is left are in `docs/INSIGHTS.md` and `docs/COMPLETENESS_AUDIT.md`.
 
 ## Honest limits
 

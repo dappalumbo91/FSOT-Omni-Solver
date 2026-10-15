@@ -24,11 +24,13 @@ mkns() { [ -n "$f" ] && echo out/seed_$(awk -F'\t' -v f=$f '$1==f{print $6}' ../
 if [ "$m" = fold ]; then FSOT_P2_NODESET=$(mkns) ../cpp/netgen2 fold e24_ideal 0 $J/base.cir $t op $f; fi
 if [ "$m" = omb ]; then ./run_omb.sh e24_ideal 0 $t >/dev/null; cp netlists/omb_e24_ideal_s0_t${t}.cir $J/base.cir; fi
 solve $J/base.cir
+cp $J/sol.txt $J/sol_base.txt; FSOT_P2_NODESET=$J/sol_base.txt ../cpp/netgen2 $m e24_ideal 0 $J/base.cir $t op $f   # injected run starts from the base solution
 val() { awk -v n="$1" '$1==n{print $3; exit}' $J/sol.txt; }
 : > $J/inj.txt
 grep -E "^E_[A-Za-z0-9_]+ " $J/base.cir | while read -r E o z p mi g; do
   nm=${E#E_}; l() { echo "$1" | tr 'A-Z' 'a-z'; }; pl=$(grep -E "^VOS_$nm " $J/base.cir | awk '{print $3}')
   vp=$(val "$(l $pl)"); vo=$(val "$(l $o)"); il=$(val "e_$(l $nm)#branch"); vp=${vp:-0}; vo=${vo:-0}; il=${il:-0}
+  if awk -v v="$vo" 'BEGIN{exit !(v>8.5 || v<-8.5)}'; then echo "$nm $pl $mi $vo railed" >> $J/inj.txt; continue; fi  # loop open in the ideal solve (idle T3 cascode, ~1e-22 A): a real OPAx187 sits at its rail; nothing to inject
   { echo "jig $nm"; echo "$inc"; echo "VCC vcc 0 9"; echo "VEE vee 0 -9"; echo "VP pj 0 DC $vp"
     echo "X_$nm pj mj vcc vee oj OPAx187"; echo "VX x 0 DC $(awk -v a="$vp" -v b="$vo" 'BEGIN{printf "%.9e", a-b}')"; echo "E_fb mj x oj 0 1"
     echo "I_ld oj 0 DC $(awk -v x="$il" 'BEGIN{printf "%.6e", -x}')"; echo "$opts"
@@ -41,10 +43,17 @@ grep -E "^E_[A-Za-z0-9_]+ " $J/base.cir | while read -r E o z p mi g; do
       r=$(timeout 120 ngspice -b $J/j_$nm.cir 2>&1 | awk -F' = ' '/^(vd|ibp|ibm|v\(oj\)) = /{printf "%s ", $2}'); [ -n "$r" ] && r="$r unloaded"; fi; fi
   echo "$nm $pl $mi $vo $r" >> $J/inj.txt
 done
-# inject: VOS_<nm> := -(V+ - V-)_vendor ; bias currents drawn from the + and - input nodes
-awk 'NR==FNR{if(NF>=8){vos[$1]=-$5; ibp[$1]=$6; ibm[$1]=$7; pn[$1]=$2; mn[$1]=$3}; next}
+# inject: VOS_<nm> := -(V+ - V-)_vendor ; bias current I_B+ (from the VP branch) drawn from both input nodes (the jig E-source
+# branch does not give a clean I_B-; OPA187 data sheet: I_B ~ +-100 pA on each input)
+awk 'NR==FNR{if(NF>=8){vos[$1]=-$5; ibp[$1]=$6; ibm[$1]=$6; pn[$1]=$2; mn[$1]=$3}; next}
   /^VOS_/{n=substr($1,5); if(n in vos){$5=sprintf("%.6e",vos[n]); print; printf "IBP_%s %s 0 DC %.6e\nIBM_%s %s 0 DC %.6e\n", n, pn[n], ibp[n], n, mn[n], ibm[n]; next}} {print}' $J/inj.txt $J/base.cir > netlists/$tag.cir
-nj=$(wc -l < $J/inj.txt); ok=$(awk 'NF>=8' $J/inj.txt | wc -l)
+nj=$(wc -l < $J/inj.txt); ok=$(awk 'NF>=8' $J/inj.txt | wc -l); nr=$(grep -c railed $J/inj.txt || true)
 timeout 1800 ngspice -b netlists/$tag.cir > out/$tag.log 2>&1 || true
-echo "VENDOR_EXTRACT: OPAx187 jigs solved $ok/$nj; |Vos_eff| max $(awk 'NF>=8{x=$5<0?-$5:$5; if(x>m)m=x} END{printf "%.3g", m}' $J/inj.txt) V; |Ib| max $(awk 'NF>=8{for(i=6;i<=7;i++){x=$i<0?-$i:$i; if(x>m)m=x}} END{printf "%.3g", m}' $J/inj.txt) A" >> out/$tag.log
+inj="Vos+Ib"
+if ! grep -q "^v(" out/$tag.log || grep -q "aborted" out/$tag.log; then  # fall back: bias currents only (Vos is covered by the MC Vos draw)
+  awk 'NR==FNR{if(NF>=8){ib[$1]=$6; pn[$1]=$2; mn[$1]=$3}; next}
+    /^VOS_/{n=substr($1,5); print; if(n in ib) printf "IBP_%s %s 0 DC %.6e\nIBM_%s %s 0 DC %.6e\n", n, pn[n], ib[n], n, mn[n], ib[n]; next} {print}' $J/inj.txt $J/base.cir > netlists/$tag.cir
+  timeout 1800 ngspice -b netlists/$tag.cir > out/$tag.log 2>&1 || true; inj="Ib only (Vos-injected solve did not converge)"; fi
+cp $J/sol_base.txt out/$tag.base.txt
+echo "VENDOR_EXTRACT ($inj): OPAx187 jigs solved $ok/$nj (railed, not injected: $nr); |Vos_eff| max $(awk 'NF>=8{x=$5<0?-$5:$5; if(x>m)m=x} END{printf "%.3g", m}' $J/inj.txt) V; |Ib| max $(awk 'NF>=8{x=$6<0?-$6:$6; if(x>m)m=x} END{printf "%.3g", m}' $J/inj.txt) A" >> out/$tag.log
 tail -1 out/$tag.log

@@ -30,3 +30,5 @@ phase2/cpp/audit
 phase2/cpp/derive2
 phase2/cpp/netgen2
 phase2/cpp/score2
+phase2/oven/run/
+phase2/oven/ovennet_bin
