@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
   const std::set<std::string> S3 = {"S_COSM", "S_QUANT", "S_CHEM"};
   const std::set<std::string> BASE = {"PI", "E", "PHI", "GAMMA", "G_CAT"};
   const std::set<std::string> DER = {"ALPHA", "PSI_CON", "ETA_EFF", "BETA", "GAMMA_C", "OMEGA", "THETA_S", "POOF", "C_EFF", "A_BLEED", "P_VAR", "B_IN", "A_IN", "SUCTION", "CHAOS", "P_BASE", "P_NEW", "C_FACTOR", "K", "C_COSM"};
-  std::printf("section\tname\tformula\tS_inputs\tconstants\toperations\tanalog_block\ttier\tcexpr\n");
+  std::printf("section\tname\tformula\tS_inputs\tconstants\toperations\tanalog_block\ttier\n");
   std::regex fn(R"(template <class S> void ([a-z_0-9]+)\(S& out\) const \{)"); std::sregex_iterator it(src.begin(), src.end(), fn), en;
   std::vector<std::pair<std::string, size_t>> secs; for (; it != en; ++it) secs.push_back({(*it)[1], (size_t)it->position()});
   for (size_t k = 0; k < secs.size(); ++k) { const std::string sec = secs[k].first; if (sec == "all_sections") continue;
@@ -68,11 +68,10 @@ int main(int argc, char** argv) {
           for (size_t i = 0; i < bl.size(); ++i) blk += (i ? " + " : "") + bl[i]; }
         std::string tier = !si.empty() ? "1 (fed by S_cosm/S_quant/S_chem)" : (!cs.empty() ? (std::any_of(cs.begin(), cs.end(), [&](const std::string& c) { return DER.count(c) > 0; }) ? "2 (derived constants only)" : "2a (base constants only)") : "0 (literal)");
         auto join = [](const std::set<std::string>& s) { std::string o; for (auto& x : s) o += (o.empty() ? "" : ",") + x; return o.empty() ? std::string("-") : o; };
-        std::string cx = ex; for (auto& ch : cx) if (ch == '\t' || ch == '\n' || ch == '\r') ch = ' ';  // expanded C++ expression (column 9)
-        std::printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", sec.c_str(), name.c_str(), form.c_str(), join(si).c_str(), join(cs).c_str(), join(ops).c_str(), blk.c_str(), tier.c_str(), cx.c_str());
+        std::printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", sec.c_str(), name.c_str(), form.c_str(), join(si).c_str(), join(cs).c_str(), join(ops).c_str(), blk.c_str(), tier.c_str());
         p = ns + 1; continue; }
       std::string st = body.substr(p, ns - p); std::smatch m;
-      std::string sst = trim(st); while (!sst.empty() && (sst[0] == '}' || sst[0] == '{')) sst = trim(sst.substr(1));  // statement after a closing loop block
+      std::string sst = trim(st);
       if (std::regex_search(sst, m, asg) && m.position() == 0 && sst.find("cf(") == std::string::npos && sst.find("for (") == std::string::npos) {
         std::string nm = m[1], ex = sst.substr(m.length()); if (nm != "_sec") { for (int pass = 0; pass < 2; ++pass) for (auto& [l, e] : loc) if (l != nm) ex = std::regex_replace(ex, std::regex("\\b" + l + "\\b"), "(" + e + ")"); loc[nm] = ex; } }
       p = ns + 1; } }

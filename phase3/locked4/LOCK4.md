@@ -3,7 +3,7 @@
 Recorded 2026-10-15T17:06:58-04:00, **before the first simulation of any FSOT-valued netlist in this directory**. The hashes are committed and pushed, and the push is verified with `git ls-remote`, before any of these netlists is simulated.
 
 ## What is locked
-- `leaves_map.tsv`: `cpp/leafmap` run on FSOT-2.1-Cpp 3466e8d `closed_forms_core.gen.inc`. It gives each closed form's engine C++ expression with the local temporaries inlined.
+- `leaves_map.tsv`: `cpp/leafmap4` run on FSOT-2.1-Cpp 3466e8d `closed_forms_core.gen.inc`. It gives each closed form's engine C++ expression with the local temporaries inlined.
 - `cpp/leafc` is the leaf compiler. It turns every expression into analog primitives:
   - cascoded LOGR and CAL
   - inverting log-domain summers (V_T per neper; constants from the PTAT bus V_NEP = 10 V_T)
@@ -73,5 +73,12 @@ The toolchain (leafc → netgen2 leafc → blocksolve) was debugged on **DEV dry
 - `recipe4_GEN.txt` `45b2736e21f2d82a7d4ece1dd358c34e8cb0c8a632dc06766220f225eeaf403e`
 - `recipe4_T1.txt` `3cd884851dc73c3de1de8ba775910a100f76a1469ebb9979e66bf995ac729c64`
 - `../cpp/leafc.cpp` `b29099fe65b147f4fb1d1e22c8d6a624480b3c544d044e234cc3ce01804794e1`
-- `../cpp/leafmap.cpp` `77875db0c3a2f9ad9f1ad93708de93be9988b92fb0f6c5f21af4758e404f118a`
+- `../cpp/leafmap4.cpp` `77875db0c3a2f9ad9f1ad93708de93be9988b92fb0f6c5f21af4758e404f118a`
 - `../tools/score4.sh` `9902b9b3fae3c73a712385535af5026b8f77de913f2995bcd67cbed7005e71f9`
+
+## Amendment 4.1: 2026-10-15T17:13:54-04:00. Harness only: a path change; no hash changed.
+Commit a1d5620 edited `phase3/cpp/leafmap.cpp` in place, adding the `cexpr` column and stripping leading braces after loop blocks. That file is covered by LOCK3, at hash ea0e55dc…. This broke LOCK3 in CI run 38807418734.
+- `leafmap.cpp` is restored byte for byte from 996ea08 (ea0e55dc…), so LOCK3 is untouched.
+- The extended version is now `phase3/cpp/leafmap4.cpp`, with identical content and the same hash 77875db0…, so `leaves_map.tsv` is unchanged.
+- SHA256SUMS, the hash list above and verify_lock4.sh point at leafmap4.cpp.
+- Rule from now on: a file covered by an earlier lock is never edited; it is forked.

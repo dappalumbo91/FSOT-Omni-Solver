@@ -64,3 +64,5 @@ jobs:
         run: phase2/tools/reproduce2.sh "$PWD/third_party/FSOT-2.1-Cpp"
       - name: Phase 3 leaf tier 1 (LOCK3 + leaf1 block solve at 27/0 C vs golden)
         run: phase3/tools/reproduce3.sh "$PWD/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK4 (compiled leaves, byte-identical re-derivation)
+        run: cd phase3/tools && ./verify_lock4.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
