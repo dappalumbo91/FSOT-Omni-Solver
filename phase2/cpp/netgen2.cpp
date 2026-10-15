@@ -287,6 +287,26 @@ int main(int argc, char** argv) {
     SUM("Om", "vxom", {{"noS", "R_Om_n"}, {"no1", "R_Om_n"}}, "Om", "R_Om_c");
     Rp("omin", "vr", "omd", "R_omin"); CAL("om", "vxom", {"tom"}); TIA("om", "tom", "vomb", "R_omT");
     pr = {"vSc", "vSm", "v1sc", "vomb", "vabs", "vt1c", "vt1m", "vx3c", "vx3m", "vnep"};
+  } else if (mode == "leafc") {  // Phase 3b: a compiled leaf netlist (phase3/cpp/leafc): recipe of primitives + locked values, netlist key = [fold] arg
+    std::string d4 = "../../phase3/locked4"; if (const char* e = std::getenv("FSOT_P4_LOCKED")) d4 = e;
+    { std::ifstream f(d4 + "/design4_" + fname + "_values.tsv"); std::string line; std::getline(f, line);
+      while (std::getline(f, line)) { std::istringstream s(line); std::string n, id, a, b, c; std::getline(s, n, '\t'); std::getline(s, id, '\t'); std::getline(s, a, '\t'); std::getline(s, b, '\t'); std::getline(s, c, '\t');
+        P[n] = {std::stod(id), std::stod(a), std::stod(b), std::stod(c)}; } }
+    what = "compiled leaves: " + fname; pr = {"vnep"};
+    std::ifstream rf(d4 + "/recipe4_" + fname + ".txt"); std::string l;
+    while (std::getline(rf, l)) { std::vector<std::string> c; std::istringstream t(l); std::string x; while (std::getline(t, x, '\t')) c.push_back(x);
+      if (c.empty()) continue; const std::string& k = c[0];
+      if (k == "CHAN") { channel("c", findf("Chemistry"), true); channel("m", findf("Cosmology"), false); channel("q", findf("Quantum_Mechanics"), true); FW("om", "vSm", "vabs"); }
+      else if (k == "R") Rp(c[1], c[2], c[3], c[4]);
+      else if (k == "OA") OA(c[1], c[2], c[3], c[4]);
+      else if (k == "C") N << "C" << c[1] << " " << c[2] << " " << c[3] << " " << c[4] << "\n";
+      else if (k == "LOGR") LOGR(c[1], c[2]);
+      else if (k == "CAL") CAL(c[1], c[2], {c[3]});
+      else if (k == "CALU") { const std::string& q = c[1];   // antilog without the output cascode (tiny series terms)
+        Q(q + "3", q + "d", "0", q + "ea"); OA(q + "C", "0", q + "d", q + "ea"); N << "CC" << q << " " << q << "ea " << q << "d 1n\n"; Q(q + "4", c[3], c[2], q + "ea"); }
+      else if (k == "CMP") CMP(c[1], c[2], c[3], c[4]);
+      else if (k == "PRINT") pr.push_back(c[1]);
+      else { std::fprintf(stderr, "netgen2 leafc: bad recipe line %s\n", l.c_str()); return 1; } }
   } else if (mode == "leaf1") {  // Phase 3 leaf tier 1: the closed forms fed by S_cosm, S_quant, S_chem, solved by the circuit
     std::string d3 = "../../phase3/locked"; if (const char* e = std::getenv("FSOT_P3_LOCKED")) d3 = e; load3(d3);
     what = "leaf tier 1 (S_cosm, S_quant, S_chem channels + 14 closed forms)";

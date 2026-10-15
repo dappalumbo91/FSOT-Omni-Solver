@@ -192,3 +192,15 @@ netgen2.cpp 5f9ed1d651241648… → `43149f14c07425b14048e4edd814c6c62ef4d7d3283
   - With these fixes the Chemistry fold, omb and leaf1 converge at 0 °C again.
 
 netgen2.cpp 08831efe718141bf… → `08831efe718141bf21fdc4243b8dc45156593b7d66d3b1e004b1d22ee2bcde2a`; blocksolve.cpp b7fc4b6127645a43… → `02d5abe8f60bcfcf34c0d0534484d2b1441fa816adf843698c21d1eef82f4c61`
+
+### Amendment 14: 2026-10-15T17:06:49-04:00. New mode plus harness. No Phase-2 value, part or topology changed.
+- **netgen2 mode `leafc`.** It reads a compiled leaf netlist: `phase3/locked4/recipe4_<key>.txt` lists the primitives (R, OA, C, LOGR, CAL, CALU, CMP, PRINT, CHAN), with values from `design4_<key>_values.tsv`.
+  - `CALU` is an antilog without the 2N7000 output cascode. The compiler uses it only for sum terms below 1e-4 of the largest term.
+  - Its Early error is V_CB/VAF ≈ 5e-3 of such a term, so at most about 5e-7 of the sum.
+  - Below about 1e-11 A a cascode's operating point is numerically indeterminate in ngspice and physically below leakage.
+- **blocksolve verification.**
+  - **Fallback:** if the plain-Newton re-solve cannot start, one retry with gmin stepping only. A gmin-stepped point is a true DC solution once gmin is removed. Any pseudo-transient op still rejects the block.
+  - **Gate tolerance:** gates of op-amp-driven cascodes are checked at 1e-2 rel + 1e-3 V; their source nodes and currents stay at 1e-5.
+  - **Origin:** both changes came from 0 °C dry runs of the compiled leaves, done on non-FSOT values (LOCK4.md).
+
+netgen2.cpp 08831efe718141bf… → `52e7be83b0ab99d4a59935f3af407cca300d5a73798a05182bff0a07db027ecb`; blocksolve.cpp 02d5abe8f60bcfcf… → `88b653f2120ccbf78ad5509da40b4e468fba32d36354f638597020c8223a5753`

@@ -1,0 +1,1311 @@
+OA	zT1x	0	zT1xs	zT1xo
+R	zT1xf	zT1xo	zT1xs	P_zT1xf
+C	zT1x	zT1xo	zT1xs	100p
+R	zB2xi	vr	zB2xc1	P_zB2xi
+R	zB2xr	vr	zB2xc2	P_zB2xr
+LOGR	zB2x	zB2xn
+OA	zA3x	0	zA3xs	zA3xo
+R	zA3xf_0	zA3xo	zA3xf_q0	P_zA3xf_0
+R	zA3xf_1	zA3xf_q0	zA3xs	P_zA3xf_1
+C	zA3x	zA3xo	zA3xs	100p
+OA	zA3xn	0	zA3xns	zA3xno
+R	zA3xnf_0	zA3xno	zA3xnf_q0	P_zA3xnf_0
+R	zA3xnf_1	zA3xnf_q0	zA3xns	P_zA3xnf_1
+C	zA3xn	zA3xno	zA3xns	100p
+R	zA3xnb_0	zA3xno	zA3xnb_q0	P_zA3xnb_0
+R	zA3xnb_1	zA3xnb_q0	zA3xs	P_zA3xnb_1
+R	zB4xi	vr	zB4xc1	P_zB4xi
+R	zB4xr	vr	zB4xc2	P_zB4xr
+LOGR	zB4x	zB4xn
+R	zC5xp	vr	zC5xd	P_zC5xp
+OA	zS6x	0	zS6xs	zS6xo
+R	zS6xf	zS6xo	zS6xs	P_zS6xf
+C	zS6x	zS6xo	zS6xs	100p
+R	zS6xi1	zB4xn	zS6xs	P_zS6xi1
+R	zS6xc	vnep	zS6xs	P_zS6xc
+CAL	zC5x	zS6xo	zA3xs
+R	zB7xi	vr	zB7xc1	P_zB7xi
+R	zB7xr	vr	zB7xc2	P_zB7xr
+LOGR	zB7x	zB7xn
+R	zC8xp	vr	zC8xd	P_zC8xp
+OA	zS9x	0	zS9xs	zS9xo
+R	zS9xf	zS9xo	zS9xs	P_zS9xf
+C	zS9x	zS9xo	zS9xs	100p
+OA	zI10x	0	zI10xs	zI10xo
+R	zI10xa	zB7xn	zI10xs	P_zI10xa
+R	zI10xb	zI10xo	zI10xs	P_zI10xb
+R	zS9xi1	zI10xo	zS9xs	P_zS9xi1
+R	zS9xc	vnep	zS9xs	P_zS9xc
+CAL	zC8x	zS9xo	zA3xns
+R	zL11xi	zA3xo	zL11xc1	P_zL11xi
+R	zL11xr	vr	zL11xc2	P_zL11xr
+LOGR	zL11x	zL11xn
+R	zC12xp	vr	zC12xd	P_zC12xp
+OA	zS13x	0	zS13xs	zS13xo
+R	zS13xf	zS13xo	zS13xs	P_zS13xf
+C	zS13x	zS13xo	zS13xs	100p
+OA	zI14x	0	zI14xs	zI14xo
+R	zI14xa	zB2xn	zI14xs	P_zI14xa
+R	zI14xb	zI14xo	zI14xs	P_zI14xb
+R	zS13xi1	zI14xo	zS13xs	P_zS13xi1
+R	zS13xi2	zL11xn	zS13xs	P_zS13xi2
+R	zS13xc	vnep	zS13xs	P_zS13xc
+CAL	zC12x	zS13xo	zT1xs
+OA	zT15x	0	zT15xs	zT15xo
+R	zT15xf	zT15xo	zT15xs	P_zT15xf
+C	zT15x	zT15xo	zT15xs	100p
+OA	zA16x	0	zA16xs	zA16xo
+R	zA16xf	zA16xo	zA16xs	P_zA16xf
+C	zA16x	zA16xo	zA16xs	100p
+R	zC17xp	vr	zC17xd	P_zC17xp
+OA	zS18x	0	zS18xs	zS18xo
+R	zS18xf	zS18xo	zS18xs	P_zS18xf
+C	zS18x	zS18xo	zS18xs	100p
+R	zS18xi1	zI14xo	zS18xs	P_zS18xi1
+R	zS18xc	vnep	zS18xs	P_zS18xc
+CAL	zC17x	zS18xo	zA16xs
+R	zC19xp	vr	zC19xd	P_zC19xp
+OA	zS20x	0	zS20xs	zS20xo
+R	zS20xf	zS20xo	zS20xs	P_zS20xf
+C	zS20x	zS20xo	zS20xs	100p
+R	zS20xi1	zI14xo	zS20xs	P_zS20xi1
+R	zS20xc	vnep	zS20xs	P_zS20xc
+CAL	zC19x	zS20xo	zA16xs
+R	zL21xi	zA16xo	zL21xc1	P_zL21xi
+R	zL21xr	vr	zL21xc2	P_zL21xr
+LOGR	zL21x	zL21xn
+OA	zA22x	0	zA22xs	zA22xo
+R	zA22xf_0	zA22xo	zA22xf_q0	P_zA22xf_0
+R	zA22xf_1	zA22xf_q0	zA22xs	P_zA22xf_1
+C	zA22x	zA22xo	zA22xs	100p
+OA	zA22xn	0	zA22xns	zA22xno
+R	zA22xnf_0	zA22xno	zA22xnf_q0	P_zA22xnf_0
+R	zA22xnf_1	zA22xnf_q0	zA22xns	P_zA22xnf_1
+C	zA22xn	zA22xno	zA22xns	100p
+R	zA22xnb_0	zA22xno	zA22xnb_q0	P_zA22xnb_0
+R	zA22xnb_1	zA22xnb_q0	zA22xs	P_zA22xnb_1
+R	zC23xp	vr	zC23xd	P_zC23xp
+OA	zS24x	0	zS24xs	zS24xo
+R	zS24xf	zS24xo	zS24xs	P_zS24xf
+C	zS24x	zS24xo	zS24xs	100p
+R	zS24xc	vnep	zS24xs	P_zS24xc
+CAL	zC23x	zS24xo	zA22xs
+R	zC25xp	vr	zC25xd	P_zC25xp
+OA	zS26x	0	zS26xs	zS26xo
+R	zS26xf	zS26xo	zS26xs	P_zS26xf
+C	zS26x	zS26xo	zS26xs	100p
+R	zS26xi1	zB4xn	zS26xs	P_zS26xi1
+R	zS26xc	vnep	zS26xs	P_zS26xc
+CAL	zC25x	zS26xo	zA22xns
+R	zL27xi	zA22xo	zL27xc1	P_zL27xi
+R	zL27xr	vr	zL27xc2	P_zL27xr
+LOGR	zL27x	zL27xn
+R	zC28xp	vr	zC28xd	P_zC28xp
+OA	zS29x	0	zS29xs	zS29xo
+R	zS29xf	zS29xo	zS29xs	P_zS29xf
+C	zS29x	zS29xo	zS29xs	100p
+OA	zI30x	0	zI30xs	zI30xo
+R	zI30xa	zL21xn	zI30xs	P_zI30xa
+R	zI30xb	zI30xo	zI30xs	P_zI30xb
+R	zS29xi1	zI30xo	zS29xs	P_zS29xi1
+R	zS29xi2	zL27xn	zS29xs	P_zS29xi2
+R	zS29xc	vnep	zS29xs	P_zS29xc
+CAL	zC28x	zS29xo	zT15xs
+OA	zT31x	0	zT31xs	zT31xo
+R	zT31xf	zT31xo	zT31xs	P_zT31xf
+C	zT31x	zT31xo	zT31xs	100p
+OA	zA32x	0	zA32xs	zA32xo
+R	zA32xf	zA32xo	zA32xs	P_zA32xf
+C	zA32x	zA32xo	zA32xs	100p
+R	zC33xp	vr	zC33xd	P_zC33xp
+OA	zS34x	0	zS34xs	zS34xo
+R	zS34xf	zS34xo	zS34xs	P_zS34xf
+C	zS34x	zS34xo	zS34xs	100p
+R	zS34xi1	zB7xn	zS34xs	P_zS34xi1
+R	zS34xc	vnep	zS34xs	P_zS34xc
+CAL	zC33x	zS34xo	zA32xs
+R	zC35xp	vr	zC35xd	P_zC35xp
+OA	zS36x	0	zS36xs	zS36xo
+R	zS36xf	zS36xo	zS36xs	P_zS36xf
+C	zS36x	zS36xo	zS36xs	100p
+R	zS36xi1	zI14xo	zS36xs	P_zS36xi1
+R	zS36xc	vnep	zS36xs	P_zS36xc
+CAL	zC35x	zS36xo	zA32xs
+R	zL37xi	zA32xo	zL37xc1	P_zL37xi
+R	zL37xr	vr	zL37xc2	P_zL37xr
+LOGR	zL37x	zL37xn
+OA	zA38x	0	zA38xs	zA38xo
+R	zA38xf_0	zA38xo	zA38xf_q0	P_zA38xf_0
+R	zA38xf_1	zA38xf_q0	zA38xf_q1	P_zA38xf_1
+R	zA38xf_2	zA38xf_q1	zA38xs	P_zA38xf_2
+C	zA38x	zA38xo	zA38xs	100p
+OA	zA38xn	0	zA38xns	zA38xno
+R	zA38xnf_0	zA38xno	zA38xnf_q0	P_zA38xnf_0
+R	zA38xnf_1	zA38xnf_q0	zA38xnf_q1	P_zA38xnf_1
+R	zA38xnf_2	zA38xnf_q1	zA38xns	P_zA38xnf_2
+C	zA38xn	zA38xno	zA38xns	100p
+R	zA38xnb_0	zA38xno	zA38xnb_q0	P_zA38xnb_0
+R	zA38xnb_1	zA38xnb_q0	zA38xnb_q1	P_zA38xnb_1
+R	zA38xnb_2	zA38xnb_q1	zA38xs	P_zA38xnb_2
+R	zC39xp	vr	zC39xd	P_zC39xp
+OA	zS40x	0	zS40xs	zS40xo
+R	zS40xf	zS40xo	zS40xs	P_zS40xf
+C	zS40x	zS40xo	zS40xs	100p
+R	zS40xi1	zB7xn	zS40xs	P_zS40xi1
+R	zS40xc	vnep	zS40xs	P_zS40xc
+CAL	zC39x	zS40xo	zA38xs
+R	zC41xp	vr	zC41xd	P_zC41xp
+OA	zS42x	0	zS42xs	zS42xo
+R	zS42xf	zS42xo	zS42xs	P_zS42xf
+C	zS42x	zS42xo	zS42xs	100p
+R	zS42xi1	zB2xn	zS42xs	P_zS42xi1
+R	zS42xc	vnep	zS42xs	P_zS42xc
+CAL	zC41x	zS42xo	zA38xns
+R	zL43xi	zA38xo	zL43xc1	P_zL43xi
+R	zL43xr	vr	zL43xc2	P_zL43xr
+LOGR	zL43x	zL43xn
+R	zC44xp	vr	zC44xd	P_zC44xp
+OA	zS45x	0	zS45xs	zS45xo
+R	zS45xf	zS45xo	zS45xs	P_zS45xf
+C	zS45x	zS45xo	zS45xs	100p
+OA	zI46x	0	zI46xs	zI46xo
+R	zI46xa	zL37xn	zI46xs	P_zI46xa
+R	zI46xb	zI46xo	zI46xs	P_zI46xb
+R	zS45xi1	zI46xo	zS45xs	P_zS45xi1
+R	zS45xi2	zL43xn	zS45xs	P_zS45xi2
+R	zS45xc	vnep	zS45xs	P_zS45xc
+CAL	zC44x	zS45xo	zT31xs
+OA	zT47x	0	zT47xs	zT47xo
+R	zT47xf	zT47xo	zT47xs	P_zT47xf
+C	zT47x	zT47xo	zT47xs	100p
+OA	zA48x	0	zA48xs	zA48xo
+R	zA48xf	zA48xo	zA48xs	P_zA48xf
+C	zA48x	zA48xo	zA48xs	100p
+R	zC49xp	vr	zC49xd	P_zC49xp
+OA	zS50x	0	zS50xs	zS50xo
+R	zS50xf	zS50xo	zS50xs	P_zS50xf
+C	zS50x	zS50xo	zS50xs	100p
+R	zS50xi1	zI14xo	zS50xs	P_zS50xi1
+R	zS50xc	vnep	zS50xs	P_zS50xc
+CAL	zC49x	zS50xo	zA48xs
+R	zC51xp	vr	zC51xd	P_zC51xp
+OA	zS52x	0	zS52xs	zS52xo
+R	zS52xf	zS52xo	zS52xs	P_zS52xf
+C	zS52x	zS52xo	zS52xs	100p
+R	zS52xi1	zB2xn	zS52xs	P_zS52xi1
+R	zS52xc	vnep	zS52xs	P_zS52xc
+CAL	zC51x	zS52xo	zA48xs
+R	zL53xi	zA48xo	zL53xc1	P_zL53xi
+R	zL53xr	vr	zL53xc2	P_zL53xr
+LOGR	zL53x	zL53xn
+OA	zA54x	0	zA54xs	zA54xo
+R	zA54xf	zA54xo	zA54xs	P_zA54xf
+C	zA54x	zA54xo	zA54xs	100p
+OA	zA54xn	0	zA54xns	zA54xno
+R	zA54xnf	zA54xno	zA54xns	P_zA54xnf
+C	zA54xn	zA54xno	zA54xns	100p
+R	zA54xnb	zA54xno	zA54xs	P_zA54xnb
+R	zC55xp	vr	zC55xd	P_zC55xp
+OA	zS56x	0	zS56xs	zS56xo
+R	zS56xf	zS56xo	zS56xs	P_zS56xf
+C	zS56x	zS56xo	zS56xs	100p
+R	zS56xc	vnep	zS56xs	P_zS56xc
+CAL	zC55x	zS56xo	zA54xs
+R	zC57xp	vr	zC57xd	P_zC57xp
+OA	zS58x	0	zS58xs	zS58xo
+R	zS58xf	zS58xo	zS58xs	P_zS58xf
+C	zS58x	zS58xo	zS58xs	100p
+R	zS58xi1	zI10xo	zS58xs	P_zS58xi1
+R	zS58xc	vnep	zS58xs	P_zS58xc
+CAL	zC57x	zS58xo	zA54xns
+R	zL59xi	zA54xo	zL59xc1	P_zL59xi
+R	zL59xr	vr	zL59xc2	P_zL59xr
+LOGR	zL59x	zL59xn
+R	zC60xp	vr	zC60xd	P_zC60xp
+OA	zS61x	0	zS61xs	zS61xo
+R	zS61xf	zS61xo	zS61xs	P_zS61xf
+C	zS61x	zS61xo	zS61xs	100p
+OA	zI62x	0	zI62xs	zI62xo
+R	zI62xa	zL53xn	zI62xs	P_zI62xa
+R	zI62xb	zI62xo	zI62xs	P_zI62xb
+R	zS61xi1	zI62xo	zS61xs	P_zS61xi1
+R	zS61xi2	zL59xn	zS61xs	P_zS61xi2
+R	zS61xc	vnep	zS61xs	P_zS61xc
+CAL	zC60x	zS61xo	zT47xs
+OA	zT63x	0	zT63xs	zT63xo
+R	zT63xf	zT63xo	zT63xs	P_zT63xf
+C	zT63x	zT63xo	zT63xs	100p
+OA	zA64x	0	zA64xs	zA64xo
+R	zA64xf_0	zA64xo	zA64xf_q0	P_zA64xf_0
+R	zA64xf_1	zA64xf_q0	zA64xs	P_zA64xf_1
+C	zA64x	zA64xo	zA64xs	100p
+R	zC65xp	vr	zC65xd	P_zC65xp
+OA	zS66x	0	zS66xs	zS66xo
+R	zS66xf	zS66xo	zS66xs	P_zS66xf
+C	zS66x	zS66xo	zS66xs	100p
+R	zS66xc	vnep	zS66xs	P_zS66xc
+CAL	zC65x	zS66xo	zA64xs
+R	zC67xp	vr	zC67xd	P_zC67xp
+OA	zS68x	0	zS68xs	zS68xo
+R	zS68xf	zS68xo	zS68xs	P_zS68xf
+C	zS68x	zS68xo	zS68xs	100p
+R	zS68xi1	zB4xn	zS68xs	P_zS68xi1
+R	zS68xc	vnep	zS68xs	P_zS68xc
+CAL	zC67x	zS68xo	zA64xs
+R	zL69xi	zA64xo	zL69xc1	P_zL69xi
+R	zL69xr	vr	zL69xc2	P_zL69xr
+LOGR	zL69x	zL69xn
+OA	zA70x	0	zA70xs	zA70xo
+R	zA70xf	zA70xo	zA70xs	P_zA70xf
+C	zA70x	zA70xo	zA70xs	100p
+OA	zA70xn	0	zA70xns	zA70xno
+R	zA70xnf	zA70xno	zA70xns	P_zA70xnf
+C	zA70xn	zA70xno	zA70xns	100p
+R	zA70xnb	zA70xno	zA70xs	P_zA70xnb
+R	zC71xp	vr	zC71xd	P_zC71xp
+OA	zS72x	0	zS72xs	zS72xo
+R	zS72xf	zS72xo	zS72xs	P_zS72xf
+C	zS72x	zS72xo	zS72xs	100p
+R	zS72xi1	zB7xn	zS72xs	P_zS72xi1
+R	zS72xc	vnep	zS72xs	P_zS72xc
+CAL	zC71x	zS72xo	zA70xs
+R	zC73xp	vr	zC73xd	P_zC73xp
+OA	zS74x	0	zS74xs	zS74xo
+R	zS74xf	zS74xo	zS74xs	P_zS74xf
+C	zS74x	zS74xo	zS74xs	100p
+R	zS74xi1	zB4xn	zS74xs	P_zS74xi1
+R	zS74xc	vnep	zS74xs	P_zS74xc
+CAL	zC73x	zS74xo	zA70xns
+R	zL75xi	zA70xo	zL75xc1	P_zL75xi
+R	zL75xr	vr	zL75xc2	P_zL75xr
+LOGR	zL75x	zL75xn
+R	zC76xp	vr	zC76xd	P_zC76xp
+OA	zS77x	0	zS77xs	zS77xo
+R	zS77xf	zS77xo	zS77xs	P_zS77xf
+C	zS77x	zS77xo	zS77xs	100p
+OA	zI78x	0	zI78xs	zI78xo
+R	zI78xa	zL69xn	zI78xs	P_zI78xa
+R	zI78xb	zI78xo	zI78xs	P_zI78xb
+R	zS77xi1	zI78xo	zS77xs	P_zS77xi1
+R	zS77xi2	zL75xn	zS77xs	P_zS77xi2
+R	zS77xc	vnep	zS77xs	P_zS77xc
+CAL	zC76x	zS77xo	zT63xs
+OA	zA79x	0	zA79xs	zA79xo
+R	zA79xf_0	zA79xo	zA79xf_q0	P_zA79xf_0
+R	zA79xf_1	zA79xf_q0	zA79xf_q1	P_zA79xf_1
+R	zA79xf_2	zA79xf_q1	zA79xs	P_zA79xf_2
+C	zA79x	zA79xo	zA79xs	100p
+OA	zS80x	0	zS80xs	zS80xo
+R	zS80xf	zS80xo	zS80xs	P_zS80xf
+C	zS80x	zS80xo	zS80xs	100p
+R	zS80xi1	zB7xn	zS80xs	P_zS80xi1
+R	zL81xi	zS80xo	zL81xc1	P_zL81xi
+R	zL81xr	vnep	zL81xc2	P_zL81xr
+LOGR	zL81x	zL81xn
+R	zC82xp	vr	zC82xd	P_zC82xp
+OA	zS83x	0	zS83xs	zS83xo
+R	zS83xf	zS83xo	zS83xs	P_zS83xf
+C	zS83x	zS83xo	zS83xs	100p
+R	zS83xi1	zB2xn	zS83xs	P_zS83xi1
+OA	zI84x	0	zI84xs	zI84xo
+R	zI84xa	zL81xn	zI84xs	P_zI84xa
+R	zI84xb	zI84xo	zI84xs	P_zI84xb
+R	zS83xi2	zI84xo	zS83xs	P_zS83xi2
+R	zS83xc	vnep	zS83xs	P_zS83xc
+CAL	zC82x	zS83xo	zA79xs
+OA	zT85x	0	zT85xs	zT85xo
+R	zT85xf	zT85xo	zT85xs	P_zT85xf
+C	zT85x	zT85xo	zT85xs	100p
+OA	zS86x	0	zS86xs	zS86xo
+R	zS86xf	zS86xo	zS86xs	P_zS86xf
+C	zS86x	zS86xo	zS86xs	100p
+R	zS86xi1	zB2xn	zS86xs	P_zS86xi1
+R	zL87xi	zS86xo	zL87xc1	P_zL87xi
+R	zL87xr	vnep	zL87xc2	P_zL87xr
+LOGR	zL87x	zL87xn
+R	zC88xp	vr	zC88xd	P_zC88xp
+OA	zS89x	0	zS89xs	zS89xo
+R	zS89xf	zS89xo	zS89xs	P_zS89xf
+C	zS89x	zS89xo	zS89xs	100p
+R	zS89xi1	zL87xn	zS89xs	P_zS89xi1
+R	zS89xc	vnep	zS89xs	P_zS89xc
+CAL	zC88x	zS89xo	zT85xs
+R	zA79xt2_0	zT85xo	zA79xt2_q0	P_zA79xt2_0
+R	zA79xt2_1	zA79xt2_q0	zA79xt2_q1	P_zA79xt2_1
+R	zA79xt2_2	zA79xt2_q1	zA79xs	P_zA79xt2_2
+OA	zA90x	0	zA90xs	zA90xo
+R	zA90xf	zA90xo	zA90xs	P_zA90xf
+C	zA90x	zA90xo	zA90xs	100p
+R	zC91xp	vr	zC91xd	P_zC91xp
+OA	zS92x	0	zS92xs	zS92xo
+R	zS92xf	zS92xo	zS92xs	P_zS92xf
+C	zS92x	zS92xo	zS92xs	100p
+R	zS92xi1	zB7xn	zS92xs	P_zS92xi1
+R	zS92xi2	zL81xn	zS92xs	P_zS92xi2
+R	zS92xc	vnep	zS92xs	P_zS92xc
+CAL	zC91x	zS92xo	zA90xs
+R	zC93xp	vr	zC93xd	P_zC93xp
+OA	zS94x	0	zS94xs	zS94xo
+R	zS94xf	zS94xo	zS94xs	P_zS94xf
+C	zS94x	zS94xo	zS94xs	100p
+R	zS94xc	vnep	zS94xs	P_zS94xc
+CAL	zC93x	zS94xo	zA90xs
+OA	zA95x	0	zA95xs	zA95xo
+R	zA95xf	zA95xo	zA95xs	P_zA95xf
+C	zA95x	zA95xo	zA95xs	100p
+R	zB96xi	vr	zB96xc1	P_zB96xi
+R	zB96xr	vr	zB96xc2	P_zB96xr
+LOGR	zB96x	zB96xn
+R	zC97xp	vr	zC97xd	P_zC97xp
+OA	zS98x	0	zS98xs	zS98xo
+R	zS98xf	zS98xo	zS98xs	P_zS98xf
+C	zS98x	zS98xo	zS98xs	100p
+OA	zI99x	0	zI99xs	zI99xo
+R	zI99xa	zB96xn	zI99xs	P_zI99xa
+R	zI99xb	zI99xo	zI99xs	P_zI99xb
+R	zS98xi1	zI99xo	zS98xs	P_zS98xi1
+R	zS98xi2	zL81xn	zS98xs	P_zS98xi2
+R	zS98xc	vnep	zS98xs	P_zS98xc
+CAL	zC97x	zS98xo	zA95xs
+R	zC100xp	vr	zC100xd	P_zC100xp
+OA	zS101x	0	zS101xs	zS101xo
+R	zS101xf	zS101xo	zS101xs	P_zS101xf
+C	zS101x	zS101xo	zS101xs	100p
+R	zS101xi1	zB2xn	zS101xs	P_zS101xi1
+R	zS101xc	vnep	zS101xs	P_zS101xc
+CAL	zC100x	zS101xo	zA95xs
+OA	zA102x	0	zA102xs	zA102xo
+R	zA102xf_0	zA102xo	zA102xf_q0	P_zA102xf_0
+R	zA102xf_1	zA102xf_q0	zA102xs	P_zA102xf_1
+C	zA102x	zA102xo	zA102xs	100p
+OA	zT103x	0	zT103xs	zT103xo
+R	zT103xf_0	zT103xo	zT103xf_q0	P_zT103xf_0
+R	zT103xf_1	zT103xf_q0	zT103xs	P_zT103xf_1
+C	zT103x	zT103xo	zT103xs	100p
+OA	zS104x	0	zS104xs	zS104xo
+R	zS104xf	zS104xo	zS104xs	P_zS104xf
+C	zS104x	zS104xo	zS104xs	100p
+R	zS104xc	vnepn	zS104xs	P_zS104xc
+R	zL105xi	zS104xo	zL105xc1	P_zL105xi
+R	zL105xr	vnep	zL105xc2	P_zL105xr
+LOGR	zL105x	zL105xn
+R	zC106xp	vr	zC106xd	P_zC106xp
+OA	zS107x	0	zS107xs	zS107xo
+R	zS107xf	zS107xo	zS107xs	P_zS107xf
+C	zS107x	zS107xo	zS107xs	100p
+R	zS107xi1	zL105xn	zS107xs	P_zS107xi1
+R	zS107xc	vnep	zS107xs	P_zS107xc
+CAL	zC106x	zS107xo	zT103xs
+R	zA102xt1_0	zT103xo	zA102xt1_q0	P_zA102xt1_0
+R	zA102xt1_1	zA102xt1_q0	zA102xs	P_zA102xt1_1
+R	zC108xp	vr	zC108xd	P_zC108xp
+OA	zS109x	0	zS109xs	zS109xo
+R	zS109xf	zS109xo	zS109xs	P_zS109xf
+C	zS109x	zS109xo	zS109xs	100p
+R	zS109xi1	zI10xo	zS109xs	P_zS109xi1
+R	zS109xc	vnepn	zS109xs	P_zS109xc
+CAL	zC108x	zS109xo	zA102xs
+OA	zT110x	0	zT110xs	zT110xo
+R	zT110xf	zT110xo	zT110xs	P_zT110xf
+C	zT110x	zT110xo	zT110xs	100p
+R	zC111xp	vr	zC111xd	P_zC111xp
+OA	zS112x	0	zS112xs	zS112xo
+R	zS112xf	zS112xo	zS112xs	P_zS112xf
+C	zS112x	zS112xo	zS112xs	100p
+R	zS112xi1	zL87xn	zS112xs	P_zS112xi1
+R	zS112xc	vnep	zS112xs	P_zS112xc
+CAL	zC111x	zS112xo	zT110xs
+OA	zA113x	0	zA113xs	zA113xo
+R	zA113xf	zA113xo	zA113xs	P_zA113xf
+C	zA113x	zA113xo	zA113xs	100p
+OA	zS114x	0	zS114xs	zS114xo
+R	zS114xf	zS114xo	zS114xs	P_zS114xf
+C	zS114x	zS114xo	zS114xs	100p
+R	zS114xc	vnepn	zS114xs	P_zS114xc
+R	zL115xi	zS114xo	zL115xc1	P_zL115xi
+R	zL115xr	vnep	zL115xc2	P_zL115xr
+LOGR	zL115x	zL115xn
+R	zC116xp	vr	zC116xd	P_zC116xp
+OA	zS117x	0	zS117xs	zS117xo
+R	zS117xf	zS117xo	zS117xs	P_zS117xf
+C	zS117x	zS117xo	zS117xs	100p
+R	zS117xi1	zB96xn	zS117xs	P_zS117xi1
+R	zS117xi2	zL115xn	zS117xs	P_zS117xi2
+R	zS117xc	vnep	zS117xs	P_zS117xc
+CAL	zC116x	zS117xo	zA113xs
+R	zC118xp	vr	zC118xd	P_zC118xp
+OA	zS119x	0	zS119xs	zS119xo
+R	zS119xf	zS119xo	zS119xs	P_zS119xf
+C	zS119x	zS119xo	zS119xs	100p
+R	zS119xi1	zB2xn	zS119xs	P_zS119xi1
+R	zS119xc	vnep	zS119xs	P_zS119xc
+CAL	zC118x	zS119xo	zA113xs
+OA	zA120x	0	zA120xs	zA120xo
+R	zA120xf_0	zA120xo	zA120xf_q0	P_zA120xf_0
+R	zA120xf_1	zA120xf_q0	zA120xs	P_zA120xf_1
+C	zA120x	zA120xo	zA120xs	100p
+OA	zA120xn	0	zA120xns	zA120xno
+R	zA120xnf_0	zA120xno	zA120xnf_q0	P_zA120xnf_0
+R	zA120xnf_1	zA120xnf_q0	zA120xns	P_zA120xnf_1
+C	zA120xn	zA120xno	zA120xns	100p
+R	zA120xnb_0	zA120xno	zA120xnb_q0	P_zA120xnb_0
+R	zA120xnb_1	zA120xnb_q0	zA120xs	P_zA120xnb_1
+R	zC121xp	vr	zC121xd	P_zC121xp
+OA	zS122x	0	zS122xs	zS122xo
+R	zS122xf	zS122xo	zS122xs	P_zS122xf
+C	zS122x	zS122xo	zS122xs	100p
+R	zS122xi1	zB4xn	zS122xs	P_zS122xi1
+R	zS122xi2	zL105xn	zS122xs	P_zS122xi2
+R	zS122xc	vnep	zS122xs	P_zS122xc
+CAL	zC121x	zS122xo	zA120xns
+R	zC123xp	vr	zC123xd	P_zC123xp
+OA	zS124x	0	zS124xs	zS124xo
+R	zS124xf	zS124xo	zS124xs	P_zS124xf
+C	zS124x	zS124xo	zS124xs	100p
+R	zS124xi1	zB2xn	zS124xs	P_zS124xi1
+R	zS124xi2	zI10xo	zS124xs	P_zS124xi2
+R	zS124xc	vnep	zS124xs	P_zS124xc
+CAL	zC123x	zS124xo	zA120xs
+OA	zA125x	0	zA125xs	zA125xo
+R	zA125xf_0	zA125xo	zA125xf_q0	P_zA125xf_0
+R	zA125xf_1	zA125xf_q0	zA125xs	P_zA125xf_1
+C	zA125x	zA125xo	zA125xs	100p
+R	zC126xp	vr	zC126xd	P_zC126xp
+OA	zS127x	0	zS127xs	zS127xo
+R	zS127xf	zS127xo	zS127xs	P_zS127xf
+C	zS127x	zS127xo	zS127xs	100p
+R	zS127xc	vnep	zS127xs	P_zS127xc
+CAL	zC126x	zS127xo	zA125xs
+R	zC128xp	vr	zC128xd	P_zC128xp
+OA	zS129x	0	zS129xs	zS129xo
+R	zS129xf	zS129xo	zS129xs	P_zS129xf
+C	zS129x	zS129xo	zS129xs	100p
+R	zS129xi1	zB96xn	zS129xs	P_zS129xi1
+R	zS129xc	vnep	zS129xs	P_zS129xc
+CAL	zC128x	zS129xo	zA125xs
+OA	zA130x	0	zA130xs	zA130xo
+R	zA130xf_0	zA130xo	zA130xf_q0	P_zA130xf_0
+R	zA130xf_1	zA130xf_q0	zA130xs	P_zA130xf_1
+C	zA130x	zA130xo	zA130xs	100p
+R	zC131xp	vr	zC131xd	P_zC131xp
+OA	zS132x	0	zS132xs	zS132xo
+R	zS132xf	zS132xo	zS132xs	P_zS132xf
+C	zS132x	zS132xo	zS132xs	100p
+R	zS132xi1	zL105xn	zS132xs	P_zS132xi1
+R	zS132xc	vnep	zS132xs	P_zS132xc
+CAL	zC131x	zS132xo	zA130xs
+R	zC133xp	vr	zC133xd	P_zC133xp
+OA	zS134x	0	zS134xs	zS134xo
+R	zS134xf	zS134xo	zS134xs	P_zS134xf
+C	zS134x	zS134xo	zS134xs	100p
+R	zS134xi1	zB2xn	zS134xs	P_zS134xi1
+R	zS134xc	vnep	zS134xs	P_zS134xc
+CAL	zC133x	zS134xo	zA130xs
+OA	zA135x	0	zA135xs	zA135xo
+R	zA135xf_0	zA135xo	zA135xf_q0	P_zA135xf_0
+R	zA135xf_1	zA135xf_q0	zA135xs	P_zA135xf_1
+C	zA135x	zA135xo	zA135xs	100p
+R	zC136xp	vr	zC136xd	P_zC136xp
+OA	zS137x	0	zS137xs	zS137xo
+R	zS137xf	zS137xo	zS137xs	P_zS137xf
+C	zS137x	zS137xo	zS137xs	100p
+R	zS137xi1	zI14xo	zS137xs	P_zS137xi1
+R	zS137xi2	zB7xn	zS137xs	P_zS137xi2
+R	zS137xc	vnep	zS137xs	P_zS137xc
+CAL	zC136x	zS137xo	zA135xs
+R	zC138xp	vr	zC138xd	P_zC138xp
+OA	zS139x	0	zS139xs	zS139xo
+R	zS139xf	zS139xo	zS139xs	P_zS139xf
+C	zS139x	zS139xo	zS139xs	100p
+R	zS139xc	vnep	zS139xs	P_zS139xc
+CAL	zC138x	zS139xo	zA135xs
+OA	zA140x	0	zA140xs	zA140xo
+R	zA140xf	zA140xo	zA140xs	P_zA140xf
+C	zA140x	zA140xo	zA140xs	100p
+R	zC141xp	vr	zC141xd	P_zC141xp
+OA	zS142x	0	zS142xs	zS142xo
+R	zS142xf	zS142xo	zS142xs	P_zS142xf
+C	zS142x	zS142xo	zS142xs	100p
+R	zS142xi1	zB96xn	zS142xs	P_zS142xi1
+R	zS142xc	vnep	zS142xs	P_zS142xc
+CAL	zC141x	zS142xo	zA140xs
+R	zC143xp	vr	zC143xd	P_zC143xp
+OA	zS144x	0	zS144xs	zS144xo
+R	zS144xf	zS144xo	zS144xs	P_zS144xf
+C	zS144x	zS144xo	zS144xs	100p
+R	zS144xc	vnep	zS144xs	P_zS144xc
+CAL	zC143x	zS144xo	zA140xs
+OA	zT145x	0	zT145xs	zT145xo
+R	zT145xf	zT145xo	zT145xs	P_zT145xf
+C	zT145x	zT145xo	zT145xs	100p
+R	zC146xp	vr	zC146xd	P_zC146xp
+OA	zS147x	0	zS147xs	zS147xo
+R	zS147xf	zS147xo	zS147xs	P_zS147xf
+C	zS147x	zS147xo	zS147xs	100p
+R	zS147xi1	zB4xn	zS147xs	P_zS147xi1
+OA	zI148x	0	zI148xs	zI148xo
+R	zI148xa	zL115xn	zI148xs	P_zI148xa
+R	zI148xb	zI148xo	zI148xs	P_zI148xb
+R	zS147xi2	zI148xo	zS147xs	P_zS147xi2
+R	zS147xc	vnep	zS147xs	P_zS147xc
+CAL	zC146x	zS147xo	zT145xs
+OA	zT149x	0	zT149xs	zT149xo
+R	zT149xf	zT149xo	zT149xs	P_zT149xf
+C	zT149x	zT149xo	zT149xs	100p
+R	zC150xp	vr	zC150xd	P_zC150xp
+OA	zS151x	0	zS151xs	zS151xo
+R	zS151xf	zS151xo	zS151xs	P_zS151xf
+C	zS151x	zS151xo	zS151xs	100p
+OA	zI152x	0	zI152xs	zI152xo
+R	zI152xa	zL105xn	zI152xs	P_zI152xa
+R	zI152xb	zI152xo	zI152xs	P_zI152xb
+R	zS151xi1	zI152xo	zS151xs	P_zS151xi1
+CAL	zC150x	zS151xo	zT149xs
+OA	zA153x	0	zA153xs	zA153xo
+R	zA153xf	zA153xo	zA153xs	P_zA153xf
+C	zA153x	zA153xo	zA153xs	100p
+OA	zA153xn	0	zA153xns	zA153xno
+R	zA153xnf	zA153xno	zA153xns	P_zA153xnf
+C	zA153xn	zA153xno	zA153xns	100p
+R	zA153xnb	zA153xno	zA153xs	P_zA153xnb
+R	zC154xp	vr	zC154xd	P_zC154xp
+OA	zS155x	0	zS155xs	zS155xo
+R	zS155xf	zS155xo	zS155xs	P_zS155xf
+C	zS155x	zS155xo	zS155xs	100p
+R	zS155xc	vnep	zS155xs	P_zS155xc
+CAL	zC154x	zS155xo	zA153xns
+R	zA153xk	vrn	zA153xs	P_zA153xk
+OA	zA156x	0	zA156xs	zA156xo
+R	zA156xf	zA156xo	zA156xs	P_zA156xf
+C	zA156x	zA156xo	zA156xs	100p
+OA	zA156xn	0	zA156xns	zA156xno
+R	zA156xnf	zA156xno	zA156xns	P_zA156xnf
+C	zA156xn	zA156xno	zA156xns	100p
+R	zA156xnb	zA156xno	zA156xs	P_zA156xnb
+R	zC157xp	vr	zC157xd	P_zC157xp
+OA	zS158x	0	zS158xs	zS158xo
+R	zS158xf	zS158xo	zS158xs	P_zS158xf
+C	zS158x	zS158xo	zS158xs	100p
+R	zS158xc	vnep	zS158xs	P_zS158xc
+CAL	zC157x	zS158xo	zA156xns
+R	zA156xk	vrn	zA156xs	P_zA156xk
+OA	zA159x	0	zA159xs	zA159xo
+R	zA159xf	zA159xo	zA159xs	P_zA159xf
+C	zA159x	zA159xo	zA159xs	100p
+R	zC160xp	vr	zC160xd	P_zC160xp
+OA	zS161x	0	zS161xs	zS161xo
+R	zS161xf	zS161xo	zS161xs	P_zS161xf
+C	zS161x	zS161xo	zS161xs	100p
+R	zS161xi1	zI99xo	zS161xs	P_zS161xi1
+R	zS161xc	vnepn	zS161xs	P_zS161xc
+CAL	zC160x	zS161xo	zA159xs
+OA	zT162x	0	zT162xs	zT162xo
+R	zT162xf	zT162xo	zT162xs	P_zT162xf
+C	zT162x	zT162xo	zT162xs	100p
+R	zC163xp	vr	zC163xd	P_zC163xp
+OA	zS164x	0	zS164xs	zS164xo
+R	zS164xf	zS164xo	zS164xs	P_zS164xf
+C	zS164x	zS164xo	zS164xs	100p
+R	zS164xi1	zL115xn	zS164xs	P_zS164xi1
+R	zS164xc	vnep	zS164xs	P_zS164xc
+CAL	zC163x	zS164xo	zT162xs
+OA	zI165x	0	zI165xs	zI165xo
+R	zI165xa	zT162xo	zI165xs	P_zI165xa
+R	zI165xb	zI165xo	zI165xs	P_zI165xb
+R	zA159xt2	zI165xo	zA159xs	P_zA159xt2
+OA	zT166x	0	zT166xs	zT166xo
+R	zT166xf	zT166xo	zT166xs	P_zT166xf
+C	zT166x	zT166xo	zT166xs	100p
+R	zC167xp	vr	zC167xd	P_zC167xp
+OA	zS168x	0	zS168xs	zS168xo
+R	zS168xf	zS168xo	zS168xs	P_zS168xf
+C	zS168x	zS168xo	zS168xs	100p
+R	zS168xi1	zL115xn	zS168xs	P_zS168xi1
+R	zS168xc	vnep	zS168xs	P_zS168xc
+CAL	zC167x	zS168xo	zT166xs
+OA	zA169x	0	zA169xs	zA169xo
+R	zA169xf	zA169xo	zA169xs	P_zA169xf
+C	zA169x	zA169xo	zA169xs	100p
+R	zC170xp	vr	zC170xd	P_zC170xp
+OA	zS171x	0	zS171xs	zS171xo
+R	zS171xf	zS171xo	zS171xs	P_zS171xf
+C	zS171x	zS171xo	zS171xs	100p
+R	zS171xi1	zB4xn	zS171xs	P_zS171xi1
+R	zS171xc	vnep	zS171xs	P_zS171xc
+CAL	zC170x	zS171xo	zA169xs
+OA	zT172x	0	zT172xs	zT172xo
+R	zT172xf	zT172xo	zT172xs	P_zT172xf
+C	zT172x	zT172xo	zT172xs	100p
+R	zC173xp	vr	zC173xd	P_zC173xp
+OA	zS174x	0	zS174xs	zS174xo
+R	zS174xf	zS174xo	zS174xs	P_zS174xf
+C	zS174x	zS174xo	zS174xs	100p
+R	zS174xi1	zL81xn	zS174xs	P_zS174xi1
+R	zS174xc	vnep	zS174xs	P_zS174xc
+CAL	zC173x	zS174xo	zT172xs
+OA	zI175x	0	zI175xs	zI175xo
+R	zI175xa	zT172xo	zI175xs	P_zI175xa
+R	zI175xb	zI175xo	zI175xs	P_zI175xb
+R	zA169xt2	zI175xo	zA169xs	P_zA169xt2
+OA	zT176x	0	zT176xs	zT176xo
+R	zT176xf	zT176xo	zT176xs	P_zT176xf
+C	zT176x	zT176xo	zT176xs	100p
+R	zC177xp	vr	zC177xd	P_zC177xp
+OA	zS178x	0	zS178xs	zS178xo
+R	zS178xf	zS178xo	zS178xs	P_zS178xf
+C	zS178x	zS178xo	zS178xs	100p
+R	zS178xi1	zI152xo	zS178xs	P_zS178xi1
+R	zS178xi2	zL115xn	zS178xs	P_zS178xi2
+R	zS178xc	vnep	zS178xs	P_zS178xc
+CAL	zC177x	zS178xo	zT176xs
+OA	zT179x	0	zT179xs	zT179xo
+R	zT179xf	zT179xo	zT179xs	P_zT179xf
+C	zT179x	zT179xo	zT179xs	100p
+OA	zA180x	0	zA180xs	zA180xo
+R	zA180xf_0	zA180xo	zA180xf_q0	P_zA180xf_0
+R	zA180xf_1	zA180xf_q0	zA180xs	P_zA180xf_1
+C	zA180x	zA180xo	zA180xs	100p
+R	zC181xp	vr	zC181xd	P_zC181xp
+OA	zS182x	0	zS182xs	zS182xo
+R	zS182xf	zS182xo	zS182xs	P_zS182xf
+C	zS182x	zS182xo	zS182xs	100p
+R	zS182xi1	zI10xo	zS182xs	P_zS182xi1
+R	zS182xc	vnepn	zS182xs	P_zS182xc
+CAL	zC181x	zS182xo	zA180xs
+R	zA180xt2_0	zT103xo	zA180xt2_q0	P_zA180xt2_0
+R	zA180xt2_1	zA180xt2_q0	zA180xs	P_zA180xt2_1
+R	zL183xi	zA180xo	zL183xc1	P_zL183xi
+R	zL183xr	vr	zL183xc2	P_zL183xr
+LOGR	zL183x	zL183xn
+R	zC184xp	vr	zC184xd	P_zC184xp
+OA	zS185x	0	zS185xs	zS185xo
+R	zS185xf	zS185xo	zS185xs	P_zS185xf
+C	zS185x	zS185xo	zS185xs	100p
+R	zS185xi1	zL183xn	zS185xs	P_zS185xi1
+R	zS185xc	vnep	zS185xs	P_zS185xc
+CAL	zC184x	zS185xo	zT179xs
+OA	zT186x	0	zT186xs	zT186xo
+R	zT186xf	zT186xo	zT186xs	P_zT186xf
+C	zT186x	zT186xo	zT186xs	100p
+OA	zA187x	0	zA187xs	zA187xo
+R	zA187xf	zA187xo	zA187xs	P_zA187xf
+C	zA187x	zA187xo	zA187xs	100p
+R	zC188xp	vr	zC188xd	P_zC188xp
+OA	zS189x	0	zS189xs	zS189xo
+R	zS189xf	zS189xo	zS189xs	P_zS189xf
+C	zS189x	zS189xo	zS189xs	100p
+R	zS189xi1	zB7xn	zS189xs	P_zS189xi1
+R	zS189xc	vnep	zS189xs	P_zS189xc
+CAL	zC188x	zS189xo	zA187xs
+R	zC190xp	vr	zC190xd	P_zC190xp
+OA	zS191x	0	zS191xs	zS191xo
+R	zS191xf	zS191xo	zS191xs	P_zS191xf
+C	zS191x	zS191xo	zS191xs	100p
+R	zS191xi1	zB4xn	zS191xs	P_zS191xi1
+R	zS191xc	vnep	zS191xs	P_zS191xc
+CAL	zC190x	zS191xo	zA187xs
+R	zL192xi	zA187xo	zL192xc1	P_zL192xi
+R	zL192xr	vr	zL192xc2	P_zL192xr
+LOGR	zL192x	zL192xn
+OA	zA193x	0	zA193xs	zA193xo
+R	zA193xf	zA193xo	zA193xs	P_zA193xf
+C	zA193x	zA193xo	zA193xs	100p
+OA	zA193xn	0	zA193xns	zA193xno
+R	zA193xnf	zA193xno	zA193xns	P_zA193xnf
+C	zA193xn	zA193xno	zA193xns	100p
+R	zA193xnb	zA193xno	zA193xs	P_zA193xnb
+R	zC194xp	vr	zC194xd	P_zC194xp
+OA	zS195x	0	zS195xs	zS195xo
+R	zS195xf	zS195xo	zS195xs	P_zS195xf
+C	zS195x	zS195xo	zS195xs	100p
+R	zS195xi1	zB7xn	zS195xs	P_zS195xi1
+R	zS195xc	vnep	zS195xs	P_zS195xc
+CAL	zC194x	zS195xo	zA193xs
+R	zC196xp	vr	zC196xd	P_zC196xp
+OA	zS197x	0	zS197xs	zS197xo
+R	zS197xf	zS197xo	zS197xs	P_zS197xf
+C	zS197x	zS197xo	zS197xs	100p
+R	zS197xi1	zB7xn	zS197xs	P_zS197xi1
+R	zS197xc	vnep	zS197xs	P_zS197xc
+CAL	zC196x	zS197xo	zA193xns
+R	zL198xi	zA193xo	zL198xc1	P_zL198xi
+R	zL198xr	vr	zL198xc2	P_zL198xr
+LOGR	zL198x	zL198xn
+R	zC199xp	vr	zC199xd	P_zC199xp
+OA	zS200x	0	zS200xs	zS200xo
+R	zS200xf	zS200xo	zS200xs	P_zS200xf
+C	zS200x	zS200xo	zS200xs	100p
+OA	zI201x	0	zI201xs	zI201xo
+R	zI201xa	zL192xn	zI201xs	P_zI201xa
+R	zI201xb	zI201xo	zI201xs	P_zI201xb
+R	zS200xi1	zI201xo	zS200xs	P_zS200xi1
+R	zS200xi2	zL198xn	zS200xs	P_zS200xi2
+R	zS200xc	vnep	zS200xs	P_zS200xc
+CAL	zC199x	zS200xo	zT186xs
+OA	zT202x	0	zT202xs	zT202xo
+R	zT202xf	zT202xo	zT202xs	P_zT202xf
+C	zT202x	zT202xo	zT202xs	100p
+OA	zA203x	0	zA203xs	zA203xo
+R	zA203xf	zA203xo	zA203xs	P_zA203xf
+C	zA203x	zA203xo	zA203xs	100p
+R	zC204xp	vr	zC204xd	P_zC204xp
+OA	zS205x	0	zS205xs	zS205xo
+R	zS205xf	zS205xo	zS205xs	P_zS205xf
+C	zS205x	zS205xo	zS205xs	100p
+R	zS205xi1	zI14xo	zS205xs	P_zS205xi1
+R	zS205xc	vnep	zS205xs	P_zS205xc
+CAL	zC204x	zS205xo	zA203xs
+R	zA203xk	vrn	zA203xs	P_zA203xk
+R	zL206xi	zA203xo	zL206xc1	P_zL206xi
+R	zL206xr	vr	zL206xc2	P_zL206xr
+LOGR	zL206x	zL206xn
+R	zC207xp	vr	zC207xd	P_zC207xp
+OA	zS208x	0	zS208xs	zS208xo
+R	zS208xf	zS208xo	zS208xs	P_zS208xf
+C	zS208x	zS208xo	zS208xs	100p
+R	zS208xi1	zL206xn	zS208xs	P_zS208xi1
+R	zS208xc	vnep	zS208xs	P_zS208xc
+CAL	zC207x	zS208xo	zT202xs
+OA	zT209x	0	zT209xs	zT209xo
+R	zT209xf_0	zT209xo	zT209xf_q0	P_zT209xf_0
+R	zT209xf_1	zT209xf_q0	zT209xs	P_zT209xf_1
+C	zT209x	zT209xo	zT209xs	100p
+OA	zA210x	0	zA210xs	zA210xo
+R	zA210xf_0	zA210xo	zA210xf_q0	P_zA210xf_0
+R	zA210xf_1	zA210xf_q0	zA210xf_q1	P_zA210xf_1
+R	zA210xf_2	zA210xf_q1	zA210xf_q2	P_zA210xf_2
+R	zA210xf_3	zA210xf_q2	zA210xf_q3	P_zA210xf_3
+R	zA210xf_4	zA210xf_q3	zA210xf_q4	P_zA210xf_4
+R	zA210xf_5	zA210xf_q4	zA210xf_q5	P_zA210xf_5
+R	zA210xf_6	zA210xf_q5	zA210xf_q6	P_zA210xf_6
+R	zA210xf_7	zA210xf_q6	zA210xf_q7	P_zA210xf_7
+R	zA210xf_8	zA210xf_q7	zA210xf_q8	P_zA210xf_8
+R	zA210xf_9	zA210xf_q8	zA210xf_q9	P_zA210xf_9
+R	zA210xf_10	zA210xf_q9	zA210xf_q10	P_zA210xf_10
+R	zA210xf_11	zA210xf_q10	zA210xs	P_zA210xf_11
+C	zA210x	zA210xo	zA210xs	100p
+OA	zA210xn	0	zA210xns	zA210xno
+R	zA210xnf_0	zA210xno	zA210xnf_q0	P_zA210xnf_0
+R	zA210xnf_1	zA210xnf_q0	zA210xns	P_zA210xnf_1
+C	zA210xn	zA210xno	zA210xns	100p
+R	zA210xnb_0	zA210xno	zA210xnb_q0	P_zA210xnb_0
+R	zA210xnb_1	zA210xnb_q0	zA210xs	P_zA210xnb_1
+R	zC211xp	vr	zC211xd	P_zC211xp
+OA	zS212x	0	zS212xs	zS212xo
+R	zS212xf	zS212xo	zS212xs	P_zS212xf
+C	zS212x	zS212xo	zS212xs	100p
+R	zS212xi1	zI201xo	zS212xs	P_zS212xi1
+R	zS212xi2	zL198xn	zS212xs	P_zS212xi2
+R	zS212xi3	zL206xn	zS212xs	P_zS212xi3
+R	zS212xc	vnep	zS212xs	P_zS212xc
+CAL	zC211x	zS212xo	zA210xns
+R	zC213xp	vr	zC213xd	P_zC213xp
+OA	zS214x	0	zS214xs	zS214xo
+R	zS214xf	zS214xo	zS214xs	P_zS214xf
+C	zS214x	zS214xo	zS214xs	100p
+R	zS214xi1	zB2xn	zS214xs	P_zS214xi1
+R	zS214xi2	zB7xn	zS214xs	P_zS214xi2
+R	zS214xc	vnep	zS214xs	P_zS214xc
+CAL	zC213x	zS214xo	zA210xs
+R	zL215xi	zA210xo	zL215xc1	P_zL215xi
+R	zL215xr	vr	zL215xc2	P_zL215xr
+LOGR	zL215x	zL215xn
+R	zC216xp	vr	zC216xd	P_zC216xp
+OA	zS217x	0	zS217xs	zS217xo
+R	zS217xf	zS217xo	zS217xs	P_zS217xf
+C	zS217x	zS217xo	zS217xs	100p
+R	zS217xi1	zI14xo	zS217xs	P_zS217xi1
+R	zS217xi2	zI10xo	zS217xs	P_zS217xi2
+R	zS217xi3	zL215xn	zS217xs	P_zS217xi3
+R	zS217xc	vnepn	zS217xs	P_zS217xc
+CAL	zC216x	zS217xo	zT209xs
+OA	zT218x	0	zT218xs	zT218xo
+R	zT218xf	zT218xo	zT218xs	P_zT218xf
+C	zT218x	zT218xo	zT218xs	100p
+OA	zA219x	0	zA219xs	zA219xo
+R	zA219xf	zA219xo	zA219xs	P_zA219xf
+C	zA219x	zA219xo	zA219xs	100p
+R	zC220xp	vr	zC220xd	P_zC220xp
+OA	zS221x	0	zS221xs	zS221xo
+R	zS221xf	zS221xo	zS221xs	P_zS221xf
+C	zS221x	zS221xo	zS221xs	100p
+OA	zI222x	0	zI222xs	zI222xo
+R	zI222xa	zB4xn	zI222xs	P_zI222xa
+R	zI222xb	zI222xo	zI222xs	P_zI222xb
+R	zS221xi1	zI222xo	zS221xs	P_zS221xi1
+R	zS221xc	vnep	zS221xs	P_zS221xc
+CAL	zC220x	zS221xo	zA219xs
+R	zC223xp	vr	zC223xd	P_zC223xp
+OA	zS224x	0	zS224xs	zS224xo
+R	zS224xf	zS224xo	zS224xs	P_zS224xf
+C	zS224x	zS224xo	zS224xs	100p
+R	zS224xi1	zI10xo	zS224xs	P_zS224xi1
+R	zS224xc	vnep	zS224xs	P_zS224xc
+CAL	zC223x	zS224xo	zA219xs
+R	zL225xi	zA219xo	zL225xc1	P_zL225xi
+R	zL225xr	vr	zL225xc2	P_zL225xr
+LOGR	zL225x	zL225xn
+OA	zA226x	0	zA226xs	zA226xo
+R	zA226xf_0	zA226xo	zA226xf_q0	P_zA226xf_0
+R	zA226xf_1	zA226xf_q0	zA226xs	P_zA226xf_1
+C	zA226x	zA226xo	zA226xs	100p
+R	zC227xp	vr	zC227xd	P_zC227xp
+OA	zS228x	0	zS228xs	zS228xo
+R	zS228xf	zS228xo	zS228xs	P_zS228xf
+C	zS228x	zS228xo	zS228xs	100p
+R	zS228xi1	zI222xo	zS228xs	P_zS228xi1
+R	zS228xc	vnepn	zS228xs	P_zS228xc
+CAL	zC227x	zS228xo	zA226xs
+R	zC229xp	vr	zC229xd	P_zC229xp
+OA	zS230x	0	zS230xs	zS230xo
+R	zS230xf	zS230xo	zS230xs	P_zS230xf
+C	zS230x	zS230xo	zS230xs	100p
+R	zS230xi1	zI10xo	zS230xs	P_zS230xi1
+R	zS230xc	vnep	zS230xs	P_zS230xc
+CAL	zC229x	zS230xo	zA226xs
+R	zL231xi	zA226xo	zL231xc1	P_zL231xi
+R	zL231xr	vr	zL231xc2	P_zL231xr
+LOGR	zL231x	zL231xn
+R	zC232xp	vr	zC232xd	P_zC232xp
+OA	zS233x	0	zS233xs	zS233xo
+R	zS233xf	zS233xo	zS233xs	P_zS233xf
+C	zS233x	zS233xo	zS233xs	100p
+OA	zI234x	0	zI234xs	zI234xo
+R	zI234xa	zL225xn	zI234xs	P_zI234xa
+R	zI234xb	zI234xo	zI234xs	P_zI234xb
+R	zS233xi1	zI234xo	zS233xs	P_zS233xi1
+R	zS233xi2	zL231xn	zS233xs	P_zS233xi2
+R	zS233xc	vnep	zS233xs	P_zS233xc
+CAL	zC232x	zS233xo	zT218xs
+OA	zT235x	0	zT235xs	zT235xo
+R	zT235xf	zT235xo	zT235xs	P_zT235xf
+C	zT235x	zT235xo	zT235xs	100p
+OA	zA236x	0	zA236xs	zA236xo
+R	zA236xf	zA236xo	zA236xs	P_zA236xf
+C	zA236x	zA236xo	zA236xs	100p
+R	zC237xp	vr	zC237xd	P_zC237xp
+OA	zS238x	0	zS238xs	zS238xo
+R	zS238xf	zS238xo	zS238xs	P_zS238xf
+C	zS238x	zS238xo	zS238xs	100p
+R	zS238xi1	zI10xo	zS238xs	P_zS238xi1
+R	zS238xc	vnep	zS238xs	P_zS238xc
+CAL	zC237x	zS238xo	zA236xs
+R	zC239xp	vr	zC239xd	P_zC239xp
+OA	zS240x	0	zS240xs	zS240xo
+R	zS240xf	zS240xo	zS240xs	P_zS240xf
+C	zS240x	zS240xo	zS240xs	100p
+R	zS240xi1	zB7xn	zS240xs	P_zS240xi1
+R	zS240xc	vnep	zS240xs	P_zS240xc
+CAL	zC239x	zS240xo	zA236xs
+R	zL241xi	zA236xo	zL241xc1	P_zL241xi
+R	zL241xr	vr	zL241xc2	P_zL241xr
+LOGR	zL241x	zL241xn
+OA	zA242x	0	zA242xs	zA242xo
+R	zA242xf_0	zA242xo	zA242xf_q0	P_zA242xf_0
+R	zA242xf_1	zA242xf_q0	zA242xs	P_zA242xf_1
+C	zA242x	zA242xo	zA242xs	100p
+R	zC243xp	vr	zC243xd	P_zC243xp
+OA	zS244x	0	zS244xs	zS244xo
+R	zS244xf	zS244xo	zS244xs	P_zS244xf
+C	zS244x	zS244xo	zS244xs	100p
+R	zS244xi1	zI222xo	zS244xs	P_zS244xi1
+R	zS244xc	vnepn	zS244xs	P_zS244xc
+CAL	zC243x	zS244xo	zA242xs
+R	zC245xp	vr	zC245xd	P_zC245xp
+OA	zS246x	0	zS246xs	zS246xo
+R	zS246xf	zS246xo	zS246xs	P_zS246xf
+C	zS246x	zS246xo	zS246xs	100p
+R	zS246xi1	zI14xo	zS246xs	P_zS246xi1
+R	zS246xc	vnep	zS246xs	P_zS246xc
+CAL	zC245x	zS246xo	zA242xs
+R	zL247xi	zA242xo	zL247xc1	P_zL247xi
+R	zL247xr	vr	zL247xc2	P_zL247xr
+LOGR	zL247x	zL247xn
+R	zC248xp	vr	zC248xd	P_zC248xp
+OA	zS249x	0	zS249xs	zS249xo
+R	zS249xf	zS249xo	zS249xs	P_zS249xf
+C	zS249x	zS249xo	zS249xs	100p
+OA	zI250x	0	zI250xs	zI250xo
+R	zI250xa	zL241xn	zI250xs	P_zI250xa
+R	zI250xb	zI250xo	zI250xs	P_zI250xb
+R	zS249xi1	zI250xo	zS249xs	P_zS249xi1
+R	zS249xi2	zL247xn	zS249xs	P_zS249xi2
+R	zS249xc	vnep	zS249xs	P_zS249xc
+CAL	zC248x	zS249xo	zT235xs
+OA	zT251x	0	zT251xs	zT251xo
+R	zT251xf	zT251xo	zT251xs	P_zT251xf
+C	zT251x	zT251xo	zT251xs	100p
+OA	zA252x	0	zA252xs	zA252xo
+R	zA252xf_0	zA252xo	zA252xf_q0	P_zA252xf_0
+R	zA252xf_1	zA252xf_q0	zA252xs	P_zA252xf_1
+C	zA252x	zA252xo	zA252xs	100p
+R	zC253xp	vr	zC253xd	P_zC253xp
+OA	zS254x	0	zS254xs	zS254xo
+R	zS254xf	zS254xo	zS254xs	P_zS254xf
+C	zS254x	zS254xo	zS254xs	100p
+R	zS254xc	vnep	zS254xs	P_zS254xc
+CAL	zC253x	zS254xo	zA252xs
+R	zC255xp	vr	zC255xd	P_zC255xp
+OA	zS256x	0	zS256xs	zS256xo
+R	zS256xf	zS256xo	zS256xs	P_zS256xf
+C	zS256x	zS256xo	zS256xs	100p
+R	zS256xi1	zI14xo	zS256xs	P_zS256xi1
+R	zS256xc	vnep	zS256xs	P_zS256xc
+CAL	zC255x	zS256xo	zA252xs
+R	zL257xi	zA252xo	zL257xc1	P_zL257xi
+R	zL257xr	vr	zL257xc2	P_zL257xr
+LOGR	zL257x	zL257xn
+OA	zA258x	0	zA258xs	zA258xo
+R	zA258xf	zA258xo	zA258xs	P_zA258xf
+C	zA258x	zA258xo	zA258xs	100p
+R	zC259xp	vr	zC259xd	P_zC259xp
+OA	zS260x	0	zS260xs	zS260xo
+R	zS260xf	zS260xo	zS260xs	P_zS260xf
+C	zS260x	zS260xo	zS260xs	100p
+R	zS260xc	vnep	zS260xs	P_zS260xc
+CAL	zC259x	zS260xo	zA258xs
+R	zC261xp	vr	zC261xd	P_zC261xp
+OA	zS262x	0	zS262xs	zS262xo
+R	zS262xf	zS262xo	zS262xs	P_zS262xf
+C	zS262x	zS262xo	zS262xs	100p
+R	zS262xi1	zB7xn	zS262xs	P_zS262xi1
+R	zS262xc	vnep	zS262xs	P_zS262xc
+CAL	zC261x	zS262xo	zA258xs
+R	zL263xi	zA258xo	zL263xc1	P_zL263xi
+R	zL263xr	vr	zL263xc2	P_zL263xr
+LOGR	zL263x	zL263xn
+R	zC264xp	vr	zC264xd	P_zC264xp
+OA	zS265x	0	zS265xs	zS265xo
+R	zS265xf	zS265xo	zS265xs	P_zS265xf
+C	zS265x	zS265xo	zS265xs	100p
+OA	zI266x	0	zI266xs	zI266xo
+R	zI266xa	zL257xn	zI266xs	P_zI266xa
+R	zI266xb	zI266xo	zI266xs	P_zI266xb
+R	zS265xi1	zI266xo	zS265xs	P_zS265xi1
+R	zS265xi2	zL263xn	zS265xs	P_zS265xi2
+R	zS265xc	vnep	zS265xs	P_zS265xc
+CAL	zC264x	zS265xo	zT251xs
+OA	zT267x	0	zT267xs	zT267xo
+R	zT267xf_0	zT267xo	zT267xf_q0	P_zT267xf_0
+R	zT267xf_1	zT267xf_q0	zT267xs	P_zT267xf_1
+C	zT267x	zT267xo	zT267xs	100p
+OA	zA268x	0	zA268xs	zA268xo
+R	zA268xf	zA268xo	zA268xs	P_zA268xf
+C	zA268x	zA268xo	zA268xs	100p
+R	zC269xp	vr	zC269xd	P_zC269xp
+OA	zS270x	0	zS270xs	zS270xo
+R	zS270xf	zS270xo	zS270xs	P_zS270xf
+C	zS270x	zS270xo	zS270xs	100p
+R	zS270xc	vnep	zS270xs	P_zS270xc
+CAL	zC269x	zS270xo	zA268xs
+R	zC271xp	vr	zC271xd	P_zC271xp
+OA	zS272x	0	zS272xs	zS272xo
+R	zS272xf	zS272xo	zS272xs	P_zS272xf
+C	zS272x	zS272xo	zS272xs	100p
+R	zS272xi1	zI10xo	zS272xs	P_zS272xi1
+R	zS272xc	vnep	zS272xs	P_zS272xc
+CAL	zC271x	zS272xo	zA268xs
+R	zL273xi	zA268xo	zL273xc1	P_zL273xi
+R	zL273xr	vr	zL273xc2	P_zL273xr
+LOGR	zL273x	zL273xn
+OA	zA274x	0	zA274xs	zA274xo
+R	zA274xf	zA274xo	zA274xs	P_zA274xf
+C	zA274x	zA274xo	zA274xs	100p
+OA	zA274xn	0	zA274xns	zA274xno
+R	zA274xnf	zA274xno	zA274xns	P_zA274xnf
+C	zA274xn	zA274xno	zA274xns	100p
+R	zA274xnb	zA274xno	zA274xs	P_zA274xnb
+R	zC275xp	vr	zC275xd	P_zC275xp
+OA	zS276x	0	zS276xs	zS276xo
+R	zS276xf	zS276xo	zS276xs	P_zS276xf
+C	zS276x	zS276xo	zS276xs	100p
+R	zS276xi1	zI222xo	zS276xs	P_zS276xi1
+R	zS276xc	vnep	zS276xs	P_zS276xc
+CAL	zC275x	zS276xo	zA274xs
+R	zC277xp	vr	zC277xd	P_zC277xp
+OA	zS278x	0	zS278xs	zS278xo
+R	zS278xf	zS278xo	zS278xs	P_zS278xf
+C	zS278x	zS278xo	zS278xs	100p
+R	zS278xi1	zI10xo	zS278xs	P_zS278xi1
+R	zS278xc	vnep	zS278xs	P_zS278xc
+CAL	zC277x	zS278xo	zA274xns
+R	zL279xi	zA274xo	zL279xc1	P_zL279xi
+R	zL279xr	vr	zL279xc2	P_zL279xr
+LOGR	zL279x	zL279xn
+R	zC280xp	vr	zC280xd	P_zC280xp
+OA	zS281x	0	zS281xs	zS281xo
+R	zS281xf	zS281xo	zS281xs	P_zS281xf
+C	zS281x	zS281xo	zS281xs	100p
+OA	zI282x	0	zI282xs	zI282xo
+R	zI282xa	zL273xn	zI282xs	P_zI282xa
+R	zI282xb	zI282xo	zI282xs	P_zI282xb
+R	zS281xi1	zI282xo	zS281xs	P_zS281xi1
+R	zS281xi2	zL279xn	zS281xs	P_zS281xi2
+R	zS281xc	vnep	zS281xs	P_zS281xc
+CAL	zC280x	zS281xo	zT267xs
+OA	zT283x	0	zT283xs	zT283xo
+R	zT283xf	zT283xo	zT283xs	P_zT283xf
+C	zT283x	zT283xo	zT283xs	100p
+OA	zA284x	0	zA284xs	zA284xo
+R	zA284xf	zA284xo	zA284xs	P_zA284xf
+C	zA284x	zA284xo	zA284xs	100p
+OA	zA284xn	0	zA284xns	zA284xno
+R	zA284xnf	zA284xno	zA284xns	P_zA284xnf
+C	zA284xn	zA284xno	zA284xns	100p
+R	zA284xnb	zA284xno	zA284xs	P_zA284xnb
+R	zC285xp	vr	zC285xd	P_zC285xp
+OA	zS286x	0	zS286xs	zS286xo
+R	zS286xf	zS286xo	zS286xs	P_zS286xf
+C	zS286x	zS286xo	zS286xs	100p
+R	zS286xi1	zI10xo	zS286xs	P_zS286xi1
+R	zS286xc	vnep	zS286xs	P_zS286xc
+CAL	zC285x	zS286xo	zA284xns
+R	zA284xk	vrn	zA284xs	P_zA284xk
+R	zL287xi	zA284xo	zL287xc1	P_zL287xi
+R	zL287xr	vr	zL287xc2	P_zL287xr
+LOGR	zL287x	zL287xn
+R	zC288xp	vr	zC288xd	P_zC288xp
+OA	zS289x	0	zS289xs	zS289xo
+R	zS289xf	zS289xo	zS289xs	P_zS289xf
+C	zS289x	zS289xo	zS289xs	100p
+R	zS289xi1	zB2xn	zS289xs	P_zS289xi1
+R	zS289xi2	zB4xn	zS289xs	P_zS289xi2
+R	zS289xi3	zL287xn	zS289xs	P_zS289xi3
+R	zS289xi4	zI84xo	zS289xs	P_zS289xi4
+R	zS289xc	vnep	zS289xs	P_zS289xc
+CAL	zC288x	zS289xo	zT283xs
+OA	zT290x	0	zT290xs	zT290xo
+R	zT290xf_0	zT290xo	zT290xf_q0	P_zT290xf_0
+R	zT290xf_1	zT290xf_q0	zT290xs	P_zT290xf_1
+C	zT290x	zT290xo	zT290xs	100p
+OA	zA291x	0	zA291xs	zA291xo
+R	zA291xf	zA291xo	zA291xs	P_zA291xf
+C	zA291x	zA291xo	zA291xs	100p
+R	zC292xp	vr	zC292xd	P_zC292xp
+OA	zS293x	0	zS293xs	zS293xo
+R	zS293xf	zS293xo	zS293xs	P_zS293xf
+C	zS293x	zS293xo	zS293xs	100p
+R	zS293xi1	zB7xn	zS293xs	P_zS293xi1
+R	zS293xc	vnep	zS293xs	P_zS293xc
+CAL	zC292x	zS293xo	zA291xs
+R	zC294xp	vr	zC294xd	P_zC294xp
+OA	zS295x	0	zS295xs	zS295xo
+R	zS295xf	zS295xo	zS295xs	P_zS295xf
+C	zS295x	zS295xo	zS295xs	100p
+R	zS295xc	vnep	zS295xs	P_zS295xc
+CAL	zC294x	zS295xo	zA291xs
+R	zL296xi	zA291xo	zL296xc1	P_zL296xi
+R	zL296xr	vr	zL296xc2	P_zL296xr
+LOGR	zL296x	zL296xn
+OA	zA297x	0	zA297xs	zA297xo
+R	zA297xf_0	zA297xo	zA297xf_q0	P_zA297xf_0
+R	zA297xf_1	zA297xf_q0	zA297xs	P_zA297xf_1
+C	zA297x	zA297xo	zA297xs	100p
+OA	zA297xn	0	zA297xns	zA297xno
+R	zA297xnf	zA297xno	zA297xns	P_zA297xnf
+C	zA297xn	zA297xno	zA297xns	100p
+R	zA297xnb	zA297xno	zA297xs	P_zA297xnb
+R	zC298xp	vr	zC298xd	P_zC298xp
+OA	zS299x	0	zS299xs	zS299xo
+R	zS299xf	zS299xo	zS299xs	P_zS299xf
+C	zS299x	zS299xo	zS299xs	100p
+R	zS299xi1	zI14xo	zS299xs	P_zS299xi1
+R	zS299xc	vnep	zS299xs	P_zS299xc
+CAL	zC298x	zS299xo	zA297xs
+R	zC300xp	vr	zC300xd	P_zC300xp
+OA	zS301x	0	zS301xs	zS301xo
+R	zS301xf	zS301xo	zS301xs	P_zS301xf
+C	zS301x	zS301xo	zS301xs	100p
+R	zS301xi1	zI14xo	zS301xs	P_zS301xi1
+R	zS301xc	vnep	zS301xs	P_zS301xc
+CAL	zC300x	zS301xo	zA297xns
+R	zL302xi	zA297xo	zL302xc1	P_zL302xi
+R	zL302xr	vr	zL302xc2	P_zL302xr
+LOGR	zL302x	zL302xn
+R	zC303xp	vr	zC303xd	P_zC303xp
+OA	zS304x	0	zS304xs	zS304xo
+R	zS304xf	zS304xo	zS304xs	P_zS304xf
+C	zS304x	zS304xo	zS304xs	100p
+OA	zI305x	0	zI305xs	zI305xo
+R	zI305xa	zL296xn	zI305xs	P_zI305xa
+R	zI305xb	zI305xo	zI305xs	P_zI305xb
+R	zS304xi1	zI305xo	zS304xs	P_zS304xi1
+R	zS304xi2	zL302xn	zS304xs	P_zS304xi2
+R	zS304xc	vnep	zS304xs	P_zS304xc
+CAL	zC303x	zS304xo	zT290xs
+OA	zT306x	0	zT306xs	zT306xo
+R	zT306xf_0	zT306xo	zT306xf_q0	P_zT306xf_0
+R	zT306xf_1	zT306xf_q0	zT306xs	P_zT306xf_1
+C	zT306x	zT306xo	zT306xs	100p
+R	zC307xp	vr	zC307xd	P_zC307xp
+OA	zS308x	0	zS308xs	zS308xo
+R	zS308xf	zS308xo	zS308xs	P_zS308xf
+C	zS308x	zS308xo	zS308xs	100p
+R	zS308xi1	zB2xn	zS308xs	P_zS308xi1
+R	zS308xi2	zI84xo	zS308xs	P_zS308xi2
+R	zS308xc	vnep	zS308xs	P_zS308xc
+CAL	zC307x	zS308xo	zT306xs
+OA	zT309x	0	zT309xs	zT309xo
+R	zT309xf_0	zT309xo	zT309xf_q0	P_zT309xf_0
+R	zT309xf_1	zT309xf_q0	zT309xs	P_zT309xf_1
+C	zT309x	zT309xo	zT309xs	100p
+R	zC310xp	vr	zC310xd	P_zC310xp
+OA	zS311x	0	zS311xs	zS311xo
+R	zS311xf	zS311xo	zS311xs	P_zS311xf
+C	zS311x	zS311xo	zS311xs	100p
+R	zS311xi1	zB2xn	zS311xs	P_zS311xi1
+R	zS311xi2	zI152xo	zS311xs	P_zS311xi2
+R	zS311xc	vnep	zS311xs	P_zS311xc
+CAL	zC310x	zS311xo	zT309xs
+OA	zT312x	0	zT312xs	zT312xo
+R	zT312xf	zT312xo	zT312xs	P_zT312xf
+C	zT312x	zT312xo	zT312xs	100p
+R	zC313xp	vr	zC313xd	P_zC313xp
+OA	zS314x	0	zS314xs	zS314xo
+R	zS314xf	zS314xo	zS314xs	P_zS314xf
+C	zS314x	zS314xo	zS314xs	100p
+R	zS314xi1	zB96xn	zS314xs	P_zS314xi1
+R	zS314xi2	zI152xo	zS314xs	P_zS314xi2
+R	zS314xc	vnep	zS314xs	P_zS314xc
+CAL	zC313x	zS314xo	zT312xs
+OA	zA315x	0	zA315xs	zA315xo
+R	zA315xf	zA315xo	zA315xs	P_zA315xf
+C	zA315x	zA315xo	zA315xs	100p
+R	zC316xp	vr	zC316xd	P_zC316xp
+OA	zS317x	0	zS317xs	zS317xo
+R	zS317xf	zS317xo	zS317xs	P_zS317xf
+C	zS317x	zS317xo	zS317xs	100p
+R	zS317xi1	zB7xn	zS317xs	P_zS317xi1
+R	zS317xc	vnep	zS317xs	P_zS317xc
+CAL	zC316x	zS317xo	zA315xs
+R	zC318xp	vr	zC318xd	P_zC318xp
+OA	zS319x	0	zS319xs	zS319xo
+R	zS319xf	zS319xo	zS319xs	P_zS319xf
+C	zS319x	zS319xo	zS319xs	100p
+R	zS319xc	vnep	zS319xs	P_zS319xc
+CAL	zC318x	zS319xo	zA315xs
+OA	zT320x	0	zT320xs	zT320xo
+R	zT320xf	zT320xo	zT320xs	P_zT320xf
+C	zT320x	zT320xo	zT320xs	100p
+R	zC321xp	vr	zC321xd	P_zC321xp
+OA	zS322x	0	zS322xs	zS322xo
+R	zS322xf	zS322xo	zS322xs	P_zS322xf
+C	zS322x	zS322xo	zS322xs	100p
+OA	zI323x	0	zI323xs	zI323xo
+R	zI323xa	zL87xn	zI323xs	P_zI323xa
+R	zI323xb	zI323xo	zI323xs	P_zI323xb
+R	zS322xi1	zI323xo	zS322xs	P_zS322xi1
+CAL	zC321x	zS322xo	zT320xs
+OA	zT324x	0	zT324xs	zT324xo
+R	zT324xf	zT324xo	zT324xs	P_zT324xf
+C	zT324x	zT324xo	zT324xs	100p
+R	zC325xp	vr	zC325xd	P_zC325xp
+OA	zS326x	0	zS326xs	zS326xo
+R	zS326xf	zS326xo	zS326xs	P_zS326xf
+C	zS326x	zS326xo	zS326xs	100p
+R	zS326xi1	zB7xn	zS326xs	P_zS326xi1
+R	zS326xi2	zL87xn	zS326xs	P_zS326xi2
+R	zS326xc	vnep	zS326xs	P_zS326xc
+CAL	zC325x	zS326xo	zT324xs
+OA	zT327x	0	zT327xs	zT327xo
+R	zT327xf	zT327xo	zT327xs	P_zT327xf
+C	zT327x	zT327xo	zT327xs	100p
+R	zC328xp	vr	zC328xd	P_zC328xp
+OA	zS329x	0	zS329xs	zS329xo
+R	zS329xf	zS329xo	zS329xs	P_zS329xf
+C	zS329x	zS329xo	zS329xs	100p
+R	zS329xi1	zL87xn	zS329xs	P_zS329xi1
+R	zS329xc	vnep	zS329xs	P_zS329xc
+CAL	zC328x	zS329xo	zT327xs
+OA	zT330x	0	zT330xs	zT330xo
+R	zT330xf	zT330xo	zT330xs	P_zT330xf
+C	zT330x	zT330xo	zT330xs	100p
+R	zC331xp	vr	zC331xd	P_zC331xp
+OA	zS332x	0	zS332xs	zS332xo
+R	zS332xf	zS332xo	zS332xs	P_zS332xf
+C	zS332x	zS332xo	zS332xs	100p
+R	zS332xi1	zL105xn	zS332xs	P_zS332xi1
+R	zS332xc	vnep	zS332xs	P_zS332xc
+CAL	zC331x	zS332xo	zT330xs
+OA	zA333x	0	zA333xs	zA333xo
+R	zA333xf_0	zA333xo	zA333xf_q0	P_zA333xf_0
+R	zA333xf_1	zA333xf_q0	zA333xf_q1	P_zA333xf_1
+R	zA333xf_2	zA333xf_q1	zA333xf_q2	P_zA333xf_2
+R	zA333xf_3	zA333xf_q2	zA333xf_q3	P_zA333xf_3
+R	zA333xf_4	zA333xf_q3	zA333xs	P_zA333xf_4
+C	zA333x	zA333xo	zA333xs	100p
+R	zC334xp	vr	zC334xd	P_zC334xp
+OA	zS335x	0	zS335xs	zS335xo
+R	zS335xf	zS335xo	zS335xs	P_zS335xf
+C	zS335x	zS335xo	zS335xs	100p
+R	zS335xi1	zI99xo	zS335xs	P_zS335xi1
+R	zS335xc	vnepn	zS335xs	P_zS335xc
+CAL	zC334x	zS335xo	zA333xs
+R	zA333xt2	zT162xo	zA333xs	P_zA333xt2
+OA	zA336x	0	zA336xs	zA336xo
+R	zA336xf_0	zA336xo	zA336xf_q0	P_zA336xf_0
+R	zA336xf_1	zA336xf_q0	zA336xs	P_zA336xf_1
+C	zA336x	zA336xo	zA336xs	100p
+OA	zA336xn	0	zA336xns	zA336xno
+R	zA336xnf_0	zA336xno	zA336xnf_q0	P_zA336xnf_0
+R	zA336xnf_1	zA336xnf_q0	zA336xns	P_zA336xnf_1
+C	zA336xn	zA336xno	zA336xns	100p
+R	zA336xnb_0	zA336xno	zA336xnb_q0	P_zA336xnb_0
+R	zA336xnb_1	zA336xnb_q0	zA336xs	P_zA336xnb_1
+R	zC337xp	vr	zC337xd	P_zC337xp
+OA	zS338x	0	zS338xs	zS338xo
+R	zS338xf	zS338xo	zS338xs	P_zS338xf
+C	zS338x	zS338xo	zS338xs	100p
+R	zS338xi1	zB4xn	zS338xs	P_zS338xi1
+R	zS338xc	vnep	zS338xs	P_zS338xc
+CAL	zC337x	zS338xo	zA336xs
+R	zC339xp	vr	zC339xd	P_zC339xp
+OA	zS340x	0	zS340xs	zS340xo
+R	zS340xf	zS340xo	zS340xs	P_zS340xf
+C	zS340x	zS340xo	zS340xs	100p
+R	zS340xc	vnep	zS340xs	P_zS340xc
+CAL	zC339x	zS340xo	zA336xns
+PRINT	zT1xo
+PRINT	zT15xo
+PRINT	zT31xo
+PRINT	zT47xo
+PRINT	zT63xo
+PRINT	zA79xo
+PRINT	zA90xo
+PRINT	zA95xo
+PRINT	zA102xo
+PRINT	zT110xo
+PRINT	zA113xo
+PRINT	zA120xo
+PRINT	zA125xo
+PRINT	zA130xo
+PRINT	zA135xo
+PRINT	zA140xo
+PRINT	zT145xo
+PRINT	zT149xo
+PRINT	zA153xo
+PRINT	zA156xo
+PRINT	zA159xo
+PRINT	zT166xo
+PRINT	zA169xo
+PRINT	zT176xo
+PRINT	zT179xo
+PRINT	zT186xo
+PRINT	zT202xo
+PRINT	zT209xo
+PRINT	zT218xo
+PRINT	zT235xo
+PRINT	zT251xo
+PRINT	zT267xo
+PRINT	zT283xo
+PRINT	zT290xo
+PRINT	zT306xo
+PRINT	zT309xo
+PRINT	zT312xo
+PRINT	zA315xo
+PRINT	zT320xo
+PRINT	zT324xo
+PRINT	zT327xo
+PRINT	zT330xo
+PRINT	zA333xo
+PRINT	zA336xo

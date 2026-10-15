@@ -1,0 +1,294 @@
+name	ideal	E24_a	E24_b	E24_c	E24_rel	unit	meaning
+P_zT1xf	2341993.26097	1.5e+06	820000	22000	2.877e-06	ohm	readout TIA
+P_zB2xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base PI: Ix
+P_zB2xr	7853981.63397	7.5e+06	330000	24000	2.338e-06	ohm	base PI: Ir = Ix/(1 PI)
+P_zC3xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS4xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zI5xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI5xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS4xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS4xc	221443.378652	220000	1500	0	2.557e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT6xf	2189424.41269	1.8e+06	390000	0	2.629e-04	ohm	readout TIA
+P_zC7xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS8xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS8xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS8xc	221443.378652	220000	1500	0	2.557e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT9xf	2750155.281	2e+06	750000	0	5.646e-05	ohm	readout TIA
+P_zB10xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base PHI: Ix
+P_zB10xr	4045084.97187	3.6e+06	430000	15000	2.101e-05	ohm	base PHI: Ir = Ix/(1 PHI)
+P_zC11xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS12xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zI13xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI13xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS12xi1	5000	3000	2000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS12xc	371365.534329	360000	11000	360	1.490e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT14xf	1616219.54316	1.6e+06	16000	0	1.358e-04	ohm	readout TIA
+P_zB15xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base GAMMA: Ix
+P_zB15xr	4329117.48676	3.9e+06	430000	0	2.039e-04	ohm	base GAMMA: Ir = Ix/(3 GAMMA)
+P_zC16xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS17xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS17xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS17xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS17xi3	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS17xc	172800.480221	91000	75000	6800	2.779e-06	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT18xf_0	7853981.63397	7.5e+06	330000	24000	2.338e-06	ohm	readout TIA (string piece 1/2)
+P_zT18xf_1	7853981.63397	7.5e+06	330000	24000	2.338e-06	ohm	readout TIA (string piece 2/2)
+P_zC19xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS20xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS20xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS20xc	54410.6033138	51000	3300	110	1.109e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT21xf_0	7089815.40362	4.3e+06	2.4e+06	390000	2.604e-05	ohm	readout TIA (string piece 1/2)
+P_zT21xf_1	7089815.40362	4.3e+06	2.4e+06	390000	2.604e-05	ohm	readout TIA (string piece 2/2)
+P_zC22xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS23xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS23xi1	20000	10000	10000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS23xc	79019.3931328	43000	36000	0	2.454e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT24xf_0	5060127.93033	4.7e+06	360000	0	2.528e-05	ohm	readout TIA (string piece 1/2)
+P_zT24xf_1	5060127.93033	4.7e+06	360000	0	2.528e-05	ohm	readout TIA (string piece 2/2)
+P_zC25xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS26xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS26xi1	20000	10000	10000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS26xi2	20000	10000	10000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS26xi3	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS26xc	42498.5859283	20000	15000	7500	3.327e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT27xf_0	6759175.98664	6.2e+06	560000	0	1.219e-04	ohm	readout TIA (string piece 1/2)
+P_zT27xf_1	6759175.98664	6.2e+06	560000	0	1.219e-04	ohm	readout TIA (string piece 2/2)
+P_zC28xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS29xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS29xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS29xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS29xc	1025743.38539	510000	510000	5600	1.398e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT30xf	3626752.98478	3.6e+06	27000	0	6.811e-05	ohm	readout TIA
+P_zC31xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS32xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS32xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS32xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS32xc	41894.4670967	20000	18000	3900	1.321e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT33xf	6787620.6208	6.2e+06	560000	27000	9.143e-05	ohm	readout TIA
+P_zC34xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS35xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS35xi1	2000	1000	1000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS35xi2	2000	1000	1000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS35xc	11334.1986996	11000	330	0	3.704e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT36xf	4403031.64423	2.2e+06	2.2e+06	3000	7.187e-06	ohm	readout TIA
+P_zC37xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS38xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS38xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS38xi2	1666.66666667	1600	62	4.7	2.000e-05	ohm	readout (antilog exponent): weight
+P_zS38xc	22377.3877262	22000	330	47	1.733e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT39xf	1714160.19604	1.3e+06	390000	24000	9.345e-05	ohm	readout TIA
+P_zC40xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS41xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS41xi1	20000	10000	10000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS41xc	107094.692098	56000	51000	91	3.448e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT42xf	6145543.57333	5.6e+06	470000	75000	8.845e-05	ohm	readout TIA
+P_zB43xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base G_CAT: Ix
+P_zB43xr	4579827.97089	3.9e+06	680000	0	3.756e-05	ohm	base G_CAT: Ir = Ix/(2 G_CAT)
+P_zC44xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS45xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS45xi1	1111.11111111	1100	11	0	1.000e-04	ohm	readout (antilog exponent): weight
+P_zS45xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS45xc	11106.1120187	11000	110	0	3.501e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT46xf	2369376.63847	1.8e+06	560000	9100	1.168e-04	ohm	readout TIA
+P_zC47xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS48xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS48xi1	1250	820	430	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS48xi2	1666.66666667	1600	62	4.7	2.000e-05	ohm	readout (antilog exponent): weight
+P_zS48xc	8365.32351474	8200	160	5.1	2.672e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT49xf	5497956.57753	3.3e+06	2.2e+06	0	3.717e-04	ohm	readout TIA
+P_zC50xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS51xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS51xi1	2000	1000	1000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS51xc	32266.3256754	30000	1800	470	1.139e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT52xf	4155648.6847	3e+06	1.1e+06	56000	8.454e-05	ohm	readout TIA
+P_zC53xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS54xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zI55xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI55xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS54xi1	1666.66666667	1600	62	4.7	2.000e-05	ohm	readout (antilog exponent): weight
+P_zS54xi2	3333.33333333	3300	33	0	1.000e-04	ohm	readout (antilog exponent): weight
+P_zS54xc	127359.565234	91000	36000	360	3.414e-06	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT56xf	4324602.90554	4.3e+06	24000	0	1.394e-04	ohm	readout TIA
+P_zC57xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS58xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS58xi1	3333.33333333	3300	33	0	1.000e-04	ohm	readout (antilog exponent): weight
+P_zS58xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS58xc	689096.338977	680000	9100	0	5.313e-06	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT59xf	3023782.17026	3e+06	24000	0	7.204e-05	ohm	readout TIA
+P_zC60xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS61xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS61xi1	20000	10000	10000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS61xi2	3333.33333333	3300	33	0	1.000e-04	ohm	readout (antilog exponent): weight
+P_zS61xc	47624.4859931	47000	620	0	9.420e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT62xf	5089365.17188	4.7e+06	390000	0	1.247e-04	ohm	readout TIA
+P_zC63xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS64xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS64xi1	2500	1300	1200	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS64xc	25734.9094755	20000	5600	130	1.908e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT65xf	7628052.93058	7.5e+06	130000	0	2.553e-04	ohm	readout TIA
+P_zC66xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS67xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS67xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS67xi2	2000	1000	1000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS67xc	25512.0010894	18000	7500	0	4.704e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT68xf_0	7111607.29251	6.2e+06	910000	0	2.260e-04	ohm	readout TIA (string piece 1/2)
+P_zT68xf_1	7111607.29251	6.2e+06	910000	0	2.260e-04	ohm	readout TIA (string piece 2/2)
+P_zC69xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS70xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS70xi1	20000	10000	10000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS70xc	238885.441151	200000	39000	0	4.796e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT71xf	5660143.38731	5.1e+06	560000	0	2.533e-05	ohm	readout TIA
+P_zC72xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS73xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS73xi1	2500	1300	1200	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS73xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS73xc	279006.30739	240000	39000	0	2.261e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT74xf_0	7671992.42237	7.5e+06	110000	62000	9.877e-07	ohm	readout TIA (string piece 1/2)
+P_zT74xf_1	7671992.42237	7.5e+06	110000	62000	9.877e-07	ohm	readout TIA (string piece 2/2)
+P_zC75xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS76xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS76xi1	5000	3000	2000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS76xc	371365.534329	360000	11000	360	1.490e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT77xf	3606308.42866	3.6e+06	6200	0	3.007e-05	ohm	readout TIA
+P_zC78xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS79xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS79xi1	1428.57142857	910	510	8.2	2.600e-04	ohm	readout (antilog exponent): weight
+P_zS79xc	20280.9227724	20000	270	11	3.808e-06	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT80xf	8368391.9159	8.2e+06	160000	8200	2.293e-05	ohm	readout TIA
+P_zC81xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS82xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS82xi1	3333.33333333	3300	33	0	1.000e-04	ohm	readout (antilog exponent): weight
+P_zS82xi2	20000	10000	10000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS82xc	561408.70385	560000	1500	0	1.626e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT83xf	1720122.27496	1.1e+06	620000	0	7.109e-05	ohm	readout TIA
+P_zC84xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS85xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS85xi1	3333.33333333	3300	33	0	1.000e-04	ohm	readout (antilog exponent): weight
+P_zS85xc	42728.3576165	39000	3300	430	3.844e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT86xf	2088810.85158	2e+06	82000	6800	5.195e-06	ohm	readout TIA
+P_zC87xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS88xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS88xi1	3333.33333333	3300	33	0	1.000e-04	ohm	readout (antilog exponent): weight
+P_zS88xc	104813.920302	100000	3900	910	3.740e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT89xf	2826898.08227	2e+06	820000	6800	3.470e-05	ohm	readout TIA
+P_zC90xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS91xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS91xi1	3333.33333333	3300	33	0	1.000e-04	ohm	readout (antilog exponent): weight
+P_zS91xc	104813.920302	100000	3900	910	3.740e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT92xf	1833545.77595	1.8e+06	33000	0	2.977e-04	ohm	readout TIA
+P_zC93xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS94xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS94xi1	1666.66666667	1600	62	4.7	2.000e-05	ohm	readout (antilog exponent): weight
+P_zS94xc	25077.8351133	22000	2400	680	8.633e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT95xf_0	7488930.53962	6.8e+06	680000	8200	9.755e-05	ohm	readout TIA (string piece 1/2)
+P_zT95xf_1	7488930.53962	6.8e+06	680000	8200	9.755e-05	ohm	readout TIA (string piece 2/2)
+P_zC96xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS97xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS97xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zI98xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI98xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS97xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS97xc	157022.982028	82000	75000	0	1.464e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT99xf	6955026.35939	6.2e+06	680000	75000	3.790e-06	ohm	readout TIA
+P_zC100xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS101xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS101xi1	1000	820	180	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS101xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS101xc	15037.6045746	15000	39	0	9.280e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT102xf_0	6180339.8875	3e+06	3e+06	180000	5.499e-05	ohm	readout TIA (string piece 1/2)
+P_zT102xf_1	6180339.8875	3e+06	3e+06	180000	5.499e-05	ohm	readout TIA (string piece 2/2)
+P_zC103xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS104xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS104xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS104xc	471841.990516	470000	1800	0	8.899e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT105xf	1730511.95886	910000	820000	0	2.958e-04	ohm	readout TIA
+P_zC106xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS107xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS107xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS107xc	221443.378652	220000	1500	0	2.557e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT108xf	3236067.9775	1.6e+06	1.6e+06	36000	2.101e-05	ohm	readout TIA
+P_zC109xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS110xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS110xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS110xc	85152.8361612	75000	10000	150	3.331e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT111xf	7357588.82343	6.8e+06	560000	0	3.277e-04	ohm	readout TIA
+P_zC112xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS113xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS113xc	144269.504089	82000	62000	270	3.437e-06	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT114xf	3674669.05197	3.6e+06	75000	0	9.006e-05	ohm	readout TIA
+P_zC115xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS116xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS116xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS116xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS116xc	1025743.38539	510000	510000	5600	1.398e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT117xf	2218033.98875	2.2e+06	18000	0	1.532e-05	ohm	readout TIA
+P_zC118xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS119xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS119xi1	2000	1000	1000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS119xc	32266.3256754	30000	1800	470	1.139e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT120xf	7639320.225	7.5e+06	130000	9100	2.883e-05	ohm	readout TIA
+P_zC121xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS122xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS122xi1	5000	3000	2000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS122xc	371365.534329	360000	11000	360	1.490e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT123xf_0	5772156.64902	5.6e+06	110000	62000	2.714e-05	ohm	readout TIA (string piece 1/2)
+P_zT123xf_1	5772156.64902	5.6e+06	110000	62000	2.714e-05	ohm	readout TIA (string piece 2/2)
+P_zC124xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS125xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS125xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS125xc	80501.028338	43000	30000	7500	1.277e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT126xf	2251603.30886	2.2e+06	51000	0	2.679e-04	ohm	readout TIA
+P_zC127xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS128xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS128xi1	2500	1300	1200	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS128xc	25734.9094755	20000	5600	130	1.908e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT129xf	4306559.27683	4.3e+06	6800	0	5.590e-05	ohm	readout TIA
+P_zC130xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS131xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS131xi1	2500	1300	1200	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS131xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS131xc	26576.4882717	22000	3900	680	1.321e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT132xf	2072026.04353	1.1e+06	910000	62000	1.257e-05	ohm	readout TIA
+P_zC133xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS134xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS134xi1	1666.66666667	1600	62	4.7	2.000e-05	ohm	readout (antilog exponent): weight
+P_zS134xc	27929.6988071	20000	7500	430	1.078e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT135xf	2596919.42695	1.8e+06	750000	47000	3.103e-05	ohm	readout TIA
+P_zC136xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS137xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS137xi1	1428.57142857	910	510	8.2	2.600e-04	ohm	readout (antilog exponent): weight
+P_zS137xc	24620.6574907	24000	620	0	2.670e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT138xf	2399963.22973	1.2e+06	1.2e+06	0	1.532e-05	ohm	readout TIA
+P_zC139xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS140xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS140xi1	5000	3000	2000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS140xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS140xc	114226.523238	75000	39000	220	5.711e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT141xf	8698318.18003	5.1e+06	3.6e+06	0	1.934e-04	ohm	readout TIA
+P_zC142xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS143xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS143xi1	2500	1300	1200	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS143xc	81188.5932317	75000	6200	0	1.405e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT144xf	9903005.02418	5.6e+06	4.3e+06	0	3.034e-04	ohm	readout TIA
+P_zC145xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS146xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS146xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS146xi2	2000	1000	1000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS146xc	14496.9379125	13000	1500	0	2.112e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT147xf	4802750.71611	2.4e+06	2.4e+06	2700	1.056e-05	ohm	readout TIA
+P_zC148xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS149xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS149xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS149xc	85152.8361612	75000	10000	150	3.331e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT150xf	2234126.48592	2.2e+06	33000	1100	1.186e-05	ohm	readout TIA
+P_zC151xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS152xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS152xi1	1666.66666667	1600	62	4.7	2.000e-05	ohm	readout (antilog exponent): weight
+P_zS152xi2	1428.57142857	910	510	8.2	2.600e-04	ohm	readout (antilog exponent): weight
+P_zS152xc	8332.85125315	8200	130	0	3.422e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zT153xf	7018715.35534	6.2e+06	820000	0	1.830e-04	ohm	readout TIA
+P_zC154xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS155xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS155xi1	1666.66666667	1600	62	4.7	2.000e-05	ohm	readout (antilog exponent): weight
+P_zS155xi2	1250	820	430	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS155xc	7607.2098607	7500	110	0	3.668e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
