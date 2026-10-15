@@ -70,3 +70,14 @@ jobs:
         run: cd phase3/tools && ./verify_lock5.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
       - name: Verify LOCK6 (byte-identical re-derivation)
         run: cd phase3/tools && ./verify_lock6.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+
+  phase3-sim:
+    name: Phase 3c/3d — LOCK5/LOCK6 compiled leaves, folds with carried tiny taps, tap bench (ideal, 27 C) + score/summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: sudo apt-get update && sudo apt-get install -y ngspice
+      - name: Reproduce LOCK5/LOCK6 nominal (score5.sh per netlist, tiny6.py; summary in the job summary)
+        run: phase3/tools/reproduce5.sh

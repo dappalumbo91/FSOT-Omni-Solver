@@ -1,0 +1,12 @@
+netlist	leaves	ideal27_median_abs	ideal27_worst	ideal27_worst_leaf	ideal_0..50_worst	mcC_runs_ok	mcC_median_sd	mcC_worst	mcB_runs_ok	mcB_median_sd	mcB_worst
+GEN	20	1.45e-05	1.37e-03	BETA	5.40e-03	8/8	5.22e-03	2.25e+00	3/4	2.82e-02	9.99e-01
+T1	14	2.09e-04	3.38e-03	Omega_DM_h2	4.13e-03	8/8	4.44e-03	7.07e-02	4/4	4.57e-02	5.23e-01
+2_M	44	2.61e-05	1.24e-03	eta_baryon_photon	1.30e-03	8/8	3.69e-03	3.50e-01	4/4	3.42e-02	1.02e+01
+2_P	49	1.41e-05	5.65e-04	Hashing_bound	6.49e-04	8/8	4.82e-03	1.06e-01	4/4	3.33e-02	6.74e-01
+2_T	5	1.74e-06	5.17e-05	Water_triple_K	9.00e-05	8/8	1.88e-03	2.65e-02	4/4	1.76e-02	2.06e-01
+2_X	14	9.55e-06	1.29e-04	tau_reion	1.29e-04	8/8	5.07e-03	4.36e-02	3/4	3.10e-02	2.58e-01
+2a_M	66	8.22e-06	1.32e-04	BP_C₂H₅OH	1.42e-04	8/8	1.82e-03	1.96e-02	4/4	1.65e-02	1.46e-01
+2a_P	80	1.01e-05	4.58e-04	gamma_2_Stieltjes	4.95e-04	8/8	2.14e-03	8.79e-02	4/4	1.79e-02	5.27e-01
+2a_Q	9	3.19e-06	5.98e-06	N_Lobes	5.98e-06	8/8	2.18e-04	7.08e-04	4/4	6.18e-04	1.12e-01
+2a_T	12	1.32e-05	3.79e-04	gamma1_Stieltjes	4.25e-04	8/8	3.55e-03	1.12e-01	3/4	2.36e-02	8.33e-01
+2a_X	44	-	-	-	2.91e-01	0/8	-	-	0/4	-	-

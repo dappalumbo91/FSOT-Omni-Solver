@@ -127,6 +127,38 @@ Errors are relative to golden (GEN: relative to the engine constant). They come 
 | Twin_prime_C2 | +2.79e-04 | +3.22e-04 | +4.30e-05 | 1.97e-03 | 2.69e-03 | 1.46e-02 | 1.85e-02 |
 | Omega_b_h2 | -2.96e-03 | -3.00e-03 | -4.00e-05 | 4.35e-02 | 4.36e-02 | 2.32e-01 | 2.59e-01 |
 
+## Phase 3c/3d: LOCK5 (headroom, exact rewrites, rectifier) and LOCK6 (tiny terms carried)
+
+Locks: `phase3/locked5/LOCK5.md` (+ Amendment 5.1), `phase3/locked6/LOCK6.md` (+ Amendment 6.1), hashes recorded and pushed before simulation.
+Runs: `phase3/tools/batch5.sh`, `batch6.sh`; summaries `phase3/results/leaves5_*.tsv`, `leaves6_*.tsv`, `tiny_terms6_fold.tsv`, `tiny_terms6_bench.tsv`.
+
+LOCK5 vs LOCK4, every compiled netlist (ideal 0/27/50 °C, mcC seeds 1–8, mcB seeds 1–4; 2a_X LOCK5 failed in the ideal run, so its MC was not run under LOCK5; see LOCK6):
+
+| Netlist | ideal 27 °C median / worst (LOCK5) | mcC conv LOCK4 → LOCK5 | mcC median σ LOCK4 → LOCK5 | mcB conv LOCK4 → LOCK5 | mcB median σ LOCK4 → LOCK5 |
+|---|---|---|---|---|---|
+| GEN | 1.45e-05 / 1.37e-03 (BETA) | 7/8 → 8/8 | 1.80e-03 → 5.22e-03 | 3/4 → 3/4 | 1.57e-02 → 2.82e-02 |
+| T1 | 2.09e-04 / 3.38e-03 (Omega_DM_h2) | 8/8 → 8/8 | 2.60e-03 → 4.44e-03 | 3/4 → 4/4 | 1.86e-02 → 4.57e-02 |
+| 2_M | 2.61e-05 / 1.24e-03 (eta_baryon_photon) | 8/8 → 8/8 | 2.36e-03 → 3.69e-03 | 3/4 → 4/4 | 1.67e-02 → 3.42e-02 |
+| 2_P | 1.41e-05 / 5.65e-04 (Hashing_bound) | 8/8 → 8/8 | 1.95e-03 → 4.82e-03 | 4/4 → 4/4 | 1.49e-02 → 3.33e-02 |
+| 2_T | 1.74e-06 / 5.17e-05 (Water_triple_K) | 8/8 → 8/8 | 1.17e-03 → 1.88e-03 | 4/4 → 4/4 | 9.98e-03 → 1.76e-02 |
+| 2_X | 9.55e-06 / 1.29e-04 (tau_reion) | 8/8 → 8/8 | 2.13e-03 → 5.07e-03 | 4/4 → 3/4 | 1.97e-02 → 3.10e-02 |
+| 2a_M | 8.22e-06 / 1.32e-04 (BP_C₂H₅OH) | 8/8 → 8/8 | 1.04e-03 → 1.82e-03 | 4/4 → 4/4 | 7.36e-03 → 1.65e-02 |
+| 2a_P | 1.01e-05 / 4.58e-04 (gamma_2_Stieltjes) | 8/8 → 8/8 | 1.31e-03 → 2.14e-03 | 4/4 → 4/4 | 1.18e-02 → 1.79e-02 |
+| 2a_Q | 3.19e-06 / 5.98e-06 (N_Lobes) | 8/8 → 8/8 | 2.25e-04 → 2.18e-04 | 4/4 → 4/4 | 5.22e-04 → 6.18e-04 |
+| 2a_T | 1.32e-05 / 3.79e-04 (gamma1_Stieltjes) | 8/8 → 8/8 | 2.15e-03 → 3.55e-03 | 3/4 → 3/4 | 1.72e-02 → 2.36e-02 |
+| 2a_X | - / - (-) | 0/8 → 0/8 | - → - | 0/4 → 0/4 | - → - |
+
+LOCK6 reruns (netgen5: log-carried base-engine taps in T1's channels, low-leakage rectifier in 2a_X) — `leaves6_netlists.tsv`:
+| netlist | leaves | ideal27_median_abs | ideal27_worst | ideal27_worst_leaf | ideal_0..50_worst | mcC_runs_ok | mcC_median_sd | mcC_worst | mcB_runs_ok | mcB_median_sd | mcB_worst |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| T1 | 14 | 2.09e-04 | 3.38e-03 | Omega_DM_h2 | 4.13e-03 | 7/8 | 6.26e-03 | 5.51e-02 | 4/4 | 4.98e-02 | 6.03e-01 |
+| 2a_X | 44 | 1.99e-05 | 2.19e-01 | Chain_consistency_% | 2.38e-01 | 2/8 | 9.39e-04 | 1.33e+01 | 0/4 | - | - |
+
+- |V_cb| (exact rewrite): mcC σ 2.48e-2 → 8.1e-3, mcB σ 0.21 → 0.048 (LOCK4 → LOCK5).
+- Chain_consistency_%: ideal converges (LOCK6, 0/27/50 °C), reads 0.0052 % vs 0.00667 %; MC resolution of the difference node σ ≈ 0.9 (mcC) / 5.4 (mcB) in Chain-% units: consistent to better than ~1 %.
+- Base-engine tiny terms (247 taps, 35 folds): carried readout vs engine within 1.1e-4 … 1.8e-3 in the full ideal fold channel (a3 = T3 valve at 8e-18…2.4e-17: +8.8e-4), 1.1–4.0e-4 on the bench at 0/27/50 °C. Current-mode carriers (uncascoded stage, divided-back current, charge integrator) hit a leakage floor below ~1e-13 A. Details: INSIGHTS §14.
+- Not yet compiled: the 13 domain_scalar forms (S(Human) … Cross_Astro_PS) — FSOT gives them a physical input, the fold channel's S of the named domain, which the base engine already computes; compiling them needs one CHAN per named domain (7 domains) in a forked compiler. fsot_correct, the floor rows and the hub dynamics are not started.
+
 ## Full map (356 rows)
 
 | # | section | name | formula | S inputs | constants | analog block | tier | status |
