@@ -85,3 +85,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ngspice
       - name: Reproduce LOCK5/LOCK6 nominal (score5.sh per netlist, tiny6.py; summary in the job summary)
         run: phase3/tools/reproduce5.sh
+      - name: Regression check (2x locked baseline, floor 1e-6; rule and approval in phase3/locked_ci/LOCK.md)
+        if: always()
+        run: |
+          cd phase3/locked_ci && sha256sum -c --quiet SHA256SUMS
+          while read -r h f; do grep -q "$h" LOCK.md || { echo "hash of $f not recorded in LOCK.md"; exit 1; }; done < SHA256SUMS
+          cd ../tools && python3 regress_ci.py check
