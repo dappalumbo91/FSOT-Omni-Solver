@@ -1,0 +1,20 @@
+gamma_rel	0.428043446059806859	1/unit	|CHAOS| + PSI_CON POOF (fsot_dynamics.py:143)
+mu_Fluid	0.332824406716112414	1/unit	|CHAOS| |D_eff(Fluid_Dynamics) - 25|/25 + A_BLEED POOF (:84)
+D_eff_Fluid	12	-	engine domain table
+mu_D25	0.160691831758661856	1/unit	A_BLEED POOF (:84, D = 25)
+J_obs	0.0794560282152649155	1/unit	C_FACTOR cos(1 + THETA_S) (:97)
+S_eq	-0.502377318176147819	-	domain_scalar(Cosmology) (:308)
+T0	0.01	s	circuit time per hub unit
+VREF	2.5	V	multiplier reference
+R_r	250000	ohm	I_r = VREF/R_r = 10 uA
+R_x	200000	ohm	I_x = V_state/R_x, 2 V per state unit
+C_int	5e-08	F	T0/R_x: rate = (I_a/I_r)/(R_x C) per T0
+R_a_gamma	428043.446059806859	ohm	I_a = V(zA1xo)/R_a, V = 10 gamma_rel
+R_a_muF	332824.406716112414	ohm	I_a = V(zA96xo)/R_a, V = 10 mu_Fluid
+R_a_mu25	160691.831758661856	ohm	I_a = V(zT101xo)/R_a, V = 10 mu_D25
+R_J	10000000	ohm	I_j = V(zT104xo)/R_J, V = 100 J_obs
+V_gamma_exact	4.28043446059806859	V	exact readout
+V_muF_exact	3.32824406716112414	V	exact readout
+V_mu25_exact	1.60691831758661856	V	exact readout
+V_J_exact	7.94560282152649155	V	exact readout
+V_Seq_exact	-1.00475463635229564	V	exact C_S channel output (V = 2 S)
