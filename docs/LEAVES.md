@@ -186,6 +186,17 @@ Runs: `phase3/tools/batch7b.sh`, `batch8.sh`, `batch8b.sh`; summaries `phase3/re
 - Ideal errors under 7.1 are 3–5× LOCK5's (antilog input absorption, base S offset +5.4e-4); MC spread is 1.5–3× smaller. See INSIGHTS §15.
 - Part C: S(species) +5.5e-4 is the base-engine S offset; the Cross_* ratios cancel it (+2–3e-5). fsot_correct factors −2.5e-6; hub coefficients −1.6e-5 … +2.4e-4.
 
+## LOCK9A/9B/9C ablations (why 7.1 is less accurate) and the 0-D hub bench
+
+Ideal 27 °C, 348 leaves, against the LOCK5/6 CI baseline (`phase3/results/ablation9*.tsv`; details in INSIGHTS §16). Median ratio / leaves over the 2× rule:
+- 7.1 on the LOCK7 base 2.97 / 234; 7.1 on the LOCK6 base 1.24 / 108. Cause: the LOCK7 PTAT neper ratio 256 (ratio 16: 1.36 / 121), plus KD for T1.
+- Reverting one compiler change on the LOCK6 base: flip 1.13 / 71, absorption 1.01 / 75, base cells 1.00 / 62; Early correction and range sizing: no effect.
+- High-injection compensation (leafc10 `hi`): LOCK7 base 1.68 / 153, LOCK6 base 0.98 / 120; with the LOCK5 compiler forms on the LOCK6 base 1.06 / 109.
+
+No variant brings every leaf to LOCK5's level while keeping 7.1's spread, so the baseline stays LOCK5/6 and no 9-series netlist replaces a LOCK7/8 netlist.
+
+Hub bench (`phase3/results/hub9b_summary.tsv`): the compiled γ_rel, μ(12), μ(25), J_obs and S_eq drive a transistor-level translinear integrator bench. It tracks the exact relaxation to ≤ 1.2e-4 (state units) over 8 hub units, and to 5.4e-4 for S, set by the S_eq channel offset. Python and C++ references agree to 1e-15.
+
 ## Full map (356 rows)
 
 | # | section | name | formula | S inputs | constants | analog block | tier | status |

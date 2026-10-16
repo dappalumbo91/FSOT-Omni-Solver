@@ -72,6 +72,8 @@ jobs:
         run: cd phase3/tools && ./verify_lock6.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
       - name: Verify LOCK7/7.1/7.2/LOCK8 hashes + Amendment 8.1 (host-independent detmath re-derivation of base, taps, locked8b; see LOCK8b.md)
         run: cd phase3/tools && ./verify_lock8b.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK9A/9B/9C ablation locks + LOCK9H/9H.1 hub bench (hashes + detmath re-derivation)
+        run: cd phase3/tools && ./verify_lock9.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
 
   phase3-sim:
     name: Phase 3c/3d — LOCK5/LOCK6 compiled leaves, folds with carried tiny taps, tap bench (ideal, 27 C) + score/summary

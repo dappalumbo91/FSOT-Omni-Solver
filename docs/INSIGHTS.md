@@ -234,3 +234,51 @@ These come from `spice/sens.sh` (16 seeds per row). One draw class is active at 
 - Floor rows: already compiled in 2a_Q (LOCK7c, 9 rows, ideal ≤ 6e-6).
 
 **Amendment 8.1: why CI failed, and the fix (`phase3/locked8b/LOCK8b.md`).** Four CI runs failed in the LOCK7 re-derivation. Cause: `realise()` (cpp/design.hpp) searches 3 E24 pieces only when the best 2-piece error is > 5e-4, and a summer-constant resistor 10000/0.15 = 66666.67 Ω has exactly 5.000e-4 with 62000 + 4700. glibc's long double logl/expl/powl/sinl/cosl use x87 transcendental instructions whose last bit depends on the CPU model, and GitHub's runner pool mixes models, so the decision flipped on some runners. The glibc/g++ version is not the cause: an Ubuntu 24.04 (glibc 2.39, g++ 13.3) chroot reproduces locked7c on this Intel host. A ±1-ulp perturbation of exp/log/sin/cos reproduces the failure class. Fix: `cpp/detmath.cpp` (deterministic transcendentals from + − × ÷ only, linked into the derivers), E24 decisions made on the 12-digit printed value, and computed columns printed with 12 digits. leafc8b re-derives byte-identically under ±1 ulp, −O0 and −O3 -march=native. 7 parts in 6 netlists changed from 3 to 2 E24 pieces (5e-4 vs 1e-4 on a 1 % part); the ideal results are unchanged, and the MC reruns (`leaves8b_*.tsv`) match 7.1 within seed noise (e.g. GEN mcC σ 1.89e-3 → 1.72e-3, T1 6.19e-3 → 6.25e-3). The libm-based re-derivations of locked7/7b/7c leaves and locked8 are retired from CI, their hashes are still checked, and this is disclosed in LOCK8b.md.
+
+## 16. Why LOCK7/7.1's ideal errors are worse (ablations LOCK9A/9B/9C), and the 0-D hub bench (LOCK9H/9H.1)
+
+**Method.** Each switch restores the LOCK5 form of one LOCK7/7.1 change, all else held fixed (`phase3/locked9a`, `locked9b`, `locked9c`, hashed before simulation). Ideal op-amps, ideal resistor values (so E-series snapping plays no part), 27 °C, 10 netlists, 348 leaves. Scoring is against the locked CI baseline (LOCK5/6). Tables: `phase3/results/ablation9.tsv`, `ablation9b.tsv`, `ablation9c.tsv` (per leaf: `*_leaves.tsv`). Column ">2×" uses the CI rule: |err| > 2·max(|baseline|, 1e-6).
+
+| variant | base engine | compiler | median ratio to baseline | >2× | ≤ baseline |
+|---|---|---|---|---|---|
+| v71 (= 7.1/8.1) | LOCK7 | 7.1 | 2.97 | 234 | 49 |
+| flip / abs / flipabs | LOCK7 | 7.1 minus one change | 3.19 / 2.79 / 3.17 | 229 / 224 / 226 | — |
+| base / early / rho | LOCK7 | 7.1 minus one change | 2.55 / 2.97 / 2.97 | 232 / 234 / 234 | — |
+| all (LOCK5 compiler forms) | LOCK7 | LOCK5 forms | 2.63 | 236 | 51 |
+| v71_b6 | LOCK6 | 7.1 | 1.24 | 108 | 149 |
+| all_b6 (sanity check) | LOCK6 | LOCK5 forms | 1.00 | 0 | 348 (identical to baseline) |
+| base_m16 / base_m64 / base_me3 | LOCK7 at PTAT ratio 16 / 64 / e³ | 7.1 | 1.36 / 2.63 / 3.25 | 121 / 221 / 247 | 140 / 49 / 44 |
+| flip_b6 / abs_b6 / flipabs_b6 / base_b6 | LOCK6 | 7.1 minus one change | 1.13 / 1.01 / 1.01 / 1.00 | 71 / 75 / 45 / 62 | 124 / 173 / 142 / 200 |
+| early_b6 / rho_b6 | LOCK6 | 7.1 minus one change | 1.24 / 1.24 | 107 / 108 | 148 / 149 |
+| hi (7.1 + high-injection compensation) | LOCK7 | 7.1 + hi | 1.68 | 153 | 103 |
+| hi_m16 / hi_b6 | LOCK7 at 16 / LOCK6 | 7.1 + hi | 1.00 / 0.98 | 132 / 120 | 174 / 182 |
+| allhi / allhi_b6 | LOCK7 / LOCK6 | LOCK5 forms + hi | 1.27 / 1.06 | 120 / 109 | 125 / 163 |
+
+(flip variants: 304 leaves, because 2a_X in the LOCK5 orientation fails to solve on the 7.1 code base, as it did in LOCK5.)
+
+**Findings.**
+1. **The base engine is the main cause, specifically the PTAT neper reference (ratio 256 instead of 16).** The 7.1 compiler on the LOCK6 base drops from 2.97× to 1.24×. Netlist diff of a leaf-only netlist: the only base difference is the PTAT ratio (R_ptA_lo, R_ptB_lo, R_ptg_A, R_ptg_B). The ratio sweep reproduces it: 16 → 1.36×, 64 → 2.63×, 256 → 2.97×, e³ → 3.25×. T1 is the exception: its error comes from the deeper base LOGR baseline (KD), which raises the base engine's S offset from +1.6e-4 to +5.4e-4. T1 is 3.29× on the LOCK7 base and 0.98× on LOCK6.
+2. **The V_NEP offset is the mechanism, and LOCK5's accuracy is partly a cancellation.** V_NEP − 10·V_T (ngspice) is +7.6e-6 at ratio 16 and +1.1e-6 at 256. Ratio 256 is the more accurate neper. Leaf errors are linear in this offset (median residual 9e-6). LOCK5's +7.6e-6 happens to offset a negative systematic of the same size in the cells. Removing that offset uncovers the systematic. Reproducing LOCK5's offset on purpose would be a fit, so it was not done.
+3. **Compiler changes, measured on the LOCK6 base:** flip, absorption and the base-cell rule each add error (the 2× count goes 108 → 71, 75 and 62 when each is reverted). The Early correction and range sizing add none.
+4. **High-injection compensation (LOCK9C, leafc10 switch `hi`) is real but not dominant.** It compiles the Gummel-Poon term h = ln((1+I₂/IKF)/(1+I₁/IKF)) into every LOGR/antilog constant: V_BC = 0, so q_b = 1 + I_C/IKF exactly, with IKF = 66.78 mA from the device model. This is the same practice as 7.1's VAF Early correction. Median ratio improves (7.1 on LOCK7: 2.97 → 1.68; on LOCK6: 1.24 → 0.98), but the >2× count stays at 120–153. The best HI scale fitted per base is inconsistent (0.45, 1.32, −0.79), so several mechanisms of comparable size (~1e-5) make up each leaf's residual. No single correction lowers every leaf.
+5. **No candidate met the bar.** The bar was every leaf at or below LOCK5's level (no leaf over the 2× rule) while keeping 7.1's spread and convergence. The best ideal results (hi_b6, allhi_b6, flipabs_b6) need the LOCK6 base, which gives up the matched PTAT pair and ratio 256 that produced 7.1's spread, and they still have 45–120 leaves over 2×. **The regression baseline stays at LOCK5/6.** The MC set (mcC/mcB) was therefore not run for any 9-series candidate.
+
+**0-D hub bench (`phase3/locked9h`, Amendment `locked9h1`; results `phase3/results/hub9b_summary.tsv`, `hub9b_compare.tsv`).** Three 0-D modes of the hub (vendor/fsot_dynamics.py):
+- S relaxation dS/dt = −γ_rel(S − S_eq), with S(0) = 0 and S_eq = domain_scalar(Cosmology) = −0.50238.
+- Dark Fluid mode dv/dt = −μ(12)v.
+- Observed D = 25 mode dv/dt = −μ(25)v + J_obs, which tends to J_obs/μ(25) = 0.4945.
+
+Each mode runs as a transient analog computer: an ideal-op-amp integrator plus a four-transistor 2N3904 translinear multiplier, I_out = I_a·I_x/I_r. I_a comes from the compiled C_H readout voltage (stage 1: the LOCK8 ideal 27 °C solve). S_eq and the initial condition come from the C_S Cosmology channel voltage. One hub unit is 10 ms; 8 units are simulated.
+
+Max |deviation| over t ∈ (0, 8], in state units:
+
+| mode | Python RK4 vs C++ RK4 | C++ RK4 vs exact | bench (exact coefficients) vs exact | bench (compiled) vs exact | bench (compiled) vs exact solution with compiled coefficients |
+|---|---|---|---|---|---|
+| S | 1.2e-15 | 6e-17 | 5.0e-5 | 5.4e-4 | 5.0e-5 |
+| v_Fluid | 1.0e-15 | 1e-16 | 8.5e-5 | 8.8e-5 | 8.5e-5 |
+| v_D25 | 1.3e-15 | 0 | 1.2e-4 | 9.4e-5 | 1.2e-4 |
+
+- **The Python and C++ dynamics agree to round-off.**
+- **The bench's own integration error is ≤ 1.2e-4.** Most of it is a rate error of about −2.6e-4 relative, consistent with the op-amp gain of 1e6 in the multiplier summers plus residual high injection.
+- **The compiled coefficients add almost nothing except through S_eq.** The S channel carries the base engine's S offset (S_eq reads +1.15e-3 relative), which sets the 5.4e-4 S error.
+- **First run had two bench defects.** R_a sizing made every rate 1/T0, and .ic could not set VCVS-driven nodes. That run's output is kept as `hub9_run1_*` and the defects are disclosed in LOCK9H1.md.
