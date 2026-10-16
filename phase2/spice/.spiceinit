@@ -1,0 +1,2 @@
+* Phase-2 netlists use TI PSpice-format vendor models (OPAx187, LM139): enable PSpice compatibility.
+set ngbehavior=ps

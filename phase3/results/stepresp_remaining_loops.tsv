@@ -1,0 +1,21 @@
+fold	opamp	block	integrator_or_static_V	state	overshoot	zeta	PM_est_deg	ring_Hz
+Atomic_Physics	E_a3xE	b107	-9.898e+05	saturated (static output beyond clamp)	-	-	-	-
+Atomic_Physics	E_sw3xE	b44	-4.329e+05	saturated (static output beyond clamp)	-	-	-	-
+Atomic_Physics	E_sv4xE	b75	-3.99e+05	saturated (static output beyond clamp)	-	-	-	-
+Atomic_Physics	E_st5xE	b93	-4.521e+05	saturated (static output beyond clamp)	-	-	-	-
+Atomic_Physics	E_cy2xE	b27	-3.357e+05	saturated (static output beyond clamp)	-	-	-	-
+Atomic_Physics	E_cy3xE	b30	-5.939e+05	saturated (static output beyond clamp)	-	-	-	-
+Chemistry	E_a3xE	b107	-9.945e+05	saturated (static output beyond clamp)	-	-	-	-
+Chemistry	E_sw3xE	b44	-3.44e+05	saturated (static output beyond clamp)	-	-	-	-
+Chemistry	E_sv4xE	b75	-4.464e+05	saturated (static output beyond clamp)	-	-	-	-
+Chemistry	E_st5xE	b93	-4.521e+05	saturated (static output beyond clamp)	-	-	-	-
+Cosmology	E_a3xE	b107	-1.019e+06	saturated (static output beyond clamp)	-	-	-	-
+Cosmology	E_sw3xE	b44	-3.44e+05	saturated (static output beyond clamp)	-	-	-	-
+Cosmology	E_sv4xE	b75	-4.464e+05	saturated (static output beyond clamp)	-	-	-	-
+Cosmology	E_st5xE	b93	-4.521e+05	saturated (static output beyond clamp)	-	-	-	-
+Cosmology	E_cy2xE	b27	0.793	linear	0.000834	0.914	74.0	0
+Cosmology	E_cy3xE	b30	0.351	linear	0.000189	0.939	74.7	1.86e+04
+Fluid_Dynamics	E_a3xE	b107	-1.005e+06	saturated (static output beyond clamp)	-	-	-	-
+Fluid_Dynamics	E_sw3xE	b44	-3.44e+05	saturated (static output beyond clamp)	-	-	-	-
+Fluid_Dynamics	E_sv4xE	b75	-4.464e+05	saturated (static output beyond clamp)	-	-	-	-
+Fluid_Dynamics	E_st5xE	b93	-4.521e+05	saturated (static output beyond clamp)	-	-	-	-

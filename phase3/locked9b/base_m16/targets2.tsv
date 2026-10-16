@@ -1,0 +1,14 @@
+name	value	source
+K	4.201087636498879e-01	engine.hpp:137
+S_chem	9.552893400916405e-01	engine.hpp:148
+S_cosm	-5.023773181761478e-01	engine.hpp:146
+S_quant	9.501974701670142e-01	engine.hpp:147
+one_minus_S_chem	4.471065990835947e-02	1 - S_chem
+Omega_b_h2	2.246162141864744e-02	closed_forms.gen.inc:15-16
+alpha_s(M_Z)	1.170996630486383e-01	closed_forms.gen.inc:7-8
+1/alpha_em	1.370361975595727e+02	closed_forms.gen.inc:70-71
+e3	2.008553692318767e+01	e^3
+V_NEP_27C	2.586492578632875e-01	10 kT/q at 300.15 K
+valve2	8.951370105132858e-01	engine.hpp:214-215
+acoustic1	1.758904418077687e+00	engine.hpp:216-217
+phase1	1.754873245606017e+00	engine.hpp:218

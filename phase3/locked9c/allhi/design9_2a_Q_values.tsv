@@ -1,0 +1,399 @@
+name	ideal	E24_a	E24_b	E24_c	E24_rel	unit	meaning
+P_zT1xf_0	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 1/15)
+P_zT1xf_1	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 2/15)
+P_zT1xf_2	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 3/15)
+P_zT1xf_3	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 4/15)
+P_zT1xf_4	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 5/15)
+P_zT1xf_5	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 6/15)
+P_zT1xf_6	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 7/15)
+P_zT1xf_7	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 8/15)
+P_zT1xf_8	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 9/15)
+P_zT1xf_9	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 10/15)
+P_zT1xf_10	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 11/15)
+P_zT1xf_11	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 12/15)
+P_zT1xf_12	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 13/15)
+P_zT1xf_13	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 14/15)
+P_zT1xf_14	8413410.03217	7.5e+06	910000	0	4.053e-04	ohm	readout TIA (string piece 15/15)
+P_zB2xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base PI: Ix
+P_zB2xr	7853981.63397	7.5e+06	330000	24000	2.338e-06	ohm	base PI: Ir = Ix/(1 PI)
+P_zC3xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input (I_in = IIN e^a)
+P_zS4xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS4xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS4xc	24126.8823712	24000	130	0	1.292e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zQ5xf	100000	82000	18000	0	0.000e+00	ohm	floor ladder sum
+P_zQ5xh1a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ5xh1b	40000	20000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ5xc1	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ5xh2a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ5xh2b	80000	47000	33000	0	0.000e+00	ohm	threshold gain
+P_zQ5xc2	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ5xh3a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ5xh3b	120000	100000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ5xc3	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ5xh4a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ5xh4b	160000	130000	30000	0	0.000e+00	ohm	threshold gain
+P_zQ5xc4	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ5xh5a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ5xh5b	200000	100000	100000	0	0.000e+00	ohm	threshold gain
+P_zQ5xc5	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ5xh6a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ5xh6b	240000	120000	120000	0	0.000e+00	ohm	threshold gain
+P_zQ5xc6	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ5xh7a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ5xh7b	280000	150000	130000	0	0.000e+00	ohm	threshold gain
+P_zQ5xc7	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ5xh8a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ5xh8b	320000	160000	160000	0	0.000e+00	ohm	threshold gain
+P_zQ5xc8	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ5xk	62500	62000	510	0	1.600e-04	ohm	ladder offset (half-steps of the comparator swing)
+P_zA6xf_0	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 1/7)
+P_zA6xf_1	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 2/7)
+P_zA6xf_2	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 3/7)
+P_zA6xf_3	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 4/7)
+P_zA6xf_4	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 5/7)
+P_zA6xf_5	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 6/7)
+P_zA6xf_6	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 7/7)
+P_zT7xf_0	7887571.90516	7.5e+06	390000	0	3.078e-04	ohm	readout TIA (string piece 1/8)
+P_zT7xf_1	7887571.90516	7.5e+06	390000	0	3.078e-04	ohm	readout TIA (string piece 2/8)
+P_zT7xf_2	7887571.90516	7.5e+06	390000	0	3.078e-04	ohm	readout TIA (string piece 3/8)
+P_zT7xf_3	7887571.90516	7.5e+06	390000	0	3.078e-04	ohm	readout TIA (string piece 4/8)
+P_zT7xf_4	7887571.90516	7.5e+06	390000	0	3.078e-04	ohm	readout TIA (string piece 5/8)
+P_zT7xf_5	7887571.90516	7.5e+06	390000	0	3.078e-04	ohm	readout TIA (string piece 6/8)
+P_zT7xf_6	7887571.90516	7.5e+06	390000	0	3.078e-04	ohm	readout TIA (string piece 7/8)
+P_zT7xf_7	7887571.90516	7.5e+06	390000	0	3.078e-04	ohm	readout TIA (string piece 8/8)
+P_zC8xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input (I_in = IIN e^a)
+P_zS9xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS9xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS9xc	24126.8823712	24000	130	0	1.292e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zQ10xf	100000	82000	18000	0	0.000e+00	ohm	floor ladder sum
+P_zQ10xh1a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ10xh1b	40000	20000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ10xc1	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ10xh2a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ10xh2b	80000	47000	33000	0	0.000e+00	ohm	threshold gain
+P_zQ10xc2	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ10xh3a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ10xh3b	120000	100000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ10xc3	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ10xh4a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ10xh4b	160000	130000	30000	0	0.000e+00	ohm	threshold gain
+P_zQ10xc4	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ10xh5a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ10xh5b	200000	100000	100000	0	0.000e+00	ohm	threshold gain
+P_zQ10xc5	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ10xk	100000	82000	18000	0	0.000e+00	ohm	ladder offset (half-steps of the comparator swing)
+P_zA6xt1_0	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 1/7)
+P_zA6xt1_1	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 2/7)
+P_zA6xt1_2	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 3/7)
+P_zA6xt1_3	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 4/7)
+P_zA6xt1_4	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 5/7)
+P_zA6xt1_5	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 6/7)
+P_zA6xt1_6	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 7/7)
+P_zT11xf_0	8124770.356	7.5e+06	620000	4700	8.659e-06	ohm	readout TIA (string piece 1/4)
+P_zT11xf_1	8124770.356	7.5e+06	620000	4700	8.659e-06	ohm	readout TIA (string piece 2/4)
+P_zT11xf_2	8124770.356	7.5e+06	620000	4700	8.659e-06	ohm	readout TIA (string piece 3/4)
+P_zT11xf_3	8124770.356	7.5e+06	620000	4700	8.659e-06	ohm	readout TIA (string piece 4/4)
+P_zB12xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base PHI: Ix
+P_zB12xr	4045084.97187	3.6e+06	430000	15000	2.101e-05	ohm	base PHI: Ir = Ix/(1 PHI)
+P_zC13xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input (I_in = IIN e^a)
+P_zS14xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS14xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS14xc	28725.4645775	24000	4700	24	5.099e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zQ15xf	100000	82000	18000	0	0.000e+00	ohm	floor ladder sum
+P_zQ15xh1a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ15xh1b	40000	20000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ15xc1	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ15xh2a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ15xh2b	80000	47000	33000	0	0.000e+00	ohm	threshold gain
+P_zQ15xc2	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ15xh3a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ15xh3b	120000	100000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ15xc3	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ15xk	166666.666667	160000	6200	470	2.000e-05	ohm	ladder offset (half-steps of the comparator swing)
+P_zA6xt2_0	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 1/7)
+P_zA6xt2_1	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 2/7)
+P_zA6xt2_2	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 3/7)
+P_zA6xt2_3	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 4/7)
+P_zA6xt2_4	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 5/7)
+P_zA6xt2_5	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 6/7)
+P_zA6xt2_6	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 7/7)
+P_zT16xf_0	8068575.86985	7.5e+06	560000	8200	4.658e-05	ohm	readout TIA (string piece 1/5)
+P_zT16xf_1	8068575.86985	7.5e+06	560000	8200	4.658e-05	ohm	readout TIA (string piece 2/5)
+P_zT16xf_2	8068575.86985	7.5e+06	560000	8200	4.658e-05	ohm	readout TIA (string piece 3/5)
+P_zT16xf_3	8068575.86985	7.5e+06	560000	8200	4.658e-05	ohm	readout TIA (string piece 4/5)
+P_zT16xf_4	8068575.86985	7.5e+06	560000	8200	4.658e-05	ohm	readout TIA (string piece 5/5)
+P_zC17xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input (I_in = IIN e^a)
+P_zS18xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS18xc	33333.1752353	33000	330	0	9.526e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zQ19xf	100000	82000	18000	0	0.000e+00	ohm	floor ladder sum
+P_zQ19xh1a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh1b	4000	2000	2000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc1_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc1_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh2a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh2b	8000	4700	3300	0	0.000e+00	ohm	threshold gain
+P_zQ19xc2_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc2_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh3a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh3b	12000	10000	2000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc3_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc3_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh4a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh4b	16000	13000	3000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc4_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc4_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh5a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh5b	20000	10000	10000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc5_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc5_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh6a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh6b	24000	12000	12000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc6_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc6_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh7a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh7b	28000	15000	13000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc7_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc7_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh8a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh8b	32000	16000	16000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc8_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc8_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh9a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh9b	36000	18000	18000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc9_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc9_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh10a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh10b	40000	20000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc10_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc10_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh11a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh11b	44000	22000	22000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc11_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc11_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh12a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh12b	48000	24000	24000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc12_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc12_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh13a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh13b	52000	30000	22000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc13_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc13_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh14a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh14b	56000	36000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc14_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc14_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh15a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh15b	60000	30000	30000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc15_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc15_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh16a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh16b	64000	51000	13000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc16_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc16_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh17a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh17b	68000	56000	12000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc17_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc17_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh18a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh18b	72000	36000	36000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc18_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc18_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh19a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh19b	76000	43000	33000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc19_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc19_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh20a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh20b	80000	47000	33000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc20_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc20_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh21a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh21b	84000	51000	33000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc21_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc21_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xh22a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ19xh22b	88000	68000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ19xc22_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ19xc22_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ19xk	227272.727273	180000	47000	270	1.200e-05	ohm	ladder offset (half-steps of the comparator swing)
+P_zA20xf_0	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 1/12)
+P_zA20xf_1	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 2/12)
+P_zA20xf_2	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 3/12)
+P_zA20xf_3	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 4/12)
+P_zA20xf_4	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 5/12)
+P_zA20xf_5	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 6/12)
+P_zA20xf_6	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 7/12)
+P_zA20xf_7	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 8/12)
+P_zA20xf_8	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 9/12)
+P_zA20xf_9	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 10/12)
+P_zA20xf_10	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 11/12)
+P_zA20xf_11	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 12/12)
+P_zA20xt1_0	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 1/14)
+P_zA20xt1_1	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 2/14)
+P_zA20xt1_2	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 3/14)
+P_zA20xt1_3	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 4/14)
+P_zA20xt1_4	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 5/14)
+P_zA20xt1_5	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 6/14)
+P_zA20xt1_6	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 7/14)
+P_zA20xt1_7	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 8/14)
+P_zA20xt1_8	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 9/14)
+P_zA20xt1_9	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 10/14)
+P_zA20xt1_10	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 11/14)
+P_zA20xt1_11	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 12/14)
+P_zA20xt1_12	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 13/14)
+P_zA20xt1_13	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 14/14)
+P_zA20xk_0	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 1/34)
+P_zA20xk_1	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 2/34)
+P_zA20xk_2	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 3/34)
+P_zA20xk_3	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 4/34)
+P_zA20xk_4	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 5/34)
+P_zA20xk_5	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 6/34)
+P_zA20xk_6	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 7/34)
+P_zA20xk_7	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 8/34)
+P_zA20xk_8	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 9/34)
+P_zA20xk_9	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 10/34)
+P_zA20xk_10	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 11/34)
+P_zA20xk_11	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 12/34)
+P_zA20xk_12	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 13/34)
+P_zA20xk_13	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 14/34)
+P_zA20xk_14	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 15/34)
+P_zA20xk_15	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 16/34)
+P_zA20xk_16	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 17/34)
+P_zA20xk_17	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 18/34)
+P_zA20xk_18	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 19/34)
+P_zA20xk_19	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 20/34)
+P_zA20xk_20	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 21/34)
+P_zA20xk_21	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 22/34)
+P_zA20xk_22	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 23/34)
+P_zA20xk_23	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 24/34)
+P_zA20xk_24	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 25/34)
+P_zA20xk_25	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 26/34)
+P_zA20xk_26	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 27/34)
+P_zA20xk_27	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 28/34)
+P_zA20xk_28	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 29/34)
+P_zA20xk_29	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 30/34)
+P_zA20xk_30	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 31/34)
+P_zA20xk_31	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 32/34)
+P_zA20xk_32	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 33/34)
+P_zA20xk_33	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 34/34)
+P_zT21xf_0	8576257.35219	8.2e+06	360000	16000	3.001e-05	ohm	readout TIA (string piece 1/2)
+P_zT21xf_1	8576257.35219	8.2e+06	360000	16000	3.001e-05	ohm	readout TIA (string piece 2/2)
+P_zC22xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input (I_in = IIN e^a)
+P_zS23xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS23xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS23xc	24126.8823712	24000	130	0	1.292e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zQ24xf	100000	82000	18000	0	0.000e+00	ohm	floor ladder sum
+P_zQ24xh1a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh1b	4000	2000	2000	0	0.000e+00	ohm	threshold gain
+P_zQ24xc1	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xh2a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh2b	8000	4700	3300	0	0.000e+00	ohm	threshold gain
+P_zQ24xc2	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xh3a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh3b	12000	10000	2000	0	0.000e+00	ohm	threshold gain
+P_zQ24xc3	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xh4a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh4b	16000	13000	3000	0	0.000e+00	ohm	threshold gain
+P_zQ24xc4	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xh5a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh5b	20000	10000	10000	0	0.000e+00	ohm	threshold gain
+P_zQ24xc5	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xh6a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh6b	24000	12000	12000	0	0.000e+00	ohm	threshold gain
+P_zQ24xc6	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xh7a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh7b	28000	15000	13000	0	0.000e+00	ohm	threshold gain
+P_zQ24xc7	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xh8a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh8b	32000	16000	16000	0	0.000e+00	ohm	threshold gain
+P_zQ24xc8	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xh9a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh9b	36000	18000	18000	0	0.000e+00	ohm	threshold gain
+P_zQ24xc9	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xh10a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ24xh10b	40000	20000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ24xc10	1360000	680000	680000	0	0.000e+00	ohm	ladder weight
+P_zQ24xk	50000	30000	20000	0	0.000e+00	ohm	ladder offset (half-steps of the comparator swing)
+P_zT25xf_0	6607876.78718	6.2e+06	390000	18000	1.865e-05	ohm	readout TIA (string piece 1/3)
+P_zT25xf_1	6607876.78718	6.2e+06	390000	18000	1.865e-05	ohm	readout TIA (string piece 2/3)
+P_zT25xf_2	6607876.78718	6.2e+06	390000	18000	1.865e-05	ohm	readout TIA (string piece 3/3)
+P_zC26xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input (I_in = IIN e^a)
+P_zS27xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS27xi1	5000	3000	2000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS27xc	18905.3985368	18000	910	0	2.434e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zQ28xf	100000	82000	18000	0	0.000e+00	ohm	floor ladder sum
+P_zQ28xh1a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh1b	4000	2000	2000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc1_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc1_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh2a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh2b	8000	4700	3300	0	0.000e+00	ohm	threshold gain
+P_zQ28xc2_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc2_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh3a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh3b	12000	10000	2000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc3_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc3_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh4a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh4b	16000	13000	3000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc4_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc4_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh5a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh5b	20000	10000	10000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc5_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc5_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh6a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh6b	24000	12000	12000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc6_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc6_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh7a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh7b	28000	15000	13000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc7_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc7_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh8a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh8b	32000	16000	16000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc8_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc8_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh9a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh9b	36000	18000	18000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc9_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc9_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh10a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh10b	40000	20000	20000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc10_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc10_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xh11a	100000	82000	18000	0	0.000e+00	ohm	threshold in
+P_zQ28xh11b	44000	22000	22000	0	0.000e+00	ohm	threshold gain
+P_zQ28xc11_0	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 1/2)
+P_zQ28xc11_1	6800000	5.6e+06	1.2e+06	0	0.000e+00	ohm	ladder weight (string piece 2/2)
+P_zQ28xk	454545.454545	430000	24000	510	7.800e-05	ohm	ladder offset (half-steps of the comparator swing)
+P_zA29xf_0	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 1/7)
+P_zA29xf_1	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 2/7)
+P_zA29xf_2	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 3/7)
+P_zA29xf_3	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 4/7)
+P_zA29xf_4	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 5/7)
+P_zA29xf_5	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 6/7)
+P_zA29xf_6	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum feedback (string piece 7/7)
+P_zA29xt1_0	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 1/7)
+P_zA29xt1_1	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 2/7)
+P_zA29xt1_2	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 3/7)
+P_zA29xt1_3	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 4/7)
+P_zA29xt1_4	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 5/7)
+P_zA29xt1_5	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 6/7)
+P_zA29xt1_6	8608087.25279	8.2e+06	390000	18000	1.014e-05	ohm	sum term (string piece 7/7)
+P_zA29xk_0	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 1/17)
+P_zA29xk_1	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 2/17)
+P_zA29xk_2	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 3/17)
+P_zA29xk_3	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 4/17)
+P_zA29xk_4	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 5/17)
+P_zA29xk_5	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 6/17)
+P_zA29xk_6	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 7/17)
+P_zA29xk_7	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 8/17)
+P_zA29xk_8	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 9/17)
+P_zA29xk_9	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 10/17)
+P_zA29xk_10	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 11/17)
+P_zA29xk_11	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 12/17)
+P_zA29xk_12	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 13/17)
+P_zA29xk_13	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 14/17)
+P_zA29xk_14	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 15/17)
+P_zA29xk_15	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 16/17)
+P_zA29xk_16	8861266.28964	4.7e+06	3.6e+06	560000	1.429e-04	ohm	sum constant (V_REF) (string piece 17/17)

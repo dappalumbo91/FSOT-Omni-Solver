@@ -1,0 +1,4 @@
+# noise at the S output, OPA187 e_n = 20 nV/rtHz as series thermal resistors (Amendment 12), switches resolved (swfix.sh); full-netlist .noise from the block solution
+# fold  S[V]  vn_rms(0.1-10 Hz)[V]  rel  vn_rms(0.1 Hz-10 kHz, dynamic op-amps)[V]  rel  top contributors (0.1-10 Hz)
+Chemistry	1.910885e+00	6.348817e-05	3.32e-05	9.565374e-03	5.01e-03	rn_ptbb=3.694832e-05 rn_lwxb=2.560254e-05 rn_st1x=2.459784e-05 rn_lyxb=2.115120e-05 
+Cosmology	-1.00516e+00	7.554408e-05	7.52e-05	9.450125e-03	9.40e-03	rn_st1x=4.239967e-05 rn_lyxb=3.645865e-05 rn_ptbb=3.162906e-05 rn_la5xb=2.266428e-05 

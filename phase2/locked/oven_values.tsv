@@ -1,0 +1,17 @@
+name	ideal	realised	unit	meaning
+R_s	100000	100000	ohm	sensor bias from VR (~20 uA)
+V_set	0.4952335843	0.4975728155	V	sensor VBE at T_set (Gummel-Poon IS(T), XTI=3, EG=1.11)
+R_top	33000	33000	ohm	set-point divider top (E24)
+R_bot	8200	8200	ohm	set-point divider bottom (E24)
+T_set	60	58.87218791	C	set point; realised value from the E24 divider
+dVBE_dT	-0.002074132102	-0.002074132102	V/K	sensor slope at T_set
+R_gin	10000	10000	ohm	error amp input
+R_gf	1000000	1000000	ohm	error amp feedback (gain -100)
+R_i	100000	100000	ohm	PI integrator input
+C_i	1e-05	1e-05	F	PI integrator capacitor (film)
+R_p	1800000	1800000	ohm	PI zero (R_p C_i = 18 s)
+R_e	22	22	ohm	TIP31 heater emitter resistor
+VCC	9	9	V	heater supply
+theta_sa	40	40	K/W	block-to-ambient thermal resistance
+C_th	3	3	J/K	block heat capacity
+theta_g	1	1	K/W	sensor-to-core gradient per watt of heater power

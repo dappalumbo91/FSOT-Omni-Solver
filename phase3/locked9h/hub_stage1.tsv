@@ -1,0 +1,7 @@
+# stage 1: LOCK8/8.1 compiled hub coefficients, ideal_ideal 27 C block solve (already simulated): C_H readouts from
+# phase2/spice/out/bs8_leafc_ideal_ideal_s0_t27_C_H.log; v(vsdh) = C_S Cosmology channel (V = 2 S_eq) from the C_S solution (rerun of the same netlist, log identical)
+v(za1xo)	4.280365219155868e+00
+v(za96xo)	3.328220295806261e+00
+v(zt101xo)	1.606895490341011e+00
+v(zt104xo)	7.944921431391346e+00
+v(vsdh)	-1.00591231463887e+00

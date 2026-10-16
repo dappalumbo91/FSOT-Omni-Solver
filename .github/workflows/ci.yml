@@ -47,3 +47,47 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ngspice python3-mpmath unzip
       - name: Reproduce (one script; MC excluded, see ./reproduce.sh --mc)
         run: ./reproduce.sh
+
+  phase2:
+    name: Phase 2 — LOCK2 + C++20 re-derivation + nominal ngspice (folds, consts 0/27/50 C, Omega_b h^2)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: sudo apt-get update && sudo apt-get install -y ngspice
+      - name: Fetch FSOT-2.1-Cpp at the authority commit (3466e8d)
+        run: |
+          git clone -q https://github.com/dappalumbo91/FSOT-2.1-Cpp.git third_party/FSOT-2.1-Cpp
+          git -C third_party/FSOT-2.1-Cpp checkout -q 3466e8d4211d786fa7a430de1ee75131fb3b2e97
+      - name: Reproduce Phase 2 nominal
+        run: phase2/tools/reproduce2.sh "$PWD/third_party/FSOT-2.1-Cpp"
+      - name: Phase 3 leaf tier 1 (LOCK3 + leaf1 block solve at 27/0 C vs golden)
+        run: phase3/tools/reproduce3.sh "$PWD/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK4 (compiled leaves, byte-identical re-derivation)
+        run: cd phase3/tools && ./verify_lock4.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK5 (byte-identical re-derivation)
+        run: cd phase3/tools && ./verify_lock5.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK6 (byte-identical re-derivation)
+        run: cd phase3/tools && ./verify_lock6.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK7/7.1/7.2/LOCK8 hashes + Amendment 8.1 (host-independent detmath re-derivation of base, taps, locked8b; see LOCK8b.md)
+        run: cd phase3/tools && ./verify_lock8b.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+      - name: Verify LOCK9A/9B/9C ablation locks + LOCK9H/9H.1 hub bench (hashes + detmath re-derivation)
+        run: cd phase3/tools && ./verify_lock9.sh "$GITHUB_WORKSPACE/third_party/FSOT-2.1-Cpp"
+
+  phase3-sim:
+    name: Phase 3c/3d — LOCK5/LOCK6 compiled leaves, folds with carried tiny taps, tap bench (ideal, 27 C) + score/summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: sudo apt-get update && sudo apt-get install -y ngspice
+      - name: Reproduce LOCK5/LOCK6 nominal (score5.sh per netlist, tiny6.py; summary in the job summary)
+        run: phase3/tools/reproduce5.sh
+      - name: Regression check (2x locked baseline, floor 1e-6; rule and approval in phase3/locked_ci/LOCK.md)
+        if: always()
+        run: |
+          cd phase3/locked_ci && sha256sum -c --quiet SHA256SUMS
+          while read -r h f; do grep -q "$h" LOCK.md || { echo "hash of $f not recorded in LOCK.md"; exit 1; }; done < SHA256SUMS
+          cd ../tools && python3 regress_ci.py check

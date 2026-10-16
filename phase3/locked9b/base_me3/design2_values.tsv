@@ -1,0 +1,195 @@
+name	ideal	E24_a	E24_b	E24_c	E24_rel	unit	meaning
+R_inv	10000	8200	1800	0	0.000e+00	ohm	unity inverters, both arms
+R_sum	10000	8200	1800	0	0.000e+00	ohm	summer feedback (junction-scale log summers)
+R_U	500000	300000	200000	0	0.000e+00	ohm	one FSOT unit I_U = 5 uA from VR into a virtual ground
+R_str_5	11251.713423	5600	5600	51	6.341e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_6	19721.3423648	10000	9100	620	6.807e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_7	16893.5751306	13000	3900	0	3.803e-04	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_8	14775.964315	9100	5600	75	6.526e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_9	13130.5908154	13000	130	0	4.500e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_10	11815.2163429	11000	820	0	4.049e-04	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_11	10739.5493331	6200	4300	240	4.196e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_12	9843.50224139	5100	4700	43	5.102e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_13	9085.53085701	4700	4300	82	3.886e-04	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_14	8435.99063481	8200	240	0	4.753e-04	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_15	7873.15935387	7500	330	43	2.024e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_16	7380.75556359	3600	3600	180	1.024e-04	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_17	6946.33506393	6800	110	36	4.824e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_18	6560.22306784	6200	360	0	3.400e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_19	6214.78423303	6200	15	0	3.472e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_20	5903.91206506	3900	2000	3.9	2.044e-06	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_21	5622.66443337	5600	22	0	1.182e-04	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_22	5366.99863216	4700	620	47	2.549e-07	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_23	5133.57564447	5100	33	0	1.121e-04	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_24	4919.61339728	4300	620	0	7.858e-05	ohm	threshold string: tap VR*g_k/20, g_k = 19 log5((k+1/2)/5)
+R_str_top	12385.0030875	12000	390	0	4.035e-04	ohm	threshold string top
+R_gunit	10000	8200	1800	0	0.000e+00	ohm	generation selector string unit
+R_step	12499875	8.2e+06	4.3e+06	0	1.000e-05	ohm	one D_eff unit (0.4 uA) minus nominal CD4053 Ron
+R_base	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	D_eff floor (5 units)
+R_pullup	10000	8200	1800	0	0.000e+00	ohm	LM139 open-collector pull-up to +9 V
+R_ptA_hi	39062.5	39000	62	0	1.280e-05	ohm	PTAT cell A transdiode 64 uA
+R_ptA_lo	784591.286062	750000	33000	1600	1.111e-05	ohm	PTAT cell A cascoded 64 uA/MPT
+R_ptB_hi	78125	39000	39000	120	6.400e-05	ohm	PTAT cell B transdiode 32 uA
+R_ptB_lo	1569182.57212	1e+06	560000	9100	5.262e-05	ohm	PTAT cell B cascoded 32 uA/MPT
+R_ptg_B	1500	750	750	0	0.000e+00	ohm	V_NEP summer: weight 2*10/ln MPT on n_B
+R_ptg_A	3000	1500	1500	0	0.000e+00	ohm	V_NEP summer: weight 10/ln MPT on -n_A
+R_lkl_a	34610.2391773	33000	1600	0	2.958e-04	ohm	lin look divider: bottom -> tap e/pi rad
+R_lkl_h	3435.56456854	3000	430	5.6	1.031e-05	ohm	lin look divider: -> tap 1-POOF/pi rad
+R_lkl_1	1954.19625417	1500	430	24	1.004e-04	ohm	lin look divider: -> tap 1 rad
+R_lkl_t	60000	30000	30000	0	5.921e-20	ohm	lin look divider: top to VR
+R_lkn_a	86525.5979432	82000	3900	620	6.470e-05	ohm	neper look divider from -V_NEP: bottom -> e/pi
+R_lkn_h	8588.91142134	8200	390	0	1.267e-04	ohm	neper look divider -> 1-POOF/pi
+R_lkn_1	4885.49063543	4700	180	5.1	7.996e-05	ohm	neper look divider -> 1 (= -V_NEP)
+R_dt_b	40000	20000	20000	0	0.000e+00	ohm	delta_theta = 1 rad divider bottom (input ratio)
+R_dt_t	60000	30000	30000	0	5.921e-20	ohm	delta_theta divider top
+R_N	500000	300000	200000	0	0.000e+00	ohm	N = 1 input: I_N = N I_U
+R_P	500000	300000	200000	0	0.000e+00	ohm	P = 1 input
+R_Nr	10042768.4616	1e+07	43000	0	2.306e-05	ohm	LOGR_N reference 0.5 I_U
+R_Pr	10042768.4616	1e+07	43000	0	2.306e-05	ohm	LOGR_P reference
+R_Dbr	333333.333333	330000	3300	0	1.000e-04	ohm	LOGR_Db transdiode reference 7.5 uA (D = 37.5); D current on the cascoded side
+R_sc	500000	300000	200000	0	0.000e+00	ohm	T2 scale = 1 input
+R_am	500000	300000	200000	0	0.000e+00	ohm	T2 amplitude = 1 input
+R_scr	10042768.4616	1e+07	43000	0	2.306e-05	ohm	LOGR_sc reference
+R_amr	10042768.4616	1e+07	43000	0	2.306e-05	ohm	LOGR_am reference
+R_tb	500000	300000	200000	0	0.000e+00	ohm	trend_bias input: v_tb = -tb*VR through R_U into the S node
+R_pt	51729.8515727	51000	750	0	3.895e-04	ohm	PTAT unit I_PT = V_NEP/R_pt = 5 uA at 27 C
+R_hN_in	36210.8961009	36000	220	0	2.514e-04	ohm	h/N antilog input I_PT/0.7 (LOCK7: unchanged current)
+R_hN_T	727315.290656	680000	47000	0	4.335e-04	ohm	h/N TIA: V = V_NEP/N (LOCK7: x 0.7/r_N = e^3, restores the LOGR_N reference)
+R_al_b	10	8.2	1.8	0	0.000e+00	ohm	alpha divider bottom
+R_al_t	12361.7399847	12000	360	0	1.408e-04	ohm	alpha divider top: ratio alpha (x h, hits=1)
+R_y_dp	4669.42206924	4300	360	9.1	6.897e-05	ohm	y summer: delta_psi weight (pi-1) = 1/eta
+R_y_c	13983.2923592	10000	3900	82	9.242e-05	ohm	y summer: constant pi - psi_con(pi-1) rad from -VR
+R_fw	10000	8200	1800	0	0.000e+00	ohm	precision full-wave unit R
+R_fw2	20000	10000	10000	0	0.000e+00	ohm	precision full-wave 2R
+R_ang	200000	100000	100000	0	0.000e+00	ohm	angle -> current: 1 rad <-> I_U
+R_yr	234331264.104	1e+07	1e+07	1e+07	8.720e-01	ohm	LOGR_y reference 0.03 I_U
+R_cosr	10338144.0046	1e+07	330000	8200	5.416e-06	ohm	LOGR_cos reference 0.5 I_U
+R_pT	200000	100000	100000	0	0.000e+00	ohm	positive-term TIA feedback and its copy resistor into the LOGR input (1:1)
+R_w_dp	10000	8200	1800	0	0.000e+00	ohm	w summer: delta_psi weight 1
+R_w_c	40795.7319045	39000	1800	0	1.046e-04	ohm	w summer: constant pi/2 - P_var from -VR
+R_wr	39055210.684	1e+07	1e+07	1e+07	2.319e-01	ohm	LOGR_w reference 0.125 I_U
+R_spr	10042768.4616	1e+07	43000	0	2.306e-05	ohm	LOGR_sp reference
+R_v_dp	10000	8200	1800	0	0.000e+00	ohm	v summer: delta_psi weight 1
+R_v_c	15915.4943092	15000	910	0	3.452e-04	ohm	v summer: constant pi/2 from -VR
+R_vr	17146190.0564	8.2e+06	8.2e+06	750000	2.222e-04	ohm	LOGR_v reference
+R_vpr	10651421.0956	8.2e+06	2.4e+06	51000	3.953e-05	ohm	LOGR_vp reference
+R_tr	10042768.4616	1e+07	43000	0	2.306e-05	ohm	LOGR_t reference
+R_tpr	11716563.2052	6.2e+06	4.7e+06	820000	2.933e-04	ohm	LOGR_tp reference
+R_TD	200000	100000	100000	0	0.000e+00	ohm	chaos: D-current TIA (V_D = -R_TD * 0.2 uA * D)
+R_chD	604185.465916	560000	36000	8200	2.406e-05	ohm	chaos: |CHAOS| D/25 I_U sunk from LOGR_ch (CHAOS < 0)
+R_ch0	375650.575348	300000	75000	620	8.139e-05	ohm	chaos: (1 - CHAOS) I_U
+R_chr	9763802.67099	9.1e+06	620000	43000	8.221e-05	ohm	LOGR_ch reference
+R_v2	558573.708971	510000	43000	5600	4.707e-05	ohm	valve 1 + POOF cos(theta_s+pi) + SUCTION sin theta_s (current ratio)
+R_v2r	10815289.1125	1e+07	820000	0	4.356e-04	ohm	LOGR_v2 reference
+R_ac0	246284.511167	240000	6200	0	3.431e-04	ohm	acoustic: (1 + A_in/phi) I_U; minus (A_in - A_bleed)/phi sin^2(dt) I_U (antilog)
+R_acr	5535384.19143	5.1e+06	430000	5100	5.134e-05	ohm	LOGR_ac reference
+R_ph	284920.863232	270000	15000	0	2.777e-04	ohm	phase 1 + B_in P_var (current ratio)
+R_phr	5535384.19143	5.1e+06	430000	5100	5.134e-05	ohm	LOGR_ph reference
+R_g_in	372898.559105	330000	43000	0	2.720e-04	ohm	growth antilog input 1.4 C_eff I_U
+R_a4r	5021384.2308	4.7e+06	270000	51000	7.652e-05	ohm	LOGR_a4 reference I_U
+R_x	17225.9272045	11000	6200	24	1.119e-04	ohm	a5: n_Db -> P_new ln(D/37.5) I_PT : R_x = V_T/(P_new I_PT)
+R_x12	424843.639071	390000	33000	1800	1.027e-04	ohm	a5: + P_new ln(1.5) I_PT from V_NEP (D/37.5 -> D/25)
+R_a5r	1965717.00177	1.6e+06	360000	5600	5.952e-05	ohm	LOGR_a5 reference 0.37 I_PT
+R_T1in	357142.857143	330000	27000	0	4.000e-04	ohm	T1 antilog input 3.5 I_A (I_A = 2 uA)
+R_T2in	357142.857143	330000	27000	0	4.000e-04	ohm	T2 antilog input 1.4 I_U
+R_T3in	500000	300000	200000	0	0.000e+00	ohm	T3 antilog input I_U
+R_T1T	7326878.77082	4.3e+06	3e+06	27000	1.655e-05	ohm	|T1| TIA: 1 V per unit (I_A per unit)
+R_s1	200000	100000	100000	0	0.000e+00	ohm	signed T1 -> S node: I_U per unit
+R_SF	168043.50546	100000	68000	0	2.589e-04	ohm	S node feedback: V_S = KS*K*(T1+T2+T3)
+R_pin	500000	300000	200000	0	0.000e+00	ohm	power-term antilog input I_U
+R_1s0	210054.381825	110000	100000	0	2.589e-04	ohm	1-S node: I_U/K source
+R_1sF	3360870.1092	3e+06	360000	0	2.589e-04	ohm	1-S TIA: V = -40 (1 - S_chem)
+R_oS	400000	200000	200000	0	0.000e+00	ohm	|S_cosm| (2 V/unit) -> |S| I_U
+R_oSr	19527605.342	1e+07	9.1e+06	430000	1.226e-04	ohm	LOGR_oS reference
+R_o1	800000	470000	330000	0	0.000e+00	ohm	40(1-S) V -> 10 (1-S) I_U
+R_o1r	21968556.0097	8.2e+06	8.2e+06	5.6e+06	1.431e-03	ohm	LOGR_o1 reference
+R_omin	500000	300000	200000	0	0.000e+00	ohm	Omega antilog input I_U
+R_omT	2000000	1e+06	1e+06	0	0.000e+00	ohm	Omega TIA: 100 V per unit
+R_as_in	1570796.32679	820000	750000	750	2.949e-05	ohm	alpha_s antilog input I_U/pi (pi as a ratio)
+R_asT	2000000	1e+06	1e+06	0	0.000e+00	ohm	alpha_s TIA 10 V/unit
+R_e1in	390625	390000	620	0	1.280e-05	ohm	e-chain stage 1 input 64 I_s
+R_eT	100000	82000	18000	0	0.000e+00	ohm	e-chain inter-stage TIA feedback (and 1:1 copy into the next stage)
+R_e3c	14589.803375	9100	5100	390	1.348e-05	ohm	stage-3 input copy: x(3 phi + 2) (phi^4 = 3 phi + 2)
+R_em1	25000000	9.1e+06	9.1e+06	6.8e+06	0.000e+00	ohm	1/alpha: the -1 term (I_s sourced)
+R_eiin	25000000	9.1e+06	9.1e+06	6.8e+06	0.000e+00	ohm	1/alpha: e^-1 antilog input I_s
+R_aiT	400000	200000	200000	0	0.000e+00	ohm	1/alpha TIA: 0.04 V per unit
+R_T1_N	10000	8200	1800	0	0.000e+00	ohm	T1 summer: weight 1 on n_N
+R_T1_P	10000	8200	1800	0	0.000e+00	ohm	T1 summer: weight 1 on n_P
+R_T1_cos	10000	8200	1800	0	0.000e+00	ohm	T1 summer: weight 1 on n_cos
+R_T1_a4	10000	8200	1800	0	0.000e+00	ohm	T1 summer: weight 1 on n_a4
+R_T1_a5	10000	8200	1800	0	0.000e+00	ohm	T1 summer: weight 1 on n_a5
+R_T1_w	10000	8200	1800	0	0.000e+00	ohm	T1 summer: weight 1 on n_w
+R_T1_sp	10000	8200	1800	0	0.000e+00	ohm	T1 summer: weight 1 on n_sp
+R_T1_Db	20000	10000	10000	0	0.000e+00	ohm	T1 summer: weight 1/2 on n_Db (D^-1/2)
+R_T1_rho	100000	82000	18000	0	0.000e+00	ohm	T1 summer: rho = 1 nepers from -V_NEP (weight rho/10)
+R_T1_dp	126907.017602	75000	51000	910	2.350e-05	ohm	T1 summer: B_in delta_psi from the -delta_psi V_NEP bus (weight B_in/10)
+R_T1_ahN	100000	82000	18000	0	0.000e+00	ohm	T1 summer: -alpha h/N from +alpha (h/N) V_NEP (weight 1/10)
+R_T1_c	4825.54498888	4700	120	5.6	1.140e-05	ohm	T1 summer constant (nepers): refs + D^-1/2 + antilog multiple
+R_T1_co	14119.122635	8200	5100	820	6.214e-05	ohm	T1 summer gated observer constant: C_F P_var + LOGR refs
+R_G_al	280317.061219	150000	130000	300	6.086e-05	ohm	growth summer: alpha gamma/phi from -alpha V_NEP
+R_G_ahN	280317.061219	150000	130000	300	6.086e-05	ohm	growth summer: -alpha gamma/phi h/N from +alpha (h/N) V_NEP
+R_G_c	297201.341199	200000	91000	6200	4.513e-06	ohm	growth summer constant -ln 2 (antilog input 2 C_eff I_U)
+R_T2_sc	10000	8200	1800	0	0.000e+00	ohm	T2 summer: weight 1 on n_sc
+R_T2_am	10000	8200	1800	0	0.000e+00	ohm	T2 summer: weight 1 on n_am
+R_T2_c	15781.6520401	8200	7500	82	2.205e-05	ohm	T2 summer constant
+R_T3_v	10000	8200	1800	0	0.000e+00	ohm	T3 summer: weight 1 on n_v
+R_T3_vp	10000	8200	1800	0	0.000e+00	ohm	T3 summer: weight 1 on n_vp
+R_T3_N	10000	8200	1800	0	0.000e+00	ohm	T3 summer: weight 1 on n_N
+R_T3_P	10000	8200	1800	0	0.000e+00	ohm	T3 summer: weight 1 on n_P
+R_T3_ch	10000	8200	1800	0	0.000e+00	ohm	T3 summer: weight 1 on n_ch
+R_T3_v2	10000	8200	1800	0	0.000e+00	ohm	T3 summer: weight 1 on n_v2
+R_T3_ac	10000	8200	1800	0	0.000e+00	ohm	T3 summer: weight 1 on n_ac
+R_T3_ph	10000	8200	1800	0	0.000e+00	ohm	T3 summer: weight 1 on n_ph
+R_T3_Db	20000	10000	10000	0	0.000e+00	ohm	T3 summer: weight 1/2 on n_Db
+R_T3_c	1576.26947779	820	750	6.2	4.408e-05	ohm	T3 summer constant incl. ln beta = -(pi^pi + e - 1) nepers
+R_cy1_n	5000	3000	2000	0	0.000e+00	ohm	cos-y power y^2: weight 2k on n_y
+R_cy1_c	7696.50341905	4700	3000	0	4.543e-04	ohm	cos-y power constant 2k ln r_y - ln (2k)!
+R_cy2_n	2500	1300	1200	0	0.000e+00	ohm	cos-y power y^4: weight 2k on n_y
+R_cy2_c	3600.02490073	1800	1800	0	6.917e-06	ohm	cos-y power constant 2k ln r_y - ln (2k)!
+R_cy3_n	1666.66666667	1600	62	4.7	2.000e-05	ohm	cos-y power y^6: weight 2k on n_y
+R_cy3_c	2299.98476158	1200	1100	0	6.625e-06	ohm	cos-y power constant 2k ln r_y - ln (2k)!
+R_sw1_n	5000	3000	2000	0	0.000e+00	ohm	observer sine power w^2
+R_sw1_c	9516.55298219	5600	3900	16	5.811e-05	ohm	constant 2k ln r_w - ln (2k+1)!
+R_sw2_n	2500	1300	1200	0	0.000e+00	ohm	observer sine power w^4
+R_sw2_c	4500.45294551	2700	1800	0	1.006e-04	ohm	constant 2k ln r_w - ln (2k+1)!
+R_sw3_n	1666.66666667	1600	62	4.7	2.000e-05	ohm	observer sine power w^6
+R_sw3_c	2884.01343561	2700	160	24	4.659e-06	ohm	constant 2k ln r_w - ln (2k+1)!
+R_sv1_n	5000	3000	2000	0	0.000e+00	ohm	T3 cos(dpsi) sine power v^2
+R_sv1_c	11284.6364454	11000	240	43	1.450e-04	ohm	constant
+R_sv2_n	2500	1300	1200	0	0.000e+00	ohm	T3 cos(dpsi) sine power v^4
+R_sv2_c	5283.40600764	5100	180	3.3	2.006e-05	ohm	constant
+R_sv3_n	1666.66666667	1600	62	4.7	2.000e-05	ohm	T3 cos(dpsi) sine power v^6
+R_sv3_c	3363.07407206	3300	62	0	3.194e-04	ohm	constant
+R_sv4_n	1250	820	430	0	0.000e+00	ohm	T3 cos(dpsi) sine power v^8
+R_sv4_c	2434.20271658	2400	33	0	4.941e-04	ohm	constant
+R_st1_n	5000	3000	2000	0	0.000e+00	ohm	acoustic sine power dt^2
+R_st1_c	12834.0717389	11000	1800	33	8.351e-05	ohm	constant
+R_st2_n	2500	1300	1200	0	0.000e+00	ohm	acoustic sine power dt^4
+R_st2_c	5956.81603495	5600	330	27	3.088e-05	ohm	constant
+R_st3_n	1666.66666667	1600	62	4.7	2.000e-05	ohm	acoustic sine power dt^6
+R_st3_c	3770.00534092	3300	470	0	1.417e-06	ohm	constant
+R_st4_n	1250	820	430	0	0.000e+00	ohm	acoustic sine power dt^8
+R_st4_c	2717.25636598	2700	18	0	2.737e-04	ohm	constant
+R_st5_n	1000	820	180	0	0.000e+00	ohm	acoustic sine power dt^10
+R_st5_c	2105.16087607	1100	1000	5.1	2.892e-05	ohm	constant
+R_s2_n	5000	3000	2000	0	0.000e+00	ohm	sin^2: weight 2 on n_t and n_tp
+R_s2_c	7537.07740479	7500	36	0	1.429e-04	ohm	sin^2 constant 4 ln 0.5 + ln((A_in-A_bleed)/phi)
+R_Om_n	10000	8200	1800	0	0.000e+00	ohm	Omega summer weight 1
+R_Om_c	13426.8997714	13000	430	0	2.309e-04	ohm	Omega summer constant
+R_e1_c	258869.944956	180000	75000	3900	1.161e-04	ohm	one e^1 stage: exponent (1 - ln 3) nepers (x e/3)
+R_em1_c	100000	82000	18000	0	0.000e+00	ohm	e^-1 exponent: -1 neper
+R_yr_ta	9100000	7.5e+06	1.6e+06	0	0.000e+00	ohm	LOGR_y reference 0.03 I_U (T arm a)
+R_yr_tb	383146.789722	300000	82000	1100	1.221e-04	ohm	LOGR_y reference 0.03 I_U (T shunt to ground)
+R_yr_tc	9100000	7.5e+06	1.6e+06	0	0.000e+00	ohm	LOGR_y reference 0.03 I_U (T arm c)
+R_wr_ta	3300000	1.8e+06	1.5e+06	0	0.000e+00	ohm	LOGR_w reference 0.125 I_U (T arm a)
+R_wr_tb	335539.340848	330000	5600	0	1.808e-04	ohm	LOGR_w reference 0.125 I_U (T shunt to ground)
+R_wr_tc	3300000	1.8e+06	1.5e+06	0	0.000e+00	ohm	LOGR_w reference 0.125 I_U (T arm c)
+R_o1r_ta	3300000	1.8e+06	1.5e+06	0	0.000e+00	ohm	LOGR_o1 reference (T arm a)
+R_o1r_tb	708589.667962	680000	27000	1600	1.458e-05	ohm	LOGR_o1 reference (T shunt to ground)
+R_o1r_tc	3300000	1.8e+06	1.5e+06	0	0.000e+00	ohm	LOGR_o1 reference (T arm c)
+R_em1_ta	3300000	1.8e+06	1.5e+06	0	0.000e+00	ohm	1/alpha: the -1 term (I_s sourced) (T arm a)
+R_em1_tb	591847.826087	510000	82000	0	2.571e-04	ohm	1/alpha: the -1 term (I_s sourced) (T shunt to ground)
+R_em1_tc	3300000	1.8e+06	1.5e+06	0	0.000e+00	ohm	1/alpha: the -1 term (I_s sourced) (T arm c)
+R_eiin_ta	3300000	1.8e+06	1.5e+06	0	0.000e+00	ohm	1/alpha: e^-1 antilog input I_s (T arm a)
+R_eiin_tb	591847.826087	510000	82000	0	2.571e-04	ohm	1/alpha: e^-1 antilog input I_s (T shunt to ground)
+R_eiin_tc	3300000	1.8e+06	1.5e+06	0	0.000e+00	ohm	1/alpha: e^-1 antilog input I_s (T arm c)

@@ -1,0 +1,379 @@
+name	ideal	E24_a	E24_b	E24_c	E24_rel	unit	meaning
+P_zT1xf	6306583.7649	3.3e+06	3e+06	6200	6.085e-05	ohm	readout TIA
+P_zB2xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base PI: Ix
+P_zB2xr	7853981.63397	7.5e+06	330000	24000	2.338e-06	ohm	base PI: Ir = Ix/(1 PI)
+P_zS3xf	10000	8200	1800	0	0.000e+00	ohm	ln(x): summer feedback
+P_zS3xi1	10000	8200	1800	0	0.000e+00	ohm	ln(x): weight
+P_zL4xi	29608.3535429	24000	5600	0	2.821e-04	ohm	ln-value: log input
+P_zL4xr	517298.515727	510000	7500	0	3.895e-04	ohm	ln-value: log reference (Ir = Ix/2)
+P_zB5xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base GAMMA: Ix
+P_zB5xr	4329117.48676	3.9e+06	430000	0	2.039e-04	ohm	base GAMMA: Ir = Ix/(3 GAMMA)
+P_zA6xf	2000000	1e+06	1e+06	0	5.684e-20	ohm	sum feedback
+P_zB7xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base PHI: Ix
+P_zB7xr	4045084.97187	3.6e+06	430000	15000	2.101e-05	ohm	base PHI: Ir = Ix/(1 PHI)
+P_zB8xi	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	base G_CAT: Ix
+P_zB8xr	4579827.97089	3.9e+06	680000	0	3.756e-05	ohm	base G_CAT: Ir = Ix/(2 G_CAT)
+P_zC9xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS10xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zI11xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI11xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS10xi1	2000	1000	1000	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zI12xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI12xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS10xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS10xi3	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS10xc	72134.7520444	36000	36000	130	6.588e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA6xk	5000000	3e+06	2e+06	0	9.095e-20	ohm	sum constant (V_REF)
+P_zL13xi	1001849.87404	1e+06	1800	0	4.978e-05	ohm	log of add: log input
+P_zL13xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of add: log reference (Ir = Ix/2)
+P_zA14xf	2000000	1e+06	1e+06	0	5.684e-20	ohm	sum feedback
+P_zA14xnf	2000000	1e+06	1e+06	0	5.684e-20	ohm	negative-term TIA
+P_zA14xnb	2000000	1e+06	1e+06	0	5.684e-20	ohm	negative-term feed
+P_zA15xf	5817930.8109	5.6e+06	220000	0	3.557e-04	ohm	sum feedback
+P_zA15xnf	5817930.8109	5.6e+06	220000	0	3.557e-04	ohm	negative-term TIA
+P_zA15xnb	5817930.8109	5.6e+06	220000	0	3.557e-04	ohm	negative-term feed
+P_zA16xf	5903275.37563	3.9e+06	2e+06	3300	4.171e-06	ohm	sum feedback
+P_zA16xnf	5903275.37563	3.9e+06	2e+06	3300	4.171e-06	ohm	negative-term TIA
+P_zA16xnb	5903275.37563	3.9e+06	2e+06	3300	4.171e-06	ohm	negative-term feed
+P_zA17xf	6283185.30718	6.2e+06	82000	0	1.886e-04	ohm	sum feedback
+P_zC18xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS19xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS19xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS19xc	54410.6033138	51000	3300	110	1.109e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA17xk_0	7853981.63397	7.5e+06	330000	24000	2.338e-06	ohm	sum constant (V_REF) (string piece 1/2)
+P_zA17xk_1	7853981.63397	7.5e+06	330000	24000	2.338e-06	ohm	sum constant (V_REF) (string piece 2/2)
+P_zL20xi	2141592.65359	1.5e+06	560000	82000	1.902e-04	ohm	log of sub: log input
+P_zL20xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of sub: log reference (Ir = Ix/2)
+P_zA21xf_0	6666666.66667	6.2e+06	430000	36000	1.000e-04	ohm	sum feedback (string piece 1/3)
+P_zA21xf_1	6666666.66667	6.2e+06	430000	36000	1.000e-04	ohm	sum feedback (string piece 2/3)
+P_zA21xf_2	6666666.66667	6.2e+06	430000	36000	1.000e-04	ohm	sum feedback (string piece 3/3)
+P_zA21xnf_0	6666666.66667	6.2e+06	430000	36000	1.000e-04	ohm	negative-term TIA (string piece 1/3)
+P_zA21xnf_1	6666666.66667	6.2e+06	430000	36000	1.000e-04	ohm	negative-term TIA (string piece 2/3)
+P_zA21xnf_2	6666666.66667	6.2e+06	430000	36000	1.000e-04	ohm	negative-term TIA (string piece 3/3)
+P_zA21xnb_0	6666666.66667	6.2e+06	430000	36000	1.000e-04	ohm	negative-term feed (string piece 1/3)
+P_zA21xnb_1	6666666.66667	6.2e+06	430000	36000	1.000e-04	ohm	negative-term feed (string piece 2/3)
+P_zA21xnb_2	6666666.66667	6.2e+06	430000	36000	1.000e-04	ohm	negative-term feed (string piece 3/3)
+P_zC22xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS23xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS23xc	59061.610915	39000	20000	62	6.588e-06	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA21xk	5000000	3e+06	2e+06	0	0.000e+00	ohm	sum constant (V_REF)
+P_zL24xi	6321205.58829	6.2e+06	120000	0	1.907e-04	ohm	log of sub: log input
+P_zL24xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of sub: log reference (Ir = Ix/2)
+P_zC25xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS26xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zI27xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI27xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS26xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS26xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS26xc	144269.504089	82000	62000	270	3.437e-06	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC28xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS29xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS29xi1	3333.33333333	3300	33	0	1.000e-04	ohm	sum term (antilog exponent): weight
+P_zS29xi2	3333.33333333	3300	33	0	1.000e-04	ohm	sum term (antilog exponent): weight
+P_zS29xc	20303.0988461	16000	4300	0	1.526e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC30xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS31xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS31xi1	2000	1000	1000	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS31xi2	2000	1000	1000	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS31xc	9651.07630334	5600	3300	750	1.115e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC32xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS33xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS33xi1	1428.57142857	910	510	8.2	2.600e-04	ohm	sum term (antilog exponent): weight
+P_zS33xi2	1428.57142857	910	510	8.2	2.600e-04	ohm	sum term (antilog exponent): weight
+P_zS33xc	6046.07418893	5100	910	36	1.227e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC34xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS35xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS35xi1	1111.11111111	1100	11	0	1.000e-04	ohm	sum term (antilog exponent): weight
+P_zS35xi2	1111.11111111	1100	11	0	1.000e-04	ohm	sum term (antilog exponent): weight
+P_zS35xc	4299.82247868	2700	1600	0	4.129e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zI36xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI36xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zA15xt1	5817930.8109	5.6e+06	220000	0	3.557e-04	ohm	sum term
+P_zL37xi	2908965.40545	2e+06	910000	0	3.557e-04	ohm	log of sin: log input
+P_zL37xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of sin: log reference (Ir = Ix/2)
+P_zC38xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS39xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS39xi1	3333.33333333	3300	33	0	1.000e-04	ohm	sum term (antilog exponent): weight
+P_zS39xc	14216.8167422	9100	5100	16	5.745e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC40xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS41xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS41xi1	2000	1000	1000	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS41xc	7201.74413314	3600	3600	0	2.422e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC42xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS43xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS43xi1	1428.57142857	910	510	8.2	2.600e-04	ohm	sum term (antilog exponent): weight
+P_zS43xc	4655.69626078	3900	750	5.6	2.068e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC44xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS45xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS45xi1	1111.11111111	1100	11	0	1.000e-04	ohm	sum term (antilog exponent): weight
+P_zS45xc	3377.05492287	3300	68	9.1	1.335e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zL46xi	2868112.14554	1.5e+06	1.3e+06	68000	3.910e-05	ohm	log of sin: log input
+P_zL46xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of sin: log reference (Ir = Ix/2)
+P_zP47xf	9695056.6057	9.1e+06	560000	33000	2.121e-04	ohm	PTAT-scaled TIA
+P_zS48xf	10000	8200	1800	0	0.000e+00	ohm	ln(x): summer feedback
+P_zS48xi1	10000	8200	1800	0	0.000e+00	ohm	ln(x): weight
+P_zL49xi	12446.5081427	12000	390	56	4.083e-05	ohm	ln-value: log input
+P_zL49xr	517298.515727	510000	7500	0	3.895e-04	ohm	ln-value: log reference (Ir = Ix/2)
+P_zC50xp	258649.257863	240000	18000	620	1.131e-04	ohm	x V_T: antilog input
+P_zS51xf	10000	8200	1800	0	0.000e+00	ohm	x V_T (antilog exponent): summer feedback
+P_zS51xi1	10000	8200	1800	0	0.000e+00	ohm	x V_T (antilog exponent): weight
+P_zI52xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI52xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS51xi2	10000	8200	1800	0	0.000e+00	ohm	x V_T (antilog exponent): weight
+P_zS51xi3	10000	8200	1800	0	0.000e+00	ohm	x V_T (antilog exponent): weight
+P_zS51xc	72134.7520444	36000	36000	130	6.588e-05	ohm	x V_T (antilog exponent): constant (nepers from V_NEP)
+P_zC53xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS54xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS54xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS54xi2	1000000	820000	180000	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS54xc	37947.4176553	36000	1200	750	6.805e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA14xk	5000000	3e+06	2e+06	0	9.095e-20	ohm	sum constant (V_REF)
+P_zL55xi	955979.579534	470000	430000	56000	2.136e-05	ohm	log of sub: log input
+P_zL55xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of sub: log reference (Ir = Ix/2)
+P_zC56xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS57xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS57xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS57xi2	5000	3000	2000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS57xi3	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS57xi4	5000	3000	2000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS57xc	21240.6400455	11000	10000	240	3.013e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zA58xf_0	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 1/12)
+P_zA58xf_1	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 2/12)
+P_zA58xf_2	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 3/12)
+P_zA58xf_3	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 4/12)
+P_zA58xf_4	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 5/12)
+P_zA58xf_5	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 6/12)
+P_zA58xf_6	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 7/12)
+P_zA58xf_7	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 8/12)
+P_zA58xf_8	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 9/12)
+P_zA58xf_9	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 10/12)
+P_zA58xf_10	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 11/12)
+P_zA58xf_11	8333333.33333	8.2e+06	130000	0	4.000e-04	ohm	sum feedback (string piece 12/12)
+P_zA59xf	2311454.69958	1.8e+06	510000	1300	6.693e-05	ohm	sum feedback
+P_zA59xnf	2311454.69958	1.8e+06	510000	1300	6.693e-05	ohm	negative-term TIA
+P_zA59xnb	2311454.69958	1.8e+06	510000	1300	6.693e-05	ohm	negative-term feed
+P_zC60xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS61xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS61xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS61xc	54410.6033138	51000	3300	110	1.109e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC62xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS63xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS63xi1	3333.33333333	3300	33	0	1.000e-04	ohm	sum term (antilog exponent): weight
+P_zS63xc	17763.1361043	13000	4700	62	6.396e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC64xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS65xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS65xi1	2000	1000	1000	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS65xc	9411.43802119	4700	4700	11	4.654e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC66xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS67xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS67xi1	1428.57142857	910	510	8.2	2.600e-04	ohm	sum term (antilog exponent): weight
+P_zS67xc	6111.33442259	5600	510	0	2.184e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC68xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS69xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS69xi1	1111.11111111	1100	11	0	1.000e-04	ohm	sum term (antilog exponent): weight
+P_zS69xc	4417.01877313	3900	470	47	4.250e-06	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC70xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS71xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS71xi1	909.090909091	470	430	9.1	1.000e-05	ohm	sum term (antilog exponent): weight
+P_zS71xc	3408.29481133	1800	1600	8.2	2.782e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC72xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS73xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS73xi1	769.230769231	750	11	8.2	4.000e-05	ohm	sum term (antilog exponent): weight
+P_zS73xc	2748.00460437	2700	47	0	3.656e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zL74xi	915088.507484	910000	5100	0	1.256e-05	ohm	log of sin: log input
+P_zL74xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of sin: log reference (Ir = Ix/2)
+P_zS75xf	10000	8200	1800	0	0.000e+00	ohm	ln(x): summer feedback
+P_zS75xc	144269.504089	82000	62000	270	3.437e-06	ohm	ln(x): constant (nepers from V_NEP)
+P_zL76xi	17928.2003842	10000	7500	430	1.004e-04	ohm	ln-value: log input
+P_zL76xr	517298.515727	510000	7500	0	3.895e-04	ohm	ln-value: log reference (Ir = Ix/2)
+P_zC77xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS78xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zI79xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI79xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS78xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS78xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS78xc	144269.504089	82000	62000	270	3.437e-06	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zT80xf	9624236.50119	9.1e+06	510000	13000	1.285e-04	ohm	readout TIA
+P_zC81xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS82xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS82xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS82xc	72134.7520444	36000	36000	130	6.588e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zA58xt2_0	5356083.78562	3.3e+06	2e+06	56000	1.564e-05	ohm	sum term (string piece 1/2)
+P_zA58xt2_1	5356083.78562	3.3e+06	2e+06	56000	1.564e-05	ohm	sum term (string piece 2/2)
+P_zT83xf	2888373.70621	2.2e+06	680000	8200	6.014e-05	ohm	readout TIA
+P_zA84xf	2000000	1e+06	1e+06	0	5.684e-20	ohm	sum feedback
+P_zA84xnf	2000000	1e+06	1e+06	0	5.684e-20	ohm	negative-term TIA
+P_zA84xnb	2000000	1e+06	1e+06	0	5.684e-20	ohm	negative-term feed
+P_zC85xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS86xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS86xi1	2500	1300	1200	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS86xc	144269.504089	82000	62000	270	3.437e-06	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA84xk	5000000	3e+06	2e+06	0	9.095e-20	ohm	sum constant (V_REF)
+P_zL87xi	989734.017745	560000	430000	0	2.687e-04	ohm	log of sub: log input
+P_zL87xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of sub: log reference (Ir = Ix/2)
+P_zC88xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS89xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS89xi1	5000	3000	2000	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS89xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS89xi3	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS89xc	33719.3963964	33000	680	39	1.176e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zA90xf	5129003.25846	4.7e+06	430000	0	1.943e-04	ohm	sum feedback
+P_zC91xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS92xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS92xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS92xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS92xc	41894.4670967	20000	18000	3900	1.321e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zI93xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI93xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zA90xt2_0	8548338.7641	8.2e+06	330000	18000	3.963e-05	ohm	sum term (string piece 1/6)
+P_zA90xt2_1	8548338.7641	8.2e+06	330000	18000	3.963e-05	ohm	sum term (string piece 2/6)
+P_zA90xt2_2	8548338.7641	8.2e+06	330000	18000	3.963e-05	ohm	sum term (string piece 3/6)
+P_zA90xt2_3	8548338.7641	8.2e+06	330000	18000	3.963e-05	ohm	sum term (string piece 4/6)
+P_zA90xt2_4	8548338.7641	8.2e+06	330000	18000	3.963e-05	ohm	sum term (string piece 5/6)
+P_zA90xt2_5	8548338.7641	8.2e+06	330000	18000	3.963e-05	ohm	sum term (string piece 6/6)
+P_zT94xf_0	7257068.20162	6.8e+06	430000	27000	9.398e-06	ohm	readout TIA (string piece 1/2)
+P_zT94xf_1	7257068.20162	6.8e+06	430000	27000	9.398e-06	ohm	readout TIA (string piece 2/2)
+P_zC95xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS96xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS96xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS96xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS96xi3	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS96xc	39052.5329585	39000	51	0	3.925e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zA97xf	3464909.4292	2.7e+06	750000	15000	2.614e-05	ohm	sum feedback
+P_zS98xf	10000	8200	1800	0	0.000e+00	ohm	ln(x): summer feedback
+P_zS98xc	91023.9226627	91000	24	0	8.496e-07	ohm	ln(x): constant (nepers from V_NEP)
+P_zL99xi	28415.5253143	22000	5600	820	1.575e-04	ohm	ln-value: log input
+P_zL99xr	517298.515727	510000	7500	0	3.895e-04	ohm	ln-value: log reference (Ir = Ix/2)
+P_zC100xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS101xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS101xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS101xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zI102xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI102xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS101xi3	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS101xc	56432.0582743	56000	430	0	3.647e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC103xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS104xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zI105xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI105xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS104xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS104xc	694086.773464	430000	240000	24000	1.250e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA106xf	7357588.82343	6.8e+06	560000	0	3.277e-04	ohm	sum feedback
+P_zA106xnf	7357588.82343	6.8e+06	560000	0	3.277e-04	ohm	negative-term TIA
+P_zA106xnb	7357588.82343	6.8e+06	560000	0	3.277e-04	ohm	negative-term feed
+P_zC107xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS108xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS108xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS108xi2	1000000	820000	180000	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS108xc	132836.122113	130000	2400	430	4.609e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC109xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS110xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS110xc	144269.504089	82000	62000	270	3.437e-06	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zT111xf	7960184.4065	3.9e+06	3.9e+06	160000	2.317e-05	ohm	readout TIA
+P_zC112xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS113xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS113xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zI114xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI114xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS113xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS113xi3	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zI115xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI115xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS113xi4	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS113xc	182125.153537	180000	2200	0	4.110e-04	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zA116xf	3333707.69001	3.3e+06	33000	0	2.123e-04	ohm	sum feedback
+P_zA117xf	2000000	1e+06	1e+06	0	5.684e-20	ohm	sum feedback
+P_zA118xf	2000000	1e+06	1e+06	0	5.684e-20	ohm	sum feedback
+P_zA118xnf	2000000	1e+06	1e+06	0	5.684e-20	ohm	negative-term TIA
+P_zA118xnb	2000000	1e+06	1e+06	0	5.684e-20	ohm	negative-term feed
+P_zC119xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS120xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS120xi1	5000	3000	2000	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS120xc	19076.0917175	16000	3000	75	5.723e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC121xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS122xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS122xi1	2500	1300	1200	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS122xc	8633.38657113	8200	430	0	3.923e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC123xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS124xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS124xi1	1666.66666667	1600	62	4.7	2.000e-05	ohm	sum term (antilog exponent): weight
+P_zS124xc	5307.853623	3300	2000	7.5	6.662e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC125xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS126xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS126xi1	1250	820	430	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS126xc	3742.34292674	3000	680	62	9.163e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA118xk	5000000	3e+06	2e+06	0	9.095e-20	ohm	sum constant (V_REF)
+P_zL127xi	957987.122672	470000	470000	18000	1.344e-05	ohm	log of cos: log input
+P_zL127xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of cos: log reference (Ir = Ix/2)
+P_zC128xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS129xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS129xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS129xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS129xc	69968.4643122	43000	27000	0	4.507e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA117xk	5000000	3e+06	2e+06	0	9.095e-20	ohm	sum constant (V_REF)
+P_zL130xi	1592068.6026	820000	750000	22000	4.309e-05	ohm	log of add: log input
+P_zL130xr	5000000	3e+06	2e+06	0	0.000e+00	ohm	log of add: log reference (Ir = Ix/2)
+P_zC131xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS132xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS132xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS132xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS132xi3	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS132xc	39052.5329585	39000	51	0	3.925e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zT133xf_0	6931471.8056	6.8e+06	130000	0	2.123e-04	ohm	readout TIA (string piece 1/2)
+P_zT133xf_1	6931471.8056	6.8e+06	130000	0	2.123e-04	ohm	readout TIA (string piece 2/2)
+P_zC134xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS135xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS135xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS135xc	72134.7520444	36000	36000	130	6.588e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zA116xt2_0	8334269.22502	8.2e+06	130000	4300	3.693e-06	ohm	sum term (string piece 1/4)
+P_zA116xt2_1	8334269.22502	8.2e+06	130000	4300	3.693e-06	ohm	sum term (string piece 2/4)
+P_zA116xt2_2	8334269.22502	8.2e+06	130000	4300	3.693e-06	ohm	sum term (string piece 3/4)
+P_zA116xt2_3	8334269.22502	8.2e+06	130000	4300	3.693e-06	ohm	sum term (string piece 4/4)
+P_zT136xf	4809523.55215	3.9e+06	910000	0	9.906e-05	ohm	readout TIA
+P_zC137xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS138xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS138xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS138xi2	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS138xi3	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zI139xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI139xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zS138xi4	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS138xc	53547.346049	51000	1800	750	4.956e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zA140xf_0	6261993.52713	6.2e+06	62000	0	1.034e-06	ohm	sum feedback (string piece 1/2)
+P_zA140xf_1	6261993.52713	6.2e+06	62000	0	1.034e-06	ohm	sum feedback (string piece 2/2)
+P_zA140xnf_0	6261993.52713	6.2e+06	62000	0	1.034e-06	ohm	negative-term TIA (string piece 1/2)
+P_zA140xnf_1	6261993.52713	6.2e+06	62000	0	1.034e-06	ohm	negative-term TIA (string piece 2/2)
+P_zA140xnb_0	6261993.52713	6.2e+06	62000	0	1.034e-06	ohm	negative-term feed (string piece 1/2)
+P_zA140xnb_1	6261993.52713	6.2e+06	62000	0	1.034e-06	ohm	negative-term feed (string piece 2/2)
+P_zC141xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS142xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS142xi1	5000	3000	2000	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS142xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS142xc	48134.2116705	39000	9100	33	2.517e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC143xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS144xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS144xc	108403.953184	82000	24000	2400	3.647e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA145xf	1915496.04268	1e+06	910000	5100	2.068e-04	ohm	sum feedback
+P_zC146xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS147xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS147xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS147xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS147xc	48089.8346963	39000	9100	0	2.114e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zC148xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS149xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS149xc	15037.646856	15000	39	0	8.998e-05	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
+P_zA150xf	2197224.57734	2e+06	150000	47000	1.022e-04	ohm	sum feedback
+P_zT151xf	2197224.57734	2e+06	150000	47000	1.022e-04	ohm	readout TIA
+P_zC152xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	readout: antilog input
+P_zS153xf	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): summer feedback
+P_zS153xi1	10000	8200	1800	0	0.000e+00	ohm	readout (antilog exponent): weight
+P_zS153xc	72134.7520444	36000	36000	130	6.588e-05	ohm	readout (antilog exponent): constant (nepers from V_NEP)
+P_zI154xa	100000	82000	18000	0	0.000e+00	ohm	unity inverter in
+P_zI154xb	100000	82000	18000	0	0.000e+00	ohm	unity inverter fb
+P_zA150xt1	2197224.57734	2e+06	150000	47000	1.022e-04	ohm	sum term
+P_zC155xp	2500000	1.3e+06	1.2e+06	0	0.000e+00	ohm	sum term: antilog input
+P_zS156xf	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): summer feedback
+P_zS156xi1	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS156xi2	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS156xi3	10000	8200	1800	0	0.000e+00	ohm	sum term (antilog exponent): weight
+P_zS156xc	70844.2565954	68000	2400	430	2.012e-04	ohm	sum term (antilog exponent): constant (nepers from V_NEP)
