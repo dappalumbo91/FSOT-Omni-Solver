@@ -16,5 +16,8 @@ for k in $K; do for v in 5 6; do [ "$v$k" = 52a_X ] && continue; L=../../phase2/
   s=$(./score5.sh "$L" "$k" | tail -1); n=$(echo "$s" | cut -f3); m=$(echo "$s" | cut -f4); w=$(echo "$s" | cut -f5); wl=$(echo "$s" | cut -f6)
   echo "| bs$v $k | OK | ${n#n=} | ${m#missing=} | ${w#worst=} | $wl |" >> "$S"; [ "${m#missing=}" = 0 ] || bad=1; done; done
 for f in Cosmology Chemistry Quantum_Mechanics; do grep -q "^SOLVER: blocks" ../../phase2/spice/out/bs6_fold_ideal_ideal_s0_t27_$f.log || { echo "fold $f FAIL" >> "$S"; bad=1; }; done
-python3 tiny6.py > /tmp/tiny6.txt || true; { echo '```'; cat /tmp/tiny6.txt; echo '```'; } >> "$S"
+# tiny6.py rewrites ../results/tiny_terms6_*.tsv; CI runs only a subset (no LOCK5 folds, one bench fold), so the committed full tables are
+# restored afterwards (the subset rows reproduce them; checked on a clean clone of main 95f9e22).
+TB=$(mktemp -d); cp ../results/tiny_terms6_fold.tsv ../results/tiny_terms6_bench.tsv "$TB"/
+python3 tiny6.py > /tmp/tiny6.txt || true; cp "$TB"/tiny_terms6_*.tsv ../results/; rm -rf "$TB"; { echo '```'; cat /tmp/tiny6.txt; echo '```'; } >> "$S"
 [ $bad = 0 ] && echo "REPRODUCE5_OK" || { echo "REPRODUCE5_FAIL"; exit 1; }

@@ -1,0 +1,19 @@
+step	result	wall	note
+build	PASS	7s	
+verify_lock	PASS	0s	
+crosscheck	PASS	0s	
+falstad	PASS	1s	
+ngspice_slice	PASS	70s	
+reproduce2	PASS	50s	
+reproduce3	PASS	16s	
+verify_lock4	PASS	12s	
+verify_lock5	PASS	27s	
+verify_lock6	PASS	6s	
+verify_lock8b	PASS	35s	
+verify_lock9	PASS	82s	
+reproduce5	PASS	53s	
+regress_2x	PASS	0s	
+hub_bench_9H.1	PASS	4s	hub9b_compare/summary byte-identical to committed
+prepush_chroot_gate_u24	PASS	167s	LOCK_OK LOCK4..LOCK9_OK
+committed_results_diff	NOTE	-	reproduce5 rewrote tiny_terms6_{fold,bench}.tsv with the CI subset (every reproduced value identical; non-run columns '-'); reproduce.sh rewrote spice/out/slice_e24_tl082_s0_t50.log with one cosmetic ngspice line ('Reference value' -> blank), values identical
+CI_run_38836879965	PASS	-	main 95f9e22, all jobs success
