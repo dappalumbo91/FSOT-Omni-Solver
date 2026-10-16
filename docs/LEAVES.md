@@ -157,7 +157,34 @@ LOCK6 reruns (netgen5: log-carried base-engine taps in T1's channels, low-leakag
 - |V_cb| (exact rewrite): mcC σ 2.48e-2 → 8.1e-3, mcB σ 0.21 → 0.048 (LOCK4 → LOCK5).
 - Chain_consistency_%: ideal converges (LOCK6, 0/27/50 °C), reads 0.0052 % vs 0.00667 %; MC resolution of the difference node σ ≈ 0.9 (mcC) / 5.4 (mcB) in Chain-% units: consistent to better than ~1 %.
 - Base-engine tiny terms (247 taps, 35 folds): carried readout vs engine within 1.1e-4 … 1.8e-3 in the full ideal fold channel (a3 = T3 valve at 8e-18…2.4e-17: +8.8e-4), 1.1–4.0e-4 on the bench at 0/27/50 °C. Current-mode carriers (uncascoded stage, divided-back current, charge integrator) hit a leakage floor below ~1e-13 A. Details: INSIGHTS §14.
-- Not yet compiled: the 13 domain_scalar forms (S(Human) … Cross_Astro_PS) — FSOT gives them a physical input, the fold channel's S of the named domain, which the base engine already computes; compiling them needs one CHAN per named domain (7 domains) in a forked compiler. fsot_correct, the floor rows and the hub dynamics are not started.
+- (Superseded by LOCK8 below: the 13 domain_scalar forms, fsot_correct and the hub coefficients are compiled.) Not yet compiled at LOCK6: the 13 domain_scalar forms (S(Human) … Cross_Astro_PS) — FSOT gives them a physical input, the fold channel's S of the named domain, which the base engine already computes; compiling them needs one CHAN per named domain (7 domains) in a forked compiler. fsot_correct, the floor rows and the hub dynamics are not started.
+
+## LOCK7 / 7.1 / 7.2 (refinements 1–3), LOCK8 (part C) and 8.1
+
+Locks: `phase3/locked7/LOCK7.md`, `locked7b/LOCK7b.md` (7.1), `locked7c/LOCK7c.md` (7.2), `locked8/LOCK8.md`, `locked8b/LOCK8b.md` (8.1), all hashed and pushed before simulation.
+Runs: `phase3/tools/batch7b.sh`, `batch8.sh`, `batch8b.sh`; summaries `phase3/results/leaves7b_*.tsv`, `leaves8_*.tsv` (C_S, C_H), `leaves8b_*.tsv` (8.1 MC reruns).
+
+**Leaf count: 379 rows, 366 compiled + 13 literal (tier 0), 0 not compiled** (the 13 domain_scalar forms are compiled in C_S; 16 part-C rows added: 10 fsot_correct factors, 6 hub coefficients). Every netlist converges in every run (ideal 0/27/50 °C, mcC 1–8, mcB 1–4).
+
+| Netlist | leaves | ideal 27 °C median / worst | mcC median σ (LOCK5 → 7.1 / 8.1) | mcB median σ (LOCK5 → 7.1 / 8.1) |
+|---|---|---|---|---|
+| GEN | 20 | 5.0e-05 / 6.4e-03 (BETA) | 5.22e-03 → 1.89e-03 / 1.72e-03 | 2.82e-02 → 1.39e-02 / 1.12e-02 |
+| GENpp | 1 | 8.5e-03 (BETA_pp) | – → 4.16e-01 / 4.21e-01 | – → 9.53 / 9.58 |
+| T1 | 14 | 7.8e-04 / 1.12e-02 (Omega_DM_h2) | 4.44e-03 → 6.19e-03 / 6.25e-03 | 4.57e-02 → 2.94e-02 / 2.98e-02 |
+| 2_M | 44 | 6.7e-05 / 9.0e-04 (eta_baryon_photon) | 3.69e-03 → 2.39e-03 / 2.39e-03 | 3.42e-02 → 1.46e-02 / 1.42e-02 |
+| 2_P | 49 | 5.9e-05 / 6.8e-04 (Hashing_bound) | 4.82e-03 → 2.41e-03 / 2.41e-03 | 3.33e-02 → 1.51e-02 / 1.51e-02 |
+| 2_T | 5 | 5.0e-05 / 1.0e-04 (Water_triple_K) | 1.88e-03 → 1.66e-03 | 1.76e-02 → 1.04e-02 |
+| 2_X | 14 | 6.2e-05 / 4.1e-04 (tau_reion) | 5.07e-03 → 2.54e-03 | 3.10e-02 → 1.12e-02 |
+| 2a_M | 66 | 3.5e-05 / 2.7e-04 (BP_C₂H₅OH) | 1.82e-03 → 1.61e-03 | 1.65e-02 → 1.06e-02 |
+| 2a_P | 80 | 3.2e-05 / 8.7e-04 (gamma_2_Stieltjes) | 2.14e-03 → 1.66e-03 | 1.79e-02 → 0.96e-02 |
+| 2a_T | 12 | 5.9e-05 / 2.7e-04 (Perc_SC_site) | 3.55e-03 → 2.02e-03 | 2.36e-02 → 1.34e-02 |
+| 2a_Q | 9 | 3.2e-06 / 6.0e-06 (N_Lobes) | 2.18e-04 → 2.18e-04 | 6.18e-04 → 6.18e-04 |
+| 2a_X | 44 | 4.3e-05 / 1.93 (Chain_consistency_%) | – → 2.26e-03 / 2.28e-03 | – → 1.10e-02 / 1.09e-02 |
+| C_S (LOCK8) | 23 | 3.1e-05 / 5.5e-04 (S(species)) | 1.97e-03 | 1.05e-02 |
+| C_H (LOCK8) | 6 | 4.3e-05 / 2.4e-04 (kappa) | 3.34e-03 | 2.22e-02 |
+
+- Ideal errors under 7.1 are 3–5× LOCK5's (antilog input absorption, base S offset +5.4e-4); MC spread is 1.5–3× smaller. See INSIGHTS §15.
+- Part C: S(species) +5.5e-4 is the base-engine S offset; the Cross_* ratios cancel it (+2–3e-5). fsot_correct factors −2.5e-6; hub coefficients −1.6e-5 … +2.4e-4.
 
 ## Full map (356 rows)
 
