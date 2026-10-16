@@ -1,0 +1,4 @@
+mode	py_vs_cpp_rk4	cpp_rk4_vs_exact	spice_exactcoef_vs_exact	spice_compiled_vs_exact	spice_compiled_vs_exact_compiledcoef	spice_compiled_vs_py	final_t8_spice_compiled	final_t8_exact
+S	1.17e-15	5.55e-17	4.51e-01	4.52e-01	4.52e-01	4.52e-01	-0.502953645	-0.486014626
+v_Fluid	9.99e-16	1.11e-16	9.20e-01	9.20e-01	9.20e-01	9.20e-01	0.000000000	0.069766924
+v_D25	1.33e-15	0.00e+00	9.01e-01	9.01e-01	9.01e-01	9.01e-01	0.079464487	0.634244734
