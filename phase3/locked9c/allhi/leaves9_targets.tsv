@@ -1,0 +1,380 @@
+gkey	section	name	tier_group	netlist	engine	golden	net	gain	status	cexpr	series_remainder_max	rewritten_from_engine_cexpr
+sec.wave1.0	wave1	alpha_s(M_Z)	2a_M	2a_M	0.117099663049	0.117099663048638321378	zT1xo	10	compiled	((R(1) / (E * PI)))	0.00e+00	-
+sec.wave1.1	wave1	H0	1_P	T1	68.4449955638	68.4449955638266678976	zT1xo	0.1	compiled	((R(100) * (R(1) + ((S_COSM * A_BLEED) / A_IN))))	7.29e-12	-
+sec.wave1.2	wave1	T_CMB	1_P	T1	2.72471169034	2.7247116903430661514	zA65xo	1	compiled	((ipow(PHI, 2) + (P_BASE * fabs(S_COSM))))	0.00e+00	-
+sec.wave1.3	wave1	n_s	1_X	T1	0.963333836595	0.963333836595471702975	zA71xo	1	compiled	((R(1) + ((S_COSM * C_COSM) * pow(PHI, (R(1) / PI)))))	0.00e+00	-
+sec.wave1.4	wave1	Omega_b_h2	1_P	T1	0.0224616214186	0.0224616214186474395685	zT81xo	100	compiled	((fabs(S_COSM) * (R(1) - S_CHEM)))	0.00e+00	-
+sec.validation_suite.0	validation_suite	alpha_FSOT	2_M	2_M	0.000808293741414	0.000808293741414040443117	zT1xo	1000	compiled	ALPHA	0.00e+00	-
+sec.validation_suite.1	validation_suite	Tetrahedral_refined	2a_M	2a_M	109.471220634	109.471220634490691369	zT6xo	0.01	compiled	(((acos((R(-1) / R(3))) * R(180)) / PI))	0.00e+00	-
+sec.validation_suite.2	validation_suite	Tetrahedral_FSOT	2a_T	2a_T	106.774627328	106.774627328456213696	zT1xo	0.01	compiled	(((acos(((-GAMMA) / R(2))) * R(180)) / PI))	6.46e-11	-
+sec.validation_suite.3	validation_suite	Water_bond_angle	2a_P	2a_P	104.5368015	104.536801499890058272	zT1xo	0.01	compiled	(((((PI / PHI) - (R(1) / (PI * E))) * R(180)) / PI))	0.00e+00	-
+sec.validation_suite.4	validation_suite	DNA_base_pair	2a_P	2a_P	3.39645316072	3.39645316071897913684	zT14xo	1	compiled	((((R(2) * PI) * (T::lit("0.529177"))) * (R(1) + (GAMMA / (ipow(PI, 2) * E)))))	0.00e+00	-
+sec.validation_suite.5	validation_suite	Golden_angle	2a_M	2a_M	137.50776405	137.507764050037854645	zT9xo	0.01	compiled	((R(360) / ipow(PHI, 2)))	0.00e+00	-
+sec.validation_suite.6	validation_suite	Proton_radius	0	-	0.8413	0.841300000000000000025	-	0	literal (tier 0): resistor ratio, no computation	T::lit("0.8413")	0.00e+00	-
+sec.validation_suite.7	validation_suite	Dark_energy_wa	2a_M	2a_M	-0.808109771581	-0.808109771581081037784	zT14xo	-1	compiled	(((((-GAMMA) * E) * PHI) / PI))	0.00e+00	-
+sec.validation_suite.8	validation_suite	Richardson_D=4	0	-	1.44269990591	1.4426999059072135571	-	0	literal (tier 0): resistor ratio, no computation	pow(R(25) / R(4), T::lit("0.2"))	0.00e+00	-
+sec.validation_suite.9	validation_suite	Richardson_D=13	0	-	1.13972304907	1.1397230490720158219	-	0	literal (tier 0): resistor ratio, no computation	pow(R(25) / R(13), T::lit("0.2"))	0.00e+00	-
+sec.validation_suite.10	validation_suite	Richardson_D=25	0	-	1	1	-	0	literal (tier 0): resistor ratio, no computation	pow(R(25) / R(25), T::lit("0.2"))	0.00e+00	-
+sec.validation_suite.11	validation_suite	sin2_theta_W	2a_X	2a_X	0.231222029148	0.231222029147930523336	zT1xo	10	compiled	(((GAMMA - (R(1) / ipow(PI, 2))) / pow(PHI, T::lit("1.5"))))	0.00e+00	-
+sec.validation_suite.12	validation_suite	M_Z/M_W	2a_P	2a_P	1.13460092941	1.13460092940870225207	zT22xo	1	compiled	(((sqrt(PI) - ipow(GAMMA, 3)) / ((R(1) / sqrt(E)) + (R(1) / sqrt(PHI)))))	0.00e+00	-
+sec.validation_suite.13	validation_suite	Feigenbaum_delta	2a_X	2a_X	4.66921091309	4.66921091308971920614	zT15xo	1	compiled	(((ipow(E, 2) - pow(GAMMA, xexp(T::lit("0.333333333333333"), 1, 3))) / ((R(1) / PHI) + (R(1) / sqrt(PHI)))))	0.00e+00	-
+sec.validation_suite.14	validation_suite	Feigenbaum_alpha	2a_X	2a_X	2.50296713552	2.50296713552145521611	zT31xo	1	compiled	(((ipow(PI, 2) - ipow(PHI, 3)) / (pow(PI, xexp(T::lit("0.333333333333333"), 1, 3)) + (R(1) / sqrt(PHI)))))	0.00e+00	-
+sec.validation_suite.15	validation_suite	Apery_zeta3	2a_X	2a_X	1.20204766936	1.2020476693577490185	zT47xo	1	compiled	(((E - (R(1) / sqrt(PI))) / ((R(1) / PHI) + pow(PHI, xexp(T::lit("0.333333333333333"), 1, 3)))))	0.00e+00	-
+sec.validation_suite.16	validation_suite	Water_anomaly_C	2a_X	2a_X	3.97997351244	3.97997351244122389785	zT63xo	1	compiled	(((ipow(PI, 3) - pow(GAMMA, xexp(T::lit("0.333333333333333"), 1, 3))) / (ipow(E, 2) + ipow(GAMMA, 3))))	0.00e+00	-
+sec.validation_suite.17	validation_suite	GUT_coupling	2a_P	2a_P	0.0337805643326	0.0337805643325980210191	zT38xo	100	compiled	(((ipow(PI, 2) - ipow(E, 2)) / (((R(2) * ipow(PI, 2)) * (PI + GAMMA)) + (R(1) / (R(2) * ipow(E, 3))))))	0.00e+00	-
+sec.validation_suite.18	validation_suite	Identity_pi_4	2a_M	2a_M	0.785398163397	0.785398163397448309628	zT18xo	10	compiled	(PI / R(4))	0.00e+00	-
+sec.validation_suite.19	validation_suite	Identity_2sqrtpi_5	2a_M	2a_M	0.708981540362	0.708981540362206410946	zT21xo	10	compiled	((R(2) * sqrt(PI)) / R(5))	0.00e+00	-
+sec.validation_suite.20	validation_suite	Age_over_T_CMB	2a_M	2a_M	5.06012793033	5.06012793033346296645	zT24xo	1	compiled	((((R(5) * PI) * sqrt((GAMMA * PHI))) / R(3)))	0.00e+00	-
+sec.validation_suite.21	validation_suite	CMB_asymmetry	2a_M	2a_M	0.0675917598664	0.0675917598663652271744	zT27xo	100	compiled	((GAMMA / (PI * E)))	0.00e+00	-
+sec.validation_suite.22	validation_suite	Mantle_Vp_Vs	2a_M	2a_M	1.81337649239	1.81337649239160349961	zT30xo	1	compiled	((GAMMA * PI))	0.00e+00	-
+sec.wave2.0	wave2	1/alpha_em	2_P	2_P	137.03619756	137.036197559572674912	zA1xo	0.01	compiled	(((ipow(E, 3) * ipow(PHI, 4)) - PSI_CON))	0.00e+00	-
+sec.wave2.1	wave2	sin2_theta_W	2_M	2_M	0.2311899746	0.231189974599600959953	zT9xo	10	compiled	(((sqrt(E) * P_NEW) * ETA_EFF))	0.00e+00	-
+sec.wave2.2	wave2	M_W/M_Z	1_X	T1	0.875373665319	0.87537366531929657477	zA86xo	1	compiled	(((S_QUANT * log(PI)) - P_BASE))	0.00e+00	-
+sec.wave2.3	wave2	Omega_Lambda	1_P	T1	0.682736038135	0.68273603813527809661	zA94xo	10	compiled	(((S_QUANT / E) + ipow(GAMMA, 2)))	0.00e+00	-
+sec.wave2.4	wave2	Omega_m	2_X	2_X	0.315329188245	0.315329188245006660228	zT1xo	10	compiled	(((C_EFF * C_FACTOR) * log(PI)))	1.28e-13	-
+sec.wave2.5	wave2	Omega_DM_h2	1_P	T1	0.120585820097	0.120585820096538286503	zT99xo	10	compiled	((((R(1) - S_CHEM) * PHI) * A_IN))	7.29e-12	-
+sec.wave2.6	wave2	sigma_8	1_P	T1	0.808381839411	0.808381839410746660794	zA102xo	1	compiled	(((fabs(S_COSM) * S_QUANT) + fabs(CHAOS)))	7.29e-12	-
+sec.wave2.7	wave2	tau_reion	2_X	2_X	0.0543965535023	0.0543965535023080657528	zA58xo	9.29542	compiled	(((PHI * fabs(CHAOS)) - log(PHI)))	7.29e-12	-
+sec.wave2.8	wave2	m_pi/m_p	2_X	2_X	0.14441868531	0.14441868531025275862	zT83xo	10	compiled	(((K * P_NEW) * log(PI)))	0.00e+00	-
+sec.wave2.9	wave2	N_eff	2_X	2_X	3.04571345429	3.04571345428836072261	zA90xo	1	compiled	((((P_NEW * E) * PI) + log(PHI)))	0.00e+00	-
+sec.wave3.0	wave3	|V_us|	1_P	T1	0.2295864791	0.229586479099664615878	zA110xo	10	compiled	(((THETA_S / PHI) + (R(1) - S_QUANT)))	1.28e-13	-
+sec.wave3.1	wave3	|V_cb|	1_T	T1	0.0419188788073	0.0419188788072565816457	zT113xo	100	compiled	(S_QUANT * ((POOF * sin(THETA_S)) * (R(1) + (((R(1) / ipow(PI, 4)) * G_CAT) / (PI * PHI))) - (((R(1) / ipow(PI, 4)) * G_CAT) / (PI * PHI))) / C_EFF)	1.28e-13	(((S_QUANT / C_EFF) - S_QUANT))
+sec.wave3.2	wave3	sin_theta_C	2_P	2_P	0.227591154248	0.227591154247521437639	zA7xo	10	compiled	(((PHI / ipow(E, 3)) + SUCTION))	9.34e-12	-
+sec.wave3.3	wave3	Age_Gyr	2_P	2_P	13.7871961192	13.787196119245322551	zA67xo	0.1	compiled	(((A_IN * PHI) + ipow(PHI, 5)))	7.29e-12	-
+sec.wave3.4	wave3	z_eq	2a_M	2a_M	3393.8103104	3393.81031040141665267	zT33xo	0.001	compiled	((ipow(PI, 5) * ipow(PHI, 5)))	0.00e+00	-
+sec.wave3.5	wave3	theta_star	2_P	2_P	0.0104047595151	0.0104047595150754408476	zA104xo	14.4906	compiled	(((P_BASE * PHI) - ipow(GAMMA, 2)))	0.00e+00	-
+sec.wave3.6	wave3	r_star_Mpc	2_P	2_P	144.399830032	144.399830031989063653	zA110xo	0.01	compiled	(((ipow(PI, 3) / P_BASE) - PHI))	0.00e+00	-
+sec.wave3.7	wave3	Deuteron_binding_MeV	2a_P	2a_P	2.22456464846	2.22456464846252827171	zA60xo	1	compiled	(((sqrt(E) / E) + PHI))	0.00e+00	-
+sec.wave3.8	wave3	Neutron_lifetime_s	2_M	2_M	878.592851392	878.592851392283217593	zT18xo	0.001	compiled	((ipow(PI, 7) * THETA_S))	1.28e-13	-
+sec.wave3.9	wave3	Ising2D_beta	2_P	2_P	0.326532401368	0.326532401368246389284	zA116xo	10	compiled	(((THETA_S / ipow(PHI, 5)) + P_NEW))	1.28e-13	-
+sec.wave3.10	wave3	Ising2D_nu	2a_X	2a_X	0.629984506266	0.62998450626550964404	zA79xo	4.48049	compiled	(((sqrt(PHI) / log(PI)) - log(PHI)))	0.00e+00	-
+sec.wave3.11	wave3	Ising2D_gamma	1_X	T1	1.24822387174	1.24822387173974523697	zA148xo	1	compiled	((((R(1) - S_QUANT) / log(PHI)) + log(PI)))	0.00e+00	-
+sec.wave3.12	wave3	m_t/m_W	1_P	T1	2.14976592907	2.14976592906816415759	zA157xo	1	compiled	(((fabs(S_COSM) / fabs(CHAOS)) + PSI_CON))	7.29e-12	-
+sec.wave3.13	wave3	m_H/m_W	1_P	T1	1.55083682601	1.55083682600646898583	zA163xo	1	compiled	(((S_QUANT * PSI_CON) + S_QUANT))	0.00e+00	-
+sec.wave3.14	wave3	m_tau/m_e	2a_X	2a_X	3477.50545879	3477.50545878783125042	zA90xo	0.001	compiled	(((ipow(PI, 7) * log(PI)) + ipow(E, 3)))	0.00e+00	-
+sec.wave4.0	wave4	sin2_theta12	2_M	2_M	0.306964429789	0.306964429788901598228	zT37xo	10	compiled	(R(2) * POOF)	0.00e+00	-
+sec.wave4.1	wave4	sin2_theta23	2_M	2_M	0.545766610986	0.545766610986024884025	zT46xo	10	compiled	(fabs(CHAOS) * sqrt(E))	7.29e-12	-
+sec.wave4.2	wave4	sin2_theta13	2a_M	2a_M	0.0220151582211	0.0220151582211441219899	zT36xo	100	compiled	((ipow(GAMMA, 6) * PHI) / E)	0.00e+00	-
+sec.wave4.3	wave4	Dm2_21/Dm2_32	2_M	2_M	0.0295170114803	0.0295170114802864206259	zT68xo	100	compiled	(ipow(GAMMA, 3) * POOF)	0.00e+00	-
+sec.wave4.4	wave4	|V_ub|	2_M	2_M	0.00392125629339	0.00392125629338613662657	zT71xo	1000	compiled	ipow(C_COSM, 2)	0.00e+00	-
+sec.wave4.5	wave4	|V_td|	2a_M	2a_M	0.00857080098022	0.00857080098022106861252	zT39xo	100	compiled	(sqrt(PHI) / ipow(E, 5))	0.00e+00	-
+sec.wave4.6	wave4	|V_ts|	2_M	2_M	0.0405033047151	0.0405033047150822492704	zT75xo	100	compiled	(ipow(GAMMA, 5) * PSI_CON)	0.00e+00	-
+sec.wave4.7	wave4	Jarlskog_J	2a_M	2a_M	3.07277178667e-05	3.0727717866654671422e-05	zT42xo	100000	compiled	(G_CAT / ipow(PI, 9))	0.00e+00	-
+sec.wave4.8	wave4	Feigenbaum_delta	2a_X	2a_X	4.66919795728	4.66919795727960829351	zA95xo	1	compiled	(((log(PI) * (E / G_CAT)) + sqrt(PHI)))	0.00e+00	-
+sec.wave4.9	wave4	Feigenbaum_alpha	2_P	2_P	2.5029081532	2.50290815320280836159	zA121xo	1	compiled	((((fabs(CHAOS) * PHI) * E) + A_BLEED))	7.29e-12	-
+sec.wave4.10	wave4	r_p_fm	2_P	2_P	0.84124854097	0.841248540969768341205	zA129xo	1	compiled	(ipow(G_CAT, 7) + P_NEW)	0.00e+00	-
+sec.wave4.11	wave4	m_n-m_p_MeV	2_P	2_P	1.29333280055	1.29333280055420022227	zA135xo	1	compiled	(((ipow(GAMMA, 4) / fabs(CHAOS)) + P_VAR))	1.18e-11	-
+sec.wave4.12	wave4	mu_p_muN	2a_P	2a_P	2.79285221626	2.79285221626411510657	zT65xo	1	compiled	((PI * (R(1) - ipow(GAMMA, 4))))	0.00e+00	-
+sec.wave4.13	wave4	w0	2_M	2_M	-1.02998129214	-1.029981292137263761	zT78xo	-1	compiled	((((-P_NEW) * PI) / G_CAT))	0.00e+00	-
+sec.wave4.14	wave4	m_c/m_b	2_M	2_M	0.294896071777	0.294896071776548339291	zT83xo	10	compiled	(C_COSM / P_BASE)	0.00e+00	-
+sec.wave4.15	wave4	alpha_s_ratio	2a_M	2a_M	11.8468831924	11.8468831923618867904	zT46xo	0.1	compiled	(ipow(PI, 6) * ipow(GAMMA, 8))	0.00e+00	-
+sec.wave5.0	wave5	Gamma_Z/M_Z	2a_M	2a_M	0.0274897828877	0.0274897828876688350284	zT49xo	100	compiled	(ipow(PHI, 5) / ipow(E, 6))	0.00e+00	-
+sec.wave5.1	wave5	R_ell	2a_M	2a_M	20.7782434235	20.7782434234983929711	zT52xo	0.1	compiled	(ipow(G_CAT, 3) / ipow(GAMMA, 6))	0.00e+00	-
+sec.wave5.2	wave5	R_b	2a_M	2a_M	0.216230145277	0.2162301452768092386	zT56xo	10	compiled	(G_CAT / ipow(PHI, 3))	0.00e+00	-
+sec.wave5.3	wave5	R_c	2a_X	2a_X	0.172108798872	0.172108798872319777799	zA102xo	5.75403	compiled	((-log(R(2))) + (E / PI))	0.00e+00	-
+sec.wave5.4	wave5	A_FB_ell	2_M	2_M	0.017111891994	0.0171118919939693001485	zT87xo	100	compiled	(A_IN / ipow(PI, 4))	7.29e-12	-
+sec.wave5.5	wave5	A_ell_SLD	2a_M	2a_M	0.151189108513	0.151189108513105178644	zT59xo	10	compiled	(ipow(GAMMA, 3) / sqrt(PHI))	0.00e+00	-
+sec.wave5.6	wave5	m_H/m_t	2_X	2_X	0.725706820162	0.725706820162370725542	zT94xo	10	compiled	(A_BLEED * log(R(2)))	7.29e-12	-
+sec.wave5.7	wave5	BR_H_bb	2_M	2_M	0.58090353922	0.58090353922049986615	zT104xo	10	compiled	(C_EFF / sqrt(E))	1.28e-13	-
+sec.wave5.8	wave5	BR_H_WW	2a_X	2a_X	0.215204470482	0.215204470482002019449	zT110xo	10	compiled	(log(PHI) / sqrt(R(5)))	0.00e+00	-
+sec.wave5.9	wave5	BR_H_tautau	2_M	2_M	0.0631937558292	0.063193755829223720255	zT126xo	100	compiled	(ETA_EFF / ipow(E, 2))	0.00e+00	-
+sec.wave5.10	wave5	Y_p_He4	2_M	2_M	0.24478099845	0.244780998449756973434	zT129xo	10	compiled	(THETA_S * sin(R(1)))	1.28e-13	-
+sec.wave5.11	wave5	D_H_ratio	2a_M	2a_M	2.54468258594e-05	2.54468258594170057899e-05	zT62xo	100000	compiled	(R(1) / (ipow(PI, 4) * ipow(E, 6)))	0.00e+00	-
+sec.wave5.12	wave5	Khinchin_K0	2_X	2_X	2.68545118241	2.68545118240533808645	zA97xo	1	compiled	((A_BLEED / log(R(3))) + (R(1) / GAMMA))	7.29e-12	-
+sec.wave5.13	wave5	Glaisher_A	2a_P	2a_P	1.28242792439	1.28242792438719766532	zA72xo	1	compiled	((ipow(G_CAT, 4) * sqrt(R(5))) - (G_CAT / PI))	0.00e+00	-
+sec.wave5.14	wave5	Twin_prime_C2	1_P	T1	0.660078806384	0.660078806383547903643	zA167xo	9.91029	compiled	((ipow(GAMMA, 4) / ipow(G_CAT, 4)) + fabs(S_COSM))	0.00e+00	-
+sec.wave5.15	wave5	Mertens_M	2_X	2_X	0.261493676651	0.261493676651258106234	zA106xo	10	compiled	(((-POOF) * log(R(2))) + (R(1) / E))	0.00e+00	-
+sec.wave5.16	wave5	Dottie_number	2a_P	2a_P	0.739085702447	0.739085702446802601904	zA78xo	6.47857	compiled	(((-ipow(G_CAT, 6)) / ipow(E, 3)) + ipow(G_CAT, 3))	0.00e+00	-
+sec.wave5.17	wave5	Omega_constant	2_T	2_T	0.567144792572	0.567144792572425524967	zA1xo	9.12364	compiled	((SUCTION / ipow(PHI, 4)) + sin(GAMMA))	9.34e-12	-
+sec.wave5.18	wave5	Conway_lambda	2a_X	2a_X	1.30357897627	1.30357897626683347312	zA113xo	1	compiled	((ipow(G_CAT, 5) * log(R(3))) + (PHI / E))	0.00e+00	-
+sec.wave5.19	wave5	Plastic_number	2a_P	2a_P	1.32472249606	1.32472249606022800673	zA83xo	1	compiled	((((-ipow(G_CAT, 3)) * PI) * GAMMA) + E)	0.00e+00	-
+sec.wave5.20	wave5	Landau_Ramanujan	2a_P	2a_P	0.764236499198	0.764236499197952171426	zA88xo	6.47857	compiled	(((-R(1)) / (ipow(G_CAT, 3) * ipow(PI, 5))) + ipow(G_CAT, 3))	0.00e+00	-
+sec.wave5.21	wave5	Laplace_limit	2_P	2_P	0.663147995736	0.663147995736046585525	zA168xo	4.97871	compiled	((ipow(G_CAT, 8) * C_COSM) + PSI_CON)	0.00e+00	-
+sec.wave6.0	wave6	zeta_5	2a_P	2a_P	1.03693156894	1.036931568941913411	zA94xo	1	compiled	((PI / R(3)) - ipow(PI, -4))	0.00e+00	-
+sec.wave6.1	wave6	zeta_7	2a_P	2a_P	1.00835100217	1.00835100216533654009	zA99xo	1	compiled	(((-sqrt(R(2))) * cos(R(1))) + sqrt(PI))	0.00e+00	-
+sec.wave6.2	wave6	Levy_constant	2_P	2_P	3.27582078433	3.2758207843311129919	zA174xo	1	compiled	((PSI_CON * P_BASE) + PI)	0.00e+00	-
+sec.wave6.3	wave6	Erdos_Borwein	2_P	2_P	1.6066604083	1.60666040829712792259	zA179xo	1	compiled	((sqrt(R(2)) / ipow(G_CAT, 6)) - B_IN)	1.28e-13	-
+sec.wave6.4	wave6	Bernstein	2a_P	2a_P	0.280169621531	0.280169621530890641976	zA102xo	10	compiled	((((-ipow(GAMMA, 5)) * PHI) / E) + (R(1) / PI))	0.00e+00	-
+sec.wave6.5	wave6	Backhouse	2a_P	2a_P	1.45607392973	1.456073929734103763	zA107xo	1	compiled	((sqrt(PI) / R(3)) + (E / PI))	0.00e+00	-
+sec.wave6.6	wave6	Viswanath	2a_P	2a_P	1.13198932424	1.13198932423813612496	zA112xo	1	compiled	(((PI * GAMMA) / ipow(PHI, 3)) + ipow(G_CAT, 4))	0.00e+00	-
+sec.wave6.7	wave6	Kepler_Bouwkamp	2a_X	2a_X	0.114940804099	0.114940804098952180917	zA120xo	9.66671	compiled	(((-GAMMA) * log(R(2))) + (PHI / PI))	0.00e+00	-
+sec.wave6.8	wave6	Sphere_packing_3D	2a_P	2a_P	0.740477333095	0.74047733309494646577	zA117xo	5.91437	compiled	(((sqrt(R(2)) * PHI) / E) - (R(1) / ipow(PI, 2)))	0.00e+00	-
+sec.wave6.9	wave6	Gauss_AGM	2_P	2_P	0.834627854348	0.83462785434817262552	zA207xo	1	compiled	(A_BLEED - P_BASE)	7.29e-12	-
+sec.wave6.10	wave6	Lemniscate	2_P	2_P	2.62209821125	2.62209821124831374533	zA212xo	1	compiled	(((E / PHI) / G_CAT) + B_IN)	1.28e-13	-
+sec.wave6.11	wave6	Hashing_bound	2_P	2_P	0.110027216656	0.1100272166564133803	zA217xo	4.75533	compiled	(((-ipow(G_CAT, 7)) * sqrt(R(3))) + A_BLEED)	7.29e-12	-
+sec.wave6.12	wave6	von_Karman	2_M	2_M	0.39990834156	0.399908341559567958857	zT132xo	10	compiled	(A_BLEED / ipow(PHI, 2))	7.29e-12	-
+sec.wave6.13	wave6	Madelung_NaCl	2a_P	2a_P	1.74756492763	1.74756492762757825179	zA122xo	1	compiled	((E / R(3)) + sin(R(1)))	0.00e+00	-
+sec.wave6.14	wave6	Madelung_CsCl	2_P	2_P	1.76307824448	1.76307824447636620065	zA222xo	1	compiled	((ipow(G_CAT, 8) * C_COSM) + sqrt(R(3)))	0.00e+00	-
+sec.wave6.15	wave6	Methane_angle	2a_P	2a_P	109.470554225	109.470554225389896934	zA125xo	0.01	compiled	((ipow(E, 4) / ipow(G_CAT, 7)) + (E * PI))	0.00e+00	-
+sec.wave6.16	wave6	O_N_electronegativity	2a_X	2a_X	0.60889051172	0.608890511720404932646	zA125xo	8.43027	compiled	(exp((-R(4))) + ipow(G_CAT, 6))	0.00e+00	-
+sec.wave6.17	wave6	Water_max_density_C	2_X	2_X	3.98009220325	3.98009220325191849185	zT111xo	1	compiled	(log(PI) / C_FACTOR)	1.28e-13	-
+sec.wave6.18	wave6	Perc_sq_site	2_P	2_P	0.592063752985	0.592063752985289128551	zA225xo	7.72184	compiled	(((-C_COSM) * sin(R(1))) + ipow(G_CAT, 5))	0.00e+00	-
+sec.wave6.19	wave6	Polya_3D_return	2a_T	2a_T	0.340534102249	0.340534102248765225494	zA25xo	5.61787	compiled	((sqrt(PI) / R(2)) - sin(GAMMA))	2.32e-13	-
+sec.wave6.20	wave6	Random_walk_CN	2_P	2_P	1.17662632	1.17662631999734499256	zA230xo	1	compiled	((ipow(G_CAT, 7) / K) - ipow(GAMMA, 4))	0.00e+00	-
+sec.wave6.21	wave6	Nats_per_bit	2_T	2_T	1.44268682487	1.44268682487047777171	zA76xo	1	compiled	(((-ETA_EFF) * cos(PHI)) + ipow(G_CAT, -4))	1.90e-11	-
+sec.wave7.0	wave7	Apery_zeta3_w7	2_P	2_P	1.20205937503	1.20205937503204266425	zA240xo	1	compiled	((ipow(GAMMA, 3) / THETA_S) + ipow(G_CAT, 7))	1.28e-13	-
+sec.wave7.1	wave7	Soldner	0	-	1.45136732208	1.45136732208322818158	-	0	literal (tier 0): resistor ratio, no computation	((sqrt(R(5)) / R(2)) + (R(1) / R(3)))	0.00e+00	-
+sec.wave7.2	wave7	Mills	2a_P	2a_P	1.30637926572	1.30637926571849201515	zA130xo	1	compiled	(((ipow(GAMMA, 3) * PHI) / E) + ipow(G_CAT, -2))	0.00e+00	-
+sec.wave7.3	wave7	Sierpinski_const	2_P	2_P	2.58497619567	2.58497619567415470821	zA246xo	1	compiled	((ipow(PHI, 3) / R(2)) + ETA_EFF)	0.00e+00	-
+sec.wave7.4	wave7	Niven	2a_P	2a_P	1.70521684073	1.70521684072758366072	zA135xo	1	compiled	((R(1) / (ipow(G_CAT, 3) * sqrt(E))) + G_CAT)	0.00e+00	-
+sec.wave7.5	wave7	Artin	2_P	2_P	0.373973996494	0.373973996494494021565	zA251xo	10	compiled	((C_EFF / ipow(PHI, 5)) + C_FACTOR)	1.28e-13	-
+sec.wave7.6	wave7	Hafner_Sarnak	2a_X	2a_X	0.607936873034	0.607936873033591295941	zA130xo	8.36418	compiled	((log(R(2)) / ipow(E, 4)) + (PHI / E))	0.00e+00	-
+sec.wave7.7	wave7	Porter	2a_P	2a_P	1.46707855543	1.46707855543179277696	zA140xo	1	compiled	((R(1) / (PI * ipow(PHI, 4))) + ipow(G_CAT, -4))	0.00e+00	-
+sec.wave7.8	wave7	Thue_Morse	2_P	2_P	0.412454247255	0.412454247254530768208	zA256xo	10	compiled	((C_EFF / (E * PI)) + P_NEW)	1.28e-13	-
+sec.wave7.9	wave7	MRB	2_P	2_P	0.187860337886	0.187860337885931347017	zA261xo	10	compiled	((C_FACTOR / ipow(PHI, 4)) + ipow(PHI, -4))	1.28e-13	-
+sec.wave7.10	wave7	Gauss_Kuzmin	2a_P	2a_P	0.303659737366	0.303659737366154923596	zA145xo	10	compiled	((GAMMA / (E * PI)) + ipow(PHI, -3))	0.00e+00	-
+sec.wave7.11	wave7	Universal_parabolic	2_P	2_P	2.29565981671	2.29565981671024189848	zA266xo	1	compiled	((B_IN / ipow(G_CAT, 7)) + ipow(G_CAT, 2))	1.28e-13	-
+sec.wave7.12	wave7	Lieb_square_ice	2_P	2_P	1.53954076651	1.53954076651375809214	zA271xo	1	compiled	((B_IN / ipow(G_CAT, 4)) + K)	1.28e-13	-
+sec.wave7.13	wave7	Komornik_Loreti	2_P	2_P	1.78723172428	1.78723172428146272824	zA277xo	1	compiled	(((PI / E) * A_BLEED) + GAMMA)	7.29e-12	-
+sec.wave7.14	wave7	Bloch_Landau	2a_P	2a_P	0.543302147803	0.543302147803381605632	zA150xo	9.34028	compiled	((R(1) / (ipow(G_CAT, 2) * sqrt(R(5)))) + ipow(PI, -4))	0.00e+00	-
+sec.wave7.15	wave7	Golden_angle_deg	2a_T	2a_T	137.506018803	137.506018803112886287	zA41xo	0.01	compiled	(((PHI / PI) / cos(PHI)) + ipow(E, 5))	1.90e-11	-
+sec.wave7.16	wave7	Ising3D_eta	2a_P	2a_P	0.0364081939971	0.0364081939971310737317	zA155xo	100	compiled	((sqrt(PHI) / ipow(PI, 5)) + (R(1) / ipow(PI, 3)))	0.00e+00	-
+sec.wave7.17	wave7	Ising3D_alpha	2_P	2_P	0.110048727418	0.110048727417903491999	zA282xo	10	compiled	(SUCTION - ipow(GAMMA, 6))	9.34e-12	-
+sec.wave7.18	wave7	Ising3D_delta	2_M	2_M	4.78874675354	4.78874675354093669657	zT135xo	1	compiled	(sqrt(R(5)) / ETA_EFF)	0.00e+00	-
+sec.wave7.19	wave7	XY_nu	2a_P	2a_P	0.6716576688	0.671657668800388019223	zA160xo	7.07294	compiled	(ipow(G_CAT, 4) - (R(1) / ipow(PI, 3)))	0.00e+00	-
+sec.wave7.20	wave7	XY_eta	2a_M	2a_M	0.0381402646529	0.0381402646529000295686	zT65xo	100	compiled	((ipow(GAMMA, 5) * PHI) / E)	0.00e+00	-
+sec.wave7.21	wave7	Heisenberg_nu	2a_M	2a_M	0.711160729251	0.711160729251270398775	zT68xo	10	compiled	(cos(R(1)) / sqrt(GAMMA))	0.00e+00	-
+sec.wave7.22	wave7	Heisenberg_eta	2_M	2_M	0.0379809106513	0.0379809106512849849776	zT138xo	100	compiled	(C_COSM / sqrt(E))	0.00e+00	-
+sec.wave7.23	wave7	Perc_honeycomb_site	2a_X	2a_X	0.696990747943	0.696990747943019468781	zA135xo	7.69264	compiled	((PI / (R(3) * PHI)) + exp((-R(3))))	0.00e+00	-
+sec.wave7.24	wave7	Perc_SC_bond	2a_X	2a_X	0.248790077782	0.24879007778210539987	zA140xo	10	compiled	((ipow(G_CAT, 7) / E) + exp((-R(3))))	0.00e+00	-
+sec.wave7.25	wave7	Perc_SC_site	2a_T	2a_T	0.311597567594	0.311597567593502906071	zA66xo	10	compiled	((cos(PHI) / ipow(G_CAT, 2)) + (R(1) / E))	1.90e-11	-
+sec.wave7.26	wave7	m_u/m_d	2a_P	2a_P	0.460031158055	0.460031158054808329285	zA165xo	2.87446	compiled	(sqrt(R(3)) - sqrt(PHI))	0.00e+00	-
+sec.wave7.27	wave7	m_s/m_d	2a_P	2a_P	20.1965444521	20.1965444521004897308	zA168xo	0.1	compiled	(ipow(E, 3) + ipow(GAMMA, 4))	0.00e+00	-
+sec.wave7.28	wave7	m_tau/m_mu	2a_P	2a_P	16.816910212	16.8169102120244291394	zA173xo	0.1	compiled	(((ipow(PI, 2) * E) / PHI) + ipow(PHI, -3))	0.00e+00	-
+sec.wave8.0	wave8	|V_ud|	2_X	2_X	0.973706664445	0.97370666444462773356	zA116xo	1	compiled	(A_IN - log(R(2)))	7.29e-12	-
+sec.wave8.1	wave8	|V_cd|	2_M	2_M	0.221007804791	0.221007804791325990535	zT141xo	10	compiled	(sqrt(GAMMA) * THETA_S)	1.28e-13	-
+sec.wave8.2	wave8	|V_cs|	2_M	2_M	0.974913485313	0.974913485313155605736	zT144xo	1	compiled	((PHI * GAMMA) / P_VAR)	1.18e-11	-
+sec.wave8.3	wave8	delta_CP_PMNS	2a_P	2a_P	3.86818853633	3.86818853632834737475	zA178xo	1	compiled	(ipow(PHI, 3) - (R(1) / E))	0.00e+00	-
+sec.wave8.4	wave8	m_t/m_b	2_M	2_M	40.9224128026	40.9224128025541484463	zT176xo	0.1	compiled	(ipow(PI, 4) * K)	0.00e+00	-
+sec.wave8.5	wave8	BR_Z_ee	2a_X	2a_X	0.0336654326478	0.0336654326477978835796	zT145xo	100	compiled	(ipow(GAMMA, 6) / log(R(3)))	0.00e+00	-
+sec.wave8.6	wave8	BR_Z_had	2_T	2_T	0.699175038098	0.699175038098443587262	zA101xo	9.12364	compiled	(sin(GAMMA) + POOF)	2.32e-13	-
+sec.wave8.7	wave8	BR_Z_inv	2_M	2_M	0.199977541122	0.199977541121740537159	zT184xo	10	compiled	((R(1) / R(3)) / A_IN)	7.29e-12	-
+sec.wave8.8	wave8	BR_H_ZZ	2a_X	2a_X	0.0264238813955	0.026423881395489846542	zT149xo	100	compiled	(R(1) / (ipow(E, 4) * log(R(2))))	0.00e+00	-
+sec.wave8.9	wave8	BR_H_gg	2a_P	2a_P	0.0818227491398	0.0818227491398247771078	zA183xo	10	compiled	(ipow(PHI, -4) - ipow(GAMMA, 5))	0.00e+00	-
+sec.wave8.10	wave8	BR_H_cc	2_M	2_M	0.0289254561352	0.0289254561351510347634	zT188xo	100	compiled	(SUCTION / (PI * PHI))	9.34e-12	-
+sec.wave8.11	wave8	BR_H_gamgam	2_M	2_M	0.00231601446259	0.00231601446259229219829	zT217xo	1000	compiled	(ipow(GAMMA, 6) * C_COSM)	0.00e+00	-
+sec.wave8.12	wave8	BR_H_Zgam	2_M	2_M	0.00152585676719	0.00152585676719420715559	zT220xo	1000	compiled	(ETA_EFF / ipow(PI, 5))	0.00e+00	-
+sec.wave8.13	wave8	He4_binding_MeV	2a_M	2a_M	28.3007169366	28.3007169365691710582	zT71xo	0.1	compiled	((PI * GAMMA) / ipow(GAMMA, 5))	0.00e+00	-
+sec.wave8.14	wave8	Triton_binding_MeV	2a_P	2a_P	8.48080016263	8.48080016263455632904	zA188xo	0.1	compiled	(ipow(E, 2) + (R(1) / G_CAT))	0.00e+00	-
+sec.wave8.15	wave8	Deuteron_mu_muN	2_P	2_P	0.857391418128	0.85739141812803830754	zA287xo	1	compiled	(ipow(G_CAT, 4) + POOF)	0.00e+00	-
+sec.wave8.16	wave8	S_8	2_M	2_M	0.832014434713	0.832014434713420060756	zT223xo	1	compiled	(PSI_CON / sqrt(GAMMA))	0.00e+00	-
+sec.wave8.17	wave8	z_reion	2a_M	2a_M	7.67199242237	7.67199242236670311259	zT74xo	1	compiled	(ipow(E, 3) / ipow(PHI, 2))	0.00e+00	-
+sec.wave8.18	wave8	XY_beta	2_M	2_M	0.348587599696	0.348587599696340143387	zT226xo	10	compiled	(PSI_CON / (PI * GAMMA))	0.00e+00	-
+sec.wave8.19	wave8	XY_gamma	2_P	2_P	1.31773171208	1.31773171207952336697	zA292xo	1	compiled	(PHI - P_NEW)	0.00e+00	-
+sec.wave8.20	wave8	Heisenberg_beta	2a_P	2a_P	0.36913818105	0.369138181050168409609	zA193xo	9.66671	compiled	((PHI / PI) - ipow(PHI, -4))	0.00e+00	-
+sec.wave8.21	wave8	Heisenberg_gamma	2a_X	2a_X	1.39589792348	1.39589792348436086847	zA153xo	1	compiled	(sqrt(R(2)) - exp((-R(4))))	0.00e+00	-
+sec.wave8.22	wave8	Perc_BCC_bond	2a_M	2a_M	0.180315421433	0.18031542143313228665	zT77xo	10	compiled	(ipow(G_CAT, 7) / R(3))	0.00e+00	-
+sec.wave8.23	wave8	Perc_FCC_site	2a_X	2a_X	0.197998050097	0.197998050096720641433	zA156xo	10	compiled	((R(1) / R(3)) - exp((-R(2))))	0.00e+00	-
+sec.wave8.24	wave8	Perc3D_nu	2_T	2_T	0.876717005814	0.87671700581447462936	zA104xo	1	compiled	(sin(GAMMA) - CHAOS)	7.29e-12	-
+sec.wave8.25	wave8	Perc3D_beta	2a_M	2a_M	0.418419595795	0.418419595794978958758	zT80xo	10	compiled	(sqrt(PI) / ipow(PHI, 3))	0.00e+00	-
+sec.wave8.26	wave8	Perc3D_gamma	2a_P	2a_P	1.7938023212	1.79380232119942797941	zA198xo	1	compiled	(ipow(GAMMA, 7) + sqrt(PI))	0.00e+00	-
+sec.wave8.27	wave8	Brun_B2	2a_P	2a_P	1.90221277681	1.90221277681146095945	zA203xo	1	compiled	(ipow(GAMMA, 2) + (E * GAMMA))	0.00e+00	-
+sec.wave8.28	wave8	Copeland_Erdos	0	-	0.235702260396	0.235702260395515841461	-	0	literal (tier 0): resistor ratio, no computation	((R(1) / R(3)) / sqrt(R(2)))	0.00e+00	-
+sec.wave8.29	wave8	Erdos_Tenenbaum_Ford	2a_M	2a_M	0.086006113748	0.0860061137480346019817	zT83xo	10	compiled	(ipow(GAMMA, 3) / sqrt(R(5)))	0.00e+00	-
+sec.wave8.30	wave8	Foias_alpha	2a_P	2a_P	1.18706884175	1.18706884175363713331	zA208xo	1	compiled	((E * GAMMA) - ipow(PHI, -2))	0.00e+00	-
+sec.wave8.31	wave8	Madelung_ZnS	2_M	2_M	1.63825434044	1.63825434043919597102	zT229xo	1	compiled	((E * GAMMA) / C_EFF)	1.28e-13	-
+sec.wave8.32	wave8	Madelung_CaF2	2a_X	2a_X	2.51925005758	2.51925005758240070568	zA159xo	1	compiled	(ipow(G_CAT, -4) + log(R(3)))	0.00e+00	-
+sec.wave8.33	wave8	Madelung_TiO2	2a_P	2a_P	2.40802782272	2.40802782272016816195	zA213xo	1	compiled	(ipow(G_CAT, 2) + (E * GAMMA))	0.00e+00	-
+sec.wave8.34	wave8	Ice_Ih_density	2a_T	2a_T	0.916758792182	0.916758792182093104628	zT73xo	1	compiled	((sin(GAMMA) * E) / PHI)	2.32e-13	-
+sec.wave8.35	wave8	H2O_bond_angle	2a_M	2a_M	104.440542579	104.440542579116204223	zT86xo	0.01	compiled	(ipow(E, 3) / ipow(GAMMA, 3))	0.00e+00	-
+sec.wave8.36	wave8	Lorenz_dim	2_P	2_P	2.05999813872	2.05999813872415485231	zA297xo	1	compiled	(sqrt(PHI) + B_IN)	1.28e-13	-
+sec.wave8.37	wave8	Henon_dim	2_M	2_M	1.26092895287	1.2609289528725577934	zT234xo	1	compiled	(P_VAR / sqrt(GAMMA))	1.18e-11	-
+sec.wave8.38	wave8	Apollonian_dim	2a_X	2a_X	1.305585467	1.30558546700088205707	zT166xo	1	compiled	(log(R(3)) / sin(R(1)))	0.00e+00	-
+sec.wave8.39	wave8	SAW_mu_sq	2a_P	2a_P	2.63770983034	2.63770983033778111458	zA218xo	1	compiled	(sqrt(PI) + (E / PI))	0.00e+00	-
+sec.wave8.40	wave8	SAW_nu_3D	2a_T	2a_T	0.587522402122	0.587522402122499551151	zA78xo	9.21467	compiled	(cos(R(1)) - cos(PHI))	1.90e-11	-
+sec.wave8.41	wave8	SAW_gamma_3D	2a_P	2a_P	1.1596535662	1.15965356619951909462	zA223xo	1	compiled	(ipow(G_CAT, -2) - ipow(PI, -3))	0.00e+00	-
+sec.wave8.42	wave8	Potts3_beta	0	-	0.111111111111	0.11111111111111111111	-	0	literal (tier 0): resistor ratio, no computation	(R(1) / R(9))	0.00e+00	-
+sec.wave8.43	wave8	KT_T/J	2_P	2_P	0.893491415693	0.893491415693100248885	zA302xo	1	compiled	(A_BLEED - POOF)	7.29e-12	-
+sec.wave8.44	wave8	Quark_condensate	0	-	0.25	0.25	-	0	literal (tier 0): resistor ratio, no computation	(R(1) / R(4))	0.00e+00	-
+sec.wave8.45	wave8	Figure8_knot_vol	2a_T	2a_T	2.02989038851	2.02989038851291512373	zA80xo	1	compiled	(ipow(G_CAT, -2) + cos(GAMMA))	3.40e-12	-
+sec.wave8.46	wave8	Bessel_J0_zero1	2_X	2_X	2.40476177607	2.40476177607479837993	zT136xo	1	compiled	(A_IN / log(R(2)))	7.29e-12	-
+sec.wave8.47	wave8	Airy_Ai_zero1	2_M	2_M	2.33807106643	2.33807106642855254126	zT237xo	1	compiled	((R(1) / G_CAT) / ETA_EFF)	0.00e+00	-
+sec.wave8.48	wave8	gamma_2_Stieltjes	2a_P	2a_P	-0.00968634527048	-0.00968634527048421876405	zA228xo	-44.8502	compiled	(ipow(PI, -2) - ipow(GAMMA, 4))	0.00e+00	-
+sec.wave8.49	wave8	First_Riemann_zero	2a_M	2a_M	14.1344904113	14.1344904113301993104	zT89xo	0.1	compiled	(E / ipow(GAMMA, 3))	0.00e+00	-
+sec.wave8.50	wave8	Spanning_tree_sq	2a_X	2a_X	1.16607835614	1.16607835614331212628	zA169xo	1	compiled	(ipow(GAMMA, 7) + log(PI))	0.00e+00	-
+sec.wave8.51	wave8	Hard_sq_entropy	2_M	2_M	1.5031151842	1.5031151842015721985	zT240xo	1	compiled	((E * GAMMA) * P_VAR)	1.18e-11	-
+sec.wave9.0	wave9	|V_tb|	2a_T	2a_T	0.999076519261	0.999076519261228766994	zT95xo	1	compiled	(cos((R(1) / E)) / (PHI * GAMMA))	1.34e-11	-
+sec.wave9.1	wave9	Omega_r	2a_M	2a_M	9.16772887973e-05	9.16772887973484647226e-05	zT92xo	10000	compiled	(ipow(GAMMA, 6) / ipow(E, 6))	0.00e+00	-
+sec.wave9.2	wave9	O4_nu	2a_M	2a_M	0.748893053962	0.74889305396194567584	zT95xo	10	compiled	((GAMMA / G_CAT) / sin(R(1)))	0.00e+00	-
+sec.wave9.3	wave9	Gluon_condensate	2_X	2_X	0.0128328669035	0.0128328669034706691761	zA140xo	79.5067	compiled	(C_COSM - exp((-R(3))))	0.00e+00	-
+sec.wave9.4	wave9	Mandelbrot_boundary	2a_P	2a_P	2	2	zA233xo	1	compiled	(PHI + (R(1) / ipow(PHI, 2)))	0.00e+00	-
+sec.wave9.5	wave9	Sierpinski_dim	2a_X	2a_X	1.58496250072	1.58496250072115618147	zT176xo	1	compiled	(log(R(3)) / log(R(2)))	0.00e+00	-
+sec.wave9.6	wave9	gamma1_Stieltjes	2a_T	2a_T	-0.0727409450705	-0.0727409450705392210802	zA109xo	-5.4607	compiled	(ipow(G_CAT, 2) + cos(E))	3.45e-12	-
+sec.wave10.0	wave10	m_mu/m_e	2a_P	2a_P	206.769638597	206.769638597121722362	zT238xo	0.01	compiled	((ipow(PI, 3) - ipow(G_CAT, 2)) * ipow(PHI, 4))	0.00e+00	-
+sec.wave10.1	wave10	(g-2)/2_electron	2a_X	2a_X	0.00115965996488	0.00115965996487795127037	zT179xo	1000	compiled	(((E / PI) - log(R(2))) / ipow(E, 5))	0.00e+00	-
+sec.wave10.2	wave10	Logistic_accum	2a_T	2a_T	3.56995515555	3.56995515555109972465	zA134xo	1	compiled	((E * sqrt(E)) + cos(E))	3.45e-12	-
+sec.wave10.3	wave10	Cahen_constant	2_P	2_P	0.643379488008	0.643379488007727740788	zT307xo	10	compiled	((C_EFF + K) * ETA_EFF)	1.28e-13	-
+sec.wave10.4	wave10	Reciprocal_Fib	2_P	2_P	3.37262879876	3.37262879875533549447	zT316xo	1	compiled	((POOF + C_COSM) / ipow(GAMMA, 5))	0.00e+00	-
+sec.wave10.5	wave10	Water_triple_K	2_T	2_T	273.169147844	273.169147844402997183	zT126xo	0.01	compiled	((ipow(PI, 5) * sin((PI / PHI))) * C_EFF)	2.61e-12	-
+sec.wave10.6	wave10	CO2_bond_angle	2_P	2_P	179.998662819	179.998662819459545603	zA325xo	0.01	compiled	((ipow(PI, 4) / cos(R(1))) - C_FACTOR)	1.28e-13	-
+sec.wave10.7	wave10	SAW_connective_hex	2_P	2_P	1.8477586642	1.84775866420283322222	zA330xo	1	compiled	((PI / A_IN) - ipow(GAMMA, 6))	7.29e-12	-
+sec.wave10.8	wave10	Bessel_J1_zero1	2_P	2_P	3.83170652124	3.83170652123606683692	zA336xo	1	compiled	((PSI_CON / G_CAT) + PI)	0.00e+00	-
+sec.wave10.9	wave10	eta_baryon_photon	2_M	2_M	6.13974953543e-10	6.13974953542555363602e-10	zT243xo	1e+10	compiled	(ipow(POOF, 11) / (PI * GAMMA))	0.00e+00	-
+sec.lepton_ratios.0	lepton_ratios	m_tau/m_e_lepton	2a_M	2a_M	3477.51317969	3477.51317969453033974	zT99xo	0.001	compiled	(((R(9) * PI) * ipow(PHI, 10)))	0.00e+00	-
+sec.lepton_ratios.1	lepton_ratios	m_tau/m_mu_lepton	2a_X	2a_X	16.8172849931	16.8172849931228373683	zT186xo	0.1	compiled	(((ipow(PI, 3) - PI) / (pow(PI, xexp(T::lit("0.333333333333"), 1, 3)) + ipow(GAMMA, 3))))	0.00e+00	-
+sec.lepton_ratios.2	lepton_ratios	m_mu/m_e_lepton	2a_X	2a_X	206.768281923	206.768281922726859801	zT202xo	0.01	compiled	((((R(35) * ipow(PHI, -5)) + R(145)) * pow(E, xexp(T::lit("0.333333333333"), 1, 3))))	0.00e+00	-
+sec.lepton_ratios.3	lepton_ratios	Chain_consistency_%	2a_X	2a_X	0.00667301746026	0.00667301746026013130609	zT209xo	1000	compiled	(((fabs(((((((ipow(PI, 3) - PI) / (pow(PI, xexp(T::lit("0.333333333333"), 1, 3)) + ipow(GAMMA, 3)))) * ((((R(35) * ipow(PHI, -5)) + R(145)) * pow(E, xexp(T::lit("0.333333333333"), 1, 3)))))) - (((R(9) * PI) * ipow(PHI, 10))))) / (((R(9) * PI) * ipow(PHI, 10)))) * R(100)))	0.00e+00	-
+sec.dynamical_systems.0	dynamical_systems	Logistic_R_inf	2a_X	2a_X	3.56994631908	3.5699463190819011359	zT219xo	1	compiled	(((ipow(GAMMA, -3) + ipow(PI, -3)) / (pow(GAMMA, T::lit("-0.25")) + ipow(PI, -1))))	0.00e+00	-
+sec.dynamical_systems.1	dynamical_systems	Ising2D_Tc_J	2a_X	2a_X	2.26918573714	2.26918573713668107598	zT236xo	1	compiled	(((ipow(GAMMA, -3) + pow(PHI, xexp(T::lit("-0.666666666666667"), -2, 3))) / (pow(PI, xexp(T::lit("-0.666666666666667"), -2, 3)) + pow(PI, xexp(T::lit("0.666666666666667"), 2, 3)))))	0.00e+00	-
+sec.dynamical_systems.2	dynamical_systems	Ising3D_beta_dyn	2a_X	2a_X	0.326418971879	0.326418971879140574826	zT252xo	10	compiled	(((pow(E, xexp(T::lit("-0.333333333333333"), -1, 3)) + sqrt(PI)) / (ipow(E, 2) + ipow(PHI, -3))))	0.00e+00	-
+sec.dynamical_systems.3	dynamical_systems	Ising3D_nu_dyn	2a_X	2a_X	0.629970965992	0.629970965992322682507	zT268xo	10	compiled	((((R(1) / GAMMA) - ipow(PI, -3)) / (pow(E, xexp(T::lit("0.666666666666667"), 2, 3)) + pow(PI, T::lit("-0.25")))))	0.00e+00	-
+sec.dynamical_systems.4	dynamical_systems	Henon_Lyapunov	2a_X	2a_X	0.42010876365	0.420108763649887940924	zT284xo	10	compiled	((((PHI * ((GAMMA * sqrt(R(2))) / E)) / log(PI)) * (R(1) - (R(1) / ipow(PI, 4)))))	0.00e+00	-
+sec.neural_architecture.0	neural_architecture	N_Layers	2a_Q	2a_Q	6	6	zQ5xo	-1	compiled	floor((R(2) * PI))	0.00e+00	-
+sec.neural_architecture.1	neural_architecture	N_Lobes	2a_Q	2a_Q	4	4	zA6xo	1	compiled	(floor(PI) + floor(PHI))	0.00e+00	-
+sec.neural_architecture.2	neural_architecture	N_Columns	2a_Q	2a_Q	20	20	zQ19xo	-0.1	compiled	floor(ipow(E, 3))	0.00e+00	-
+sec.neural_architecture.3	neural_architecture	WM_Capacity	2a_Q	2a_Q	7	7	zA20xo	0.829784	compiled	(floor((R(2) * PI)) + R(1))	0.00e+00	-
+sec.neural_architecture.4	neural_architecture	N_Attention_Heads	2a_Q	2a_Q	8	8	zQ24xo	-1	compiled	floor((E * PI))	0.00e+00	-
+sec.neural_architecture.5	neural_architecture	N_Drives	2a_Q	2a_Q	9	9	zQ28xo	-0.1	compiled	floor(ipow(PI, 2))	0.00e+00	-
+sec.neural_architecture.6	neural_architecture	Binding_Window	2a_Q	2a_Q	9	9	zQ28xo	-0.1	compiled	floor(ipow(PI, 2))	0.00e+00	-
+sec.neural_architecture.7	neural_architecture	Seq_Predict_Period	2a_Q	2a_Q	4	4	zA29xo	1	compiled	(floor(PI) + R(1))	0.00e+00	-
+sec.neural_architecture.8	neural_architecture	Lateral_Inhibition	2a_M	2a_M	0.61803398875	0.618033988749894848207	zT102xo	10	compiled	(R(1) / PHI)	0.00e+00	-
+sec.neural_architecture.9	neural_architecture	Spike_Threshold	2a_P	2a_P	0.61803398875	0.618033988749894848207	zT247xo	10	compiled	(PHI / (R(1) + PHI))	0.00e+00	-
+sec.neural_architecture.10	neural_architecture	Prediction_Gain	2a_M	2a_M	0.865255979432	0.865255979432265087215	zT105xo	1	compiled	(E / PI)	0.00e+00	-
+sec.neural_architecture.11	neural_architecture	TD_BU_Ratio	2a_M	2a_M	1.61803398875	1.61803398874989484821	zT108xo	1	compiled	PHI	0.00e+00	-
+sec.neural_architecture.12	neural_architecture	Recurrent_Decay	2a_M	2a_M	0.367879441171	0.367879441171442321583	zT111xo	10	compiled	(R(1) / E)	0.00e+00	-
+sec.neural_architecture.13	neural_architecture	Hebbian_LR	2a_M	2a_M	0.183733452598	0.183733452598307980754	zT114xo	10	compiled	(GAMMA / PI)	0.00e+00	-
+sec.neural_architecture.14	neural_architecture	Consciousness_Threshold	2a_M	2a_M	11.0901699437	11.0901699437494742411	zT117xo	0.1	compiled	ipow(PHI, 5)	0.00e+00	-
+sec.neural_architecture.15	neural_architecture	Consciousness_Gate	2a_P	2a_P	0.61803398875	0.618033988749894848207	zT247xo	10	compiled	(PHI / (R(1) + PHI))	0.00e+00	-
+sec.neural_architecture.16	neural_architecture	Sync_Decay	2a_M	2a_M	0.38196601125	0.381966011250105151793	zT120xo	10	compiled	(R(1) / ipow(PHI, 2))	0.00e+00	-
+sec.neural_architecture.17	neural_architecture	Cross_Modal_Gain	2a_M	2a_M	0.865255979432	0.865255979432265087215	zT105xo	1	compiled	(E / PI)	0.00e+00	-
+sec.neural_architecture.18	neural_architecture	Circulant_Spectral_R	2a_M	2a_M	0.61803398875	0.618033988749894848207	zT102xo	10	compiled	(R(1) / PHI)	0.00e+00	-
+sec.neural_architecture.19	neural_architecture	EEG_1_over_f	2a_M	2a_M	1.61803398875	1.61803398874989484821	zT108xo	1	compiled	PHI	0.00e+00	-
+sec.neural_architecture.20	neural_architecture	Layer_1_thickness	2a_P	2a_P	0.404508497187	0.404508497187473712052	zT255xo	10	compiled	((R(1) / ipow(PHI, 1)) / ((((((R(1)/ipow(PHI,1)) + R(1)/ipow(PHI,2)) + R(1)/ipow(PHI,3)) + R(1)/ipow(PHI,4)) + R(1)/ipow(PHI,5)) + R(1)/ipow(PHI,6)))	0.00e+00	-
+sec.neural_architecture.21	neural_architecture	Layer_2_thickness	2a_P	2a_P	0.25	0.25	zT273xo	10	compiled	((R(1) / ipow(PHI, 2)) / ((((((R(1)/ipow(PHI,1)) + R(1)/ipow(PHI,2)) + R(1)/ipow(PHI,3)) + R(1)/ipow(PHI,4)) + R(1)/ipow(PHI,5)) + R(1)/ipow(PHI,6)))	0.00e+00	-
+sec.neural_architecture.22	neural_architecture	Layer_3_thickness	2a_P	2a_P	0.154508497187	0.154508497187473712052	zT276xo	10	compiled	((R(1) / ipow(PHI, 3)) / ((((((R(1)/ipow(PHI,1)) + R(1)/ipow(PHI,2)) + R(1)/ipow(PHI,3)) + R(1)/ipow(PHI,4)) + R(1)/ipow(PHI,5)) + R(1)/ipow(PHI,6)))	0.00e+00	-
+sec.neural_architecture.23	neural_architecture	Layer_4_thickness	2a_P	2a_P	0.0954915028125	0.0954915028125262879482	zT279xo	10	compiled	((R(1) / ipow(PHI, 4)) / ((((((R(1)/ipow(PHI,1)) + R(1)/ipow(PHI,2)) + R(1)/ipow(PHI,3)) + R(1)/ipow(PHI,4)) + R(1)/ipow(PHI,5)) + R(1)/ipow(PHI,6)))	0.00e+00	-
+sec.neural_architecture.24	neural_architecture	Layer_5_thickness	2a_P	2a_P	0.0590169943749	0.0590169943749474241036	zT282xo	100	compiled	((R(1) / ipow(PHI, 5)) / ((((((R(1)/ipow(PHI,1)) + R(1)/ipow(PHI,2)) + R(1)/ipow(PHI,3)) + R(1)/ipow(PHI,4)) + R(1)/ipow(PHI,5)) + R(1)/ipow(PHI,6)))	0.00e+00	-
+sec.neural_architecture.25	neural_architecture	Layer_6_thickness	2a_P	2a_P	0.0364745084376	0.036474508437578863848	zT285xo	100	compiled	((R(1) / ipow(PHI, 6)) / ((((((R(1)/ipow(PHI,1)) + R(1)/ipow(PHI,2)) + R(1)/ipow(PHI,3)) + R(1)/ipow(PHI,4)) + R(1)/ipow(PHI,5)) + R(1)/ipow(PHI,6)))	0.00e+00	-
+sec.consciousness_model.0	consciousness_model	Metatron_Spheres	0	-	13	13	-	0	literal (tier 0): resistor ratio, no computation	R(13)	0.00e+00	-
+sec.consciousness_model.1	consciousness_model	Metatron_Pathways	0	-	27	27	-	0	literal (tier 0): resistor ratio, no computation	R(27)	0.00e+00	-
+sec.consciousness_model.2	consciousness_model	Consciousness_Gate	2a_P	2a_P	0.61803398875	0.618033988749894848207	zT247xo	10	compiled	(PHI / (R(1) + PHI))	0.00e+00	-
+sec.consciousness_model.3	consciousness_model	Resonance_Persistence	2a_M	2a_M	0.865255979432	0.865255979432265087215	zT105xo	1	compiled	(E / PI)	0.00e+00	-
+sec.consciousness_model.4	consciousness_model	Resonance_Rate	2_M	2_M	0.212345776239	0.212345776239378422452	zT246xo	10	compiled	(GAMMA / E)	0.00e+00	-
+sec.consciousness_model.5	consciousness_model	Resonance_Eq_Factor	2a_P	2a_P	1.57591984672	1.57591984671879097664	zT288xo	1	compiled	(((GAMMA * PI) / (E * (PI - E))))	0.00e+00	-
+sec.consciousness_model.6	consciousness_model	Ignition_Coherence	2a_P	2a_P	0.392173491588	0.392173491587594411941	zT298xo	10	compiled	(((PHI / (R(1) + PHI))) / (((GAMMA * PI) / (E * (PI - E)))))	0.00e+00	-
+sec.consciousness_model.7	consciousness_model	W_Integration	2a_M	2a_M	1.61803398875	1.61803398874989484821	zT108xo	1	compiled	PHI	0.00e+00	-
+sec.consciousness_model.8	consciousness_model	W_Complexity	2a_P	2a_P	0.61803398875	0.618033988749894848207	zT247xo	10	compiled	(PHI / (R(1) + PHI))	0.00e+00	-
+sec.consciousness_model.9	consciousness_model	W_Binding	2a_M	2a_M	0.865255979432	0.865255979432265087215	zT105xo	1	compiled	(E / PI)	0.00e+00	-
+sec.consciousness_model.10	consciousness_model	W_Phase_Sync	2a_M	2a_M	0.61803398875	0.618033988749894848207	zT102xo	10	compiled	(R(1) / PHI)	0.00e+00	-
+sec.consciousness_model.11	consciousness_model	Hub_coupling	2a_P	2a_P	0.61803398875	0.618033988749894848207	zT247xo	10	compiled	(PHI / (R(1) + PHI))	0.00e+00	-
+sec.consciousness_model.12	consciousness_model	Inner_coupling	2a_M	2a_M	0.38196601125	0.381966011250105151793	zT120xo	10	compiled	(R(1) / ipow(PHI, 2))	0.00e+00	-
+sec.consciousness_model.13	consciousness_model	Radial_coupling	2a_M	2a_M	0.865255979432	0.865255979432265087215	zT105xo	1	compiled	(E / PI)	0.00e+00	-
+sec.consciousness_model.14	consciousness_model	Outer_coupling	2a_M	2a_M	0.61803398875	0.618033988749894848207	zT102xo	10	compiled	(R(1) / PHI)	0.00e+00	-
+sec.consciousness_model.15	consciousness_model	Cross_coupling	2a_M	2a_M	0.577215664902	0.577215664901532860616	zT123xo	10	compiled	GAMMA	0.00e+00	-
+sec.homeostasis.0	homeostasis	Replay_Passes	2a_Q	2a_Q	6	6	zQ5xo	-1	compiled	floor((R(2) * PI))	0.00e+00	-
+sec.homeostasis.1	homeostasis	Homeostatic_Tau	2_M	2_M	3.02092732958	3.02092732958034685753	zT249xo	1	compiled	(R(1) / fabs(CHAOS))	7.29e-12	-
+sec.homeostasis.2	homeostasis	Novelty_Threshold	2a_M	2a_M	0.61803398875	0.618033988749894848207	zT102xo	10	compiled	(R(1) / PHI)	0.00e+00	-
+sec.homeostasis.3	homeostasis	Consolidation_Rate	2a_M	2a_M	0.183733452598	0.183733452598307980754	zT114xo	10	compiled	(GAMMA / PI)	0.00e+00	-
+sec.homeostasis.4	homeostasis	Attention_Inhibition	2_M	2_M	0.78797848921	0.787978489210085888072	zT253xo	10	compiled	B_IN	1.28e-13	-
+sec.homeostasis.5	homeostasis	Cross_Lobe_Coupling	2a_M	2a_M	0.183733452598	0.183733452598307980754	zT114xo	10	compiled	(GAMMA / PI)	0.00e+00	-
+sec.soliton_stdp.0	soliton_stdp	STDP_Tau_Plus_ms	0	-	20	20	-	0	literal (tier 0): resistor ratio, no computation	R(20)	0.00e+00	-
+sec.soliton_stdp.1	soliton_stdp	STDP_Tau_Minus_ms	0	-	20	20	-	0	literal (tier 0): resistor ratio, no computation	R(20)	0.00e+00	-
+sec.soliton_stdp.2	soliton_stdp	Soliton_Width	2_P	2_P	0.866940111505	0.866940111505321160039	zT341xo	1	compiled	(R(1) / (R(1) + POOF))	0.00e+00	-
+sec.soliton_stdp.3	soliton_stdp	STDP_Learning_Rate	2_M	2_M	0.265559386447	0.265559386447141623723	zT260xo	10	compiled	(K * PSI_CON)	0.00e+00	-
+sec.soliton_stdp.4	soliton_stdp	STDP_Asymmetry	2_M	2_M	1.04697363059	1.04697363058755104801	zT263xo	1	compiled	A_BLEED	7.29e-12	-
+sec.soliton_stdp.5	soliton_stdp	Promotion_Threshold	2_P	2_P	0.533057793076	0.533057793075740139993	zA349xo	4.97871	compiled	(R(1) - ETA_EFF)	0.00e+00	-
+sec.soliton_stdp.6	soliton_stdp	Hebbian_Consolidation	2a_M	2a_M	0.183733452598	0.183733452598307980754	zT114xo	10	compiled	(GAMMA / PI)	0.00e+00	-
+sec.soliton_stdp.7	soliton_stdp	Oja_Learning_Rate	2a_M	2a_M	0.183733452598	0.183733452598307980754	zT114xo	10	compiled	(GAMMA / PI)	0.00e+00	-
+sec.soliton_stdp.8	soliton_stdp	Attention_Error_Gain	2a_M	2a_M	0.865255979432	0.865255979432265087215	zT105xo	1	compiled	(E / PI)	0.00e+00	-
+sec.cross_species.0	cross_species	S(Human)	C_S	C_S	0.941270627156	0.941270627156304007634	vSda	2	compiled	(domain_scalar("Neuroscience"))	0.00e+00	-
+sec.cross_species.1	cross_species	Density(Human)	C_S	C_S	76138216.3631	76138216.3631097332836	zT1xo	1e-07	compiled	(T::lit("86000000000") / (fabs((domain_scalar("Neuroscience"))) * T::lit("1200")))	0.00e+00	-
+sec.cross_species.2	cross_species	S(Octopus)	C_S	C_S	0.941270627156	0.941270627156304007634	vSda	2	compiled	(domain_scalar("Neuroscience"))	0.00e+00	-
+sec.cross_species.3	cross_species	Density(Octopus)	C_S	C_S	53119685.8347	53119685.8347277208923	zT6xo	1e-07	compiled	(T::lit("500000000") / (fabs((domain_scalar("Neuroscience"))) * T::lit("10")))	0.00e+00	-
+sec.cross_species.4	cross_species	S(Corvid)	C_S	C_S	0.941270627156	0.941270627156304007634	vSda	2	compiled	(domain_scalar("Neuroscience"))	0.00e+00	-
+sec.cross_species.5	cross_species	Density(Corvid)	C_S	C_S	212478743.339	212478743.338910883569	zT9xo	1e-08	compiled	(T::lit("2000000000") / (fabs((domain_scalar("Neuroscience"))) * T::lit("10")))	0.00e+00	-
+sec.cross_species.6	cross_species	S(Honeybee)	C_S	C_S	0.941270627156	0.941270627156304007634	vSda	2	compiled	(domain_scalar("Neuroscience"))	0.00e+00	-
+sec.cross_species.7	cross_species	Density(Honeybee)	C_S	C_S	1019897.96803	1019897.96802677224116	zT12xo	1e-06	compiled	(T::lit("960000") / (fabs((domain_scalar("Neuroscience"))) * T::lit("1")))	0.00e+00	-
+sec.cross_species.8	cross_species	S(C_elegans)	C_S	C_S	0.941270627156	0.941270627156304007634	vSda	2	compiled	(domain_scalar("Neuroscience"))	0.00e+00	-
+sec.cross_species.9	cross_species	Density(C_elegans)	C_S	C_S	320842.902442	320842.902441755427532	zT15xo	1e-05	compiled	(T::lit("302") / (fabs((domain_scalar("Neuroscience"))) * T::lit("0.001000000000000000020816681711721685132943093776702880859375")))	0.00e+00	-
+sec.trinary.0	trinary	Max_Trits	0	-	27	27	-	0	literal (tier 0): resistor ratio, no computation	R(27)	0.00e+00	-
+sec.trinary.1	trinary	Collapse_Threshold	2_M	2_M	0.917510271206	0.917510271206487622656	zT266xo	1	compiled	(C_EFF * P_VAR)	1.18e-11	-
+sec.predictions.0	predictions	CMB_tau	2a_X	2a_X	0.0539995112799	0.053999511279947369642	zT291xo	100	compiled	((((R(1) / sqrt(PHI)) - (R(1) / PHI)) / (pow(PI, xexp(T::lit("0.333333333333"), 1, 3)) + sqrt(E))))	0.00e+00	-
+sec.predictions.1	predictions	Dark_energy_wa	2a_M	2a_M	-0.808109771581	-0.808109771581081037784	zT14xo	-1	compiled	(((((-GAMMA) * E) * PHI) / PI))	0.00e+00	-
+sec.predictions.2	predictions	Tau_g-2	2_M	2_M	0.00118827901349	0.00118827901349208900775	zT269xo	1000	compiled	((((ALPHA * sqrt(PHI)) * PI) / E))	0.00e+00	-
+sec.predictions.3	predictions	Cross_Opt_QO	C_S	C_S	1	1	zT18xo	1	compiled	((domain_scalar("Optics")) / (domain_scalar("Quantum_Optics")))	0.00e+00	-
+sec.predictions.4	predictions	Cross_MatSci_CM	C_S	C_S	1.01316181	1.01316181000275347662	zT24xo	1	compiled	((domain_scalar("Materials_Science")) / (domain_scalar("Condensed_Matter")))	0.00e+00	-
+sec.predictions.5	predictions	Cross_Astro_PS	C_S	C_S	1.00493209429	1.00493209428991679439	zT30xo	1	compiled	((domain_scalar("Astronomy")) / (domain_scalar("Planetary_Science")))	0.00e+00	-
+sec.chemistry_ionization.0	chemistry_ionization	IE_H	2a_P	2a_P	13.5884298931	13.5884298931095161703	zA302xo	0.1	compiled	(ipow(GAMMA, -5) - ipow(G_CAT, -8))	0.00e+00	-
+sec.chemistry_ionization.1	chemistry_ionization	IE_He	2_M	2_M	24.6053948737	24.6053948736502257465	zT272xo	0.1	compiled	(ipow(E, 2) / P_NEW)	0.00e+00	-
+sec.chemistry_ionization.2	chemistry_ionization	IE_Li	2a_P	2a_P	5.39210395058	5.39210395058444822911	zA307xo	0.957483	compiled	(ipow(GAMMA, -3) + ipow(GAMMA, 3))	0.00e+00	-
+sec.chemistry_ionization.3	chemistry_ionization	IE_Be	2a_T	2a_T	9.32391157789	9.323911577885365831	zA137xo	0.1	compiled	(ipow(PI, 2) - sin(GAMMA))	2.32e-13	-
+sec.chemistry_ionization.4	chemistry_ionization	IE_B	2a_P	2a_P	8.30448878377	8.30448878376542233299	zA312xo	0.1	compiled	(ipow(GAMMA, -4) - ipow(G_CAT, 4))	0.00e+00	-
+sec.chemistry_ionization.5	chemistry_ionization	IE_C	2a_M	2a_M	11.2580165443	11.2580165443249911681	zT126xo	0.1	compiled	(ipow(E, 7) / ipow(PI, 4))	0.00e+00	-
+sec.chemistry_ionization.6	chemistry_ionization	IE_N	2a_P	2a_P	14.5148974999	14.5148974998713845858	zA317xo	0.1	compiled	(ipow(GAMMA, -5) - ipow(G_CAT, -1))	0.00e+00	-
+sec.chemistry_ionization.7	chemistry_ionization	IE_O	2_M	2_M	13.4377491954	13.437749195392330581	zT275xo	0.1	compiled	(sin(R(1)) / C_COSM)	0.00e+00	-
+sec.chemistry_ionization.8	chemistry_ionization	IE_F	2_M	2_M	17.4187088693	17.4187088692644054359	zT278xo	0.1	compiled	(ipow(PHI, 7) / A_IN)	7.29e-12	-
+sec.chemistry_ionization.9	chemistry_ionization	IE_Ne	2a_M	2a_M	21.5327963841	21.5327963841253659238	zT129xo	0.1	compiled	(PI * ipow(PHI, 4))	0.00e+00	-
+sec.chemistry_ionization.10	chemistry_ionization	IE_Na	2_P	2_P	5.13716849849	5.13716849849192902728	zA352xo	0.957483	compiled	(ipow(GAMMA, -3) - C_COSM)	0.00e+00	-
+sec.chemistry_ionization.11	chemistry_ionization	IE_Mg	2_P	2_P	7.64208045546	7.64208045545977043269	zA357xo	0.726384	compiled	(ipow(PHI, 4) + B_IN)	1.28e-13	-
+sec.chemistry_ionization.12	chemistry_ionization	IE_Al	2a_X	2a_X	5.9875277574	5.98752775740093255707	zT307xo	1	compiled	(ipow(PHI, 4) / log(PI))	0.00e+00	-
+sec.chemistry_ionization.13	chemistry_ionization	IE_Si	2a_P	2a_P	8.14880320482	8.14880320481624217336	zA322xo	0.1	compiled	(ipow(E, 2) + sqrt(GAMMA))	0.00e+00	-
+sec.chemistry_ionization.14	chemistry_ionization	IE_P	2a_P	2a_P	10.4876383898	10.4876383898392534673	zA327xo	0.1	compiled	(ipow(PI, 2) + ipow(PHI, -1))	0.00e+00	-
+sec.chemistry_ionization.15	chemistry_ionization	IE_S	2a_M	2a_M	10.3601302176	10.3601302176498543941	zT132xo	0.1	compiled	(ipow(PHI, 6) / sqrt(R(3)))	0.00e+00	-
+sec.chemistry_ionization.16	chemistry_ionization	IE_Cl	2a_M	2a_M	12.9845971347	12.98459713474939012	zT135xo	0.1	compiled	(ipow(PHI, 7) / sqrt(R(5)))	0.00e+00	-
+sec.chemistry_ionization.17	chemistry_ionization	IE_Ar	2_P	2_P	15.7601237785	15.7601237784697414861	zA362xo	0.1	compiled	(ipow(GAMMA, -5) + POOF)	0.00e+00	-
+sec.chemistry_ionization.18	chemistry_ionization	IE_K	2a_P	2a_P	4.33738916114	4.3373891611421274677	zA332xo	1	compiled	(ipow(PHI, 3) + ipow(PI, -2))	0.00e+00	-
+sec.chemistry_ionization.19	chemistry_ionization	IE_Ca	2a_X	2a_X	6.11135426401	6.11135426400748761914	zT310xo	1	compiled	(ipow(PHI, 3) / log(R(2)))	0.00e+00	-
+sec.chemistry_electronegativity.0	chemistry_electronegativity	EN_H	2_P	2_P	2.19939692152	2.19939692152489333363	zA367xo	1	compiled	(ipow(GAMMA, -1) + ETA_EFF)	0.00e+00	-
+sec.chemistry_electronegativity.1	chemistry_electronegativity	EN_Li	2a_P	2a_P	0.980040878788	0.980040878787709693332	zA337xo	1	compiled	(ipow(GAMMA, 5) + G_CAT)	0.00e+00	-
+sec.chemistry_electronegativity.2	chemistry_electronegativity	EN_Na	2a_X	2a_X	0.930187166116	0.930187166116454312132	zT313xo	1	compiled	(ipow(G_CAT, 5) / log(R(2)))	0.00e+00	-
+sec.chemistry_electronegativity.3	chemistry_electronegativity	EN_C	2a_T	2a_T	2.54985735998	2.549857359980623563	zA140xo	1	compiled	(ipow(G_CAT, -5) + sin(PHI))	9.97e-12	-
+sec.chemistry_electronegativity.4	chemistry_electronegativity	EN_N	2a_P	2a_P	3.04027146995	3.04027146994745546701	zA342xo	1	compiled	(PI - ipow(PI, -2))	0.00e+00	-
+sec.chemistry_electronegativity.5	chemistry_electronegativity	EN_O	2_P	2_P	3.43930769591	3.4393076959100890703	zA372xo	1	compiled	(sqrt(PI) + A_IN)	7.29e-12	-
+sec.chemistry_electronegativity.6	chemistry_electronegativity	EN_F	2_X	2_X	3.98009220325	3.98009220325191849185	zT111xo	1	compiled	(log(PI) / C_FACTOR)	1.28e-13	-
+sec.chemistry_electronegativity.7	chemistry_electronegativity	EN_S	2a_P	2a_P	2.58104873074	2.58104873073969551538	zA347xo	1	compiled	(ipow(PHI, 2) - ipow(GAMMA, 6))	0.00e+00	-
+sec.chemistry_electronegativity.8	chemistry_electronegativity	EN_Cl	2a_X	2a_X	3.15990829248	3.1599082924785274187	zA316xo	1	compiled	(PI + exp((-R(4))))	0.00e+00	-
+sec.chemistry_electronegativity.9	chemistry_electronegativity	EN_Br	2a_P	2a_P	2.96372045626	2.96372045626347394324	zA352xo	0.957483	compiled	(ipow(GAMMA, -3) - sqrt(R(5)))	0.00e+00	-
+sec.chemistry_bond_lengths.0	chemistry_bond_lengths	BL_H−H	2a_P	2a_P	0.740149801166	0.740149801165558735212	zA355xo	5.91667	compiled	(sin(R(1)) - ipow(PI, -2))	0.00e+00	-
+sec.chemistry_bond_lengths.1	chemistry_bond_lengths	BL_C−H	2_P	2_P	1.0896381801	1.08963818010304018232	zA377xo	1	compiled	(A_IN - GAMMA)	7.29e-12	-
+sec.chemistry_bond_lengths.2	chemistry_bond_lengths	BL_C−C	2a_P	2a_P	1.54013919778	1.54013919777944888396	zA358xo	1	compiled	(ipow(GAMMA, -1) - ipow(GAMMA, 3))	0.00e+00	-
+sec.chemistry_bond_lengths.3	chemistry_bond_lengths	BL_C=C	2_P	2_P	1.33995313392	1.33995313392238089476	zA382xo	1	compiled	(ipow(PHI, -2) + P_VAR)	1.18e-11	-
+sec.chemistry_bond_lengths.4	chemistry_bond_lengths	BL_C≡C	2a_M	2a_M	1.19998161486	1.19998161486432666117	zT138xo	1	compiled	(PI / ipow(PHI, 2))	0.00e+00	-
+sec.chemistry_bond_lengths.5	chemistry_bond_lengths	BL_O−H	2_X	2_X	0.960226773514	0.960226773514490626181	zA145xo	1	compiled	(C_EFF + exp((-R(6))))	1.28e-13	-
+sec.chemistry_bond_lengths.6	chemistry_bond_lengths	BL_N−H	2_P	2_P	1.00998837258	1.00998837257735171518	zA385xo	1	compiled	(A_BLEED - ipow(GAMMA, 6))	7.29e-12	-
+sec.chemistry_bond_lengths.7	chemistry_bond_lengths	BL_C−N	2a_P	2a_P	1.46994165237	1.46994165237393626321	zA363xo	1	compiled	(sqrt(R(2)) + ipow(PHI, -6))	0.00e+00	-
+sec.chemistry_bond_lengths.8	chemistry_bond_lengths	BL_C−O	2_X	2_X	1.42963647128	1.42963647127859153259	zA150xo	1	compiled	(log(R(3)) - CHAOS)	7.29e-12	-
+sec.chemistry_bond_lengths.9	chemistry_bond_lengths	BL_C=O	2_P	2_P	1.23023318126	1.23023318125568862844	zA390xo	1	compiled	(ipow(G_CAT, -8) - B_IN)	1.28e-13	-
+sec.chemistry_bond_energies.0	chemistry_bond_energies	BE_H−H	2a_M	2a_M	434.915909002	434.915909001686493751	zT141xo	0.01	compiled	(ipow(E, 8) / ipow(PHI, 4))	0.00e+00	-
+sec.chemistry_bond_energies.1	chemistry_bond_energies	BE_C−H	2a_P	2a_P	413.298397894	413.298397893824481231	zA366xo	0.01	compiled	(ipow(E, 6) + ipow(PI, 2))	0.00e+00	-
+sec.chemistry_bond_energies.2	chemistry_bond_energies	BE_C−C	2a_P	2a_P	348.83064346	348.830643459590883537	zA371xo	0.01	compiled	(ipow(E, 6) - ipow(E, 4))	0.00e+00	-
+sec.chemistry_bond_energies.3	chemistry_bond_energies	BE_C=C	2_M	2_M	613.005076014	613.00507601373979899	zT281xo	0.01	compiled	(ipow(G_CAT, 8) / ALPHA)	0.00e+00	-
+sec.chemistry_bond_energies.4	chemistry_bond_energies	BE_C≡C	2a_X	2a_X	838.360099407	838.360099406879642758	zT321xo	0.001	compiled	(ipow(E, 6) / log(PHI))	0.00e+00	-
+sec.chemistry_bond_energies.5	chemistry_bond_energies	BE_O−H	2a_X	2a_X	462.631848433	462.631848432952633404	zT325xo	0.01	compiled	(ipow(PI, 6) * log(PHI))	0.00e+00	-
+sec.chemistry_bond_energies.6	chemistry_bond_energies	BE_N−H	2a_P	2a_P	392.338623549	392.338623548985648365	zA376xo	0.01	compiled	(ipow(E, 6) - ipow(PHI, 5))	0.00e+00	-
+sec.chemistry_bond_energies.7	chemistry_bond_energies	BE_N≡N	2a_P	2a_P	945.782552012	945.782552011729146346	zA381xo	0.001	compiled	(ipow(PI, 6) - ipow(GAMMA, -5))	0.00e+00	-
+sec.chemistry_bond_energies.8	chemistry_bond_energies	BE_O=O	2a_M	2a_M	495.150251209	495.150251209114458606	zT144xo	0.01	compiled	(ipow(PI, 5) * PHI)	0.00e+00	-
+sec.chemistry_bond_energies.9	chemistry_bond_energies	BE_F−F	2a_P	2a_P	159.503329046	159.503329046326077667	zA386xo	0.01	compiled	(ipow(E, 5) + ipow(PHI, 5))	0.00e+00	-
+sec.chemistry_molecular.0	chemistry_molecular	BP_H₂O	2a_P	2a_P	372.422516812	372.422516812435302425	zA391xo	0.01	compiled	(ipow(E, 6) - ipow(PI, 3))	0.00e+00	-
+sec.chemistry_molecular.1	chemistry_molecular	BP_NH₃	2a_M	2a_M	240.137535806	240.13753580571478613	zT147xo	0.01	compiled	(ipow(E, 5) * PHI)	0.00e+00	-
+sec.chemistry_molecular.2	chemistry_molecular	BP_CH₄	2a_M	2a_M	111.706324296	111.706324295782396992	zT150xo	0.01	compiled	(ipow(PI, 7) * ipow(GAMMA, 6))	0.00e+00	-
+sec.chemistry_molecular.3	chemistry_molecular	BP_C₂H₅OH	2a_M	2a_M	350.935767767	350.935767767149012025	zT153xo	0.01	compiled	(ipow(PI, 8) * ipow(GAMMA, 6))	0.00e+00	-
+sec.chemistry_molecular.4	chemistry_molecular	BP_CO₂_sub	2a_X	2a_X	194.134705998	194.134705998232939508	zT328xo	0.01	compiled	(ipow(E, 6) * log(PHI))	0.00e+00	-
+sec.chemistry_molecular.5	chemistry_molecular	dipole_H₂O	2_M	2_M	1.85018546592	1.85018546591869657565	zT284xo	1	compiled	(sqrt(PI) / P_VAR)	1.18e-11	-
+sec.chemistry_molecular.6	chemistry_molecular	dipole_NH₃	2a_P	2a_P	1.46994165237	1.46994165237393626321	zA363xo	1	compiled	(sqrt(R(2)) + ipow(PHI, -6))	0.00e+00	-
+sec.chemistry_molecular.7	chemistry_molecular	dipole_HCl	2a_P	2a_P	1.0801237579	1.0801237578967653486	zA396xo	1	compiled	(ipow(G_CAT, -7) - ipow(G_CAT, 3))	0.00e+00	-
+sec.chemistry_molecular.8	chemistry_molecular	pH_water	2a_P	2a_P	7	7	zA401xo	0.726384	compiled	(ipow(PHI, -4) + ipow(PHI, 4))	0.00e+00	-
+sec.chemistry_molecular.9	chemistry_molecular	pKw_water	2a_P	2a_P	13.9886075748	13.9886075748253958387	zA406xo	0.1	compiled	(ipow(GAMMA, -5) - PHI)	0.00e+00	-
+sec.chemistry_radii.0	chemistry_radii	R_H	2a_X	2a_X	0.309984842829	0.309984842828871690843	zT331xo	10	compiled	(log(R(2)) / sqrt(R(5)))	0.00e+00	-
+sec.chemistry_radii.1	chemistry_radii	R_C	2a_P	2a_P	0.77001308814	0.77001308814027628148	zA411xo	6.55311	compiled	(ipow(PI, -4) + sqrt(GAMMA))	0.00e+00	-
+sec.chemistry_radii.2	chemistry_radii	R_N	2a_X	2a_X	0.750000163245	0.750000163245471204688	zA334xo	2.69321	compiled	(ipow(G_CAT, -7) - log(R(3)))	0.00e+00	-
+sec.chemistry_radii.3	chemistry_radii	R_O	2_M	2_M	0.729970098102	0.729970098102295708001	zT287xo	10	compiled	(P_BASE / THETA_S)	1.28e-13	-
+sec.chemistry_radii.4	chemistry_radii	R_F	2a_X	2a_X	0.709960037518	0.709960037517728003342	zA337xo	6.55311	compiled	(sqrt(GAMMA) - exp((-R(3))))	0.00e+00	-
+sec.chemistry_radii.5	chemistry_radii	R_Na	2a_P	2a_P	1.54013919778	1.54013919777944888396	zA358xo	1	compiled	(ipow(GAMMA, -1) - ipow(GAMMA, 3))	0.00e+00	-
+sec.chemistry_radii.6	chemistry_radii	R_Cl	2_P	2_P	0.989999555771	0.989999555771023756934	zA395xo	1	compiled	(C_EFF + ipow(PI, -3))	1.28e-13	-
+sec.chemistry_radii.7	chemistry_radii	R_Fe	2_P	2_P	1.25015454758	1.25015454757845252665	zA400xo	1	compiled	(ipow(PHI, -1) + PSI_CON)	0.00e+00	-
+partC.fc.Neuroscience	partC	fsot_correct_factor(Neuroscience)	C_S	C_S	1.00076082316	1.00076082316	zA36xo	1	compiled	(R(1) + (fabs(domain_scalar("Neuroscience")) * ALPHA))	0.00e+00	-
+partC.fc.Optics	partC	fsot_correct_factor(Optics)	C_S	C_S	1.00077083697	1.00077083697	zA44xo	1	compiled	(R(1) + (fabs(domain_scalar("Optics")) * ALPHA))	0.00e+00	-
+partC.fc.Quantum_Optics	partC	fsot_correct_factor(Quantum_Optics)	C_S	C_S	1.00077083697	1.00077083697	zA47xo	1	compiled	(R(1) + (fabs(domain_scalar("Quantum_Optics")) * ALPHA))	0.00e+00	-
+partC.fc.Materials_Science	partC	fsot_correct_factor(Materials_Science)	C_S	C_S	1.00077083697	1.00077083697	zA50xo	1	compiled	(R(1) + (fabs(domain_scalar("Materials_Science")) * ALPHA))	0.00e+00	-
+partC.fc.Condensed_Matter	partC	fsot_correct_factor(Condensed_Matter)	C_S	C_S	1.00076082316	1.00076082316	zA53xo	1	compiled	(R(1) + (fabs(domain_scalar("Condensed_Matter")) * ALPHA))	0.00e+00	-
+partC.fc.Astronomy	partC	fsot_correct_factor(Astronomy)	C_S	C_S	1.00073351692	1.00073351692	zA56xo	1	compiled	(R(1) + (fabs(domain_scalar("Astronomy")) * ALPHA))	0.00e+00	-
+partC.fc.Planetary_Science	partC	fsot_correct_factor(Planetary_Science)	C_S	C_S	1.0007299169	1.0007299169	zA59xo	1	compiled	(R(1) + (fabs(domain_scalar("Planetary_Science")) * ALPHA))	0.00e+00	-
+partC.fc.Cosmology	partC	fsot_correct_factor(Cosmology)	C_S	C_S	1.00040606844	1.00040606844	zA62xo	1	compiled	(R(1) + (fabs(domain_scalar("Cosmology")) * ALPHA))	0.00e+00	-
+partC.fc.Quantum_Mechanics	partC	fsot_correct_factor(Quantum_Mechanics)	C_S	C_S	1.00076803867	1.00076803867	zA67xo	1	compiled	(R(1) + (fabs(domain_scalar("Quantum_Mechanics")) * ALPHA))	0.00e+00	-
+partC.fc.Chemistry	partC	fsot_correct_factor(Chemistry)	C_S	C_S	1.00077215439	1.00077215439	zA71xo	1	compiled	(R(1) + (fabs(domain_scalar("Chemistry")) * ALPHA))	0.00e+00	-
+partC.hub.gamma_rel	partC	gamma_rel	C_H	C_H	0.42804344606	0.42804344606	zA1xo	10	compiled	(fabs(CHAOS) + (PSI_CON * POOF))	7.29e-12	-
+partC.hub.kappa	partC	kappa	C_H	C_H	0.314632537302	0.314632537302	zT44xo	10	compiled	((POOF + SUCTION) * A_BLEED)	9.34e-12	-
+partC.hub.mu_Fluid	partC	mu_Fluid	C_H	C_H	0.332824406716	0.332824406716	zA91xo	10	compiled	((fabs(CHAOS) * 0.520000) + (A_BLEED * POOF))	7.29e-12	-
+partC.hub.mu_D25	partC	mu_D25	C_H	C_H	0.160691831759	0.160691831759	zT96xo	10	compiled	(A_BLEED * POOF)	7.29e-12	-
+partC.hub.J_obs	partC	J_obs	C_H	C_H	0.0794560282153	0.0794560282153	zT99xo	100	compiled	(C_FACTOR * cos((R(1) + THETA_S)))	1.02e-11	-
+partC.hub.c_s2	partC	c_s2	C_H	C_H	0.591920829845	0.591920829845	zT143xo	10	compiled	(C_EFF / PHI)	1.28e-13	-
